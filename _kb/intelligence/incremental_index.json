@@ -1,0 +1,14 @@
+{
+    "mcp\/server.php": {
+        "cache_key": "9e6b9213117f2c3350939e6fe1d65ea7",
+        "last_analyzed": "2025-10-25 14:06:18",
+        "functions": 14,
+        "security_issues": 0
+    },
+    "\/home\/master\/applications\/hdgwrzntwa\/public_html\/mcp\/server.php": {
+        "cache_key": "362c13821792f7a9ed75769c05cd16ae",
+        "last_analyzed": "2025-10-25 14:13:17",
+        "functions": 14,
+        "security_issues": 0
+    }
+}

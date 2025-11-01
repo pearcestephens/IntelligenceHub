@@ -1,0 +1,24 @@
+{
+    "mcpServers": {
+        "cis-knowledge-base": {
+            "url": "https:\/\/gpt.ecigdis.co.nz\/mcp\/server.php",
+            "description": "CIS Knowledge Base MCP Server - Provides semantic search, file context, pattern discovery, and quality analysis",
+            "transport": "http",
+            "timeout": 30000,
+            "headers": {
+                "Content-Type": "application\/json"
+            },
+            "capabilities": {
+                "tools": true,
+                "resources": true,
+                "prompts": true
+            },
+            "health_check_url": "https:\/\/gpt.ecigdis.co.nz\/mcp\/health.php"
+        }
+    },
+    "version": "1.0.0",
+    "name": "CIS MCP Configuration",
+    "description": "Model Context Protocol configuration for GitHub Copilot integration with CIS Knowledge Base",
+    "kb_structure_version": "3.0",
+    "last_reorganized": "2025-10-28 15:01:08"
+}

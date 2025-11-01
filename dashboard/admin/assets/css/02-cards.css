@@ -1,0 +1,70 @@
+/**
+ * 02-cards.css - Card layouts and styling
+ */
+
+.metric-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+}
+
+.metric-card .metric-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.metric-card .metric-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.stat-card {
+    background: white;
+    border-left: 4px solid var(--primary-color);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.stat-card.success {
+    border-left-color: var(--success-color);
+}
+
+.stat-card.danger {
+    border-left-color: var(--danger-color);
+}
+
+.stat-card.warning {
+    border-left-color: var(--warning-color);
+}
+
+.stat-card .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.stat-card.success .stat-number {
+    color: var(--success-color);
+}
+
+.stat-card.danger .stat-number {
+    color: var(--danger-color);
+}
+
+.info-panel {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.info-panel h6 {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}

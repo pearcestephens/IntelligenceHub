@@ -1,0 +1,18 @@
+# Deny access to hidden files (e.g., .env, .git)
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+# Block direct access to internal PHP source directories from the web
+RewriteEngine On
+RewriteRule ^(src|ops|server|scripts|sql|tests|vendor|bin|logs|backups|docs|node_modules|\.fxdata)(/|$) - [F]
+
+# Explicitly protect .env and env variants
+<Files ".env">
+  Require all denied
+</Files>
+<Files ".env.test">
+  Require all denied
+</Files>
+
+# Allow public/ to be served normally; no rewrite here since we deploy under a subpath

@@ -1,0 +1,248 @@
+{
+    "topics": [
+        {
+            "title": "Architecture Patterns Guide",
+            "file": "architecture\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Backend Development Guide",
+            "file": "backend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "PHP 8+ Best Practices",
+            "file": "backend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Object-Oriented Programming",
+            "file": "backend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "API Design",
+            "file": "backend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Node.js Development",
+            "file": "backend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Express.js Best Practices",
+            "file": "backend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Database Design & Optimization Guide",
+            "file": "database\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Schema Design Best Practices",
+            "file": "database\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Normalized Table Structure",
+            "file": "database\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Query Optimization",
+            "file": "database\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "PHP Database Access Patterns",
+            "file": "database\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "PDO Best Practices",
+            "file": "database\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "DevOps & Infrastructure Guide",
+            "file": "devops\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Real-World Examples Guide",
+            "file": "examples\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Frontend Development Guide",
+            "file": "frontend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "HTML5 & Semantic Markup",
+            "file": "frontend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Best Practices",
+            "file": "frontend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "CSS3 & Modern Styling",
+            "file": "frontend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Flexbox Layout",
+            "file": "frontend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "CSS Grid",
+            "file": "frontend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "JavaScript ES6+ Fundamentals",
+            "file": "frontend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Modern Syntax",
+            "file": "frontend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "React Development",
+            "file": "frontend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Component Best Practices",
+            "file": "frontend\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Performance Optimization Guide",
+            "file": "performance\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Quick Reference Guide",
+            "file": "quick_reference\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Common Code Patterns",
+            "file": "quick_reference\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "PHP Error Handling",
+            "file": "quick_reference\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "JavaScript Promise Handling",
+            "file": "quick_reference\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "CSS Layout Patterns",
+            "file": "quick_reference\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Security Best Practices Guide",
+            "file": "security\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Testing Strategies Guide",
+            "file": "testing\/README.md",
+            "type": "heading"
+        },
+        {
+            "title": "Tools & Frameworks Guide",
+            "file": "tools\/README.md",
+            "type": "heading"
+        }
+    ],
+    "keywords": [],
+    "examples": [
+        {
+            "language": "php",
+            "file": "backend\/README.md",
+            "preview": "<?php\ndeclare(strict_types=1);\n\nnamespace App\\Services;\n\nuse App\\Models\\User;\nuse App\\Exceptions\\Use..."
+        },
+        {
+            "language": "php",
+            "file": "backend\/README.md",
+            "preview": "<?php\n\/\/ RESTful API Controller\nclass ApiController\n{\n    public function handleRequest(string $meth..."
+        },
+        {
+            "language": "javascript",
+            "file": "backend\/README.md",
+            "preview": "const express = require('express');\nconst helmet = require('helmet');\nconst rateLimit = require('exp..."
+        },
+        {
+            "language": "sql",
+            "file": "database\/README.md",
+            "preview": "-- Users table\nCREATE TABLE users (\n    id INT PRIMARY KEY AUTO_INCREMENT,\n    email VARCHAR(255) UN..."
+        },
+        {
+            "language": "sql",
+            "file": "database\/README.md",
+            "preview": "-- Efficient pagination\nSELECT * FROM users \nWHERE id > 1000 \nORDER BY id \nLIMIT 20;\n\n-- Using cover..."
+        },
+        {
+            "language": "php",
+            "file": "database\/README.md",
+            "preview": "<?php\nclass DatabaseManager\n{\n    private PDO $pdo;\n    \n    public function __construct(string $dsn..."
+        },
+        {
+            "language": "html",
+            "file": "frontend\/README.md",
+            "preview": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content..."
+        },
+        {
+            "language": "css",
+            "file": "frontend\/README.md",
+            "preview": ".container {\n    display: flex;\n    flex-direction: column;\n    gap: 1rem;\n    padding: 1rem;\n}\n\n.he..."
+        },
+        {
+            "language": "css",
+            "file": "frontend\/README.md",
+            "preview": ".grid-container {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))..."
+        },
+        {
+            "language": "javascript",
+            "file": "frontend\/README.md",
+            "preview": "\/\/ Destructuring\nconst { name, email } = user;\nconst [first, second] = items;\n\n\/\/ Template Literals\n..."
+        },
+        {
+            "language": "jsx",
+            "file": "frontend\/README.md",
+            "preview": "import React, { useState, useEffect, useMemo } from 'react';\n\nconst UserProfile = ({ userId }) => {\n..."
+        },
+        {
+            "language": "php",
+            "file": "quick_reference\/README.md",
+            "preview": "try {\n    $result = $service->performOperation();\n    return ['success' => true, 'data' => $result];..."
+        },
+        {
+            "language": "javascript",
+            "file": "quick_reference\/README.md",
+            "preview": "const apiCall = async (endpoint, data) => {\n    try {\n        const response = await fetch(endpoint,..."
+        },
+        {
+            "language": "css",
+            "file": "quick_reference\/README.md",
+            "preview": "\/* Card Component *\/\n.card {\n    background: white;\n    border-radius: 8px;\n    box-shadow: 0 2px 10..."
+        }
+    ],
+    "last_updated": "2025-10-22 14:41:06"
+}

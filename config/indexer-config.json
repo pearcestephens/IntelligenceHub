@@ -1,0 +1,48 @@
+{
+    "database": {
+        "host": "localhost",
+        "username": "hdgwrzntwa",
+        "password": "",
+        "database": "hdgwrzntwa",
+        "charset": "utf8mb4"
+    },
+    "paths": {
+        "project_root": "/home/master/applications/hdgwrzntwa/public_html",
+        "scan_directories": [
+            "/home/master/applications/hdgwrzntwa/public_html/scripts",
+            "/home/master/applications/hdgwrzntwa/public_html/docs",
+            "/home/master/applications/hdgwrzntwa/public_html/api",
+            "/home/master/applications/hdgwrzntwa/public_html/dashboard",
+            "/home/master/applications/hdgwrzntwa/public_html/kb"
+        ],
+        "exclude_patterns": [
+            "*/vendor/*",
+            "*/node_modules/*",
+            "*/.git/*",
+            "*/logs/*",
+            "*/cache/*",
+            "*/tmp/*"
+        ]
+    },
+    "indexing": {
+        "max_file_size": 10485760,
+        "batch_size": 100,
+        "enable_content_extraction": true,
+        "enable_relationship_mapping": true,
+        "enable_summarization": true
+    },
+    "logging": {
+        "enabled": true,
+        "level": "INFO",
+        "file": "/home/master/applications/hdgwrzntwa/public_html/logs/kb-indexer.log"
+    },
+    "domains": {
+        "intelligence": {
+            "name": "Intelligence System",
+            "table_prefix": "ecig_kb_",
+            "scan_paths": [
+                "/home/master/applications/hdgwrzntwa/public_html"
+            ]
+        }
+    }
+}

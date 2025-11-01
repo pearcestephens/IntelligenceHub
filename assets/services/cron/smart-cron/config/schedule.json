@@ -1,0 +1,992 @@
+[
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_WeeklyAnalysis",
+            "script": "assets/services/cron/scripts/neuro/weekly-analysis.php",
+            "type": "heavy",
+            "hour": 6,
+            "frequency": "weekly",
+            "day_of_week": 1
+        },
+        {
+            "name": "Neuro_LTVOptimization",
+            "script": "assets/services/cron/scripts/neuro/ltv-optimization.php",
+            "type": "medium",
+            "hour": 7,
+            "frequency": "weekly",
+            "day_of_week": 1
+        },
+        {
+            "name": "Neuro_CompetitiveAnalysis",
+            "script": "assets/services/cron/scripts/neuro/competitive-analysis.php",
+            "type": "medium",
+            "hour": 8,
+            "frequency": "weekly",
+            "day_of_week": 1
+        },
+        {
+            "name": "unified_cron_light",
+            "script": "assets/services/queue/bin/unified-cron.sh light",
+            "type": "critical"
+        },
+        {
+            "name": "unified_cron_cleanup",
+            "script": "assets/services/queue/bin/unified-cron.sh cleanup",
+            "type": "medium",
+            "hour": 3,
+            "frequency": "daily"
+        },
+        {
+            "name": "ProductQtyHistory",
+            "script": "assets/cron/product-qty-history.php",
+            "type": "medium",
+            "hour": 1,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_SalesAggregationHourly",
+            "script": "assets/services/cron/scripts/neuro/sales-aggregation-hourly.php",
+            "type": "light",
+            "business_hours": false
+        },
+        {
+            "name": "check_bank_transaction",
+            "script": "assets/cron/xero/check-bank-transactions.php",
+            "type": "medium"
+        },
+        {
+            "name": "verifone_transactions",
+            "script": "assets/services/cron/scripts/general/sync-transactions.php",
+            "type": "medium",
+            "business_hours": true
+        },
+        {
+            "name": "HarpProductFetch",
+            "script": "assets/services/cron/scripts/general/product-fetch.php",
+            "type": "medium",
+            "hour": 2,
+            "frequency": "daily"
+        },
+        {
+            "name": "Neuro_RedisOptimization",
+            "script": "assets/services/cron/scripts/neuro/redis-optimization.php",
+            "type": "medium",
+            "hour": 3,
+            "frequency": "daily"
+        },
+        {
+            "name": "Neuro_DailyIntelligenceReport",
+            "script": "assets/services/cron/scripts/neuro/daily-intelligence-report.php",
+            "type": "medium",
+            "hour": 6,
+            "frequency": "daily"
+        },
+        {
+            "name": "AutomaticJuiceTransfers",
+            "script": "assets/services/cron/scripts/inventory/auto-juice-transfers.php",
+            "type": "medium",
+            "hour": 7,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "LightSpeed_ConsignmentSync",
+            "script": "assets/services/queue/bin/cron/consignment-sync.php",
+            "type": "medium"
+        },
+        {
+            "name": "KB_HealthCheck",
+            "script": "assets/services/ai-agent/public/api/health-check.php",
+            "type": "light",
+            "business_hours": false
+        },
+        {
+            "name": "Neuro_PredictiveModeling",
+            "script": "assets/services/cron/scripts/neuro/predictive-modeling.php",
+            "type": "heavy",
+            "hour": 7,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "assets/services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_MarketIntelligence",
+            "script": "assets/services/cron/scripts/neuro/market-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "google_token_refresh",
+            "script": "assets/services/cron/scripts/general/token-refresh.php",
+            "type": "light",
+            "business_hours": true
+        },
+        {
+            "name": "Neuro_SystemMaintenance",
+            "script": "assets/services/cron/scripts/neuro/system-maintenance.php",
+            "type": "medium",
+            "hour": 2,
+            "frequency": "daily"
+        },
+        {
+            "name": "vapedrop_public_holiday_check",
+            "script": "assets/services/cron/scripts/inventory/vapedrop-holiday-check.php",
+            "type": "light",
+            "hour": 4,
+            "frequency": "daily"
+        },
+        {
+            "name": "PythonAutoForecast",
+            "script": "assets/services/cron/scripts/inventory/auto-forecast.py",
+            "type": "heavy",
+            "hour": 5,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_CustomerIntelligence",
+            "script": "assets/services/cron/scripts/neuro/customer-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "KB_RefreshFull",
+            "script": "_kb/tools/refresh-kb.php --full",
+            "type": "heavy",
+            "hour": 2,
+            "frequency": "daily"
+        },
+        {
+            "name": "Neuro_StrategicInsights",
+            "script": "assets/services/cron/scripts/neuro/strategic-insights.php",
+            "type": "medium",
+            "hour": 8,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "assets/services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "UpdateSalesSnapshot",
+            "script": "assets/services/cron/scripts/inventory/update-sales-snapshot.php",
+            "type": "medium",
+            "hour": 1,
+            "frequency": "daily"
+        },
+        {
+            "name": "TurnoverRateCalculate",
+            "script": "assets/services/cron/scripts/inventory/turnover-rate-calculate.php",
+            "type": "light",
+            "hour": 9,
+            "frequency": "weekly",
+            "day_of_week": 1
+        },
+        {
+            "name": "unified_cron_light",
+            "script": "assets/services/queue/bin/unified-cron.sh light",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_HourlyAnalytics",
+            "script": "assets/services/cron/scripts/neuro/hourly-analytics.php",
+            "type": "medium",
+            "business_hours": false
+        },
+        {
+            "name": "KB_AnalyzePerformance",
+            "script": "assets/services/cron/scripts/general/analyze-performance.php",
+            "type": "medium",
+            "hour": 3,
+            "frequency": "daily"
+        },
+        {
+            "name": "Neuro_DataQualityCheck",
+            "script": "assets/services/cron/scripts/neuro/data-quality-check.php",
+            "type": "medium",
+            "hour": 9,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "assets/services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "check_bank_transaction",
+            "script": "assets/cron/xero/check-bank-transactions.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_CustomerIntelligence",
+            "script": "assets/services/cron/scripts/neuro/customer-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "KB_CleanupVersions",
+            "script": "assets/services/cron/scripts/maintenance/cleanup-versions.php",
+            "type": "light",
+            "hour": 4,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "LightSpeed_ConsignmentSync",
+            "script": "assets/services/queue/bin/cron/consignment-sync.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "assets/services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_MarketIntelligence",
+            "script": "assets/services/cron/scripts/neuro/market-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_AnomalyDetection",
+            "script": "assets/services/cron/scripts/neuro/anomaly-detection.php",
+            "type": "medium",
+            "business_hours": false
+        },
+        {
+            "name": "xero_petty_cash_expenses",
+            "script": "assets/services/cron/scripts/xero/petty-cash-expenses.php",
+            "type": "light",
+            "hour": 3,
+            "frequency": "daily"
+        },
+        {
+            "name": "notificationGenerator",
+            "script": "assets/services/cron/scripts/general/generator.php",
+            "type": "light",
+            "hour": 8,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "assets/services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "unified_cron_light",
+            "script": "assets/services/queue/bin/unified-cron.sh light",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_CustomerIntelligence",
+            "script": "assets/services/cron/scripts/neuro/customer-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_VectorClustering",
+            "script": "assets/services/cron/scripts/neuro/vector-clustering.php",
+            "type": "heavy",
+            "business_hours": false
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "assets/services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "check_bank_transaction",
+            "script": "assets/cron/xero/check-bank-transactions.php",
+            "type": "medium"
+        },
+        {
+            "name": "verifone_transactions",
+            "script": "assets/services/cron/scripts/general/sync-transactions.php",
+            "type": "medium",
+            "business_hours": true
+        },
+        {
+            "name": "Neuro_SalesAggregationFull",
+            "script": "assets/services/cron/scripts/neuro/sales-aggregation-full.php",
+            "type": "heavy",
+            "hour": 2,
+            "frequency": "daily"
+        },
+        {
+            "name": "AutomaticDiscontinueWebsiteProducts",
+            "script": "assets/services/cron/scripts/inventory/auto-discontinue-products.php",
+            "type": "light",
+            "hour": 7,
+            "frequency": "weekly",
+            "day_of_week": 1
+        },
+        {
+            "name": "StoreClosedNotifications_9_30AM",
+            "script": "assets/services/cron/scripts/general/store-closed-9-30am.php",
+            "type": "light",
+            "hour": 9,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "LightSpeed_ConsignmentSync",
+            "script": "assets/services/queue/bin/cron/consignment-sync.php",
+            "type": "medium"
+        },
+        {
+            "name": "KB_HealthCheck",
+            "script": "assets/services/ai-agent/public/api/health-check.php",
+            "type": "light",
+            "business_hours": false
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "assets/services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_MarketIntelligence",
+            "script": "assets/services/cron/scripts/neuro/market-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "google_token_refresh",
+            "script": "assets/services/cron/scripts/general/token-refresh.php",
+            "type": "light",
+            "business_hours": true
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_CustomerIntelligence",
+            "script": "assets/services/cron/scripts/neuro/customer-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "assets/services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "unified_cron_light",
+            "script": "assets/services/queue/bin/unified-cron.sh light",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_PerformanceOptimization",
+            "script": "assets/services/cron/scripts/neuro/performance-optimization.php",
+            "type": "medium",
+            "business_hours": false
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "assets/services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "check_bank_transaction",
+            "script": "assets/cron/xero/check-bank-transactions.php",
+            "type": "medium"
+        },
+        {
+            "name": "AutomaticProductOrderingLive",
+            "script": "assets/services/cron/scripts/inventory/auto-ordering-live.php",
+            "type": "medium",
+            "hour": 5,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_CustomerIntelligence",
+            "script": "assets/services/cron/scripts/neuro/customer-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "LightSpeed_ConsignmentSync",
+            "script": "assets/services/queue/bin/cron/consignment-sync.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "assets/services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_MarketIntelligence",
+            "script": "assets/services/cron/scripts/neuro/market-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "AutomaticStockTransfers",
+            "script": "assets/services/cron/scripts/inventory/auto-stock-transfers.php",
+            "type": "medium",
+            "hour": 8,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "assets/services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        }
+    ]
+]

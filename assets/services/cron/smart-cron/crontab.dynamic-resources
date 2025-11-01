@@ -1,0 +1,3 @@
+# Dynamic Resource Manager - Auto-adjusts cron limits based on VSCode memory
+# Runs every 1 minute to monitor system and adapt
+* * * * * cd /home/master/applications/jcepnzzkmj/public_html/assets/services/cron/smart-cron && php bin/dynamic-resource-adjuster.php >> logs/dynamic-resources.log 2>&1

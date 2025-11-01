@@ -1,0 +1,10 @@
+# AI Agent UI – Visual QA Prompt
+Goal: Review these screenshots and suggest concrete UI/UX improvements (contrast, spacing, hierarchy, focus states, accessibility). Provide specific CSS/HTML changes.
+Context: Bootstrap 5, icons via Font Awesome, single-page UI under /agent/, JS in public/agent/js/app.js.
+For each issue, include: what/why, minimal CSS/HTML fix, and any accessibility notes.
+Screenshots:
+- test-results/all-controls-AI-Agent-UI---42d19-produce-expected-UI-effects/all-01-loaded.png
+- test-results/all-controls-AI-Agent-UI---42d19-produce-expected-UI-effects/test-failed-1.png
+- test-results/smoke-AI-Agent-E2E-Smoke-l-bd8ef-nd-sends-a-message-stubbed-/smoke-01-loaded.png
+- test-results/smoke-AI-Agent-E2E-Smoke-l-bd8ef-nd-sends-a-message-stubbed-/test-failed-1.png
+If available, use traces/videos for flow insights.

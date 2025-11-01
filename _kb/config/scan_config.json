@@ -1,0 +1,99 @@
+{
+  "version": "2.0.0",
+  "last_updated": "2025-10-22",
+  "description": "Centralized KB scanning configuration - ALL scanners use this file",
+  
+  "scan_paths": [
+    "/home/master/applications/hdgwrzntwa/public_html",
+    "/home/master/applications/jcepnzzkmj/public_html"
+  ],
+  
+  "global_exclusions": {
+    "directories": [
+      "*/node_modules/*",
+      "*/vendor/*/tests/*",
+      "*/.git/*",
+      "*/cache/temp/*",
+      "*/logs/archived/*",
+      "*/tmp/*",
+      "*/.vscode/*",
+      "*/.idea/*",
+      "*/dist/*",
+      "*/build/*"
+    ],
+    "file_patterns": [
+      "*.log",
+      "*.tmp",
+      "*.cache",
+      "*.pid",
+      "*.lock",
+      ".DS_Store",
+      "Thumbs.db"
+    ],
+    "size_limits": {
+      "max_file_size_mb": 50,
+      "min_file_size_bytes": 10
+    }
+  },
+  
+  "file_type_configs": {
+    "markdown": {
+      "extensions": ["md", "markdown", "txt"],
+      "specific_exclusions": [
+        "*/node_modules/*/README.md",
+        "*/vendor/*/CHANGELOG.md"
+      ],
+      "include_libraries": false,
+      "max_batch_size": 500
+    },
+    "php": {
+      "extensions": ["php", "phtml", "php5", "php7", "php8"],
+      "specific_exclusions": [
+        "*/vendor/*/tests/*",
+        "*/node_modules/*"
+      ],
+      "include_libraries": false,
+      "max_batch_size": 200
+    },
+    "web_assets": {
+      "extensions": ["js", "css", "html", "htm", "json", "xml"],
+      "specific_exclusions": [
+        "*/node_modules/*",
+        "*/vendor/*",
+        "*.min.js",
+        "*.min.css"
+      ],
+      "include_libraries": false,
+      "max_batch_size": 300
+    }
+  },
+  
+  "performance_settings": {
+    "enable_caching": true,
+    "cache_ttl_hours": 6,
+    "parallel_processing": true,
+    "max_workers": 4,
+    "memory_limit_mb": 512
+  },
+  
+  "output_settings": {
+    "base_output_dir": "_kb",
+    "create_snapshots": true,
+    "snapshot_retention_days": 30,
+    "log_level": "info"
+  },
+  
+  "smart_filtering": {
+    "skip_binary_files": true,
+    "skip_empty_files": true,
+    "skip_duplicate_content": true,
+    "priority_patterns": [
+      "README*",
+      "INDEX*",
+      "GUIDE*",
+      "*API*",
+      "*WEBHOOK*",
+      "*IMPLEMENTATION*"
+    ]
+  }
+}

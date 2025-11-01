@@ -1,0 +1,2519 @@
+[
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_WeeklyAnalysis",
+            "script": "services/cron/scripts/neuro/weekly-analysis.php",
+            "type": "heavy",
+            "hour": 6,
+            "frequency": "weekly",
+            "day_of_week": 1
+        },
+        {
+            "name": "Neuro_LTVOptimization",
+            "script": "services/cron/scripts/neuro/ltv-optimization.php",
+            "type": "medium",
+            "hour": 7,
+            "frequency": "weekly",
+            "day_of_week": 1
+        },
+        {
+            "name": "Neuro_CompetitiveAnalysis",
+            "script": "services/cron/scripts/neuro/competitive-analysis.php",
+            "type": "medium",
+            "hour": 8,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_stale",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-stale.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_PredictiveMonitor",
+            "script": "services/cron/scripts/queue/predictive-monitor.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "Neuro_SalesAggregationHourly",
+            "script": "services/cron/scripts/neuro/sales-aggregation-hourly.php",
+            "type": "light",
+            "business_hours": false
+        },
+        {
+            "name": "check_bank_transaction",
+            "script": "cron/xero/check-bank-transactions.php",
+            "type": "medium"
+        },
+        {
+            "name": "verifone_transactions",
+            "script": "services/cron/scripts/general/sync-transactions.php",
+            "type": "medium",
+            "business_hours": true
+        },
+        {
+            "name": "HarpProductFetch",
+            "script": "services/cron/scripts/general/product-fetch.php",
+            "type": "medium",
+            "hour": 2,
+            "frequency": "daily"
+        },
+        {
+            "name": "Neuro_RedisOptimization",
+            "script": "services/cron/scripts/neuro/redis-optimization.php",
+            "type": "medium",
+            "hour": 3,
+            "frequency": "daily"
+        },
+        {
+            "name": "Neuro_DailyIntelligenceReport",
+            "script": "services/cron/scripts/neuro/daily-intelligence-report.php",
+            "type": "medium",
+            "hour": 6,
+            "frequency": "daily"
+        },
+        {
+            "name": "AutomaticJuiceTransfers",
+            "script": "services/cron/scripts/inventory/auto-juice-transfers.php",
+            "type": "medium",
+            "hour": 7,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "KB_AutoSyncMonitor",
+            "script": "services/cron/scripts/monitoring/auto-sync-monitor.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_working",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-working.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_EmergencyFailsafe",
+            "script": "services/cron/scripts/queue/emergency-failsafe.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_compress_logs",
+            "script": "services/cron/scripts/queue/compress-logs.php",
+            "type": "light",
+            "hour": 2,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_stale",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-stale.php",
+            "type": "light"
+        },
+        {
+            "name": "LightSpeed_ConsignmentSync",
+            "script": "services/queue/bin/cron/consignment-sync.php",
+            "type": "medium"
+        },
+        {
+            "name": "KB_HealthCheck",
+            "script": "services/ai-agent/public/api/health-check.php",
+            "type": "light",
+            "business_hours": false
+        },
+        {
+            "name": "Neuro_PredictiveModeling",
+            "script": "services/cron/scripts/neuro/predictive-modeling.php",
+            "type": "heavy",
+            "hour": 7,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_PredictiveMonitor",
+            "script": "services/cron/scripts/queue/predictive-monitor.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_MarketIntelligence",
+            "script": "services/cron/scripts/neuro/market-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "QueueV2_CleanupRateLimits",
+            "script": "services/queue/bin/cron/cleanup-rate-limits.php",
+            "type": "light",
+            "business_hours": false
+        },
+        {
+            "name": "google_token_refresh",
+            "script": "services/cron/scripts/general/token-refresh.php",
+            "type": "light",
+            "business_hours": true
+        },
+        {
+            "name": "Neuro_SystemMaintenance",
+            "script": "services/cron/scripts/neuro/system-maintenance.php",
+            "type": "medium",
+            "hour": 2,
+            "frequency": "daily"
+        },
+        {
+            "name": "vapedrop_public_holiday_check",
+            "script": "services/cron/scripts/inventory/vapedrop-holiday-check.php",
+            "type": "light",
+            "hour": 4,
+            "frequency": "daily"
+        },
+        {
+            "name": "PythonAutoForecast",
+            "script": "services/cron/scripts/inventory/auto-forecast.py",
+            "type": "heavy",
+            "hour": 5,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "Neuro_CustomerIntelligence",
+            "script": "services/cron/scripts/neuro/customer-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_working",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-working.php",
+            "type": "light"
+        },
+        {
+            "name": "QueueV2_DLQMonitor",
+            "script": "scripts/queue/dlq-monitor.php",
+            "type": "light"
+        },
+        {
+            "name": "KB_RefreshFull",
+            "script": "services/cron/scripts/general/refresh-kb.php --full",
+            "type": "heavy",
+            "hour": 2,
+            "frequency": "daily"
+        },
+        {
+            "name": "Neuro_StrategicInsights",
+            "script": "services/cron/scripts/neuro/strategic-insights.php",
+            "type": "medium",
+            "hour": 8,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_stale",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-stale.php",
+            "type": "light"
+        },
+        {
+            "name": "QueueV2_WebhookMonitor",
+            "script": "services/queue/bin/cron/webhook-monitor.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_PredictiveMonitor",
+            "script": "services/cron/scripts/queue/predictive-monitor.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        },
+        {
+            "name": "Fortress_SystemStatusDashboard",
+            "script": "services/cron/scripts/queue/system-status-dashboard.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "QueueV2_CleanupRuntimeTmp",
+            "script": "services/queue/bin/cron/cleanup-runtime-tmp.php",
+            "type": "light",
+            "business_hours": false
+        },
+        {
+            "name": "UpdateSalesSnapshot",
+            "script": "services/cron/scripts/inventory/update-sales-snapshot.php",
+            "type": "medium",
+            "hour": 1,
+            "frequency": "daily"
+        },
+        {
+            "name": "TurnoverRateCalculate",
+            "script": "services/cron/scripts/inventory/turnover-rate-calculate.php",
+            "type": "light",
+            "hour": 9,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_QueueJanitor",
+            "script": "services/cron/scripts/queue/queue-janitor.php",
+            "type": "medium",
+            "business_hours": false
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_working",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-working.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_EmergencyFailsafe",
+            "script": "services/cron/scripts/queue/emergency-failsafe.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_stale",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-stale.php",
+            "type": "light"
+        },
+        {
+            "name": "Neuro_HourlyAnalytics",
+            "script": "services/cron/scripts/neuro/hourly-analytics.php",
+            "type": "medium",
+            "business_hours": false
+        },
+        {
+            "name": "KB_AnalyzePerformance",
+            "script": "services/cron/scripts/general/analyze-performance.php",
+            "type": "medium",
+            "hour": 3,
+            "frequency": "daily"
+        },
+        {
+            "name": "Neuro_DataQualityCheck",
+            "script": "services/cron/scripts/neuro/data-quality-check.php",
+            "type": "medium",
+            "hour": 9,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_PredictiveMonitor",
+            "script": "services/cron/scripts/queue/predictive-monitor.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "check_bank_transaction",
+            "script": "cron/xero/check-bank-transactions.php",
+            "type": "medium"
+        },
+        {
+            "name": "QueueV2_CompressLogs",
+            "script": "services/cron/scripts/queue/compress-logs-v2.php",
+            "type": "light",
+            "hour": 2,
+            "frequency": "daily"
+        },
+        {
+            "name": "DailyStocktakes",
+            "script": "cron/daily-stocktakes.php",
+            "type": "medium",
+            "hour": 6,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "KB_AutoSyncMonitor",
+            "script": "services/cron/scripts/monitoring/auto-sync-monitor.php",
+            "type": "light"
+        },
+        {
+            "name": "Neuro_CustomerIntelligence",
+            "script": "services/cron/scripts/neuro/customer-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_working",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-working.php",
+            "type": "light"
+        },
+        {
+            "name": "KB_CleanupVersions",
+            "script": "services/cron/scripts/maintenance/cleanup-versions.php",
+            "type": "light",
+            "hour": 4,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_stale",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-stale.php",
+            "type": "light"
+        },
+        {
+            "name": "LightSpeed_ConsignmentSync",
+            "script": "services/queue/bin/cron/consignment-sync.php",
+            "type": "medium"
+        },
+        {
+            "name": "QueueV2_WebhookMonitor",
+            "script": "services/queue/bin/cron/webhook-monitor.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_PredictiveMonitor",
+            "script": "services/cron/scripts/queue/predictive-monitor.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_MarketIntelligence",
+            "script": "services/cron/scripts/neuro/market-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "Neuro_AnomalyDetection",
+            "script": "services/cron/scripts/neuro/anomaly-detection.php",
+            "type": "medium",
+            "business_hours": false
+        },
+        {
+            "name": "xero_petty_cash_expenses",
+            "script": "services/cron/scripts/xero/petty-cash-expenses.php",
+            "type": "light",
+            "hour": 3,
+            "frequency": "daily"
+        },
+        {
+            "name": "notificationGenerator",
+            "script": "services/cron/scripts/general/generator.php",
+            "type": "light",
+            "hour": 8,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_working",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-working.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_EmergencyFailsafe",
+            "script": "services/cron/scripts/queue/emergency-failsafe.php",
+            "type": "medium"
+        },
+        {
+            "name": "QueueV2_DLQMonitor",
+            "script": "scripts/queue/dlq-monitor.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_stale",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-stale.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_PredictiveMonitor",
+            "script": "services/cron/scripts/queue/predictive-monitor.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        },
+        {
+            "name": "Fortress_SystemStatusDashboard",
+            "script": "services/cron/scripts/queue/system-status-dashboard.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "Neuro_CustomerIntelligence",
+            "script": "services/cron/scripts/neuro/customer-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_working",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-working.php",
+            "type": "light"
+        },
+        {
+            "name": "Neuro_VectorClustering",
+            "script": "services/cron/scripts/neuro/vector-clustering.php",
+            "type": "heavy",
+            "business_hours": false
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_stale",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-stale.php",
+            "type": "light"
+        },
+        {
+            "name": "QueueV2_WebhookMonitor",
+            "script": "services/queue/bin/cron/webhook-monitor.php",
+            "type": "light"
+        },
+        {
+            "name": "KB_Cleanup",
+            "script": "services/cron/scripts/maintenance/cleanup-kb.php --older-than=30",
+            "type": "light",
+            "hour": 1,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_PredictiveMonitor",
+            "script": "services/cron/scripts/queue/predictive-monitor.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "check_bank_transaction",
+            "script": "cron/xero/check-bank-transactions.php",
+            "type": "medium"
+        },
+        {
+            "name": "verifone_transactions",
+            "script": "services/cron/scripts/general/sync-transactions.php",
+            "type": "medium",
+            "business_hours": true
+        },
+        {
+            "name": "Neuro_SalesAggregationFull",
+            "script": "services/cron/scripts/neuro/sales-aggregation-full.php",
+            "type": "heavy",
+            "hour": 2,
+            "frequency": "daily"
+        },
+        {
+            "name": "AutomaticDiscontinueWebsiteProducts",
+            "script": "services/cron/scripts/inventory/auto-discontinue-products.php",
+            "type": "light",
+            "hour": 7,
+            "frequency": "weekly",
+            "day_of_week": 1
+        },
+        {
+            "name": "StoreClosedNotifications_9_30AM",
+            "script": "services/cron/scripts/general/store-closed-9-30am.php",
+            "type": "light",
+            "hour": 9,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "KB_AutoSyncMonitor",
+            "script": "services/cron/scripts/monitoring/auto-sync-monitor.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_working",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-working.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_EmergencyFailsafe",
+            "script": "services/cron/scripts/queue/emergency-failsafe.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_stale",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-stale.php",
+            "type": "light"
+        },
+        {
+            "name": "LightSpeed_ConsignmentSync",
+            "script": "services/queue/bin/cron/consignment-sync.php",
+            "type": "medium"
+        },
+        {
+            "name": "KB_HealthCheck",
+            "script": "services/ai-agent/public/api/health-check.php",
+            "type": "light",
+            "business_hours": false
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_PredictiveMonitor",
+            "script": "services/cron/scripts/queue/predictive-monitor.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_MarketIntelligence",
+            "script": "services/cron/scripts/neuro/market-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "google_token_refresh",
+            "script": "services/cron/scripts/general/token-refresh.php",
+            "type": "light",
+            "business_hours": true
+        },
+        {
+            "name": "QueueV2_OptimizeTables",
+            "script": "services/queue/bin/cron/optimize-tables.php",
+            "type": "heavy",
+            "hour": 3,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "Neuro_CustomerIntelligence",
+            "script": "services/cron/scripts/neuro/customer-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_working",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-working.php",
+            "type": "light"
+        },
+        {
+            "name": "QueueV2_DLQMonitor",
+            "script": "scripts/queue/dlq-monitor.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_stale",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-stale.php",
+            "type": "light"
+        },
+        {
+            "name": "QueueV2_WebhookMonitor",
+            "script": "services/queue/bin/cron/webhook-monitor.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_PredictiveMonitor",
+            "script": "services/cron/scripts/queue/predictive-monitor.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        },
+        {
+            "name": "Fortress_SystemStatusDashboard",
+            "script": "services/cron/scripts/queue/system-status-dashboard.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "ProductQtyHistory",
+            "script": "cron/product-qty-history.php",
+            "type": "light",
+            "hour": 4,
+            "frequency": "daily"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_QueueJanitor",
+            "script": "services/cron/scripts/queue/queue-janitor.php",
+            "type": "medium",
+            "business_hours": false
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_working",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-working.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_EmergencyFailsafe",
+            "script": "services/cron/scripts/queue/emergency-failsafe.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_stale",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-stale.php",
+            "type": "light"
+        },
+        {
+            "name": "Neuro_PerformanceOptimization",
+            "script": "services/cron/scripts/neuro/performance-optimization.php",
+            "type": "medium",
+            "business_hours": false
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_PredictiveMonitor",
+            "script": "services/cron/scripts/queue/predictive-monitor.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "check_bank_transaction",
+            "script": "cron/xero/check-bank-transactions.php",
+            "type": "medium"
+        },
+        {
+            "name": "QueueV2_DeleteOldLogs",
+            "script": "services/cron/scripts/queue/delete-old-logs.php",
+            "type": "light",
+            "hour": 3,
+            "frequency": "weekly",
+            "day_of_week": 1
+        },
+        {
+            "name": "AutomaticProductOrderingLive",
+            "script": "services/cron/scripts/inventory/auto-ordering-live.php",
+            "type": "medium",
+            "hour": 5,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "KB_AutoSyncMonitor",
+            "script": "services/cron/scripts/monitoring/auto-sync-monitor.php",
+            "type": "light"
+        },
+        {
+            "name": "Neuro_CustomerIntelligence",
+            "script": "services/cron/scripts/neuro/customer-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_working",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-working.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_stale",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-stale.php",
+            "type": "light"
+        },
+        {
+            "name": "LightSpeed_ConsignmentSync",
+            "script": "services/queue/bin/cron/consignment-sync.php",
+            "type": "medium"
+        },
+        {
+            "name": "QueueV2_WebhookMonitor",
+            "script": "services/queue/bin/cron/webhook-monitor.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_PredictiveMonitor",
+            "script": "services/cron/scripts/queue/predictive-monitor.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_MarketIntelligence",
+            "script": "services/cron/scripts/neuro/market-intelligence.php",
+            "type": "medium"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "AutomaticStockTransfers",
+            "script": "services/cron/scripts/inventory/auto-stock-transfers.php",
+            "type": "medium",
+            "hour": 8,
+            "frequency": "weekly",
+            "day_of_week": 1
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_working",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-working.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_EmergencyFailsafe",
+            "script": "services/cron/scripts/queue/emergency-failsafe.php",
+            "type": "medium"
+        },
+        {
+            "name": "QueueV2_DLQMonitor",
+            "script": "scripts/queue/dlq-monitor.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "type": "medium"
+        },
+        {
+            "name": "queue_schedule_pulls",
+            "script": "services/queue-legacy-backup-20251004/bin/schedule-pulls.php",
+            "type": "light"
+        },
+        {
+            "name": "queue_reap_stale",
+            "script": "services/queue-legacy-backup-20251004/bin/reap-stale.php",
+            "type": "light"
+        }
+    ],
+    [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/worker.php",
+            "type": "critical"
+        },
+        {
+            "name": "queue_traffic_guardian",
+            "script": "queue-legacy-backup-20251004/bin/traffic-guardian-cron.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_ProcessScheduledJobs",
+            "script": "scripts/queue/process-scheduled-jobs.php",
+            "type": "critical"
+        },
+        {
+            "name": "QueueV2_MasterHealthCheck",
+            "script": "services/queue/bin/cron/master-health-check.php",
+            "type": "light"
+        },
+        {
+            "name": "Fortress_PredictiveMonitor",
+            "script": "services/cron/scripts/queue/predictive-monitor.php",
+            "type": "medium"
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "type": "medium"
+        },
+        {
+            "name": "Fortress_SystemStatusDashboard",
+            "script": "services/cron/scripts/queue/system-status-dashboard.php",
+            "type": "light"
+        }
+    ]
+]

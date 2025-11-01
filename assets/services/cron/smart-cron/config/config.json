@@ -1,0 +1,31 @@
+{
+  "db": {
+    "host": "127.0.0.1",
+    "database": "jcepnzzkmj",
+    "username": "jcepnzzkmj",
+    "password": "wprKh9Jq63",
+    "charset": "utf8mb4"
+  },
+  "metrics": {
+    "retention_days": 90,
+    "collection_enabled": true
+  },
+  "scheduling": {
+    "heavy_task_window": ["02:00", "04:00"],
+    "medium_task_window": ["00:00", "06:00"],
+    "auto_optimize_frequency": "weekly"
+  },
+  "load_balancer": {
+    "max_concurrent_heavy": 2,
+    "max_concurrent_medium": 5,
+    "max_concurrent_light": 15,
+    "cpu_threshold": 90,
+    "memory_threshold": 95
+  },
+  "thresholds": {
+    "heavy_duration_seconds": 60,
+    "heavy_memory_mb": 512,
+    "medium_duration_seconds": 10,
+    "medium_memory_mb": 100
+  }
+}

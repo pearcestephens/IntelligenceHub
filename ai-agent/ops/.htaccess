@@ -1,0 +1,79 @@
+#################################################################
+# CIS AI Agent Ops Console .htaccess
+# Location: /assets/neuro/ai-agent/ops/
+# Purpose : Allow direct browser access to PHP operation consoles
+#           (deployment-manager.php, monitoring-dashboard.php, etc.)
+#           while keeping sensitive/internal artefacts protected.
+# Owner   : Ecigdis Ltd (CIS Platform)
+# Date    : 2025-09-29
+#################################################################
+
+# --- Core: Always deny access to dotfiles & environment secrets ---
+<FilesMatch "^\.|
+(\.env|\.env\..*|composer\.lock|composer\.json|phpunit\.xml|phpunit\.cache|\.gitignore|\.gitmodules)$">
+  Require all denied
+</FilesMatch>
+
+# --- Prevent access to internal directories if they appear here (defence-in-depth) ---
+RedirectMatch 404 (?i)(^|/)vendor/.*
+RedirectMatch 404 (?i)(^|/)tests?/.*
+RedirectMatch 404 (?i)(^|/)logs?/.*
+RedirectMatch 404 (?i)(^|/)backups?/.*
+
+# --- Disable directory listing (but allow files to load directly) ---
+Options -Indexes
+
+# --- Allow public read access to relevant file types in THIS folder only ---
+<FilesMatch "\.(php|html|htm|js|css|json|png|jpg|jpeg|gif|svg|webp|ico|woff2?|ttf|map)$">
+  Require all granted
+</FilesMatch>
+
+# --- Force UTF-8 for text content ---
+AddDefaultCharset UTF-8
+AddType application/javascript js
+AddType text/css css
+
+# --- Basic security headers (lightweight, non-conflicting) ---
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# --- Caching (static assets) ---
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/jpeg "access plus 30 days"
+  ExpiresByType image/webp "access plus 30 days"
+  ExpiresByType font/woff2 "access plus 30 days"
+</IfModule>
+
+# --- Rewrite protection: do NOT rewrite anything here (explicit consoles) ---
+RewriteEngine On
+RewriteBase /assets/neuro/ai-agent/ops/
+# If the requested resource exists, serve it directly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+# Otherwise show a 404 (prevents leaking up-stack rewrites)
+RewriteRule ^.* - [R=404,L]
+
+# --- PHP hardening (if mod_php; ignored under PHP-FPM with proxy_fcgi) ---
+<IfModule mod_php.c>
+  php_flag expose_php Off
+  php_value session.cookie_httponly 1
+  php_value session.use_strict_mode 1
+</IfModule>
+
+#################################################################
+# Notes:
+# 1. This file intentionally allows direct access to *.php in THIS folder.
+# 2. Upstream global .htaccess rules (web root) must have AllowOverride All
+#    for Files/Rewrite/Options/Headers/Expires to take effect.
+# 3. Remove or tighten access (Require ip / auth) for production lock-down.
+#################################################################

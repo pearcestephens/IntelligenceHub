@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIS Assistant Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .hub-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .hub-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .hub-header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .hub-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .hub-content {
+            padding: 2rem;
+        }
+
+        .assistant-card {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 2rem;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+            margin-bottom: 1.5rem;
+        }
+
+        .assistant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(52, 152, 219, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .assistant-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .assistant-card h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .assistant-card p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .admin-link {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 1rem;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .admin-link:hover {
+            transform: translateY(-2px);
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #3498db;
+        }
+
+        .info-box h4 {
+            color: #2c3e50;
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .info-box p {
+            margin: 0;
+            color: #7f8c8d;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .hub-header {
+                padding: 1.5rem;
+            }
+
+            .hub-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .hub-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hub-container">
+        <div class="hub-header">
+            <h1><i class="fas fa-robot me-3"></i>CIS AI Assistant Hub</h1>
+            <p>Choose your AI assistant below</p>
+        </div>
+
+        <div class="hub-content">
+            <div class="info-box">
+                <h4><i class="fas fa-info-circle me-2"></i>Quick Access</h4>
+                <p>Just click the assistant you want to use - no setup required!</p>
+            </div>
+
+            <a href="adam-bot.html" class="assistant-card">
+                <i class="fas fa-user-tie"></i>
+                <h3>Adam's Workplace Assistant</h3>
+                <p>Dedicated AI helper for work tasks, questions, and daily support. Ready to chat about anything work-related.</p>
+            </a>
+
+            <a href="agent/index.html" class="assistant-card" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);">
+                <i class="fas fa-cogs"></i>
+                <h3>Advanced AI Chat</h3>
+                <p>Full-featured AI assistant with model selection (GPT-4 & Claude). Perfect for technical discussions and complex tasks.</p>
+            </a>
+
+            <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #ecf0f1;">
+                <a href="admin.php" class="admin-link">
+                    <i class="fas fa-shield-alt me-2"></i>System Administration
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some visual feedback
+        document.querySelectorAll('.assistant-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Add loading effect
+                const originalText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i><h3>Loading...</h3><p>Starting your AI assistant</p>';
+
+                // Let the navigation happen
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .btn {
+            display: inline-block;
+            background: #0d6efd;
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            margin: 10px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: white;
+        }
+        .btn.secondary {
+            background: #6c757d;
+        }
+        .btn.secondary:hover {
+            background: #545b62;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AI Agent System</h1>
+        <p class="subtitle">Production-Grade AI Assistant for The Vape Shed CIS</p>
+
+                            <div class="btn-group-vertical w-100" role="group">
+                        <a href="./agent/" class="btn btn-primary btn-lg">
+                            <i class="fas fa-comments me-2"></i>
+                            AI Chat (GPT-4 + Claude)
+                        </a>
+                        <a href="./status.html" class="btn btn-outline-info">
+                            <i class="fas fa-chart-line me-2"></i>
+                            System Status
+                        </a>
+                        <a href="./test-agent.php" class="btn btn-outline-secondary">
+                            <i class="fas fa-wrench me-2"></i>
+                            Run Diagnostics
+                        </a>
+                    </div>
+
+        <p style="margin-top: 30px; color: #666; font-size: 14px;">
+            Built with OpenAI GPT-4, real-time streaming, tools integration, and knowledge base
+        </p>
+    </div>
+</body>
+</html>

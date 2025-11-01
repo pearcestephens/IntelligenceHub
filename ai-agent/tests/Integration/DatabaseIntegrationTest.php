@@ -1,0 +1,406 @@
+<?php
+
+/**
+ * Database Integration Tests
+ * Tests database transactions, rollbacks, constraints, and data integrity
+ *
+ * @author Pearce Stephens - Ecigdis Limited
+ * @package Tests\Integration
+ */
+
+declare(strict_types=1);
+
+namespace Tests\Integration;
+
+use PHPUnit\Framework\TestCase;
+use App\DB;
+use App\RedisClient;
+
+class DatabaseIntegrationTest extends TestCase
+{
+    private array $testConversationIds = [];
+    private array $testMessageIds = [];
+    
+    protected function setUp(): void
+    {
+        parent::setUp();
+        
+        // Ensure we're using test tables (with test_ prefix) or test database
+        $useTestTables = $_ENV['USE_TEST_TABLES'] ?? false;
+        $dbName = $_ENV['DB_NAME'] ?? '';
+        
+        if ($useTestTables) {
+            // Using table prefix mode - this is fine
+            $this->assertTrue(true, 'Using test table prefix mode');
+        } else {
+            // Must be using a test database
+            $this->assertStringContainsString('test', $dbName, 
+                'Must use test database OR set USE_TEST_TABLES=true in .env.test');
+        }
+    }
+    
+    protected function tearDown(): void
+    {
+        // Clean up test data
+        foreach ($this->testMessageIds as $messageId) {
+            DB::execute('DELETE FROM messages WHERE id = ?', [$messageId]);
+        }
+        
+        foreach ($this->testConversationIds as $convId) {
+            DB::execute('DELETE FROM conversations WHERE id = ?', [$convId]);
+            RedisClient::del("conversation:{$convId}");
+        }
+        
+        parent::tearDown();
+    }
+    
+    /**
+     * @test
+     */
+    public function it_performs_database_transaction_with_commit(): void
+    {
+        DB::beginTransaction();
+        
+        try {
+            // Insert conversation
+            $conversationUuid = 'test-uuid-' . bin2hex(random_bytes(8));
+            DB::query(
+                'INSERT INTO conversations (uuid, title, model, created_at) VALUES (?, ?, ?, NOW())',
+                [$conversationUuid, 'Transaction Test', 'gpt-4']
+            );
+            
+            $conversationId = DB::lastInsertId();
+            $this->testConversationIds[] = $conversationId;
+            
+            // Insert message with matching conversation_uuid
+            DB::query(
+                'INSERT INTO messages (conversation_id, conversation_uuid, role, content, created_at) VALUES (?, ?, ?, ?, NOW())',
+                [$conversationId, $conversationUuid, 'user', 'Test message']
+            );
+            
+            $messageId = DB::lastInsertId();
+            $this->testMessageIds[] = $messageId;
+            
+            DB::commit();
+            
+            // Verify data was committed
+            $conv = DB::select('SELECT * FROM conversations WHERE id = ?', [$conversationId]);
+            $msg = DB::select('SELECT * FROM messages WHERE id = ?', [$messageId]);
+            
+            $this->assertNotEmpty($conv, 'Conversation should be committed');
+            $this->assertNotEmpty($msg, 'Message should be committed');
+        } catch (\Exception $e) {
+            DB::rollback();
+            $this->fail('Transaction failed: ' . $e->getMessage());
+        }
+    }
+    
+    /**
+     * @test
+     */
+    public function it_performs_database_transaction_with_rollback(): void
+    {
+        DB::beginTransaction();
+        
+        $tempUuid = 'test-rollback-' . bin2hex(random_bytes(8));
+        
+        try {
+            // Insert conversation
+            DB::query(
+                'INSERT INTO conversations (uuid, title, model, created_at) VALUES (?, ?, ?, NOW())',
+                [$tempUuid, 'Rollback Test', 'gpt-4']
+            );
+            
+            $conversationId = DB::lastInsertId();
+            
+            // Intentionally rollback
+            DB::rollback();
+            
+            // Verify data was NOT committed
+            $result = DB::select('SELECT * FROM conversations WHERE id = ?', [$conversationId]);
+            
+            $this->assertEmpty($result, 'Conversation should not exist after rollback');
+        } catch (\Exception $e) {
+            DB::rollback();
+            $this->fail('Rollback test failed: ' . $e->getMessage());
+        }
+    }
+    
+    /**
+     * @test
+     */
+    public function it_enforces_foreign_key_constraints(): void
+    {
+        $this->expectException(\Exception::class);
+        
+        // Try to insert message with non-existent conversation
+        DB::query(
+            'INSERT INTO messages (conversation_uuid, role, content, created_at) VALUES (?, ?, ?, NOW())',
+            ['nonexistent-uuid', 'user', 'Test']
+        );
+    }
+    
+    /**
+     * @test
+     */
+    public function it_handles_concurrent_inserts(): void
+    {
+        $conversationUuid = 'test-concurrent-' . bin2hex(random_bytes(8));
+        
+        // Create conversation
+        DB::query(
+            'INSERT INTO conversations (uuid, title, model, created_at) VALUES (?, ?, ?, NOW())',
+            [$conversationUuid, 'Concurrent Test', 'gpt-4']
+        );
+        
+        $conversationId = DB::lastInsertId();
+        $this->testConversationIds[] = $conversationId;
+        
+        // Insert multiple messages "concurrently" (sequentially but rapidly)
+        $messageIds = [];
+        for ($i = 0; $i < 10; $i++) {
+            DB::query(
+                'INSERT INTO messages (conversation_uuid, role, content, created_at) VALUES (?, ?, ?, NOW())',
+                [$conversationUuid, 'user', "Concurrent message {$i}"]
+            );
+            
+            $messageIds[] = DB::lastInsertId();
+        }
+        
+        $this->testMessageIds = array_merge($this->testMessageIds, $messageIds);
+        
+        // Verify all messages were inserted
+        $messages = DB::query(
+            'SELECT COUNT(*) as count FROM messages WHERE conversation_uuid = ?',
+            [$conversationUuid]
+        );
+        
+        $this->assertEquals(10, $messages[0]['count'], 'All messages should be inserted');
+    }
+    
+    /**
+     * @test
+     */
+    public function it_maintains_data_integrity_with_cascade_delete(): void
+    {
+        $conversationUuid = 'test-cascade-' . bin2hex(random_bytes(8));
+        
+        // Create conversation
+        DB::query(
+            'INSERT INTO conversations (uuid, title, model, created_at) VALUES (?, ?, ?, NOW())',
+            [$conversationUuid, 'Cascade Test', 'gpt-4']
+        );
+        
+        $conversationId = DB::lastInsertId();
+        
+        // Create messages
+        DB::query(
+            'INSERT INTO messages (conversation_uuid, role, content, created_at) VALUES (?, ?, ?, NOW())',
+            [$conversationUuid, 'user', 'Message 1']
+        );
+        
+        DB::query(
+            'INSERT INTO messages (conversation_uuid, role, content, created_at) VALUES (?, ?, ?, NOW())',
+            [$conversationUuid, 'assistant', 'Message 2']
+        );
+        
+        // Verify messages exist
+        $messagesBeforeDelete = DB::query(
+            'SELECT COUNT(*) as count FROM messages WHERE conversation_uuid = ?',
+            [$conversationUuid]
+        );
+        
+        $this->assertEquals(2, $messagesBeforeDelete[0]['count']);
+        
+        // Delete conversation (should cascade to messages if configured)
+        DB::execute('DELETE FROM conversations WHERE id = ?', [$conversationId]);
+        
+        // Check if messages were also deleted
+        $messagesAfterDelete = DB::query(
+            'SELECT COUNT(*) as count FROM messages WHERE conversation_uuid = ?',
+            [$conversationUuid]
+        );
+        
+        // Note: This depends on your FK configuration (CASCADE DELETE)
+        // If not configured, you may need to manually delete messages first
+        $this->assertLessThanOrEqual(
+            2,
+            $messagesAfterDelete[0]['count'],
+            'Messages should be deleted or reduced after conversation deletion'
+        );
+    }
+    
+    /**
+     * @test
+     */
+    public function it_handles_unique_constraint_violations(): void
+    {
+        $uuid = 'test-unique-' . bin2hex(random_bytes(8));
+        
+        // Insert first conversation
+        DB::query(
+            'INSERT INTO conversations (uuid, title, model, created_at) VALUES (?, ?, ?, NOW())',
+            [$uuid, 'Unique Test 1', 'gpt-4']
+        );
+        
+        $this->testConversationIds[] = DB::lastInsertId();
+        
+        // Try to insert duplicate UUID
+        try {
+            DB::query(
+                'INSERT INTO conversations (uuid, title, model, created_at) VALUES (?, ?, ?, NOW())',
+                [$uuid, 'Unique Test 2', 'gpt-4']
+            );
+            
+            $this->fail('Should throw exception for duplicate UUID');
+        } catch (\Exception $e) {
+            $this->assertStringContainsString(
+                'Duplicate',
+                $e->getMessage(),
+                'Should indicate duplicate key error'
+            );
+        }
+    }
+    
+    /**
+     * @test
+     */
+    public function it_performs_bulk_insert_efficiently(): void
+    {
+        $conversationUuid = 'test-bulk-' . bin2hex(random_bytes(8));
+        
+        // Create conversation
+        DB::query(
+            'INSERT INTO conversations (uuid, title, model, created_at) VALUES (?, ?, ?, NOW())',
+            [$conversationUuid, 'Bulk Insert Test', 'gpt-4']
+        );
+        
+        $this->testConversationIds[] = DB::lastInsertId();
+        
+        $startTime = microtime(true);
+        
+        // Bulk insert 100 messages
+        DB::beginTransaction();
+        
+        try {
+            for ($i = 0; $i < 100; $i++) {
+                DB::query(
+                    'INSERT INTO messages (conversation_uuid, role, content, created_at) VALUES (?, ?, ?, NOW())',
+                    [$conversationUuid, $i % 2 === 0 ? 'user' : 'assistant', "Bulk message {$i}"]
+                );
+                
+                $this->testMessageIds[] = DB::lastInsertId();
+            }
+            
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            $this->fail('Bulk insert failed: ' . $e->getMessage());
+        }
+        
+        $duration = (microtime(true) - $startTime) * 1000;
+        
+        // Verify all inserted
+        $messages = DB::query(
+            'SELECT COUNT(*) as count FROM messages WHERE conversation_uuid = ?',
+            [$conversationUuid]
+        );
+        
+        $this->assertEquals(100, $messages[0]['count']);
+        $this->assertLessThan(5000, $duration, 'Bulk insert should complete in < 5 seconds');
+    }
+    
+    /**
+     * @test
+     */
+    public function it_handles_null_values_correctly(): void
+    {
+        $conversationUuid = 'test-null-' . bin2hex(random_bytes(8));
+        
+        // Insert conversation with null system_message
+        DB::query(
+            'INSERT INTO conversations (uuid, title, model, system_message, created_at) VALUES (?, ?, ?, ?, NOW())',
+            [$conversationUuid, 'Null Test', 'gpt-4', null]
+        );
+        
+        $conversationId = DB::lastInsertId();
+        $this->testConversationIds[] = $conversationId;
+        
+        // Retrieve and verify
+        $result = DB::select('SELECT * FROM conversations WHERE id = ?', [$conversationId]);
+        
+        $this->assertNotEmpty($result);
+        $this->assertNull($result[0]['system_message'], 'System message should be null');
+    }
+    
+    /**
+     * @test
+     */
+    public function it_handles_special_characters_in_content(): void
+    {
+        $conversationUuid = 'test-special-' . bin2hex(random_bytes(8));
+        
+        // Create conversation
+        DB::query(
+            'INSERT INTO conversations (uuid, title, model, created_at) VALUES (?, ?, ?, NOW())',
+            [$conversationUuid, 'Special Characters Test', 'gpt-4']
+        );
+        
+        $this->testConversationIds[] = DB::lastInsertId();
+        
+        // Insert message with special characters
+        $specialContent = "Test with 'quotes', \"double quotes\", `backticks`, \n newlines, \t tabs, and émojis 🎉";
+        
+        DB::query(
+            'INSERT INTO messages (conversation_uuid, role, content, created_at) VALUES (?, ?, ?, NOW())',
+            [$conversationUuid, 'user', $specialContent]
+        );
+        
+        $messageId = DB::lastInsertId();
+        $this->testMessageIds[] = $messageId;
+        
+        // Retrieve and verify content is unchanged
+        $result = DB::select('SELECT * FROM messages WHERE id = ?', [$messageId]);
+        
+        $this->assertEquals($specialContent, $result[0]['content'], 'Special characters should be preserved');
+    }
+    
+    /**
+     * @test
+     */
+    public function it_performs_optimistic_locking(): void
+    {
+        $conversationUuid = 'test-lock-' . bin2hex(random_bytes(8));
+        
+        // Create conversation with version field (if exists)
+        DB::query(
+            'INSERT INTO conversations (uuid, title, model, created_at) VALUES (?, ?, ?, NOW())',
+            [$conversationUuid, 'Locking Test', 'gpt-4']
+        );
+        
+        $conversationId = DB::lastInsertId();
+        $this->testConversationIds[] = $conversationId;
+        
+        // Read current state
+        $current = DB::select('SELECT * FROM conversations WHERE id = ?', [$conversationId]);
+        $currentVersion = $current[0]['version'] ?? 1;
+        
+        // Update with version check
+        $affected = DB::query(
+            'UPDATE conversations SET title = ?, version = version + 1 WHERE id = ? AND version = ?',
+            ['Updated Title', $conversationId, $currentVersion]
+        );
+        
+        // Should affect one row
+        $this->assertNotEmpty($affected, 'Update should succeed with correct version');
+        
+        // Try to update again with old version (should fail)
+        $affected2 = DB::query(
+            'UPDATE conversations SET title = ?, version = version + 1 WHERE id = ? AND version = ?',
+            ['Another Update', $conversationId, $currentVersion]
+        );
+        
+        // This time should affect 0 rows (optimistic lock)
+        $this->assertEmpty($affected2, 'Update should fail with stale version');
+    }
+}

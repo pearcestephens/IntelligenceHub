@@ -1,0 +1,35 @@
+{
+    "api_patterns": {
+        "rest_endpoints": {
+            "GET \/api\/users": "List users with pagination",
+            "GET \/api\/users\/{id}": "Get specific user",
+            "POST \/api\/users": "Create new user",
+            "PUT \/api\/users\/{id}": "Update user",
+            "DELETE \/api\/users\/{id}": "Delete user"
+        },
+        "response_format": {
+            "success": true,
+            "data": "...",
+            "meta": [
+                "pagination",
+                "timing"
+            ],
+            "errors": []
+        }
+    },
+    "security_checklist": {
+        "authentication": "JWT tokens or session-based",
+        "authorization": "Role-based access control",
+        "input_validation": "Sanitize all inputs",
+        "sql_injection": "Use prepared statements",
+        "xss_protection": "Escape output, CSP headers",
+        "csrf_protection": "CSRF tokens for forms",
+        "https_only": "Enforce SSL\/TLS"
+    },
+    "performance_targets": {
+        "api_response_time": "p95 < 200ms",
+        "database_queries": "< 10 queries per request",
+        "page_load_time": "LCP < 2.5s",
+        "memory_usage": "< 128MB per request"
+    }
+}

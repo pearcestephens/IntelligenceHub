@@ -1,0 +1,94 @@
+<?php
+/**
+ * Dashboard Configuration
+ * 
+ * @package CIS Intelligence
+ */
+
+// Database Configuration (Intelligence Server - hdgwrzntwa)
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'hdgwrzntwa');
+define('DB_USER', 'hdgwrzntwa');
+define('DB_PASS', 'bFUdRjh4Jx');
+define('DB_CHARSET', 'utf8mb4');
+
+// Intelligence API Configuration
+define('INTELLIGENCE_API_URL', 'https://staff.vapeshed.co.nz/api/intelligence/');
+define('INTELLIGENCE_API_KEY', 'your-api-key-here'); // Set this in production
+
+// Server Configuration
+define('SERVERS', [
+    'jcepnzzkmj' => [
+        'name' => 'CIS Server',
+        'url' => 'https://staff.vapeshed.co.nz',
+        'path' => '/home/master/applications/jcepnzzkmj/public_html',
+        'color' => '#667eea'
+    ],
+    'dvaxgvsxmz' => [
+        'name' => 'Retail Server',
+        'url' => 'https://retail.vapeshed.co.nz',
+        'path' => '/home/master/applications/dvaxgvsxmz/public_html',
+        'color' => '#f093fb'
+    ],
+    'fhrehrpjmu' => [
+        'name' => 'Wholesale Server',
+        'url' => 'https://wholesale.vapeshed.co.nz',
+        'path' => '/home/master/applications/fhrehrpjmu/public_html',
+        'color' => '#4facfe'
+    ],
+    'hdgwrzntwa' => [
+        'name' => 'Intelligence Server',
+        'url' => 'https://staff.vapeshed.co.nz',
+        'path' => '/home/master/applications/hdgwrzntwa/public_html',
+        'color' => '#43e97b'
+    ]
+]);
+
+// Application Settings
+define('APP_NAME', 'CIS Intelligence Dashboard');
+define('APP_VERSION', '2.0.0');
+define('APP_ENVIRONMENT', 'production'); // development, staging, production
+
+// Security Settings
+define('SESSION_TIMEOUT', 7200); // 2 hours
+define('MAX_LOGIN_ATTEMPTS', 5);
+define('LOGIN_LOCKOUT_TIME', 900); // 15 minutes
+
+// Performance Settings
+define('RESULTS_PER_PAGE', 50);
+define('MAX_SEARCH_RESULTS', 500);
+define('CACHE_ENABLED', true);
+define('CACHE_LIFETIME', 3600); // 1 hour
+
+// Feature Flags
+define('ENABLE_FILE_UPLOAD', false);
+define('ENABLE_FILE_DELETE', false);
+define('ENABLE_SYSTEM_SCAN', true);
+define('ENABLE_ANALYTICS', true);
+
+// Paths
+define('UPLOAD_PATH', __DIR__ . '/../uploads/');
+define('CACHE_PATH', __DIR__ . '/../cache/');
+define('LOG_PATH', __DIR__ . '/../logs/');
+
+// Create directories if they don't exist
+$dirs = [UPLOAD_PATH, CACHE_PATH, LOG_PATH];
+foreach ($dirs as $dir) {
+    if (!is_dir($dir)) {
+        mkdir($dir, 0755, true);
+    }
+}
+
+// Error Reporting
+if (APP_ENVIRONMENT === 'development') {
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+} else {
+    error_reporting(0);
+    ini_set('display_errors', 0);
+    ini_set('log_errors', 1);
+    ini_set('error_log', LOG_PATH . 'php-errors.log');
+}
+
+// Timezone
+date_default_timezone_set('Pacific/Auckland');

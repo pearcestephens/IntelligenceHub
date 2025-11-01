@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Status - The Vape Shed</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .status-card { transition: all 0.3s ease; }
+        .status-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+        .status-online { color: #28a745; }
+        .status-offline { color: #dc3545; }
+        .status-warning { color: #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1><i class="fas fa-robot me-2"></i>AI Agent System Status</h1>
+                <p class="text-muted">Real-time status of The Vape Shed AI Assistant</p>
+            </div>
+        </div>
+
+        <div class="row" id="status-grid">
+            <!-- Status cards will be populated by JavaScript -->
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-history me-2"></i>Recent Activity</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="activity-log" class="small">
+                            <div class="text-muted">Loading activity...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="btn-group" role="group">
+                    <a href="./agent/" class="btn btn-primary">
+                        <i class="fas fa-comments me-1"></i> AI Chat (GPT-4 + Claude)
+                    </a>
+                    <a href="./test-agent.php" class="btn btn-outline-secondary">
+                        <i class="fas fa-wrench me-1"></i> Diagnostics
+                    </a>
+                    <button onclick="refreshStatus()" class="btn btn-outline-info">
+                        <i class="fas fa-sync-alt me-1"></i> Refresh
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    let apiBase = './agent/api';
+
+    // Status checks
+    const statusChecks = [
+        {
+            name: 'Health Check',
+            endpoint: 'health.php',
+            icon: 'fas fa-heartbeat',
+            description: 'Core system health'
+        },
+        {
+            name: 'OpenAI Chat',
+            endpoint: 'chat.php',
+            icon: 'fas fa-brain',
+            description: 'GPT-4 AI response generation',
+            method: 'POST',
+            body: JSON.stringify({
+                message: 'status check',
+                conversation_id: 'status-test'
+            })
+        },
+        {
+            name: 'Claude AI',
+            endpoint: 'claude-health.php',
+            icon: 'fas fa-robot',
+            description: 'Anthropic Claude AI integration'
+        },
+        {
+            name: 'Conversations API',
+            endpoint: 'conversations.php',
+            icon: 'fas fa-comments',
+            description: 'Chat conversation management'
+        },
+        {
+            name: 'Knowledge Base',
+            endpoint: 'knowledge.php?action=documents',
+            icon: 'fas fa-database',
+            description: 'Document and knowledge systems'
+        }
+    ];
+
+    async function checkEndpoint(check) {
+        try {
+            const options = {
+                method: check.method || 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+            
+            if (check.body) {
+                options.body = check.body;
+            }
+            
+            const response = await fetch(`${apiBase}/${check.endpoint}`, options);
+            const result = await response.json();
+            
+            return {
+                status: result.success ? 'online' : 'warning',
+                message: result.success ? 'Operational' : (result.error?.message || 'Unknown error'),
+                responseTime: Date.now() // Simplified - would need proper timing
+            };
+        } catch (error) {
+            return {
+                status: 'offline',
+                message: error.message,
+                responseTime: null
+            };
+        }
+    }
+
+    function renderStatusCard(check, status) {
+        const statusClass = status.status === 'online' ? 'status-online' : 
+                           status.status === 'warning' ? 'status-warning' : 'status-offline';
+        const statusIcon = status.status === 'online' ? 'fa-check-circle' : 
+                          status.status === 'warning' ? 'fa-exclamation-triangle' : 'fa-times-circle';
+        
+        return `
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div class="card status-card h-100">
+                <div class="card-body text-center">
+                    <div class="mb-3">
+                        <i class="${check.icon} fa-2x text-primary"></i>
+                    </div>
+                    <h6 class="card-title">${check.name}</h6>
+                    <p class="card-text small text-muted">${check.description}</p>
+                    <div class="${statusClass}">
+                        <i class="fas ${statusIcon} me-1"></i>
+                        <span class="fw-bold">${status.message}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `;
+    }
+
+    async function refreshStatus() {
+        const statusGrid = document.getElementById('status-grid');
+        statusGrid.innerHTML = '<div class="col-12 text-center"><div class="spinner-border text-primary" role="status"></div></div>';
+        
+        const results = [];
+        for (const check of statusChecks) {
+            const status = await checkEndpoint(check);
+            results.push(renderStatusCard(check, status));
+        }
+        
+        statusGrid.innerHTML = results.join('');
+        
+        // Update activity log
+        const activityLog = document.getElementById('activity-log');
+        const timestamp = new Date().toLocaleString();
+        activityLog.innerHTML = `
+            <div><i class="fas fa-sync-alt text-info me-2"></i>${timestamp} - Status check completed</div>
+            ${activityLog.innerHTML}
+        `.split('\n').slice(0, 10).join('\n'); // Keep only last 10 entries
+    }
+
+    // Initial load
+    document.addEventListener('DOMContentLoaded', refreshStatus);
+    
+    // Auto-refresh every 30 seconds
+    setInterval(refreshStatus, 30000);
+    </script>
+</body>
+</html>

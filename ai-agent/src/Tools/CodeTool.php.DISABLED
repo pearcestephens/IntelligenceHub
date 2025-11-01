@@ -1,0 +1,465 @@
+<?php
+
+/**
+ * Code Tool for safe sandboxed code execution
+ * Provides controlled code execution with security limits
+ *
+ * @package App\Tools
+ * @author Ecigdis Limited (The Vape Shed)
+ */
+
+declare(strict_types=1);
+
+namespace App\Tools;
+
+use App\Config;
+use App\Logger;
+use App\Util\Validate;
+use App\Tools\Contracts\ToolContract;
+
+class CodeTool implements ToolContract
+{
+    private const MAX_EXECUTION_TIME = 30;
+    private const MAX_OUTPUT_SIZE = 1024 * 1024; // 1MB
+    private const MAX_MEMORY = 128 * 1024 * 1024; // 128MB
+
+    private const BLOCKED_FUNCTIONS = [
+        'exec', 'system', 'shell_exec', 'passthru', 'proc_open', 'popen',
+        'file_get_contents', 'file_put_contents', 'fopen', 'fwrite', 'fread',
+        'curl_exec', 'curl_init', 'fsockopen', 'socket_create',
+        'mail', 'eval', 'include', 'require', 'include_once', 'require_once',
+    ];
+
+    /**
+     * Execute code in sandboxed environment
+     */
+    public static function execute(array $parameters, array $context = []): array
+    {
+        $language = strtolower($parameters['language'] ?? '');
+        $code = $parameters['code'] ?? '';
+        $timeout = (int)($parameters['timeout'] ?? 10);
+        $inputs = $parameters['inputs'] ?? [];
+
+        Validate::string($code, 1, 10000); // Max 10KB of code
+
+        if (!Config::get('TOOLS_CODE_EXECUTION_ENABLED', false)) {
+            return [
+                'error' => 'Code execution is disabled',
+                'error_type' => 'Disabled',
+                'language' => $language,
+            ];
+        }
+
+        try {
+            // Validate language
+            if (!in_array($language, ['php', 'javascript', 'python', 'bash'], true)) {
+                throw new \InvalidArgumentException("Unsupported language: {$language}");
+            }
+
+            // Validate timeout
+            if ($timeout < 1 || $timeout > self::MAX_EXECUTION_TIME) {
+                throw new \InvalidArgumentException(
+                    'Timeout must be between 1 and ' . self::MAX_EXECUTION_TIME . ' seconds'
+                );
+            }
+
+            Logger::info('Code execution initiated', [
+                'language' => $language,
+                'code_length' => strlen($code),
+                'timeout' => $timeout,
+                'has_inputs' => !empty($inputs),
+            ]);
+
+            // Security validation
+            self::validateCode($code, $language);
+
+            // Execute based on language
+            switch ($language) {
+                case 'php':
+                    $result = self::executePHP($code, $timeout, $inputs);
+                    break;
+                case 'javascript':
+                    $result = self::executeJavaScript($code, $timeout, $inputs);
+                    break;
+                case 'python':
+                    $result = self::executePython($code, $timeout, $inputs);
+                    break;
+                case 'bash':
+                    $result = self::executeBash($code, $timeout, $inputs);
+                    break;
+                default:
+                    throw new \InvalidArgumentException("Language not implemented: {$language}");
+            }
+
+            Logger::info('Code execution completed', [
+                'language' => $language,
+                'success' => $result['success'] ?? false,
+                'output_size' => strlen($result['output'] ?? ''),
+                'duration_ms' => $result['duration_ms'] ?? 0,
+            ]);
+
+            return $result;
+        } catch (\Throwable $e) {
+            Logger::error('Code execution failed', [
+                'language' => $language,
+                'code_length' => strlen($code),
+                'error' => $e->getMessage(),
+            ]);
+
+            return [
+                'success' => false,
+                'error' => $e->getMessage(),
+                'error_type' => 'ExecutionError',
+                'language' => $language,
+                'output' => '',
+                'stderr' => $e->getMessage(),
+            ];
+        }
+    }
+
+    /**
+     * Contract run() simply proxies to execute()
+     */
+    public static function run(array $params, array $context = []): array
+    {
+        return self::execute($params, $context);
+    }
+
+    public static function spec(): array
+    {
+        return [
+            'name' => 'code_tool',
+            'description' => 'Execute sandboxed code (php, javascript, python, bash) with strict limits',
+            'category' => 'development',
+            'internal' => true,
+            'parameters' => [
+                'type' => 'object',
+                'properties' => [
+                    'language' => ['type' => 'string', 'enum' => ['php','javascript','python','bash']],
+                    'code' => ['type' => 'string', 'minLength' => 1, 'maxLength' => 10000],
+                    'timeout' => ['type' => 'integer', 'minimum' => 1, 'maximum' => 30],
+                    'inputs' => ['type' => 'object']
+                ],
+                'required' => ['language','code']
+            ],
+            'safety' => [
+                'timeout' => 30,
+                'rate_limit' => 2
+            ]
+        ];
+    }
+
+    /**
+     * Execute PHP code
+     */
+    private static function executePHP(string $code, int $timeout, array $inputs): array
+    {
+        // Wrap code in isolation
+        $wrappedCode = self::wrapPHPCode($code, $inputs);
+
+        // Create temporary file
+        $tempFile = tempnam(sys_get_temp_dir(), 'ai_agent_php_');
+        file_put_contents($tempFile, $wrappedCode);
+
+        try {
+            $result = self::executeInSandbox("php -f {$tempFile}", $timeout);
+            return array_merge($result, ['language' => 'php']);
+        } finally {
+            @unlink($tempFile);
+        }
+    }
+
+    /**
+     * Execute JavaScript code using Node.js
+     */
+    private static function executeJavaScript(string $code, int $timeout, array $inputs): array
+    {
+        // Wrap code in isolation
+        $wrappedCode = self::wrapJavaScriptCode($code, $inputs);
+
+        // Create temporary file
+        $tempFile = tempnam(sys_get_temp_dir(), 'ai_agent_js_') . '.js';
+        file_put_contents($tempFile, $wrappedCode);
+
+        try {
+            $result = self::executeInSandbox("node {$tempFile}", $timeout);
+            return array_merge($result, ['language' => 'javascript']);
+        } finally {
+            @unlink($tempFile);
+        }
+    }
+
+    /**
+     * Execute Python code
+     */
+    private static function executePython(string $code, int $timeout, array $inputs): array
+    {
+        // Wrap code in isolation
+        $wrappedCode = self::wrapPythonCode($code, $inputs);
+
+        // Create temporary file
+        $tempFile = tempnam(sys_get_temp_dir(), 'ai_agent_py_') . '.py';
+        file_put_contents($tempFile, $wrappedCode);
+
+        try {
+            $result = self::executeInSandbox("python3 {$tempFile}", $timeout);
+            return array_merge($result, ['language' => 'python']);
+        } finally {
+            @unlink($tempFile);
+        }
+    }
+
+    /**
+     * Execute Bash script
+     */
+    private static function executeBash(string $code, int $timeout, array $inputs): array
+    {
+        // Wrap code in isolation
+        $wrappedCode = self::wrapBashCode($code, $inputs);
+
+        // Create temporary file
+        $tempFile = tempnam(sys_get_temp_dir(), 'ai_agent_sh_') . '.sh';
+        file_put_contents($tempFile, $wrappedCode);
+        @chmod($tempFile, 0755);
+
+        try {
+            $result = self::executeInSandbox("bash {$tempFile}", $timeout);
+            return array_merge($result, ['language' => 'bash']);
+        } finally {
+            @unlink($tempFile);
+        }
+    }
+
+    /**
+     * Execute command in sandboxed environment
+     */
+    private static function executeInSandbox(string $command, int $timeout): array
+    {
+        $startTime = microtime(true);
+
+        // Set up process with resource limits
+        $process = proc_open(
+            $command,
+            [
+                0 => ['pipe', 'r'], // stdin
+                1 => ['pipe', 'w'], // stdout
+                2 => ['pipe', 'w'], // stderr
+            ],
+            $pipes,
+            null, // working directory
+            [
+                'PATH' => '/usr/bin:/bin',
+                'LANG' => 'C',
+                'LC_ALL' => 'C',
+            ]
+        );
+
+        if (!is_resource($process)) {
+            throw new \RuntimeException('Failed to create process');
+        }
+
+        // Close stdin
+        fclose($pipes[0]);
+
+        // Read output with timeout
+        $output = '';
+        $stderr = '';
+        $outputSize = 0;
+
+        stream_set_blocking($pipes[1], false);
+        stream_set_blocking($pipes[2], false);
+
+        $endTime = time() + $timeout;
+
+        $status = proc_get_status($process);
+        while (time() < $endTime && ($status['running'] === true)) {
+            $stdout = fread($pipes[1], 8192);
+            $stderrData = fread($pipes[2], 8192);
+
+            if ($stdout !== false && strlen($stdout) > 0) {
+                $outputSize += strlen($stdout);
+                if ($outputSize > self::MAX_OUTPUT_SIZE) {
+                    proc_terminate($process);
+                    throw new \RuntimeException('Output size limit exceeded');
+                }
+                $output .= $stdout;
+            }
+
+            if ($stderrData !== false && strlen($stderrData) > 0) {
+                $stderr .= $stderrData;
+            }
+
+            usleep(10000); // 10ms
+            $status = proc_get_status($process);
+        }
+
+        // Check if process is still running (timeout)
+        $status = proc_get_status($process);
+        if (!empty($status['running'])) {
+            proc_terminate($process);
+            proc_close($process);
+            throw new \RuntimeException('Execution timeout');
+        }
+
+        // Read any remaining output
+        $output .= stream_get_contents($pipes[1]);
+        $stderr .= stream_get_contents($pipes[2]);
+
+        fclose($pipes[1]);
+        fclose($pipes[2]);
+
+        $exitCode = proc_close($process);
+        $duration = (microtime(true) - $startTime) * 1000;
+
+        return [
+            'success' => $exitCode === 0,
+            'output' => $output,
+            'stderr' => $stderr,
+            'exit_code' => $exitCode,
+            'duration_ms' => (int) $duration,
+            'output_size' => strlen($output),
+        ];
+    }
+
+    /**
+     * Validate code for security
+     */
+    private static function validateCode(string $code, string $language): void
+    {
+        // Check for blocked functions (for PHP)
+        if ($language === 'php') {
+            foreach (self::BLOCKED_FUNCTIONS as $func) {
+                if (preg_match("/\\b{$func}\\s*\\(/i", $code)) {
+                    throw new \InvalidArgumentException("Blocked function used: {$func}");
+                }
+            }
+
+            // Check for dangerous PHP patterns
+            $dangerousPatterns = [
+                '/\$_(?:GET|POST|REQUEST|SERVER|GLOBALS|FILES|ENV)/',
+                '/\beval\s*\(/',
+                '/\b(?:include|require)(?:_once)?\s*\(/',
+                '/\bfile_(?:get|put)_contents\s*\(/',
+                '/\bfopen\s*\(/',
+                '/\bcurl_/',
+                '/\bfsockopen\s*\(/',
+                '/\bsocket_/',
+                '/`[^`]*`/', // Backtick execution
+            ];
+
+            foreach ($dangerousPatterns as $pattern) {
+                if (preg_match($pattern, $code)) {
+                    throw new \InvalidArgumentException('Dangerous PHP pattern detected');
+                }
+            }
+        }
+
+        // Check for network access attempts
+        $networkPatterns = [
+            '/\b(?:http|https|ftp|ssh):\/\//i',
+            '/\b(?:wget|curl|fetch)\b/i',
+            '/\bconnect\s*\(/i',
+            '/\bsocket\s*\(/i',
+        ];
+
+        foreach ($networkPatterns as $pattern) {
+            if (preg_match($pattern, $code)) {
+                throw new \InvalidArgumentException('Network access not allowed');
+            }
+        }
+
+        // Check for file system access
+        $filePatterns = [
+            '/\b(?:open|read|write|delete|mkdir|rmdir)\s*\(/i',
+            '/\/(?:etc|var|usr|tmp|home|root)/',
+            '/\.\.\//',
+        ];
+
+        foreach ($filePatterns as $pattern) {
+            if (preg_match($pattern, $code)) {
+                throw new \InvalidArgumentException('File system access not allowed');
+            }
+        }
+    }
+
+    /**
+     * Wrap PHP code with safety measures
+     */
+    private static function wrapPHPCode(string $code, array $inputs): string
+    {
+        $inputsJson = json_encode($inputs);
+
+        return "<?php\n" .
+            "error_reporting(E_ALL);\n" .
+            "ini_set('display_errors', '1');\n" .
+            "ini_set('memory_limit', '" . (self::MAX_MEMORY / 1024 / 1024) . "M');\n" .
+            "ini_set('max_execution_time', " . self::MAX_EXECUTION_TIME . ");\n" .
+            "\$inputs = " . $inputsJson . ";\n\n" .
+            $code;
+    }
+
+    /**
+     * Wrap JavaScript code with safety measures
+     */
+    private static function wrapJavaScriptCode(string $code, array $inputs): string
+    {
+        $inputsJson = json_encode($inputs);
+
+        return "const inputs = " . $inputsJson . ";\n" .
+            "const process_exit = process.exit;\n" .
+            "process.exit = () => { console.log('\\nProcess exit called'); process_exit(0); };\n\n" .
+            "try {\n" .
+            $code . "\n" .
+            "} catch (error) {\n" .
+            "  console.error('Error:', error.message);\n" .
+            "  process.exit(1);\n" .
+            "}";
+    }
+
+    /**
+     * Wrap Python code with safety measures
+     */
+    private static function wrapPythonCode(string $code, array $inputs): string
+    {
+        $inputsJson = json_encode($inputs);
+
+        return "import sys\n" .
+            "import json\n" .
+            "inputs = " . $inputsJson . "\n\n" .
+            "try:\n" .
+            self::indentCode($code, '    ') . "\n" .
+            "except Exception as e:\n" .
+            "    print(f'Error: {str(e)}', file=sys.stderr)\n" .
+            "    sys.exit(1)";
+    }
+
+    /**
+     * Wrap Bash code with safety measures
+     */
+    private static function wrapBashCode(string $code, array $inputs): string
+    {
+        $inputsJson = json_encode($inputs);
+
+        return "#!/bin/bash\n" .
+            "set -e\n" .
+            "set -u\n" .
+            "INPUTS='" . addslashes($inputsJson) . "'\n\n" .
+            $code;
+    }
+
+    /**
+     * Indent code lines
+     */
+    private static function indentCode(string $code, string $indent): string
+    {
+        $lines = explode("\n", $code);
+        $indentedLines = array_map(
+            function ($line) use ($indent) {
+                return trim($line) === '' ? $line : $indent . $line;
+            },
+            $lines
+        );
+
+        return implode("\n", $indentedLines);
+    }
+}

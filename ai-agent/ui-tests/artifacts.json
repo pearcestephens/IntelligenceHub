@@ -1,0 +1,47 @@
+{
+  "generated_at": "2025-09-20T12:24:05.162Z",
+  "total": 8,
+  "assets": [
+    {
+      "file": "/home/129337.cloudwaysapps.com/jcepnzzkmj/public_html/assets/cron/utility_scripts/devtools/ai-agent/test-results/all-controls-AI-Agent-UI---42d19-produce-expected-UI-effects/all-01-loaded.png",
+      "name": "all-01-loaded.png",
+      "rel": "test-results/all-controls-AI-Agent-UI---42d19-produce-expected-UI-effects/all-01-loaded.png"
+    },
+    {
+      "file": "/home/129337.cloudwaysapps.com/jcepnzzkmj/public_html/assets/cron/utility_scripts/devtools/ai-agent/test-results/all-controls-AI-Agent-UI---42d19-produce-expected-UI-effects/test-failed-1.png",
+      "name": "test-failed-1.png",
+      "rel": "test-results/all-controls-AI-Agent-UI---42d19-produce-expected-UI-effects/test-failed-1.png"
+    },
+    {
+      "file": "/home/129337.cloudwaysapps.com/jcepnzzkmj/public_html/assets/cron/utility_scripts/devtools/ai-agent/test-results/all-controls-AI-Agent-UI---42d19-produce-expected-UI-effects/trace.zip",
+      "name": "trace.zip",
+      "rel": "test-results/all-controls-AI-Agent-UI---42d19-produce-expected-UI-effects/trace.zip"
+    },
+    {
+      "file": "/home/129337.cloudwaysapps.com/jcepnzzkmj/public_html/assets/cron/utility_scripts/devtools/ai-agent/test-results/all-controls-AI-Agent-UI---42d19-produce-expected-UI-effects/video.webm",
+      "name": "video.webm",
+      "rel": "test-results/all-controls-AI-Agent-UI---42d19-produce-expected-UI-effects/video.webm"
+    },
+    {
+      "file": "/home/129337.cloudwaysapps.com/jcepnzzkmj/public_html/assets/cron/utility_scripts/devtools/ai-agent/test-results/smoke-AI-Agent-E2E-Smoke-l-bd8ef-nd-sends-a-message-stubbed-/smoke-01-loaded.png",
+      "name": "smoke-01-loaded.png",
+      "rel": "test-results/smoke-AI-Agent-E2E-Smoke-l-bd8ef-nd-sends-a-message-stubbed-/smoke-01-loaded.png"
+    },
+    {
+      "file": "/home/129337.cloudwaysapps.com/jcepnzzkmj/public_html/assets/cron/utility_scripts/devtools/ai-agent/test-results/smoke-AI-Agent-E2E-Smoke-l-bd8ef-nd-sends-a-message-stubbed-/test-failed-1.png",
+      "name": "test-failed-1.png",
+      "rel": "test-results/smoke-AI-Agent-E2E-Smoke-l-bd8ef-nd-sends-a-message-stubbed-/test-failed-1.png"
+    },
+    {
+      "file": "/home/129337.cloudwaysapps.com/jcepnzzkmj/public_html/assets/cron/utility_scripts/devtools/ai-agent/test-results/smoke-AI-Agent-E2E-Smoke-l-bd8ef-nd-sends-a-message-stubbed-/trace.zip",
+      "name": "trace.zip",
+      "rel": "test-results/smoke-AI-Agent-E2E-Smoke-l-bd8ef-nd-sends-a-message-stubbed-/trace.zip"
+    },
+    {
+      "file": "/home/129337.cloudwaysapps.com/jcepnzzkmj/public_html/assets/cron/utility_scripts/devtools/ai-agent/test-results/smoke-AI-Agent-E2E-Smoke-l-bd8ef-nd-sends-a-message-stubbed-/video.webm",
+      "name": "video.webm",
+      "rel": "test-results/smoke-AI-Agent-E2E-Smoke-l-bd8ef-nd-sends-a-message-stubbed-/video.webm"
+    }
+  ],
+  "report_hint": "/home/129337.cloudwaysapps.com/jcepnzzkmj/public_html/assets/cron/utility_scripts/devtools/ai-agent/ui-tests/playwright-report"
+}

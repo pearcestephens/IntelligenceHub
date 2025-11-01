@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AI Agent UI Tests</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mocha/mocha.css" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    #mocha { max-width: 1100px; margin: 24px auto; }
+  </style>
+</head>
+<body>
+  <div id="mocha"></div>
+  <div id="fixtures" style="display:none"></div>
+
+  <!-- Test libs -->
+  <script src="https://cdn.jsdelivr.net/npm/chai/chai.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mocha/mocha.js"></script>
+  <script>
+    mocha.setup('bdd');
+    window.expect = chai.expect;
+  </script>
+
+  <!-- Minimal DOMPurify/Marked/HLJS to match app.js deps -->
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.5/dist/purify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+  <!-- Inject a minimal UI DOM that matches selectors used by app.js -->
+  <script>
+    document.getElementById('fixtures').innerHTML = `
+      <div>
+        <form id="message-form"></form>
+        <textarea id="message-input"></textarea>
+        <button id="send-btn"></button>
+        <button id="voice-btn"></button>
+        <button id="new-conversation"></button>
+        <button id="knowledge-toggle"></button>
+        <button id="knowledge-close"></button>
+        <button id="health-check"></button>
+        <div id="file-drop-zone"></div>
+        <input id="file-input" type="file" />
+        <input id="knowledge-search" />
+        <button id="search-btn"></button>
+        <div id="messages-container"></div>
+        <div id="conversations-list"></div>
+        <div id="progress-container"><span id="progress-text"></span></div>
+        <div id="typing-indicator"></div>
+        <span id="status-badge"></span>
+        <span id="status-text"></span>
+        <div id="documents-list"></div>
+        <div id="notification-template"><div id="notification-title"></div><div id="notification-message"></div></div>
+      </div>
+    `;
+  </script>
+
+  <!-- Stub fetch to simulate API responses -->
+  <script>
+    const okJson = (body) => Promise.resolve({ ok: true, json: () => Promise.resolve(body) });
+    const endpoints = new Map([
+      ['/api/health.php', { status: 'healthy' }],
+      ['/api/conversations.php', { success: true, conversations: [] }],
+    ]);
+    window.fetch = (url, opts = {}) => {
+      const path = typeof url === 'string' ? url.replace(/^\.\//,'') : url;
+      if (path.includes('/api/chat.php')) {
+        // Simulate non-stream response
+        return okJson({ success: true, response: { content: 'Hello from test', tool_calls: [] } });
+      }
+      if (path.includes('/api/conversations.php') && opts && opts.method === 'POST') {
+        return okJson({ success: true, conversation: { conversation_id: 'conv_test' } });
+      }
+      for (const [key, val] of endpoints.entries()) {
+        if (path.endsWith(key)) return okJson(val);
+      }
+      return okJson({ success: true });
+    };
+  </script>
+
+  <!-- Under-test script -->
+  <script src="../js/app.js"></script>
+
+  <!-- Tests -->
+  <script>
+    describe('AI Agent UI', function() {
+      this.timeout(5000);
+      it('initializes and runs health + conversations load', async () => {
+        expect(window.aiAgent).to.exist;
+        // give init a tick to complete async work
+        await new Promise(r => setTimeout(r, 50));
+        expect(document.getElementById('status-text').textContent).to.not.equal('');
+      });
+
+      it('creates a new conversation and enables input', async () => {
+        await window.aiAgent.createNewConversation();
+        expect(window.aiAgent.currentConversation).to.equal('conv_test');
+        expect(document.getElementById('message-input').disabled).to.equal(false);
+      });
+
+      it('sends a message (non-stream) and appends assistant reply', async () => {
+        document.getElementById('message-input').value = 'Hello';
+        // Turn off streaming to exercise regular path
+        document.body.insertAdjacentHTML('beforeend', '<input type="checkbox" id="stream-toggle">');
+        document.body.insertAdjacentHTML('beforeend', '<input type="checkbox" id="tools-toggle" checked>');
+        await window.aiAgent.handleMessageSubmit(new Event('submit'));
+        const messages = document.querySelectorAll('#messages-container .message');
+        expect(messages.length).to.be.greaterThan(0);
+      });
+
+      it('shows and hides progress notifications', () => {
+        window.aiAgent.showProgress('Testing');
+        expect(document.getElementById('progress-container').classList.contains('show')).to.equal(true);
+        window.aiAgent.hideProgress();
+        expect(document.getElementById('progress-container').classList.contains('show')).to.equal(false);
+      });
+    });
+
+    mocha.run();
+  </script>
+</body>
+</html>

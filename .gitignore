@@ -1,0 +1,172 @@
+# ============================================================================
+# Intelligence Hub - Root .gitignore
+# Generated: October 31, 2025
+# ============================================================================
+
+# ============================================================================
+# HEAVY DIRECTORIES TO EXCLUDE (583MB total)
+# ============================================================================
+frontend-tools/          # 183MB - Node modules, build tools
+_kb/                     # 92MB - Knowledge base cache
+mcp/                     # 52MB - MCP server files
+ai-agent/                # 47MB - AI agent data
+logs/                    # 25MB - Log files
+_archived/               # 9.9MB - Archived files
+INTELLIGENCE_MANAGEMENT_DOCS/  # 8.3MB - Large documentation
+_dev-tools/              # 2.1MB - Development tools
+_copilot/                # Copilot internal files
+copilot-broadcasts/      # Copilot broadcast data
+.copilot/                # Hidden copilot directory
+**/*copilot*             # Any copilot-related files
+
+# ============================================================================
+# VENDOR DIRECTORIES (Composer/NPM)
+# ============================================================================
+vendor/
+node_modules/
+bower_components/
+
+# ============================================================================
+# TEMPORARY & DOCUMENTATION FILES (52 files)
+# ============================================================================
+# Root level markdown files (40 files)
+/*.md
+!README.md               # Keep main README
+
+# Root level text files (12 files)
+/*.txt
+!LICENSE.txt             # Keep license if exists
+
+# Backup and old files
+*_BACKUP_*.md
+*_OLD_*.md
+*_ARCHIVE_*.md
+*_COMPLETE*.md
+*_AUDIT*.md
+*_REPORT*.md
+*_PLAN*.md
+*_TODO*.md
+*_READY*.md
+*_GUIDE*.md
+
+# ============================================================================
+# LOGS & RUNTIME FILES
+# ============================================================================
+logs/
+*.log
+*.log.*
+error_log
+debug.log
+php_errors.log
+access.log
+
+# ============================================================================
+# CACHE & TEMPORARY
+# ============================================================================
+cache/
+tmp/
+temp/
+*.cache
+*.tmp
+.phpunit.result.cache
+
+# ============================================================================
+# SESSIONS & UPLOADS
+# ============================================================================
+sessions/
+*.sess
+uploads/
+user_uploads/
+files/
+
+# ============================================================================
+# DATABASE & BACKUPS
+# ============================================================================
+backups/
+*.sql
+*.sql.gz
+*.dump
+*.sqlite
+*.db
+
+# ============================================================================
+# ENVIRONMENT & SECRETS
+# ============================================================================
+.env
+.env.*
+!.env.example
+config/database.php
+config/secrets.php
+private_html/
+
+# ============================================================================
+# IDE & EDITOR
+# ============================================================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ============================================================================
+# BUILD & DISTRIBUTION
+# ============================================================================
+dist/
+build/
+release/
+
+# ============================================================================
+# OS FILES
+# ============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ============================================================================
+# COMPOSER
+# ============================================================================
+composer.phar
+composer.lock
+
+# ============================================================================
+# TEST & COVERAGE
+# ============================================================================
+coverage/
+test-reports/
+phpunit.xml
+
+# ============================================================================
+# SPECIFIC APPLICATION EXCLUDES
+# ============================================================================
+# Archived projects
+_archived/
+
+# Large documentation
+INTELLIGENCE_COMPLETE_AUDIT/
+INTELLIGENCE_MANAGEMENT_DOCS/
+
+# Development tools
+_dev-tools/
+
+# Automation scripts (if sensitive)
+_automation/
+
+# Frontend build tools
+frontend-tools/
+
+# Keep these applications:
+# scanner/          - Include
+# dashboard/        - Include
+# botshop/          - Include
+# api/              - Include
+# services/         - Include
+# assets/           - Include (but watch size)
+# config/           - Include (except secrets)
+# docs/             - Include
+# bin/              - Include

@@ -1,0 +1,1173 @@
+erDiagram
+    abandoned_cart_reminders {
+        int id PK
+        int user_id 
+        bigint cart_id 
+        timestamp timestamp_first_reminder_sent 
+        varchar timestamp_second_reminder_sent 
+        varchar timestamp_third_reminder_sent 
+        timestamp customer_visited_first_reminder 
+        timestamp customer_visited_second_reminder 
+        timestamp customer_visited_third_reminder 
+        int converted_order_id 
+        varchar unique_id 
+        int second_reminder_coupon_code_id 
+    }
+    bottle_sizes {
+        int id PK
+        int size 
+        int status 
+    }
+    career_opportunities {
+        int id PK
+        varchar location 
+        varchar position 
+        varchar hours 
+        varchar employment_type 
+        varchar starting_date 
+        int active 
+        int outlet_id 
+    }
+    career_opportunities_submission {
+        int id PK
+        int job_id 
+        varchar first_name 
+        varchar last_name 
+        varchar email 
+        varchar phone 
+        mediumtext vaping_experience 
+        varchar cv_filename 
+        timestamp date_created 
+    }
+    categories {
+        smallint category_id PK
+        varchar name 
+        varchar url_key 
+        smallint root_order 
+        mediumtext description 
+        decimal sort_order 
+        smallint active 
+        smallint top 
+        smallint column 
+        smallint type 
+        mediumtext html 
+        smallint is_retail_category 
+        smallint is_wholesale_category 
+        mediumtext wholesale_html 
+        smallint wholesale_type 
+        smallint wholesale_top 
+        smallint wholesale_column 
+    }
+    category_listings {
+        int product_id 
+        varchar sku 
+        decimal retail_price 
+        mediumtext short_description 
+        mediumtext name 
+        varchar url_key 
+        smallint category_id 
+        int view_count 
+        decimal rating 
+        bigint rating_count 
+        smallint root_category_id 
+        varchar medium_image 
+        decimal qty 
+    }
+    cities_towns {
+        int id PK
+        varchar town_name UK
+        int active 
+        varchar url_key 
+    }
+    cities_towns_votes {
+        int id PK
+        varchar city_id 
+        varchar ip_address 
+        timestamp timestamp 
+        varchar session_id 
+    }
+    coinbase_payments {
+        int id PK
+        varchar coinbase_id 
+        timestamp created_at 
+        timestamp expires_at 
+        timestamp confirmed_at 
+        varchar status 
+        decimal order_total 
+        int order_id 
+    }
+    config {
+        int id PK
+        varchar name 
+        varchar value 
+    }
+    container_products_qty {
+        int product_id 
+        smallint unlimited_qty 
+        mediumtext name 
+        decimal qty 
+    }
+    content_pages {
+        int id PK
+        varchar meta_title 
+        varchar meta_desc 
+        varchar url_key UK
+        varchar active 
+        longtext html 
+        varchar include_php 
+        varchar page_title 
+        timestamp last_updated 
+        timestamp created 
+        mediumtext meta_keywords 
+        int core_system_content 
+        int include_footer_headers 
+        int show_in_sitemap 
+        int is_retail_content 
+        int is_wholesale_content 
+        varchar wholesale_meta_title 
+        varchar wholesale_meta_desc 
+    }
+    countries {
+        int id PK
+        varchar name 
+        varchar currency_abbreviation 
+        int country_code 
+        varchar abbreviation 
+        int active 
+        int default 
+    }
+    coupon_uses {
+        int id PK
+        int coupon_id 
+        int customer_id 
+        timestamp timestamp_used 
+        smallint status 
+        bigint cart_id 
+        int order_id 
+        varchar session_id 
+    }
+    coupons {
+        int id PK
+        varchar name 
+        varchar description 
+        smallint active 
+        varchar code 
+        smallint max_per_customer 
+        smallint max_total 
+        timestamp created 
+        smallint free_shipping 
+        smallint percent 
+        decimal dollar_off 
+        decimal apply_over_dollar_value 
+        timestamp coupon_ends 
+        smallint liquid_loyalty 
+        int is_retail_coupon 
+        int is_wholesale_coupon 
+        int gst 
+    }
+    cron_output_logs {
+        int id PK
+        varchar identifier 
+        timestamp time_started 
+        timestamp time_ended 
+        enum status 
+        mediumtext error_message 
+        mediumtext output 
+        varchar command 
+    }
+    customer_billing_address {
+        int id PK
+        int customer_id 
+        varchar first_name 
+        varchar last_name 
+        varchar company 
+        varchar address_line_one 
+        varchar address_line_two 
+        varchar country 
+        varchar suburb 
+        varchar post_code 
+        int default 
+        varchar phone 
+        varchar city 
+        varchar state 
+        varchar email 
+        int same_as_shipping 
+        datetime created_at 
+        datetime updated_at 
+    }
+    customer_feedback {
+        int id PK
+        int user_id 
+        mediumtext feedback 
+        int order_id 
+        smallint approved 
+        timestamp time_submitted 
+    }
+    customer_shipping_address {
+        int id PK
+        varchar outlet_name 
+        varchar outlet_email 
+        text outlet_notes 
+        varchar reference_code 
+        int customer_id 
+        varchar first_name 
+        varchar last_name 
+        varchar company 
+        varchar address_line_one 
+        varchar address_line_two 
+        varchar country 
+        varchar suburb 
+        varchar post_code 
+        int default 
+        tinyint send_packing_slip 
+        tinyint is_active 
+        varchar city 
+        varchar state 
+        varchar phone 
+        longtext address_json 
+        text delivery_instructions 
+        varchar first_name_store_manager 
+        varchar last_name_store_manager 
+        datetime created_at 
+        datetime updated_at 
+    }
+    customers {
+        int id PK
+        varchar first_name 
+        varchar last_name 
+        varchar business_name 
+        varchar trading_name 
+        varchar company_website 
+        varchar accounts_contact_first_name 
+        varchar accounts_contact_phone 
+        varchar accounts_contact_email 
+        varchar gst_number 
+        varchar nzbn_number 
+        varchar harp_avp_number 
+        mediumtext primary_phone 
+        varchar email UK
+        mediumtext password 
+        mediumtext full_address 
+        mediumtext google_address_object 
+        timestamp account_created 
+        timestamp last_logged_in 
+        smallint guest_account 
+        varchar session_id 
+        smallint update_password 
+        varchar assigned_outlet_id 
+        varchar password_reset_hash 
+        timestamp password_reset_timestamp 
+        varchar bank_account 
+        int is_wholesale_account 
+        int unsubscribe 
+        int wholesale_account_active 
+        int account_r18_verified 
+        mediumtext suspended_reason 
+        timestamp account_r18_email_sent 
+        smallint account_r18_sent_by_staff_id 
+        smallint account_r18_sent_by_outlet_id 
+        int review_admin 
+        varchar alias 
+        varchar accounts_contact_last_name 
+    }
+    customers_identification {
+        int id PK
+        varchar customer_id 
+        timestamp created 
+        varchar verify_via_file_upload 
+        smallint verify_over_phone 
+        varchar verified_over_phone_number 
+        smallint verify_instore 
+        mediumtext verify_instore_details 
+        varchar verify_instore_phone 
+        smallint send_email_through 
+        smallint verified_another_way 
+        varchar verify_another_way_notes 
+        varchar verify_another_way_phone 
+        varchar verify_another_way_facebook 
+        varchar verify_another_way_linkedIn 
+        smallint declared_under_18 
+        varchar declared_under_18_bank_account 
+        varchar file_name 
+        smallint approved 
+        timestamp approved_timestamp 
+        smallint approved_by_staff 
+        mediumtext declined_reason 
+        mediumtext notes 
+    }
+    customers_underage {
+        int id PK
+        int customer_id PK
+        varchar vend_id 
+        varchar first_name 
+        varchar last_name 
+        varchar email 
+        varchar phone_number 
+        varchar billing_first_name 
+        varchar billing_last_name 
+        varchar billing_company 
+        varchar billing_phone 
+        varchar billing_address_line_one 
+        varchar billing_address_line_two 
+        varchar billing_city 
+        varchar billing_suburb 
+        varchar billing_post_code 
+        varchar billing_state 
+        varchar billing_country 
+        varchar shipping_first_name 
+        varchar shipping_last_name 
+        varchar shipping_company 
+        varchar shipping_phone 
+        varchar shipping_address_line_one 
+        varchar shipping_address_line_two 
+        varchar shipping_city 
+        varchar shipping_suburb 
+        varchar shipping_post_code 
+        varchar shipping_state 
+        varchar shipping_country 
+        timestamp banned_created 
+        int order_id PK
+    }
+    debug_data_table {
+        int id PK
+        mediumtext name 
+        mediumtext value 
+        timestamp created_at 
+    }
+    email_queue {
+        int id PK
+        varchar email_from 
+        varchar name_from 
+        varchar name_to 
+        varchar email_to 
+        varchar subject 
+        mediumtext email_body 
+        timestamp time_created 
+        int sent 
+        timestamp time_sent 
+        mediumtext error 
+        int failed 
+        varchar email_reply_to 
+        varchar name_reply_to 
+        varchar message_id 
+    }
+    faulty_products {
+        int id PK
+        int cis_fault_id 
+        int customer_id 
+        timestamp created_at 
+        int status 
+        decimal supply_cost 
+        int order_id 
+        int order_product_id 
+        timestamp deleted_at 
+        int coupon_id 
+        timestamp coupon_created 
+    }
+    flavour_categories {
+        int id PK
+        varchar flavour_name UK
+        int status 
+    }
+    flavour_categories_products {
+        int id PK
+        int product_id 
+        int flavour_category_id 
+        int main_profile 
+        int secondary_profile 
+        int third_profile 
+        int fourth_profile 
+        int fifth_profile 
+        int sixth_profile 
+    }
+    gst_types {
+        int id PK
+        varchar label 
+        int active 
+        float gst_percent 
+    }
+    javascript_error_logging {
+        int id PK
+        varchar user 
+        mediumtext cartContents 
+        varchar page_url 
+        mediumtext error_message 
+        mediumtext user_agent 
+        mediumtext js_url 
+        mediumtext line_number 
+        mediumtext column 
+        mediumtext stack_trace 
+        varchar ip_address 
+        timestamp created 
+        mediumtext client_url 
+    }
+    juice_finder_logs {
+        int id PK
+        int user_id 
+        varchar session_id 
+        varchar created_at 
+        int nicotine_type 
+        int pg_vg_ratio 
+        int bottle_size 
+        decimal price_min 
+        decimal price_max 
+        int flavour_profile 
+    }
+    location_content {
+        int id PK
+        varchar location_name UK
+        varchar heading 
+        text content 
+        tinyint active 
+        timestamp created_at 
+        timestamp updated_at 
+    }
+    login_attempts {
+        int id PK
+        varchar email 
+        varchar ip_address 
+        timestamp time_created 
+        int user_id 
+        int success 
+    }
+    manufacturers {
+        smallint id PK
+        varchar name UK
+        varchar url_key PK
+        smallint active 
+        varchar image 
+        int available_for_sale_retail 
+        int available_for_sale_wholesale 
+        mediumtext retail_description 
+        varchar website 
+        text retail_description_backup 
+        varchar website_backup 
+    }
+    nicotine_types {
+        int id PK
+        varchar nicotine_label 
+        int status 
+    }
+    none_container_products_qty {
+        int product_id 
+        smallint unlimited_qty 
+        mediumtext name 
+        decimal qty 
+    }
+    orders {
+        int order_id PK
+        int customer_id 
+        timestamp order_created 
+        smallint order_status 
+        varchar payment_method 
+        varchar payment_method_label 
+        varchar shipping_method 
+        varchar shipping_method_label 
+        decimal sub_total_before_gst 
+        decimal sub_total_after_gst 
+        decimal shipping_cost_before_gst 
+        decimal shipping_cost_after_gst 
+        decimal order_total_before_gst 
+        decimal coupon_total_before_gst 
+        decimal order_total_after_gst 
+        mediumtext coupon_data 
+        mediumtext order_notes 
+        varchar billing_first_name 
+        varchar billing_last_name 
+        varchar billing_email 
+        varchar billing_company 
+        varchar billing_phone 
+        varchar billing_address_one 
+        varchar billing_address_two 
+        varchar billing_city 
+        varchar billing_suburb 
+        varchar billing_country 
+        varchar billing_state 
+        varchar billing_postcode 
+        varchar shipping_first_name 
+        varchar shipping_last_name 
+        varchar shipping_company 
+        varchar shipping_phone 
+        int same_billing 
+        varchar shipping_address_one 
+        varchar shipping_address_two 
+        varchar shipping_city 
+        varchar shipping_suburb 
+        varchar shipping_postcode 
+        varchar shipping_state 
+        varchar shipping_country 
+        varchar ip_address 
+        decimal gst_percent_charged 
+        int store_pickup_id 
+        varchar store_pickup_name 
+        varchar customer_first_name 
+        varchar customer_last_name 
+        varchar customer_email 
+        varchar customer_phone 
+        smallint on_hold 
+        decimal order_total_final 
+        smallint seen_confirmation 
+        int customer_pickup_notified_email 
+        decimal loyalty_used 
+        int is_wholesale_order 
+        smallint vape_drop_store_id 
+        varchar vape_drop_store_name 
+        int staff_delivered_id 
+        decimal original_order_total_final 
+        longtext original_order_contents_json 
+    }
+    orders_history {
+        int id PK
+        int order_id 
+        mediumtext description 
+        smallint staff_id 
+        timestamp timestamp 
+        int manually_added 
+        timestamp deleted_at 
+    }
+    orders_invoices {
+        int id PK
+        int order_id 
+        timestamp created 
+        smallint payment_method 
+        smallint created_by 
+        decimal total_paid 
+        mediumtext reference 
+        mediumtext payment_method_label 
+    }
+    orders_products {
+        int order_products_id PK
+        int order_id 
+        mediumtext product_name 
+        int product_qty 
+        mediumtext product_options 
+        decimal product_price 
+        mediumtext product_image_link 
+        int product_id 
+        int product_option 
+        int container_id 
+        smallint sold_in_qty 
+        smallint manually_added 
+    }
+    orders_products_assigned_outlets {
+        int id PK
+        int order_product_id 
+        int outlet_id 
+        int order_id 
+        int product_id 
+        int qty 
+        timestamp time_assigned 
+    }
+    orders_shipments {
+        int id PK
+        int order_id 
+        timestamp created 
+        int created_by_user 
+        mediumtext shipment_notes 
+        mediumtext tracking_number 
+        int created_by_outlet 
+        int nzpost_order_id 
+        int gss_order_id 
+    }
+    orders_shipments_products {
+        int id PK
+        int order_product_id 
+        int qty_sent 
+        int shipment_id 
+    }
+    orders_status {
+        int id PK
+        varchar label 
+    }
+    outlet_inventory {
+        int outlet_id PK
+        int product_id PK
+        int qty 
+        timestamp last_updated 
+    }
+    outlets {
+        smallint outlet_id PK
+        varchar outlet_name 
+        smallint active 
+        varchar vend_id 
+        mediumtext google_link 
+        varchar outlet_lat 
+        varchar outlet_long 
+        varchar address 
+        smallint wholesale_active 
+        smallint vape_drop_active 
+        smallint click_collect_active 
+        smallint location_page_active 
+        varchar phone 
+        varchar email_address 
+        decimal google_rating 
+        smallint google_review_count 
+        varchar physical_street_number 
+        varchar physical_street 
+        varchar physical_address_1 
+        varchar physical_suburb 
+        varchar physical_postcode 
+        varchar physical_city 
+    }
+    outlets_hours {
+        int id PK
+        int outlet_id 
+        varchar monday_open 
+        varchar monday_close 
+        varchar tuesday_open 
+        varchar tuesday_close 
+        varchar wednesday_open 
+        varchar wednesday_close 
+        varchar thursday_open 
+        varchar thursday_close 
+        varchar friday_open 
+        varchar friday_close 
+        varchar saturday_open 
+        varchar saturday_close 
+        varchar sunday_open 
+        varchar sunday_close 
+    }
+    outlets_images {
+        int id PK
+        int outlet_id 
+        varchar image_filename 
+        int active 
+        int default 
+    }
+    paymark_eftpos {
+        int id PK
+        int order_id 
+        varchar amount 
+        varchar status 
+        varchar paymark_id UK
+        varchar access_token 
+        timestamp time_created 
+        timestamp time_updated 
+        mediumtext refund_json 
+        varchar paymark_transaction_id 
+    }
+    payment_methods {
+        int id PK
+        varchar label 
+        varchar checkout_icon 
+        mediumtext description 
+        smallint active 
+        varchar identifier UK
+        smallint sort 
+        smallint default 
+        mediumtext additional_info 
+        int is_retail_method 
+        int is_wholesale_method 
+        int wholesale_default 
+    }
+    pgvg_ratios {
+        int id PK
+        varchar ratio 
+        int status 
+        int pg 
+        int vg 
+    }
+    php_sessions {
+        varchar id PK
+        mediumblob data 
+        datetime expires_at 
+        datetime updated_at 
+    }
+    poli_payments {
+        int order_id 
+        varchar transaction_ref_no PK
+        timestamp transaction_created 
+        varchar transaction_status 
+        varchar token 
+        varchar payment_amount 
+        varchar amount_paid 
+    }
+    prescriptions {
+        int id PK
+        int customer_id 
+        varchar filename 
+        timestamp created 
+    }
+    price_beat_queries {
+        int id PK
+        int product_id 
+        timestamp created_at 
+        varchar session_id 
+        int customer_id 
+        mediumtext url_queried 
+        int manual_check 
+        int status 
+        int found_match 
+        decimal found_price 
+        decimal offered_price 
+        int http_status_code 
+        int decision_made_by_staff 
+        timestamp decision_made_by_staff_time 
+        mediumtext decline_reason 
+        varchar made_by_ip 
+        mediumtext found_product_name 
+        varchar engine_used 
+    }
+    price_beat_queries_helper_urls {
+        int id PK
+        varchar url 
+        int product_id 
+        timestamp created_at 
+    }
+    product_addon_templates {
+        int id PK
+        varchar name 
+        int required 
+        varchar type 
+        int sort 
+    }
+    product_addon_values {
+        int id PK
+        int product_addon_id 
+        int product_id 
+        varchar option_label 
+        int qty_sold_in 
+        int default 
+        decimal price 
+        int sort 
+    }
+    product_categories {
+        int id PK
+        smallint category_id 
+        int product_id 
+    }
+    product_compatibility {
+        int product_id PK
+        int compatible_product_id PK
+        varchar compatible_product_name 
+    }
+    product_images {
+        int id PK
+        int product_id 
+        varchar image_url 
+        smallint sort_order 
+        smallint main_image 
+        varchar linked_product_id 
+        varchar small 
+        varchar medium 
+        varchar large 
+        mediumtext gradient_css 
+    }
+    product_in_stock_reminders {
+        int id PK
+        int product_id 
+        int user_id 
+        varchar session_id 
+        mediumtext email 
+        timestamp time_created 
+        smallint reminded 
+        timestamp reminded_time 
+        int failed 
+        timestamp failed_time 
+    }
+    product_layout_types {
+        int layout_id PK
+        varchar layout_filename 
+        varchar layout_name 
+    }
+    product_option_values {
+        int id PK
+        int product_option_id 
+        smallint default 
+        decimal price 
+        int product_id 
+        smallint sort_order 
+        mediumtext name 
+        smallint qty_sold_in 
+        varchar image_id 
+        decimal wholesale_price 
+        int use_product_id_price 
+    }
+    product_options {
+        int id PK
+        varchar option_type 
+        varchar option_name 
+        smallint is_required 
+        smallint sort_order 
+        int product_id 
+        smallint is_colour_dropdown 
+        smallint template_id 
+    }
+    product_qty_combined {
+        int product_id 
+        longtext name 
+        decimal qty 
+        smallint unlimited_qty 
+    }
+    product_questions {
+        int id PK
+        int product_id 
+        varchar supplied_name 
+        int user_id 
+        mediumtext question 
+        mediumtext answer 
+        timestamp date_asked 
+        timestamp date_answered 
+        varchar email_address 
+        int status 
+    }
+    product_tiered_pricing {
+        int id PK
+        int product_id UK
+        decimal second_tier_price_excl_gst 
+        decimal third_tier_price_excl_gst 
+        decimal fourth_tier_price_excl_gst 
+        decimal fifth_tier_price_excl_gst 
+        smallint second_tier_qty 
+        smallint third_tier_qty 
+        smallint fourth_tier_qty 
+        smallint fifth_tier_qty 
+        smallint retail_pricing 
+        smallint wholesale_pricing 
+        smallint retail_automated_generated 
+        smallint wholesale_automated_generated 
+        timestamp created 
+    }
+    products {
+        int product_id PK
+        varchar vend_id 
+        mediumtext name 
+        mediumtext previously_known_as 
+        mediumtext short_description 
+        mediumtext description 
+        mediumtext package_contents 
+        mediumtext specifications 
+        varchar sku 
+        varchar url_key 
+        smallint is_container 
+        decimal retail_price 
+        smallint stock_status 
+        smallint visibility 
+        smallint unlimited_qty 
+        timestamp product_created 
+        decimal special_price 
+        smallint product_type 
+        smallint qty_sold_in 
+        int view_count 
+        int manufacturer_id 
+        int new_and_never_updated 
+        int bargain_bin_item 
+        int daily_deal_product 
+        decimal loyalty_reward 
+        int coming_soon 
+        mediumtext keywords 
+        decimal cost_price 
+        decimal wholesale_markup 
+        int is_retail_product 
+        int is_wholesale_product 
+        decimal wholesale_price 
+        smallint discontinued 
+        smallint layout_id 
+        int available_for_sale_retail 
+        int available_for_sale_wholesale 
+        int pg_vg_ratio 
+        int bottle_size 
+        int nicotine_type 
+        smallint wholesale_fixed_cost_or_percentage 
+        smallint show_only_if_logged_in 
+        longtext embedding 
+        text comp_short_desc 
+        text comp_description 
+        text comp_specs 
+        text comp_package_contents 
+        varchar meta_desc 
+    }
+    products_bought_together {
+        int product_id PK
+        int product_id_bought PK
+        int order_products_id PK
+        int order_id 
+        timestamp date_bought 
+    }
+    products_viewed {
+        int id PK
+        int product_id 
+        timestamp time_visited 
+        varchar user 
+        smallint guest 
+    }
+    refunds {
+        int id PK
+        int order_id 
+        timestamp date_created 
+        decimal amount 
+        mediumtext description 
+        varchar bank_account 
+        int status 
+        timestamp completed_date 
+        int refund_created_by_user 
+        mediumtext refund_additional_data 
+        decimal original_refund_amount 
+        mediumtext ai_refund_object 
+    }
+    review_reponses {
+        int id PK
+        int in_reply_to 
+        timestamp created_at 
+        varchar user_id 
+        varchar response_text 
+        varchar ip_address 
+        int active 
+        timestamp deleted_at 
+    }
+    reviews {
+        int id PK
+        int product_id 
+        int user_id 
+        varchar name 
+        int rating 
+        mediumtext review_text 
+        varchar session_id 
+        mediumtext summary 
+        int status 
+        timestamp date_created 
+        int anonymous 
+    }
+    reviews_helpful {
+        int id PK
+        int review_id 
+        int response_id 
+        int helpful 
+        int user_id 
+        varchar session_id 
+        varchar ip_address 
+        timestamp created_at 
+    }
+    sales_summary_90d {
+        varchar outlet_id PK
+        varchar product_id PK
+        int qty_sold 
+        timestamp last_updated 
+    }
+    saved_cart_products {
+        int id PK
+        int product_id 
+        varchar qty 
+        smallint has_options 
+        mediumtext option_data 
+        bigint saved_cart_id 
+        decimal custom_price 
+        timestamp custom_price_expires 
+    }
+    saved_carts {
+        bigint id PK
+        mediumtext session_id 
+        int user_id 
+        timestamp session_created 
+        int is_retail 
+        int is_wholesale 
+        timestamp last_updated 
+    }
+    search_view {
+        int product_id 
+        varchar sku 
+        decimal retail_price 
+        mediumtext short_description 
+        mediumtext name 
+        varchar url_key 
+        smallint is_container 
+        int view_count 
+        smallint category_id 
+        decimal rating 
+        bigint rating_count 
+        smallint root_category_id 
+        varchar main_image 
+    }
+    searches {
+        int id PK
+        int user_id 
+        varchar session_id 
+        varchar search_term 
+        smallint result_count 
+        timestamp timestamp 
+        int product_id_clicked_on 
+    }
+    sendgrid_webhook_data {
+        int id PK
+        mediumtext json_object_string 
+        varchar email 
+        timestamp timestamp 
+        varchar event 
+        varchar sg_event_id UK
+        varchar sg_message_id 
+        mediumtext response 
+        varchar smtp_id 
+        varchar attempt 
+        varchar useragent 
+        varchar ip 
+        varchar url 
+        varchar status 
+        mediumtext category 
+        mediumtext reason 
+        varchar asm_group_id 
+    }
+    sessions {
+        varchar session_id PK
+        datetime session_expires 
+        datetime session_created 
+        mediumtext session_data 
+    }
+    shipping_methods {
+        int id PK
+        varchar label 
+        varchar checkout_icon 
+        mediumtext description 
+        decimal price 
+        varchar is_pickup 
+        smallint active 
+        varchar identifier UK
+        smallint sort 
+        smallint default 
+        int is_retail_method 
+        int is_wholesale_method 
+        int eligible_for_free_shipping 
+        int require_r18_verification 
+    }
+    short_url_redirects {
+        int id PK
+        int user_id 
+        int order_id 
+        varchar redirect_string UK
+        timestamp created_at 
+        timestamp last_visited_at 
+        varchar visited_by_ip 
+        mediumtext url_to_redirect_to 
+        varchar comment 
+        int system_generated 
+    }
+    suburbs {
+        int suburb_id PK
+        varchar suburb_name 
+        int city_town_id 
+        varchar city_name 
+        varchar url_key UK
+        tinyint active 
+        timestamp created_at 
+        timestamp updated_at 
+    }
+    till_payment_errors {
+        int id PK
+        mediumtext data 
+        int order_id 
+        varchar type 
+        varchar cardHolder 
+        varchar expiryMonth 
+        varchar expiryYear 
+        varchar lastFourDigits 
+        varchar firstSixDigits 
+        varchar binBrand 
+        varchar binBank 
+        varchar binType 
+        varchar binCountry 
+        varchar errorMessage 
+        varchar adapterMessage 
+        int customer_id 
+        mediumtext order_data 
+        timestamp created_at 
+    }
+    till_payment_reciept {
+        int id PK
+        varchar success 
+        varchar uuid UK
+        varchar purchase_id 
+        mediumtext return_type 
+        mediumtext extra_data 
+        int order_id 
+        mediumtext success_status_json 
+        timestamp created 
+        mediumtext refund_status_json 
+        varchar amount 
+        varchar credit_card_number 
+        varchar expire 
+    }
+    total_store_qty {
+        varchar outlet_name 
+        smallint outlet_id 
+        int qty 
+        int product_id 
+        longtext name 
+    }
+    wanted_products {
+        int id PK
+        int user_id 
+        varchar session_id 
+        int product_id 
+        timestamp created 
+    }
+    windcave_payments {
+        int id PK
+        varchar TxnType 
+        int MerchantReference UK
+        varchar ClientInfo 
+        varchar TxnId 
+        varchar EmailAddress 
+        varchar DpsTxnRef 
+        varchar AmountSettlement 
+        varchar ResponseText 
+        varchar CurrencyInput 
+    }
+    wp_api_idempotency {
+        varchar idempotency_key PK
+        varchar endpoint 
+        char request_hash 
+        timestamp created_at 
+        timestamp last_seen_at 
+        enum status 
+    }
+    wp_api_keys {
+        int id PK
+        varchar label 
+        char key_hash UK
+        tinyint active 
+        longtext allowed_ips 
+        timestamp created_at 
+        timestamp last_used_at 
+    }
+    zip_payments {
+        int id PK
+        int order_id 
+        varchar token 
+        varchar expiryDateTime 
+        varchar zipOrderId 
+        int customer_pairing_token_active 
+        varchar payment_status 
+        varchar payment_amount 
+        timestamp time_created 
+        mediumtext zip_refund_json 
+    }
+
+    abandoned_cart_reminders ||--o{ customers : "user_id"
+    coupon_uses ||--o{ saved_carts : "cart_id"
+    flavour_categories_products ||--o{ flavour_categories : "flavour_category_id"
+    flavour_categories_products ||--o{ products : "product_id"
+    orders_history ||--o{ orders : "order_id"
+    orders_invoices ||--o{ orders : "order_id"
+    orders_products ||--o{ orders : "order_id"
+    orders_products_assigned_outlets ||--o{ orders_products : "order_product_id"
+    orders_shipments ||--o{ orders : "order_id"
+    orders_shipments_products ||--o{ orders_shipments : "shipment_id"
+    outlet_inventory ||--o{ products : "product_id"
+    poli_payments ||--o{ orders : "order_id"
+    product_categories ||--o{ categories : "category_id"
+    product_categories ||--o{ products : "product_id"
+    product_compatibility ||--o{ products : "product_id"
+    product_images ||--o{ products : "product_id"
+    product_in_stock_reminders ||--o{ products : "product_id"
+    product_option_values ||--o{ product_options : "product_option_id"
+    product_questions ||--o{ products : "product_id"
+    product_tiered_pricing ||--o{ products : "product_id"
+    products_bought_together ||--o{ products : "product_id"
+    products_viewed ||--o{ products : "product_id"
+    refunds ||--o{ orders : "order_id"
+    review_reponses ||--o{ reviews : "in_reply_to"
+    reviews ||--o{ products : "product_id"
+    reviews_helpful ||--o{ review_reponses : "response_id"
+    saved_cart_products ||--o{ saved_carts : "saved_cart_id"
+    saved_cart_products ||--o{ products : "product_id"
+    saved_carts ||--o{ customers : "user_id"
+    suburbs ||--o{ cities_towns : "city_town_id"

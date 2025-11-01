@@ -1,0 +1,247 @@
+{
+    "metadata": {
+        "version": "1.0.0",
+        "created": "2025-10-19",
+        "last_updated": "2025-10-24",
+        "total_scripts": 4,
+        "description": "Central registry of all cron scripts with locations, dependencies, and metadata"
+    },
+    "script_locations": {
+        "queue": "/home/master/applications/jcepnzzkmj/public_html/assets/services/queue",
+        "neuro": "/home/master/applications/jcepnzzkmj/public_html/assets/services/neuro",
+        "kb": "/home/master/applications/jcepnzzkmj/public_html/assets/services/_kb",
+        "integrations": "/home/master/applications/jcepnzzkmj/public_html/assets/services/integrations",
+        "cron": "/home/master/applications/jcepnzzkmj/public_html/assets/services/cron",
+        "inventory": "/home/master/applications/jcepnzzkmj/public_html/assets/services/inventory"
+    },
+    "scripts": [
+        {
+            "name": "queue_runner",
+            "script": "queue/bin/runner.php",
+            "full_path": "/home/master/applications/jcepnzzkmj/public_html/assets/services/queue/bin/runner.php",
+            "description": "Main queue processing engine - processes jobs from queue",
+            "frequency": "every_minute",
+            "type": "critical",
+            "category": "queue",
+            "dependencies": [
+                "queue/src/QueueProcessor.php",
+                "queue/config/queue.php",
+                "database: queue_jobs"
+            ],
+            "owner": "Queue System",
+            "documentation": "queue/README.md",
+            "alerts": {
+                "on_failure": true,
+                "max_failures": 3,
+                "alert_email": "alerts@vapeshed.co.nz"
+            },
+            "resource_limits": {
+                "max_duration_seconds": 55,
+                "max_memory_mb": 128,
+                "timeout": 50
+            },
+            "monitoring": {
+                "track_metrics": true,
+                "log_level": "info",
+                "performance_tracking": true
+            }
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "neuro/cron/generate-embeddings.php",
+            "full_path": "/home/master/applications/jcepnzzkmj/public_html/assets/services/neuro/cron/generate-embeddings.php",
+            "description": "Generate AI embeddings for products, customers, and content",
+            "frequency": "every_2_minutes",
+            "offset": 2,
+            "type": "medium",
+            "category": "neuro_ai",
+            "dependencies": [
+                "neuro/src/EmbeddingGenerator.php",
+                "neuro/config/ai.php",
+                "database: neuro_embeddings",
+                "external_api: OpenAI"
+            ],
+            "owner": "Neuro AI System",
+            "documentation": "neuro/docs/embeddings.md",
+            "alerts": {
+                "on_failure": false,
+                "max_failures": 10
+            },
+            "resource_limits": {
+                "max_duration_seconds": 90,
+                "max_memory_mb": 256
+            },
+            "api_dependencies": [
+                {
+                    "service": "OpenAI",
+                    "endpoint": "https://api.openai.com/v1/embeddings",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "name": "KB_AutoSyncMonitor",
+            "script": "_kb/tools/auto-sync-monitor.php",
+            "full_path": "/home/master/applications/jcepnzzkmj/public_html/assets/services/_kb/tools/auto-sync-monitor.php",
+            "description": "Monitors database schema changes and auto-updates KB",
+            "frequency": "every_5_minutes",
+            "offset": 6,
+            "type": "light",
+            "category": "knowledge_base",
+            "dependencies": [
+                "_kb/src/SchemaMonitor.php",
+                "database: queue_*, all tables"
+            ],
+            "owner": "Knowledge Base System",
+            "documentation": "_kb/README.md",
+            "alerts": {
+                "on_failure": false,
+                "max_failures": 20
+            },
+            "resource_limits": {
+                "max_duration_seconds": 60,
+                "max_memory_mb": 128
+            }
+        },
+        {
+            "name": "KB_RefreshFull",
+            "script": "_kb/tools/refresh-full.php",
+            "full_path": "/home/master/applications/jcepnzzkmj/public_html/assets/services/_kb/tools/refresh-full.php",
+            "description": "Full knowledge base refresh - regenerates all documentation",
+            "frequency": "daily",
+            "hour": 2,
+            "minute": 12,
+            "type": "heavy",
+            "category": "knowledge_base",
+            "dependencies": [
+                "_kb/src/DocumentGenerator.php",
+                "_kb/data/kb-data.json",
+                "database: all"
+            ],
+            "owner": "Knowledge Base System",
+            "documentation": "_kb/docs/refresh-system.md",
+            "alerts": {
+                "on_failure": true,
+                "max_failures": 1
+            },
+            "resource_limits": {
+                "max_duration_seconds": 600,
+                "max_memory_mb": 512
+            },
+            "maintenance_window": {
+                "preferred_start": "02:00",
+                "preferred_end": "04:00"
+            }
+        }
+    ],
+    "categories": {
+        "queue": {
+            "name": "Queue System",
+            "description": "Job queue processing and management",
+            "priority": "critical",
+            "base_path": "queue/",
+            "owner": "Queue Team",
+            "documentation": "queue/README.md"
+        },
+        "neuro_ai": {
+            "name": "Neuro AI",
+            "description": "AI-powered analytics, embeddings, and intelligence",
+            "priority": "high",
+            "base_path": "neuro/",
+            "owner": "AI Team",
+            "documentation": "neuro/README.md"
+        },
+        "knowledge_base": {
+            "name": "Knowledge Base",
+            "description": "Documentation and schema management system",
+            "priority": "medium",
+            "base_path": "_kb/",
+            "owner": "DevOps",
+            "documentation": "_kb/README.md"
+        },
+        "integrations": {
+            "name": "Integrations",
+            "description": "Third-party integrations (Xero, Vend, Lightspeed)",
+            "priority": "high",
+            "base_path": "integrations/",
+            "owner": "Integration Team",
+            "documentation": "integrations/README.md"
+        },
+        "inventory": {
+            "name": "Inventory Management",
+            "description": "Stock, transfers, and inventory operations",
+            "priority": "high",
+            "base_path": "inventory/",
+            "owner": "Operations",
+            "documentation": "inventory/README.md"
+        }
+    },
+    "resource_profiles": {
+        "critical": {
+            "max_concurrent": 3,
+            "priority": 1,
+            "always_run": true,
+            "skip_load_balancer": false,
+            "description": "Must run every minute, highest priority"
+        },
+        "heavy": {
+            "max_concurrent": 1,
+            "priority": 3,
+            "preferred_window": [
+                "02:00",
+                "04:00"
+            ],
+            "description": "Resource intensive, run during off-peak"
+        },
+        "medium": {
+            "max_concurrent": 3,
+            "priority": 2,
+            "preferred_window": [
+                "00:00",
+                "06:00"
+            ],
+            "description": "Moderate resources, off-peak preferred"
+        },
+        "light": {
+            "max_concurrent": 10,
+            "priority": 4,
+            "description": "Lightweight, can run anytime"
+        }
+    },
+    "monitoring_endpoints": {
+        "health_check": "/assets/services/cron/smart-cron.php --status",
+        "metrics_api": "/api/cron/metrics.json",
+        "dashboard": "/admin/cron/dashboard.php",
+        "logs": "/assets/services/cron/smart-cron/logs/"
+    },
+    "backup_strategy": {
+        "config_backup": {
+            "frequency": "daily",
+            "location": "/backups/cron/",
+            "retention_days": 30
+        },
+        "metrics_backup": {
+            "frequency": "weekly",
+            "table": "cron_metrics",
+            "retention_days": 90
+        }
+    },
+    "change_management": {
+        "approval_required": [
+            "critical",
+            "heavy"
+        ],
+        "testing_required": true,
+        "rollback_plan": "See ROLLBACK.md",
+        "deployment_window": {
+            "preferred": [
+                "02:00",
+                "04:00"
+            ],
+            "blackout": [
+                "08:00",
+                "18:00"
+            ]
+        }
+    }
+}

@@ -1,0 +1,80 @@
+{
+    "intelligence_hub": {
+        "id": "intelligence_hub",
+        "name": "Intelligence Hub (Master GPT Core)",
+        "type": "local",
+        "path": "/home/master/applications/hdgwrzntwa/public_html/_kb",
+        "description": "Central intelligence system - master AI controller, knowledge base, neural scanner",
+        "domain": "gpt.ecigdis.co.nz",
+        "priority": 1,
+        "auto_sync": true,
+        "coordination": true
+    },
+    "jcepnzzkmj": {
+        "id": "jcepnzzkmj",
+        "name": "CIS Staff Portal",
+        "type": "remote",
+        "url": "https://staff.vapeshed.co.nz",
+        "domain": "staff.vapeshed.co.nz",
+        "api_url": "https://staff.vapeshed.co.nz/assets/services/smart-cron/api/manage.php",
+        "api_key": "${CIS_API_KEY}",
+        "description": "Main ERP system - inventory, transfers, POs, webhooks, consignments, staff management",
+        "priority": 2,
+        "auto_sync": true,
+        "coordination": true,
+        "features": [
+            "inventory_management",
+            "purchase_orders",
+            "stock_transfers",
+            "vend_webhooks",
+            "consignment_tracking",
+            "staff_portal"
+        ]
+    },
+    "dvaxgvsxmz": {
+        "id": "dvaxgvsxmz",
+        "name": "Vape Shed Retail",
+        "type": "remote",
+        "url": "https://vapeshed.co.nz",
+        "domain": "vapeshed.co.nz",
+        "api_url": "https://vapeshed.co.nz/api/cron/manage.php",
+        "api_key": "${VAPESHED_API_KEY}",
+        "description": "Public retail website - product catalog, online ordering, customer portal",
+        "priority": 3,
+        "auto_sync": true,
+        "coordination": false,
+        "features": [
+            "ecommerce",
+            "product_catalog",
+            "customer_portal",
+            "order_processing"
+        ]
+    },
+    "fhrehrpjmu": {
+        "id": "fhrehrpjmu",
+        "name": "Ecigdis Wholesale",
+        "type": "remote",
+        "url": "https://ecigdis.co.nz",
+        "domain": "ecigdis.co.nz",
+        "api_url": "https://ecigdis.co.nz/api/cron/manage.php",
+        "api_key": "${ECIGDIS_API_KEY}",
+        "description": "Wholesale website - B2B portal, supplier management, bulk ordering",
+        "priority": 4,
+        "auto_sync": true,
+        "coordination": false,
+        "features": [
+            "wholesale_portal",
+            "b2b_ordering",
+            "supplier_management",
+            "bulk_pricing"
+        ]
+    },
+    "cis_portal": {
+        "id": "cis_portal",
+        "name": "CIS Portal (Legacy Alias)",
+        "type": "alias",
+        "alias_of": "jcepnzzkmj",
+        "description": "Legacy name for CIS Staff Portal - redirects to jcepnzzkmj"
+    }
+}
+

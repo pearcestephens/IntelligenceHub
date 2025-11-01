@@ -1,0 +1,21 @@
+# Items that could not be integrated
+
+**Directory:** incoming/rejected  
+**Updated:** 2025-10-28 15:01:08  
+
+---
+
+## 📄 Files in this Directory
+*No files yet - this directory is ready for content.*
+
+
+---
+
+## 🎯 Purpose
+
+Items that could not be integrated
+
+---
+
+**Last Updated:** 2025-10-28 15:01:08  
+**Parent Section:** [incoming](../)

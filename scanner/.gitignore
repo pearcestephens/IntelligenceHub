@@ -1,0 +1,85 @@
+# Scanner Dashboard - Git Ignore File
+
+# Environment & Configuration
+.env
+.env.local
+.env.production
+config.local.php
+database.php
+
+# Logs
+logs/
+*.log
+*.log.*
+error_log
+debug.log
+
+# Cache & Temporary Files
+cache/
+tmp/
+temp/
+*.cache
+*.tmp
+
+# Session Files
+sessions/
+*.sess
+
+# Uploads & User Data
+uploads/
+user_uploads/
+files/
+
+# Database Backups
+backups/
+*.sql
+*.sql.gz
+*.dump
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Composer
+vendor/
+composer.lock
+composer.phar
+
+# Node Modules (if using any JS build tools)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build Files
+dist/
+build/
+*.min.js
+*.min.css
+
+# System Files
+.htaccess.local
+.user.ini
+
+# Sensitive Data
+api_keys.php
+secrets.php
+credentials.json
+
+# Test Files
+tests/output/
+phpunit.xml
+.phpunit.result.cache
+
+# Documentation (keep markdown, ignore generated docs)
+docs/generated/
+api-docs/generated/
+
+# Ignore specific large documentation files (keep core docs)
+BOOTSTRAP_CONVERSION_COMPLETE.md
+FIXED_SUMMARY.md
+TEST_URLS.md

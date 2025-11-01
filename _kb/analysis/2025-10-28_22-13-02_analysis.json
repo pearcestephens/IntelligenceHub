@@ -1,0 +1,1709 @@
+{
+    "timestamp": "2025-10-28 22:13:02",
+    "summary": "Working on documentation updates in Unknown Project (mastergptcore) - 173 files modified",
+    "labels": [
+        "documentation_updates",
+        "general_cis_maintenance",
+        "ui_improvements",
+        "project_development",
+        "database_changes",
+        "mastergptcore",
+        "unknown_project",
+        "evening_work"
+    ],
+    "activity_type": {
+        "primary": "documentation_updates",
+        "categories": {
+            "0": "documentation_updates",
+            "6": "general_cis_maintenance",
+            "8": "ui_improvements",
+            "39": "project_development",
+            "49": "database_changes"
+        },
+        "confidence": {
+            "documentation_updates": 102,
+            "general_cis_maintenance": 52,
+            "project_development": 10,
+            "ui_improvements": 7,
+            "database_changes": 2
+        },
+        "total_files": 173
+    },
+    "project_context": {
+        "projects": {
+            "mastergptcore": {
+                "name": "mastergptcore",
+                "business_unit": "Unknown Project",
+                "change_count": 73,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "hdgwrzntwa": {
+                "name": "hdgwrzntwa",
+                "business_unit": "Intelligence Hub",
+                "change_count": 73,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "jcepnzzkmj": {
+                "name": "jcepnzzkmj",
+                "business_unit": "CIS Staff Portal",
+                "change_count": 8,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "xavgdbkqxw": {
+                "name": "xavgdbkqxw",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "djnjbfhczr": {
+                "name": "djnjbfhczr",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "xwgxngcrpv": {
+                "name": "xwgxngcrpv",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "fhrehrpjmu": {
+                "name": "fhrehrpjmu",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "sally": {
+                "name": "sally",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "hxvhuzmvxu": {
+                "name": "hxvhuzmvxu",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "bjyvpezxum": {
+                "name": "bjyvpezxum",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "nbqqcrvema": {
+                "name": "nbqqcrvema",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "swdvywdfcs": {
+                "name": "swdvywdfcs",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "wjgprnzauy": {
+                "name": "wjgprnzauy",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "auwzaqszyd": {
+                "name": "auwzaqszyd",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "qffgdcjdpq": {
+                "name": "qffgdcjdpq",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "vdzyfydppv": {
+                "name": "vdzyfydppv",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "rkfkvhgvmz": {
+                "name": "rkfkvhgvmz",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "nicshots": {
+                "name": "nicshots",
+                "business_unit": "Nicshots Business",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "fnfacfaaan": {
+                "name": "fnfacfaaan",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "vapeshed_pos": {
+                "name": "vapeshed_pos",
+                "business_unit": "Retail POS System",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "krjkptkdzv": {
+                "name": "krjkptkdzv",
+                "business_unit": "Unknown Project",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            },
+            "yorvik_electrical": {
+                "name": "yorvik_electrical",
+                "business_unit": "Yorvik Electrical",
+                "change_count": 1,
+                "primary_areas": [
+                    "public_html"
+                ]
+            }
+        },
+        "business_units": {
+            "Unknown Project": 89,
+            "CIS Staff Portal": 8,
+            "Nicshots Business": 1,
+            "Retail POS System": 1,
+            "Intelligence Hub": 73,
+            "Yorvik Electrical": 1
+        },
+        "primary_project": "mastergptcore",
+        "primary_business_unit": "Unknown Project"
+    },
+    "changes": {
+        "xavgdbkqxw": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/xavgdbkqxw\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60466,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "djnjbfhczr": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/djnjbfhczr\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "xwgxngcrpv": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/xwgxngcrpv\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "fhrehrpjmu": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/fhrehrpjmu\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60540,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "sally": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/sally\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "hxvhuzmvxu": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/hxvhuzmvxu\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "jcepnzzkmj": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/jcepnzzkmj\/public_html\/_automation\/config.json",
+                    "relative_path": "_automation\/config.json",
+                    "modified": 1761642610,
+                    "size": 1848,
+                    "extension": "json",
+                    "type": "json"
+                },
+                {
+                    "file": "\/home\/master\/applications\/jcepnzzkmj\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 61235,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/jcepnzzkmj\/public_html\/assets\/services\/cron\/smart-cron\/logs\/dynamic-resources.log",
+                    "relative_path": "assets\/services\/cron\/smart-cron\/logs\/dynamic-resources.log",
+                    "modified": 1761642722,
+                    "size": 30222,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/jcepnzzkmj\/public_html\/assets\/services\/cron\/smart-cron\/logs\/scheduler.log",
+                    "relative_path": "assets\/services\/cron\/smart-cron\/logs\/scheduler.log",
+                    "modified": 1761642722,
+                    "size": 195631,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/jcepnzzkmj\/public_html\/assets\/services\/cron\/smart-cron\/logs\/dynamic-adjuster.log",
+                    "relative_path": "assets\/services\/cron\/smart-cron\/logs\/dynamic-adjuster.log",
+                    "modified": 1761642722,
+                    "size": 51640,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/jcepnzzkmj\/public_html\/assets\/logs\/bootstrap.log",
+                    "relative_path": "assets\/logs\/bootstrap.log",
+                    "modified": 1761642722,
+                    "size": 595326,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/jcepnzzkmj\/public_html\/assets\/logs\/bootstrap-errors.log",
+                    "relative_path": "assets\/logs\/bootstrap-errors.log",
+                    "modified": 1761642717,
+                    "size": 64386336,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/jcepnzzkmj\/public_html\/modules\/.git\/FETCH_HEAD",
+                    "relative_path": "modules\/.git\/FETCH_HEAD",
+                    "modified": 1761642561,
+                    "size": 233,
+                    "extension": "",
+                    "type": "other"
+                }
+            ]
+        },
+        "bjyvpezxum": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/bjyvpezxum\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "nbqqcrvema": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/nbqqcrvema\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "swdvywdfcs": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/swdvywdfcs\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "wjgprnzauy": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/wjgprnzauy\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60396,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "mastergptcore": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 61255,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/mcp\/README.md",
+                    "relative_path": "mcp\/README.md",
+                    "modified": 1761642626,
+                    "size": 1455,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/assets\/services\/README.md",
+                    "relative_path": "assets\/services\/README.md",
+                    "modified": 1761642626,
+                    "size": 327,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/config\/multi-bot.json",
+                    "relative_path": "config\/multi-bot.json",
+                    "modified": 1761642610,
+                    "size": 1848,
+                    "extension": "json",
+                    "type": "json"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/logs\/ai-analysis.log",
+                    "relative_path": "logs\/ai-analysis.log",
+                    "modified": 1761642727,
+                    "size": 267458,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/logs\/copilot-sync.log",
+                    "relative_path": "logs\/copilot-sync.log",
+                    "modified": 1761642602,
+                    "size": 36446,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/logs\/automation-quick.log",
+                    "relative_path": "logs\/automation-quick.log",
+                    "modified": 1761642603,
+                    "size": 1262602,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/logs\/ai-monitor.log",
+                    "relative_path": "logs\/ai-monitor.log",
+                    "modified": 1761642721,
+                    "size": 2184193,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/logs\/copilot-automation.log",
+                    "relative_path": "logs\/copilot-automation.log",
+                    "modified": 1761642626,
+                    "size": 2175530,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/logs\/ai-cron.log",
+                    "relative_path": "logs\/ai-cron.log",
+                    "modified": 1761642721,
+                    "size": 24111,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/dashboard\/README.md",
+                    "relative_path": "dashboard\/README.md",
+                    "modified": 1761642626,
+                    "size": 1384,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/configs\/multi-bot.json",
+                    "relative_path": "_kb\/configs\/multi-bot.json",
+                    "modified": 1761642610,
+                    "size": 1848,
+                    "extension": "json",
+                    "type": "json"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/activity-log.json",
+                    "relative_path": "_kb\/activity-log.json",
+                    "modified": 1761642610,
+                    "size": 75531,
+                    "extension": "json",
+                    "type": "json"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/README.md",
+                    "relative_path": "_kb\/README.md",
+                    "modified": 1761642626,
+                    "size": 4449,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/prompts\/security-audit.md",
+                    "relative_path": "_kb\/prompts\/security-audit.md",
+                    "modified": 1761642610,
+                    "size": 576,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/prompts\/performance-optimization.md",
+                    "relative_path": "_kb\/prompts\/performance-optimization.md",
+                    "modified": 1761642610,
+                    "size": 542,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/prompts\/code-review.md",
+                    "relative_path": "_kb\/prompts\/code-review.md",
+                    "modified": 1761642610,
+                    "size": 582,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/prompts\/documentation.md",
+                    "relative_path": "_kb\/prompts\/documentation.md",
+                    "modified": 1761642610,
+                    "size": 552,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/prompts\/team\/collaboration.md",
+                    "relative_path": "_kb\/prompts\/team\/collaboration.md",
+                    "modified": 1761642610,
+                    "size": 783,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/prompts\/daily-checklist.md",
+                    "relative_path": "_kb\/prompts\/daily-checklist.md",
+                    "modified": 1761642610,
+                    "size": 663,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/MULTI_BOT_SYSTEM_COMPLETE.md",
+                    "relative_path": "_kb\/automation\/MULTI_BOT_SYSTEM_COMPLETE.md",
+                    "modified": 1761642610,
+                    "size": 13707,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/github\/copilot-instructions-manager.php",
+                    "relative_path": "_kb\/automation\/github\/copilot-instructions-manager.php",
+                    "modified": 1761642610,
+                    "size": 2149,
+                    "extension": "php",
+                    "type": "php"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/github\/.gitkeep",
+                    "relative_path": "_kb\/automation\/github\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/vs-code\/.gitkeep",
+                    "relative_path": "_kb\/automation\/vs-code\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/vs-code\/settings-manager.php",
+                    "relative_path": "_kb\/automation\/vs-code\/settings-manager.php",
+                    "modified": 1761642610,
+                    "size": 1753,
+                    "extension": "php",
+                    "type": "php"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/live-standards-manager.php",
+                    "relative_path": "_kb\/automation\/live-standards-manager.php",
+                    "modified": 1761642610,
+                    "size": 15939,
+                    "extension": "php",
+                    "type": "php"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/prompts\/multi-bot\/security.md",
+                    "relative_path": "_kb\/automation\/prompts\/multi-bot\/security.md",
+                    "modified": 1761642610,
+                    "size": 6018,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/prompts\/multi-bot\/api.md",
+                    "relative_path": "_kb\/automation\/prompts\/multi-bot\/api.md",
+                    "modified": 1761642610,
+                    "size": 7778,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/prompts\/multi-bot\/architect.md",
+                    "relative_path": "_kb\/automation\/prompts\/multi-bot\/architect.md",
+                    "modified": 1761642610,
+                    "size": 4198,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/prompts\/multi-bot\/frontend.md",
+                    "relative_path": "_kb\/automation\/prompts\/multi-bot\/frontend.md",
+                    "modified": 1761642610,
+                    "size": 10094,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/prompts\/multi-bot\/collaboration.md",
+                    "relative_path": "_kb\/automation\/prompts\/multi-bot\/collaboration.md",
+                    "modified": 1761642610,
+                    "size": 3695,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/prompts\/multi-bot\/database.md",
+                    "relative_path": "_kb\/automation\/prompts\/multi-bot\/database.md",
+                    "modified": 1761642610,
+                    "size": 8607,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/prompts\/.gitkeep",
+                    "relative_path": "_kb\/automation\/prompts\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/prompts\/project\/api-development.md",
+                    "relative_path": "_kb\/automation\/prompts\/project\/api-development.md",
+                    "modified": 1761642610,
+                    "size": 511,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/prompts\/daily\/morning-checklist.md",
+                    "relative_path": "_kb\/automation\/prompts\/daily\/morning-checklist.md",
+                    "modified": 1761642610,
+                    "size": 500,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/prompts\/team\/collaboration.md",
+                    "relative_path": "_kb\/automation\/prompts\/team\/collaboration.md",
+                    "modified": 1761642610,
+                    "size": 783,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/sync\/.gitkeep",
+                    "relative_path": "_kb\/automation\/sync\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/.gitkeep",
+                    "relative_path": "_kb\/automation\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/workflows\/.gitkeep",
+                    "relative_path": "_kb\/automation\/workflows\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/logs\/auto-scan.log",
+                    "relative_path": "_kb\/automation\/logs\/auto-scan.log",
+                    "modified": 1761642610,
+                    "size": 2472,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/logs\/.gitkeep",
+                    "relative_path": "_kb\/automation\/logs\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/config.json",
+                    "relative_path": "_kb\/automation\/config.json",
+                    "modified": 1761642610,
+                    "size": 1848,
+                    "extension": "json",
+                    "type": "json"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/dashboard\/prompt-manager.php",
+                    "relative_path": "_kb\/automation\/dashboard\/prompt-manager.php",
+                    "modified": 1761642610,
+                    "size": 5472,
+                    "extension": "php",
+                    "type": "php"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/dashboard\/.gitkeep",
+                    "relative_path": "_kb\/automation\/dashboard\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/dashboard\/copilot-quickbar.php",
+                    "relative_path": "_kb\/automation\/dashboard\/copilot-quickbar.php",
+                    "modified": 1761642610,
+                    "size": 22386,
+                    "extension": "php",
+                    "type": "php"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/multi-bot-manager.php",
+                    "relative_path": "_kb\/automation\/multi-bot-manager.php",
+                    "modified": 1761642610,
+                    "size": 5505,
+                    "extension": "php",
+                    "type": "php"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/templates\/instructions\/.gitkeep",
+                    "relative_path": "_kb\/automation\/templates\/instructions\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/templates\/.gitkeep",
+                    "relative_path": "_kb\/automation\/templates\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/templates\/settings\/.gitkeep",
+                    "relative_path": "_kb\/automation\/templates\/settings\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/automation\/templates\/copilot\/.gitkeep",
+                    "relative_path": "_kb\/automation\/templates\/copilot\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/vapeshed_pos-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/vapeshed_pos-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60466,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/rkfkvhgvmz-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/rkfkvhgvmz-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/wjgprnzauy-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/wjgprnzauy-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/vdzyfydppv-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/vdzyfydppv-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60495,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/fhrehrpjmu-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/fhrehrpjmu-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60540,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/qffgdcjdpq-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/qffgdcjdpq-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/djnjbfhczr-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/djnjbfhczr-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/nbqqcrvema-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/nbqqcrvema-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/krjkptkdzv-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/krjkptkdzv-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/xavgdbkqxw-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/xavgdbkqxw-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/hdgwrzntwa-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/hdgwrzntwa-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 61255,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/xwgxngcrpv-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/xwgxngcrpv-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/fnfacfaaan-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/fnfacfaaan-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/swdvywdfcs-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/swdvywdfcs-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/jcepnzzkmj-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/jcepnzzkmj-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 61235,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/hxvhuzmvxu-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/hxvhuzmvxu-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/mastergptcore-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/mastergptcore-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60830,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/auwzaqszyd-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/auwzaqszyd-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/nicshots-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/nicshots-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60396,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/yorvik_electrical-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/yorvik_electrical-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60432,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/bjyvpezxum-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/bjyvpezxum-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/github_instructions\/sally-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/sally-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60384,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/mastergptcore\/public_html\/_kb\/analysis\/2025-10-28_22-10-10_analysis.json",
+                    "relative_path": "_kb\/analysis\/2025-10-28_22-10-10_analysis.json",
+                    "modified": 1761642610,
+                    "size": 79624,
+                    "extension": "json",
+                    "type": "json"
+                }
+            ]
+        },
+        "auwzaqszyd": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/auwzaqszyd\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "qffgdcjdpq": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/qffgdcjdpq\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60432,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "vdzyfydppv": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/vdzyfydppv\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60495,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "rkfkvhgvmz": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/rkfkvhgvmz\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "nicshots": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/nicshots\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60396,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "fnfacfaaan": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/fnfacfaaan\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "vapeshed_pos": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/vapeshed_pos\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60466,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "krjkptkdzv": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/krjkptkdzv\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        },
+        "hdgwrzntwa": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 61255,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/mcp\/README.md",
+                    "relative_path": "mcp\/README.md",
+                    "modified": 1761642626,
+                    "size": 1455,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/assets\/services\/README.md",
+                    "relative_path": "assets\/services\/README.md",
+                    "modified": 1761642626,
+                    "size": 327,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/config\/multi-bot.json",
+                    "relative_path": "config\/multi-bot.json",
+                    "modified": 1761642610,
+                    "size": 1848,
+                    "extension": "json",
+                    "type": "json"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/logs\/ai-analysis.log",
+                    "relative_path": "logs\/ai-analysis.log",
+                    "modified": 1761642727,
+                    "size": 267458,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/logs\/copilot-sync.log",
+                    "relative_path": "logs\/copilot-sync.log",
+                    "modified": 1761642602,
+                    "size": 36446,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/logs\/automation-quick.log",
+                    "relative_path": "logs\/automation-quick.log",
+                    "modified": 1761642603,
+                    "size": 1262602,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/logs\/ai-monitor.log",
+                    "relative_path": "logs\/ai-monitor.log",
+                    "modified": 1761642721,
+                    "size": 2184193,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/logs\/copilot-automation.log",
+                    "relative_path": "logs\/copilot-automation.log",
+                    "modified": 1761642626,
+                    "size": 2175530,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/logs\/ai-cron.log",
+                    "relative_path": "logs\/ai-cron.log",
+                    "modified": 1761642721,
+                    "size": 24111,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/dashboard\/README.md",
+                    "relative_path": "dashboard\/README.md",
+                    "modified": 1761642626,
+                    "size": 1384,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/configs\/multi-bot.json",
+                    "relative_path": "_kb\/configs\/multi-bot.json",
+                    "modified": 1761642610,
+                    "size": 1848,
+                    "extension": "json",
+                    "type": "json"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/activity-log.json",
+                    "relative_path": "_kb\/activity-log.json",
+                    "modified": 1761642610,
+                    "size": 75531,
+                    "extension": "json",
+                    "type": "json"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/README.md",
+                    "relative_path": "_kb\/README.md",
+                    "modified": 1761642626,
+                    "size": 4449,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/prompts\/security-audit.md",
+                    "relative_path": "_kb\/prompts\/security-audit.md",
+                    "modified": 1761642610,
+                    "size": 576,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/prompts\/performance-optimization.md",
+                    "relative_path": "_kb\/prompts\/performance-optimization.md",
+                    "modified": 1761642610,
+                    "size": 542,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/prompts\/code-review.md",
+                    "relative_path": "_kb\/prompts\/code-review.md",
+                    "modified": 1761642610,
+                    "size": 582,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/prompts\/documentation.md",
+                    "relative_path": "_kb\/prompts\/documentation.md",
+                    "modified": 1761642610,
+                    "size": 552,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/prompts\/team\/collaboration.md",
+                    "relative_path": "_kb\/prompts\/team\/collaboration.md",
+                    "modified": 1761642610,
+                    "size": 783,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/prompts\/daily-checklist.md",
+                    "relative_path": "_kb\/prompts\/daily-checklist.md",
+                    "modified": 1761642610,
+                    "size": 663,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/MULTI_BOT_SYSTEM_COMPLETE.md",
+                    "relative_path": "_kb\/automation\/MULTI_BOT_SYSTEM_COMPLETE.md",
+                    "modified": 1761642610,
+                    "size": 13707,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/github\/copilot-instructions-manager.php",
+                    "relative_path": "_kb\/automation\/github\/copilot-instructions-manager.php",
+                    "modified": 1761642610,
+                    "size": 2149,
+                    "extension": "php",
+                    "type": "php"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/github\/.gitkeep",
+                    "relative_path": "_kb\/automation\/github\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/vs-code\/.gitkeep",
+                    "relative_path": "_kb\/automation\/vs-code\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/vs-code\/settings-manager.php",
+                    "relative_path": "_kb\/automation\/vs-code\/settings-manager.php",
+                    "modified": 1761642610,
+                    "size": 1753,
+                    "extension": "php",
+                    "type": "php"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/live-standards-manager.php",
+                    "relative_path": "_kb\/automation\/live-standards-manager.php",
+                    "modified": 1761642610,
+                    "size": 15939,
+                    "extension": "php",
+                    "type": "php"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/prompts\/multi-bot\/security.md",
+                    "relative_path": "_kb\/automation\/prompts\/multi-bot\/security.md",
+                    "modified": 1761642610,
+                    "size": 6018,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/prompts\/multi-bot\/api.md",
+                    "relative_path": "_kb\/automation\/prompts\/multi-bot\/api.md",
+                    "modified": 1761642610,
+                    "size": 7778,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/prompts\/multi-bot\/architect.md",
+                    "relative_path": "_kb\/automation\/prompts\/multi-bot\/architect.md",
+                    "modified": 1761642610,
+                    "size": 4198,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/prompts\/multi-bot\/frontend.md",
+                    "relative_path": "_kb\/automation\/prompts\/multi-bot\/frontend.md",
+                    "modified": 1761642610,
+                    "size": 10094,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/prompts\/multi-bot\/collaboration.md",
+                    "relative_path": "_kb\/automation\/prompts\/multi-bot\/collaboration.md",
+                    "modified": 1761642610,
+                    "size": 3695,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/prompts\/multi-bot\/database.md",
+                    "relative_path": "_kb\/automation\/prompts\/multi-bot\/database.md",
+                    "modified": 1761642610,
+                    "size": 8607,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/prompts\/.gitkeep",
+                    "relative_path": "_kb\/automation\/prompts\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/prompts\/project\/api-development.md",
+                    "relative_path": "_kb\/automation\/prompts\/project\/api-development.md",
+                    "modified": 1761642610,
+                    "size": 511,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/prompts\/daily\/morning-checklist.md",
+                    "relative_path": "_kb\/automation\/prompts\/daily\/morning-checklist.md",
+                    "modified": 1761642610,
+                    "size": 500,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/prompts\/team\/collaboration.md",
+                    "relative_path": "_kb\/automation\/prompts\/team\/collaboration.md",
+                    "modified": 1761642610,
+                    "size": 783,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/sync\/.gitkeep",
+                    "relative_path": "_kb\/automation\/sync\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/.gitkeep",
+                    "relative_path": "_kb\/automation\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/workflows\/.gitkeep",
+                    "relative_path": "_kb\/automation\/workflows\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/logs\/auto-scan.log",
+                    "relative_path": "_kb\/automation\/logs\/auto-scan.log",
+                    "modified": 1761642610,
+                    "size": 2472,
+                    "extension": "log",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/logs\/.gitkeep",
+                    "relative_path": "_kb\/automation\/logs\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/config.json",
+                    "relative_path": "_kb\/automation\/config.json",
+                    "modified": 1761642610,
+                    "size": 1848,
+                    "extension": "json",
+                    "type": "json"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/dashboard\/prompt-manager.php",
+                    "relative_path": "_kb\/automation\/dashboard\/prompt-manager.php",
+                    "modified": 1761642610,
+                    "size": 5472,
+                    "extension": "php",
+                    "type": "php"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/dashboard\/.gitkeep",
+                    "relative_path": "_kb\/automation\/dashboard\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/dashboard\/copilot-quickbar.php",
+                    "relative_path": "_kb\/automation\/dashboard\/copilot-quickbar.php",
+                    "modified": 1761642610,
+                    "size": 22386,
+                    "extension": "php",
+                    "type": "php"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/multi-bot-manager.php",
+                    "relative_path": "_kb\/automation\/multi-bot-manager.php",
+                    "modified": 1761642610,
+                    "size": 5505,
+                    "extension": "php",
+                    "type": "php"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/templates\/instructions\/.gitkeep",
+                    "relative_path": "_kb\/automation\/templates\/instructions\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/templates\/.gitkeep",
+                    "relative_path": "_kb\/automation\/templates\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/templates\/settings\/.gitkeep",
+                    "relative_path": "_kb\/automation\/templates\/settings\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation\/templates\/copilot\/.gitkeep",
+                    "relative_path": "_kb\/automation\/templates\/copilot\/.gitkeep",
+                    "modified": 1761642610,
+                    "size": 0,
+                    "extension": "gitkeep",
+                    "type": "other"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/vapeshed_pos-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/vapeshed_pos-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60466,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/rkfkvhgvmz-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/rkfkvhgvmz-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/wjgprnzauy-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/wjgprnzauy-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/vdzyfydppv-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/vdzyfydppv-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60495,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/fhrehrpjmu-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/fhrehrpjmu-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60540,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/qffgdcjdpq-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/qffgdcjdpq-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/djnjbfhczr-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/djnjbfhczr-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/nbqqcrvema-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/nbqqcrvema-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/krjkptkdzv-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/krjkptkdzv-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/xavgdbkqxw-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/xavgdbkqxw-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/hdgwrzntwa-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/hdgwrzntwa-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 61255,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/xwgxngcrpv-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/xwgxngcrpv-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/fnfacfaaan-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/fnfacfaaan-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/swdvywdfcs-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/swdvywdfcs-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/jcepnzzkmj-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/jcepnzzkmj-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 61235,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/hxvhuzmvxu-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/hxvhuzmvxu-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/mastergptcore-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/mastergptcore-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60830,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/auwzaqszyd-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/auwzaqszyd-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60458,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/nicshots-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/nicshots-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60396,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/yorvik_electrical-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/yorvik_electrical-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60432,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/bjyvpezxum-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/bjyvpezxum-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60404,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/github_instructions\/sally-.github-copilot-instructions.md",
+                    "relative_path": "_kb\/github_instructions\/sally-.github-copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60384,
+                    "extension": "md",
+                    "type": "markdown"
+                },
+                {
+                    "file": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/analysis\/2025-10-28_22-10-10_analysis.json",
+                    "relative_path": "_kb\/analysis\/2025-10-28_22-10-10_analysis.json",
+                    "modified": 1761642610,
+                    "size": 79624,
+                    "extension": "json",
+                    "type": "json"
+                }
+            ]
+        },
+        "yorvik_electrical": {
+            "public_html": [
+                {
+                    "file": "\/home\/master\/applications\/yorvik_electrical\/public_html\/.github\/copilot-instructions.md",
+                    "relative_path": ".github\/copilot-instructions.md",
+                    "modified": 1761642610,
+                    "size": 60432,
+                    "extension": "md",
+                    "type": "markdown"
+                }
+            ]
+        }
+    },
+    "changelog_entry": {
+        "date": "2025-10-28",
+        "time": "22:13:02",
+        "type": "Documentation",
+        "scope": "mastergptcore",
+        "description": "Automated documentation updates affecting 173 files",
+        "files_modified": 173,
+        "impact": "High"
+    },
+    "recommendations": [
+        "Consider creating comprehensive test",
+        "Update project documentation"
+    ]
+}

@@ -1,0 +1,51 @@
+{
+  "name": "ai-agent",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --config jest.config.cjs",
+    "test:serve": "npx http-server public -p 5173 -c-1",
+    "test:ui": "xdg-open http://localhost:5173/agent/test/index.html || true",
+    "e2e:install": "PLAYWRIGHT_BROWSERS_PATH=$PWD/.playwright-browsers npx playwright install chromium || true",
+    "e2e": "npx playwright test -c ui-tests/playwright.config.cjs",
+    "e2e:all": "npx playwright test -c ui-tests/playwright.config.cjs ui-tests/all-controls.spec.js",
+    "e2e:local": "npx playwright test -c ui-tests/playwright.config.cjs --reporter=list",
+    "e2e:report": "xdg-open ui-tests/playwright-report/index.html || true",
+    "e2e:trace": "node ./scripts/show-last-trace.mjs",
+    "e2e:a11y": "npx playwright test ui-tests/a11y.spec.js -c ui-tests/playwright.config.cjs --reporter=line",
+    "artifacts": "node ./scripts/collect-artifacts.mjs",
+    "links": "node ./scripts/link-checker.mjs",
+    "fmt": "prettier -w \"{public,src,docs}/**/*.{js,css,html,json,md}\"",
+    "fmt:check": "prettier -c \"{public,src,docs}/**/*.{js,css,html,json,md}\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "lint-staged": {
+    "*.{ts,js,css,html,json,md}": "prettier -w"
+  },
+  "dependencies": {
+    "@langchain/core": "^0.3.77",
+    "@langchain/openai": "^0.6.13",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "ioredis": "^5.7.0",
+    "mysql2": "^3.15.0",
+    "node-fetch": "^3.3.2",
+    "openai": "^5.21.0",
+    "pino": "^9.10.0",
+    "uuid": "^13.0.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.48.2",
+    "http-server": "^14.1.1",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.2"
+  }
+}

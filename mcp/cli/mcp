@@ -1,0 +1,105 @@
+#!/usr/bin/env php
+<?php
+/**
+ * MCP CLI Application Entry Point
+ *
+ * Usage: php cli/mcp <command> [arguments] [options]
+ *
+ * @package IntelligenceHub\MCP\CLI
+ */
+
+declare(strict_types=1);
+
+// Load autoloader
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use IntelligenceHub\MCP\CLI\Commands\IndexPhpCommand;
+use IntelligenceHub\MCP\CLI\Commands\SearchCommand;
+
+// Parse command line arguments
+$command = $argv[1] ?? null;
+$argument = $argv[2] ?? null;
+$options = [];
+
+// Parse options (starting from argv[3] for most commands, argv[2] for some)
+$startIndex = 2;
+
+// For search command, argument is the query (may have spaces if quoted)
+if ($command === 'search') {
+    // Rebuild query from potentially multiple arguments
+    $queryParts = [];
+    $i = 2;
+    while ($i < count($argv)) {
+        $arg = $argv[$i];
+        if (strpos($arg, '--') === 0) {
+            // Found an option, stop collecting query parts
+            break;
+        }
+        $queryParts[] = $arg;
+        $i++;
+    }
+    $argument = implode(' ', $queryParts);
+    $startIndex = $i;
+}
+
+// Parse options
+for ($i = ($command === 'search' ? $startIndex : 3); $i < count($argv); $i++) {
+    $arg = $argv[$i];
+    if (strpos($arg, '--') === 0) {
+        $parts = explode('=', substr($arg, 2), 2);
+        $key = str_replace('-', '_', $parts[0]);
+        $value = $parts[1] ?? true;
+        $options[$key] = $value;
+    }
+}
+
+// Route to command
+switch ($command) {
+    case 'index:php':
+        $cmd = new IndexPhpCommand($options);
+        exit($cmd->execute($argument));
+
+    case 'search':
+        $cmd = new SearchCommand($options);
+        exit($cmd->execute($argument));
+
+    case 'help':
+    case '--help':
+    case '-h':
+        showHelp();
+        exit(0);
+
+    default:
+        echo "Error: Unknown command '{$command}'\n\n";
+        showHelp();
+        exit(1);
+}
+
+function showHelp(): void
+{
+    echo <<<HELP
+MCP CLI Application
+
+Usage:
+  php cli/mcp <command> [arguments] [options]
+
+Available Commands:
+  index:php <path>     Index PHP files in directory or single file
+  search <query>       Search the intelligence hub
+  help                 Show this help message
+
+Global Options:
+  --help, -h           Show help for a command
+
+Examples:
+  php cli/mcp index:php /path/to/code
+  php cli/mcp index:php /path/to/file.php --unit-id=2 --verbose
+  php cli/mcp search "inventory transfer"
+  php cli/mcp search "user authentication" --limit=20 --verbose
+  php cli/mcp help
+
+For more information on a command:
+  php cli/mcp <command> --help
+
+HELP;
+}

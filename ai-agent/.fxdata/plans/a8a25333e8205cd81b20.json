@@ -1,0 +1,251 @@
+{
+    "token": "a8a25333e8205cd81b20",
+    "created_at": 1758194931,
+    "limit_bytes": 102400,
+    "read_cap": 51200,
+    "include_content": true,
+    "scrub": true,
+    "overhead_bytes": 900,
+    "parts": [
+        {
+            "id": 1,
+            "bytes": 102057,
+            "files": [
+                {
+                    "path": "backend.php",
+                    "base": "backend.php",
+                    "dir": "",
+                    "bytes": 51600,
+                    "size": 53799
+                },
+                {
+                    "path": "ops/performance-tester.php",
+                    "base": "performance-tester.php",
+                    "dir": "ops",
+                    "bytes": 46571,
+                    "size": 46171
+                },
+                {
+                    "path": "logs/operations.log",
+                    "base": "operations.log",
+                    "dir": "logs",
+                    "bytes": 2542,
+                    "size": 2142
+                },
+                {
+                    "path": "devtools.code-workspace",
+                    "base": "devtools.code-workspace",
+                    "dir": "",
+                    "bytes": 444,
+                    "size": 44
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "bytes": 101793,
+            "files": [
+                {
+                    "path": "package-lock.json",
+                    "base": "package-lock.json",
+                    "dir": "",
+                    "bytes": 51600,
+                    "size": 57659
+                },
+                {
+                    "path": "output.php",
+                    "base": "output.php",
+                    "dir": "",
+                    "bytes": 46521,
+                    "size": 46121
+                },
+                {
+                    "path": "composer.json",
+                    "base": "composer.json",
+                    "dir": "",
+                    "bytes": 1773,
+                    "size": 1373
+                },
+                {
+                    "path": "package.json",
+                    "base": "package.json",
+                    "dir": "",
+                    "bytes": 999,
+                    "size": 599
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "bytes": 101879,
+            "files": [
+                {
+                    "path": "ops/system-doctor.php",
+                    "base": "system-doctor.php",
+                    "dir": "ops",
+                    "bytes": 38722,
+                    "size": 38322
+                },
+                {
+                    "path": "ops/security-scanner.php",
+                    "base": "security-scanner.php",
+                    "dir": "ops",
+                    "bytes": 38294,
+                    "size": 37894
+                },
+                {
+                    "path": "src/MessageHandler.php",
+                    "base": "MessageHandler.php",
+                    "dir": "src",
+                    "bytes": 23963,
+                    "size": 23563
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "bytes": 99281,
+            "files": [
+                {
+                    "path": "ops/monitoring-dashboard.php",
+                    "base": "monitoring-dashboard.php",
+                    "dir": "ops",
+                    "bytes": 35430,
+                    "size": 35030
+                },
+                {
+                    "path": "ops/deployment-manager.php",
+                    "base": "deployment-manager.php",
+                    "dir": "ops",
+                    "bytes": 30557,
+                    "size": 30157
+                },
+                {
+                    "path": "docs/instructions.md",
+                    "base": "instructions.md",
+                    "dir": "docs",
+                    "bytes": 24624,
+                    "size": 24224
+                },
+                {
+                    "path": "OPERATIONS-QUICKSTART.md",
+                    "base": "OPERATIONS-QUICKSTART.md",
+                    "dir": "",
+                    "bytes": 7770,
+                    "size": 7370
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "bytes": 100951,
+            "files": [
+                {
+                    "path": "src/ConversationManager.php",
+                    "base": "ConversationManager.php",
+                    "dir": "src",
+                    "bytes": 23591,
+                    "size": 23191
+                },
+                {
+                    "path": "src/Agent.php",
+                    "base": "Agent.php",
+                    "dir": "src",
+                    "bytes": 20916,
+                    "size": 20516
+                },
+                {
+                    "path": "ops/ops-cli.sh",
+                    "base": "ops-cli.sh",
+                    "dir": "ops",
+                    "bytes": 18778,
+                    "size": 18378
+                },
+                {
+                    "path": "ops/PRODUCTION-OPERATIONS-MANIFEST.md",
+                    "base": "PRODUCTION-OPERATIONS-MANIFEST.md",
+                    "dir": "ops",
+                    "bytes": 15499,
+                    "size": 15099
+                },
+                {
+                    "path": "src/RedisClient.php",
+                    "base": "RedisClient.php",
+                    "dir": "src",
+                    "bytes": 13850,
+                    "size": 13450
+                },
+                {
+                    "path": "src/Config.php",
+                    "base": "Config.php",
+                    "dir": "src",
+                    "bytes": 7417,
+                    "size": 7017
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "bytes": 61509,
+            "files": [
+                {
+                    "path": "COMPLETE-IMPLEMENTATION-MANIFEST.md",
+                    "base": "COMPLETE-IMPLEMENTATION-MANIFEST.md",
+                    "dir": "",
+                    "bytes": 13816,
+                    "size": 13416
+                },
+                {
+                    "path": "src/OpenAI.php",
+                    "base": "OpenAI.php",
+                    "dir": "src",
+                    "bytes": 12383,
+                    "size": 11983
+                },
+                {
+                    "path": "src/SSE.php",
+                    "base": "SSE.php",
+                    "dir": "src",
+                    "bytes": 7312,
+                    "size": 6912
+                },
+                {
+                    "path": "src/DB.php",
+                    "base": "DB.php",
+                    "dir": "src",
+                    "bytes": 6167,
+                    "size": 5767
+                },
+                {
+                    "path": "src/Logger.php",
+                    "base": "Logger.php",
+                    "dir": "src",
+                    "bytes": 6121,
+                    "size": 5721
+                },
+                {
+                    "path": "sql/schema.sql",
+                    "base": "schema.sql",
+                    "dir": "sql",
+                    "bytes": 5995,
+                    "size": 5595
+                },
+                {
+                    "path": "src/bootstrap.php",
+                    "base": "bootstrap.php",
+                    "dir": "src",
+                    "bytes": 4469,
+                    "size": 4069
+                },
+                {
+                    "path": "logs/system_report_20250918_112305.txt",
+                    "base": "system_report_20250918_112305.txt",
+                    "dir": "logs",
+                    "bytes": 4346,
+                    "size": 3946
+                }
+            ]
+        }
+    ],
+    "overflow": []
+}

@@ -1,0 +1,277 @@
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  🚀 AI AGENT MULTI-KB DEPLOYMENT - QUICK REFERENCE            ┃
+┃  Status: ✅ READY TO DEPLOY                                   ┃
+┃  Date: December 19, 2024                                      ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+
+┌─────────────────────────────────────────────────────────────┐
+│  📋 ARCHITECTURE DECISION                                    │
+└─────────────────────────────────────────────────────────────┘
+
+✅ APPROVED: Single tables with domain_key column
+   (configurable domains, not separate tables per domain)
+
+┌─────────────────────────────────────────────────────────────┐
+│  🎯 WHAT GETS DEPLOYED                                       │
+└─────────────────────────────────────────────────────────────┘
+
+Registry Tables (2):
+  • ai_kb_domain_registry          (configure domains)
+  • ai_kb_domain_inheritance        (parent-child links)
+
+Knowledge Base Tables (8) - ALL with domain_key column:
+  • ai_kb_knowledge_items           (knowledge storage)
+  • ai_kb_queries                   (query log)
+  • ai_kb_conversations             (conversation tracking)
+  • ai_kb_performance_metrics       (metrics)
+  • ai_kb_config                    (configuration)
+  • ai_kb_sync_history              (sync tracking)
+  • ai_kb_errors                    (error log)
+  • ai_kb_rate_limits               (rate limiting)
+
+Views (2):
+  • v_ai_kb_domain_activity         (domain summary)
+  • v_ai_kb_inheritance_tree        (inheritance graph)
+
+Procedures (2):
+  • sp_ai_kb_add_domain             (add domain dynamically)
+  • sp_ai_kb_search_with_inheritance (search with parents)
+
+Seed Data:
+  • 6 domains: global, staff, web, gpt, wiki, superadmin ⭐
+  • 10 inheritance links (including superadmin god-mode access)
+
+┌─────────────────────────────────────────────────────────────┐
+│  🚀 PHASE 1: DEPLOY MULTI-KB SYSTEM (30 seconds)            │
+└─────────────────────────────────────────────────────────────┘
+
+cd /home/master/applications/jcepnzzkmj/public_html/ai-agent/database
+mysql -u jcepnzzkmj -pwprKh9Jq63 jcepnzzkmj < deploy-multi-kb-single-table.sql
+
+Risk:  ZERO (new tables only)
+Impact: ZERO (doesn't touch existing data)
+
+┌─────────────────────────────────────────────────────────────┐
+│  ✅ VERIFY DEPLOYMENT                                        │
+└─────────────────────────────────────────────────────────────┘
+
+mysql -u jcepnzzkmj -pwprKh9Jq63 jcepnzzkmj -e "
+    SELECT domain_key, domain_name, application_name 
+    FROM ai_kb_domain_registry;
+"
+
+Expected output:
+  domain_key  | domain_name              | application_name
+  ------------+--------------------------+------------------------
+  global      | global                   | Shared Knowledge Bank
+  staff       | staff.vapeshed.co.nz     | CIS Staff Portal
+  web         | www.vapeshed.co.nz       | Public Website
+  gpt         | gpt.ecigdis.co.nz        | AI Control Panel
+  wiki        | wiki.vapeshed.co.nz      | Internal Wiki
+  superadmin  | superadmin.vapeshed.co.nz| Super Admin Dashboard ⭐
+
+┌─────────────────────────────────────────────────────────────┐
+│  🔍 CHECK INHERITANCE                                        │
+└─────────────────────────────────────────────────────────────┘
+
+mysql -u jcepnzzkmj -pwprKh9Jq63 jcepnzzkmj -e "
+    SELECT * FROM v_ai_kb_inheritance_tree;
+"
+
+Expected output:
+  child_domain | parent_domain | priority | parent_knowledge_count
+  -------------+---------------+----------+-----------------------
+  staff        | global        | 100      | 0
+  web          | global        | 100      | 0
+  gpt          | global        | 100      | 0
+  wiki         | global        | 100      | 0
+  wiki         | staff         | 50       | 0
+  superadmin   | global        | 100      | 0
+  superadmin   | staff         | 90       | 0
+  superadmin   | web           | 80       | 0
+  superadmin   | gpt           | 70       | 0
+  superadmin   | wiki          | 60       | 0
+
+┌─────────────────────────────────────────────────────────────┐
+│  📊 CHECK DOMAIN ACTIVITY                                    │
+└─────────────────────────────────────────────────────────────┘
+
+mysql -u jcepnzzkmj -pwprKh9Jq63 jcepnzzkmj -e "
+    SELECT * FROM v_ai_kb_domain_activity;
+"
+
+Expected output: 5 rows (all with 0 counts - newly created)
+
+┌─────────────────────────────────────────────────────────────┐
+│  🎯 PHASE 2: ADD domain_key TO ORCHESTRATION (5 minutes)    │
+└─────────────────────────────────────────────────────────────┘
+
+mysql -u jcepnzzkmj -pwprKh9Jq63 jcepnzzkmj << 'SQL'
+
+ALTER TABLE ai_cis_kb_orchestration_log 
+ADD COLUMN domain_key VARCHAR(50) NOT NULL DEFAULT 'global' AFTER conversation_id,
+ADD FOREIGN KEY fk_orchestration_domain (domain_key) 
+    REFERENCES ai_kb_domain_registry(domain_key),
+ADD INDEX idx_domain (domain_key);
+
+ALTER TABLE ai_cis_kb_tool_executions
+ADD COLUMN domain_key VARCHAR(50) NOT NULL DEFAULT 'global' AFTER tool_execution_id,
+ADD FOREIGN KEY fk_tool_exec_domain (domain_key) 
+    REFERENCES ai_kb_domain_registry(domain_key),
+ADD INDEX idx_domain (domain_key);
+
+ALTER TABLE ai_cis_kb_performance_metrics
+ADD COLUMN domain_key VARCHAR(50) NOT NULL DEFAULT 'global',
+ADD FOREIGN KEY fk_perf_domain (domain_key) 
+    REFERENCES ai_kb_domain_registry(domain_key),
+ADD INDEX idx_domain (domain_key);
+
+ALTER TABLE ai_cis_kb_errors
+ADD COLUMN domain_key VARCHAR(50) NOT NULL DEFAULT 'global',
+ADD FOREIGN KEY fk_error_domain (domain_key) 
+    REFERENCES ai_kb_domain_registry(domain_key),
+ADD INDEX idx_domain (domain_key);
+
+ALTER TABLE ai_cis_kb_redis_keys
+ADD COLUMN domain_key VARCHAR(50) NOT NULL DEFAULT 'global',
+ADD FOREIGN KEY fk_redis_domain (domain_key) 
+    REFERENCES ai_kb_domain_registry(domain_key),
+ADD INDEX idx_domain (domain_key);
+
+ALTER TABLE ai_cis_kb_agent_io_logs
+ADD COLUMN domain_key VARCHAR(50) NOT NULL DEFAULT 'global',
+ADD FOREIGN KEY fk_agent_io_domain (domain_key) 
+    REFERENCES ai_kb_domain_registry(domain_key),
+ADD INDEX idx_domain (domain_key);
+
+SQL
+
+┌─────────────────────────────────────────────────────────────┐
+│  🔄 PHASE 3: RENAME CORE TABLES (OPTIONAL - 5 minutes)      │
+└─────────────────────────────────────────────────────────────┘
+
+cd /home/master/applications/jcepnzzkmj/public_html/ai-agent/database
+bash deploy-rename.sh
+
+What it renames:
+  conversations              → ai_agent_conversations
+  messages                   → ai_agent_messages
+  context_cards              → ai_agent_context_cards
+  tool_calls                 → ai_agent_tool_calls
+  importance_scores          → ai_agent_importance_scores
+  conversation_clusters      → ai_agent_conversation_clusters
+  conversation_tags          → ai_agent_conversation_tags
+  performance_tests          → ai_agent_performance_tests
+  security_scans             → ai_agent_security_scans
+
+Safety features:
+  ✅ Automatic database backup (mysqldump)
+  ✅ Code reference updates (sed script)
+  ✅ Rollback script generated
+  ✅ Verification summary
+
+┌─────────────────────────────────────────────────────────────┐
+│  💡 USAGE EXAMPLES                                           │
+└─────────────────────────────────────────────────────────────┘
+
+Add New Domain (no schema changes!):
+  CALL sp_ai_kb_add_domain(
+      'suppliers',
+      'suppliers.vapeshed.co.nz',
+      'Supplier Portal',
+      '["global"]'
+  );
+
+Insert Knowledge:
+  INSERT INTO ai_kb_knowledge_items 
+      (domain_key, item_key, content, kb_scope)
+  VALUES 
+      ('staff', 'policy_001', 'HR policy...', 'domain_only');
+
+Search with Inheritance:
+  CALL sp_ai_kb_search_with_inheritance('wiki', 'inventory', 10);
+  -- Searches: wiki → staff → global (in priority order)
+
+Search from SuperAdmin (GOD MODE - sees EVERYTHING!):
+  CALL sp_ai_kb_search_with_inheritance('superadmin', 'any query', 20);
+  -- Searches: superadmin → global → staff → web → gpt → wiki
+
+Query Domain-Specific:
+  SELECT * FROM ai_kb_knowledge_items 
+  WHERE domain_key = 'staff' AND is_active = 1;
+
+┌─────────────────────────────────────────────────────────────┐
+│  📝 FILES CREATED                                            │
+└─────────────────────────────────────────────────────────────┘
+
+Main Deployment:
+  ✅ deploy-multi-kb-single-table.sql  (500 lines, ready)
+
+Optional Rename:
+  ✅ deploy-rename.sh                  (12KB, ready)
+  ✅ rename-to-ai-agent-tables.sql     (simple SQL)
+
+Documentation:
+  ✅ DEPLOYMENT_READY.md               (complete guide)
+  ✅ README_APPROVAL_NEEDED.md         (updated)
+  ✅ MULTI_KB_ARCHITECTURE.md          (needs update)
+  ✅ NAMING_CONVENTION.md              (complete)
+  ✅ PRODUCTION_TABLE_AUDIT.md         (complete)
+  ✅ QUICK_DEPLOY.txt                  (this file)
+
+┌─────────────────────────────────────────────────────────────┐
+│  ✅ SUCCESS CHECKLIST                                        │
+└─────────────────────────────────────────────────────────────┘
+
+After Phase 1:
+  □ 10 tables created (2 registry + 8 KB)
+  □ 2 views created
+  □ 2 procedures created
+  □ 5 domains seeded
+  □ 5 inheritance links created
+  □ Test sp_ai_kb_add_domain works
+  □ Test sp_ai_kb_search_with_inheritance works
+
+After Phase 2:
+  □ domain_key column in 6 orchestration tables
+  □ FK constraints to ai_kb_domain_registry
+  □ Indexes on domain_key columns
+
+After Phase 3 (if deployed):
+  □ 9 tables renamed to ai_agent_*
+  □ Code references updated
+  □ Existing functionality works
+
+┌─────────────────────────────────────────────────────────────┐
+│  🎯 RECOMMENDED ORDER                                        │
+└─────────────────────────────────────────────────────────────┘
+
+1. Deploy Phase 1 (NOW - zero risk)
+2. Verify deployment (30 seconds)
+3. Test adding domain (2 minutes)
+4. Deploy Phase 2 (AFTER Phase 1 verified)
+5. Deploy Phase 3 (OPTIONAL - can do later)
+
+┌─────────────────────────────────────────────────────────────┐
+│  📞 TROUBLESHOOTING                                          │
+└─────────────────────────────────────────────────────────────┘
+
+Problem: FK constraint error during deployment
+Solution: Check if registry tables exist:
+  SHOW TABLES LIKE 'ai_kb_domain_registry';
+
+Problem: Can't add new domain
+Solution: Use stored procedure instead of manual INSERT:
+  CALL sp_ai_kb_add_domain('new_domain', ...);
+
+Problem: Queries slow
+Solution: Check indexes exist:
+  SHOW INDEX FROM ai_kb_knowledge_items;
+
+┌─────────────────────────────────────────────────────────────┐
+│  🚀 READY TO GO!                                             │
+└─────────────────────────────────────────────────────────────┘
+
+Next step: Run Phase 1 deployment command above
+
+Questions? See DEPLOYMENT_READY.md for full guide

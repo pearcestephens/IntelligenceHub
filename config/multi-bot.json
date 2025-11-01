@@ -1,0 +1,54 @@
+{
+    "version": "3.0.0",
+    "last_updated": "2025-10-29 06:20:01",
+    "bots": {
+        "frontend": {
+            "name": "Frontend Specialist",
+            "instructions": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/instructions\/frontend.md",
+            "capabilities": [
+                "UI\/UX",
+                "CSS",
+                "JavaScript",
+                "React",
+                "Vue"
+            ]
+        },
+        "backend": {
+            "name": "Backend Engineer",
+            "instructions": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/instructions\/backend.md",
+            "capabilities": [
+                "PHP",
+                "Python",
+                "Node.js",
+                "Databases",
+                "APIs"
+            ]
+        },
+        "security": {
+            "name": "Security Auditor",
+            "instructions": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/instructions\/security.md",
+            "capabilities": [
+                "Security",
+                "Compliance",
+                "Auditing",
+                "Penetration Testing"
+            ]
+        },
+        "database": {
+            "name": "Database Specialist",
+            "instructions": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/instructions\/database.md",
+            "capabilities": [
+                "MySQL",
+                "PostgreSQL",
+                "MongoDB",
+                "Optimization",
+                "Migrations"
+            ]
+        }
+    },
+    "shared_resources": {
+        "mcp_server": "https:\/\/gpt.ecigdis.co.nz\/mcp\/server_v2_complete.php",
+        "knowledge_base": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb",
+        "automation": "\/home\/master\/applications\/hdgwrzntwa\/public_html\/_kb\/automation"
+    }
+}

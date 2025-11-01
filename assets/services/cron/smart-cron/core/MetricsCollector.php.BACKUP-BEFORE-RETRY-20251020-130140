@@ -1,0 +1,339 @@
+<?php
+/**
+ * Smart Cron - Metrics Collector
+ * 
+ * Captures execution time, CPU usage, and memory usage for all cron tasks.
+ * Stores metrics in database for analysis and optimization.
+ * 
+ * @package SmartCron\Core
+ */
+
+declare(strict_types=1);
+
+namespace SmartCron\Core;
+
+class MetricsCollector
+{
+    private Config $config;
+    private ?\mysqli $db;
+    
+    public function __construct(Config $config)
+    {
+        $this->config = $config;
+        $this->db = $config->getDbConnection();
+        
+        if ($this->db !== null) {
+            $this->ensureTableExists();
+        } else {
+            error_log('[MetricsCollector] Warning: No database connection available. Metrics will not be stored.');
+        }
+    }
+    
+    /**
+     * Ensure metrics table exists
+     */
+    private function ensureTableExists(): void
+    {
+        if ($this->db === null) {
+            return;
+        }
+        
+        $sql = "CREATE TABLE IF NOT EXISTS cron_metrics (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            task_name VARCHAR(255) NOT NULL,
+            executed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            duration_seconds DECIMAL(10,3) NOT NULL,
+            memory_peak_mb DECIMAL(10,2) NOT NULL,
+            cpu_peak_percent DECIMAL(5,2) DEFAULT NULL,
+            exit_code INT NOT NULL,
+            success TINYINT(1) NOT NULL,
+            error_message TEXT DEFAULT NULL,
+            INDEX idx_task_executed (task_name, executed_at),
+            INDEX idx_executed_at (executed_at)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4";
+        
+        $this->db->query($sql);
+    }
+    
+    /**
+     * Execute a task and collect metrics
+     */
+    public function executeTask(array $task): array
+    {
+        $startTime = microtime(true);
+        $startMemory = memory_get_usage(true);
+        
+        // Build command
+        $script = $task['script'];
+        if (!file_exists($script)) {
+            // Try relative to project root + assets/services
+            $projectRoot = $this->config->get('paths.project_root', '/home/master/applications/jcepnzzkmj/public_html');
+            $script = $projectRoot . '/assets/services/' . $task['script'];
+        }
+        
+        if (!file_exists($script)) {
+            return [
+                'success' => false,
+                'error' => "Script not found: {$task['script']}",
+                'duration' => 0,
+                'memory_mb' => 0,
+                'cpu_peak' => 0,
+            ];
+        }
+        
+        $command = "php " . escapeshellarg($script);
+        if (isset($task['args'])) {
+            $command .= " " . $task['args'];
+        }
+        
+        // Execute with output capture
+        $output = [];
+        $exitCode = 0;
+        exec($command . " 2>&1", $output, $exitCode);
+        
+        // Calculate metrics
+        $duration = round(microtime(true) - $startTime, 3);
+        $memoryUsed = memory_get_usage(true) - $startMemory;
+        $memoryMb = round($memoryUsed / 1024 / 1024, 2);
+        
+        // Try to get CPU usage (Linux only)
+        $cpuPeak = $this->getCpuUsage();
+        
+        $success = ($exitCode === 0);
+        $errorMessage = $success ? null : implode("\n", array_slice($output, -10)); // Last 10 lines
+        
+        // Store metrics
+        $this->storeMetrics(
+            $task['name'],
+            $duration,
+            $memoryMb,
+            $cpuPeak,
+            $exitCode,
+            $success,
+            $errorMessage
+        );
+        
+        return [
+            'success' => $success,
+            'duration' => $duration,
+            'memory_mb' => $memoryMb,
+            'cpu_peak' => $cpuPeak,
+            'exit_code' => $exitCode,
+            'error' => $errorMessage,
+            'output' => $output,
+        ];
+    }
+    
+    /**
+     * Store metrics in database
+     */
+    private function storeMetrics(
+        string $taskName,
+        float $duration,
+        float $memoryMb,
+        ?float $cpuPeak,
+        int $exitCode,
+        bool $success,
+        ?string $errorMessage
+    ): void {
+        if ($this->db === null) {
+            // No DB connection, log to file instead
+            error_log(sprintf(
+                '[Metrics] %s: duration=%.3fs, memory=%.2fMB, exit=%d, success=%s',
+                $taskName,
+                $duration,
+                $memoryMb,
+                $exitCode,
+                $success ? 'yes' : 'no'
+            ));
+            return;
+        }
+        
+        $stmt = $this->db->prepare(
+            "INSERT INTO cron_metrics 
+            (task_name, duration_seconds, memory_peak_mb, cpu_peak_percent, exit_code, success, error_message)
+            VALUES (?, ?, ?, ?, ?, ?, ?)"
+        );
+        
+        $successInt = $success ? 1 : 0;
+        $stmt->bind_param(
+            'sdddiis',
+            $taskName,
+            $duration,
+            $memoryMb,
+            $cpuPeak,
+            $exitCode,
+            $successInt,
+            $errorMessage
+        );
+        
+        $stmt->execute();
+        $stmt->close();
+    }
+    
+    /**
+     * Get current CPU usage (Linux only)
+     */
+    private function getCpuUsage(): ?float
+    {
+        if (PHP_OS_FAMILY !== 'Linux') {
+            return null;
+        }
+        
+        $load = sys_getloadavg();
+        if ($load === false) {
+            return null;
+        }
+        
+        // Convert load average to approximate percentage
+        // Assumes single-core equivalent (adjust if needed)
+        return round($load[0] * 100, 2);
+    }
+    
+    /**
+     * Record a skipped task
+     */
+    public function recordSkip(string $taskName, string $reason): void
+    {
+        // Store as 0-duration execution with special exit code
+        $this->storeMetrics($taskName, 0, 0, null, 999, false, "Skipped: {$reason}");
+    }
+    
+    /**
+     * Get system status
+     */
+    public function getSystemStatus(): array
+    {
+        if ($this->db === null) {
+            return [
+                'healthy' => false,
+                'total_tasks' => 0,
+                'last_run' => 0,
+                'executions_24h' => 0,
+                'successes_24h' => 0,
+                'failures_24h' => 0,
+                'avg_duration_24h' => 0,
+                'error' => 'No database connection'
+            ];
+        }
+        
+        // Get total task count
+        $result = $this->db->query("SELECT COUNT(DISTINCT task_name) as total FROM cron_metrics");
+        $totalTasks = $result->fetch_assoc()['total'] ?? 0;
+        
+        // Get last run time
+        $result = $this->db->query("SELECT MAX(executed_at) as last_run FROM cron_metrics");
+        $lastRun = $result->fetch_assoc()['last_run'] ?? null;
+        
+        // Get 24h stats
+        $sql = "SELECT 
+                    COUNT(*) as executions,
+                    SUM(success) as successes,
+                    COUNT(*) - SUM(success) as failures,
+                    AVG(duration_seconds) as avg_duration
+                FROM cron_metrics
+                WHERE executed_at >= DATE_SUB(NOW(), INTERVAL 24 HOUR)
+                AND exit_code != 999"; // Exclude skipped tasks
+        
+        $result = $this->db->query($sql);
+        $stats = $result->fetch_assoc();
+        
+        return [
+            'healthy' => ($stats['failures'] ?? 0) < 5, // Healthy if < 5 failures in 24h
+            'total_tasks' => $totalTasks,
+            'last_run' => $lastRun ? strtotime($lastRun) : 0,
+            'executions_24h' => (int)($stats['executions'] ?? 0),
+            'successes_24h' => (int)($stats['successes'] ?? 0),
+            'failures_24h' => (int)($stats['failures'] ?? 0),
+            'avg_duration_24h' => round((float)($stats['avg_duration'] ?? 0), 2),
+        ];
+    }
+    
+    /**
+     * Get recent failures
+     */
+    public function getRecentFailures(int $limit = 10): array
+    {
+        if ($this->db === null) {
+            return [];
+        }
+        
+        $stmt = $this->db->prepare(
+            "SELECT task_name, executed_at, error_message
+            FROM cron_metrics
+            WHERE success = 0 AND exit_code != 999
+            ORDER BY executed_at DESC
+            LIMIT ?"
+        );
+        
+        $stmt->bind_param('i', $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        $failures = [];
+        while ($row = $result->fetch_assoc()) {
+            $failures[] = [
+                'task_name' => $row['task_name'],
+                'executed_at' => $row['executed_at'],
+                'error' => $row['error_message'] ? substr($row['error_message'], 0, 100) : '(no error message)', // Truncate
+            ];
+        }
+        
+        $stmt->close();
+        return $failures;
+    }
+    
+    /**
+     * Get metrics for a specific task
+     */
+    public function getTaskMetrics(string $taskName, int $days = 30): array
+    {
+        if ($this->db === null) {
+            return [
+                'avg_duration' => 0,
+                'max_duration' => 0,
+                'avg_memory' => 0,
+                'max_memory' => 0,
+                'avg_cpu' => 0,
+                'max_cpu' => 0,
+                'executions' => 0,
+                'success_rate' => 0
+            ];
+        }
+        
+        $stmt = $this->db->prepare(
+            "SELECT 
+                AVG(duration_seconds) as avg_duration,
+                MAX(duration_seconds) as max_duration,
+                AVG(memory_peak_mb) as avg_memory,
+                MAX(memory_peak_mb) as max_memory,
+                AVG(cpu_peak_percent) as avg_cpu,
+                MAX(cpu_peak_percent) as max_cpu,
+                COUNT(*) as executions,
+                SUM(success) as successes
+            FROM cron_metrics
+            WHERE task_name = ?
+            AND executed_at >= DATE_SUB(NOW(), INTERVAL ? DAY)
+            AND exit_code != 999"
+        );
+        
+        $stmt->bind_param('si', $taskName, $days);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $metrics = $result->fetch_assoc();
+        $stmt->close();
+        
+        return [
+            'avg_duration' => round((float)($metrics['avg_duration'] ?? 0), 3),
+            'max_duration' => round((float)($metrics['max_duration'] ?? 0), 3),
+            'avg_memory_mb' => round((float)($metrics['avg_memory'] ?? 0), 2),
+            'max_memory_mb' => round((float)($metrics['max_memory'] ?? 0), 2),
+            'avg_cpu' => round((float)($metrics['avg_cpu'] ?? 0), 2),
+            'max_cpu' => round((float)($metrics['max_cpu'] ?? 0), 2),
+            'executions' => (int)($metrics['executions'] ?? 0),
+            'success_rate' => $metrics['executions'] > 0 
+                ? round(((float)$metrics['successes'] / (float)$metrics['executions']) * 100, 1)
+                : 0,
+        ];
+    }
+}

@@ -1,0 +1,60 @@
+{
+  "satellites": [
+    {
+      "id": "cis_portal",
+      "name": "CIS Main Portal",
+      "url": "https://staff.vapeshed.co.nz/api/kb/receive",
+      "api_key": "${CIS_API_KEY}",
+      "enabled": true,
+      "priority": 1,
+      "description": "Main staff portal - receives all intelligence data"
+    },
+    {
+      "id": "retail_vapeshed",
+      "name": "VapeShed Retail Site",
+      "url": "https://vapeshed.co.nz/api/kb/receive",
+      "api_key": "${RETAIL_API_KEY}",
+      "enabled": false,
+      "priority": 2,
+      "description": "Public retail site - can receive product intelligence if needed"
+    },
+    {
+      "id": "retail_vapingkiwi",
+      "name": "Vaping Kiwi Site",
+      "url": "https://vapingkiwi.co.nz/api/kb/receive",
+      "api_key": "${VAPINGKIWI_API_KEY}",
+      "enabled": false,
+      "priority": 2,
+      "description": "Secondary retail site"
+    },
+    {
+      "id": "retail_vapehq",
+      "name": "VapeHQ Site",
+      "url": "https://vapehq.co.nz/api/kb/receive",
+      "api_key": "${VAPEHQ_API_KEY}",
+      "enabled": false,
+      "priority": 2,
+      "description": "Third retail site"
+    }
+  ],
+  "settings": {
+    "max_retries": 3,
+    "timeout_seconds": 30,
+    "retry_delay_base": 2,
+    "checksum_verification": true,
+    "log_pushes": true
+  },
+  "schedule": {
+    "automatic_push": true,
+    "frequency": "daily",
+    "time": "03:00",
+    "on_demand": true
+  },
+  "notes": [
+    "API keys should be stored in environment variables for security",
+    "Use ${VAR_NAME} syntax to reference environment variables",
+    "Enable satellites as needed by setting enabled: true",
+    "Priority determines push order (lower number = higher priority)",
+    "Satellites can be on ANY server - no SSH required!"
+  ]
+}

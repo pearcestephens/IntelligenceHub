@@ -1,0 +1,350 @@
+<?php
+
+/**
+ * Database connection and query helper
+ * Provides PDO connection pooling with Cloudways MySQL support
+ *
+ * @package App
+ * @author Ecigdis Limited (The Vape Shed)
+ */
+
+declare(strict_types=1);
+
+namespace App;
+
+use PDO;
+use PDOException;
+
+class DB
+{
+    private static ?PDO $connection = null;
+    private static array $queryCache = [];
+
+    /**
+     * Optional constructor for compatibility; no instance state required.
+     */
+    public function __construct(?Config $config = null, ?Logger $logger = null)
+    {
+        // No-op: static connection management is used. Presence enables DI compatibility.
+    }
+
+    /**
+     * Get singleton instance (for DI compatibility)
+     * Note: DB is primarily static, but some classes expect getInstance()
+     */
+    public static function getInstance(): self
+    {
+        return new self();
+    }
+
+    /**
+     * Get PDO connection (singleton)
+     */
+    public static function connection(): PDO
+    {
+        if (self::$connection === null) {
+            self::connect();
+        }
+
+        return self::$connection;
+    }
+
+    /**
+     * Execute SELECT query with parameters
+     */
+    public static function select(string $sql, array $params = []): array
+    {
+        $stmt = self::prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Execute INSERT/UPDATE/DELETE query with parameters
+     */
+    public static function execute(string $sql, array $params = []): int
+    {
+        $stmt = self::prepare($sql);
+        $stmt->execute($params);
+        return $stmt->rowCount();
+    }
+
+    /**
+     * Execute INSERT and return last insert ID
+     */
+    public static function insert(string $sql, array $params = []): string
+    {
+        $stmt = self::prepare($sql);
+        $stmt->execute($params);
+        return self::connection()->lastInsertId();
+    }
+
+    /**
+     * Execute query and return single row
+     */
+    public static function selectOne(string $sql, array $params = []): ?array
+    {
+        $stmt = self::prepare($sql);
+        $stmt->execute($params);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ?: null;
+    }
+
+    /**
+     * Execute query and return single value
+     */
+    public static function selectValue(string $sql, array $params = []): mixed
+    {
+        $stmt = self::prepare($sql);
+        $stmt->execute($params);
+        $result = $stmt->fetchColumn();
+        return $result !== false ? $result : null;
+    }
+
+    /**
+     * Begin transaction
+     */
+    public static function beginTransaction(): bool
+    {
+        return self::connection()->beginTransaction();
+    }
+
+    /**
+     * Commit transaction
+     */
+    public static function commit(): bool
+    {
+        return self::connection()->commit();
+    }
+
+    /**
+     * Rollback transaction
+     */
+    public static function rollback(): bool
+    {
+        return self::connection()->rollBack();
+    }
+
+    /**
+     * Execute within transaction
+     */
+    public static function transaction(callable $callback): mixed
+    {
+        self::beginTransaction();
+
+        try {
+            $result = $callback();
+            self::commit();
+            return $result;
+        } catch (\Throwable $e) {
+            self::rollback();
+            throw $e;
+        }
+    }
+
+    /**
+     * Execute a raw SQL query and return results
+     * For SELECT queries, returns array of rows
+     * For INSERT/UPDATE/DELETE, returns number of affected rows
+     */
+    public static function query(string $sql, array $params = []): array|int
+    {
+        $stmt = self::connection()->prepare($sql);
+        $stmt->execute($params);
+
+        // If it's a SELECT query, return rows
+        if (stripos(trim($sql), 'SELECT') === 0) {
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        }
+
+        // Otherwise return affected row count
+        return $stmt->rowCount();
+    }
+
+    /**
+     * Check if connection is healthy
+     */
+    public static function isHealthy(): bool
+    {
+        try {
+            self::selectValue('SELECT 1');
+            return true;
+        } catch (\Throwable $e) {
+            Logger::error('Database health check failed', [
+                'error' => $e->getMessage()
+            ]);
+            return false;
+        }
+    }
+
+    /**
+     * Instance wrapper: get PDO connection (for compatibility with DI code)
+     */
+    public function getConnection(): PDO
+    {
+        return self::connection();
+    }
+
+    /**
+     * Instance wrapper: check connection health
+     */
+    public function checkConnection(): bool
+    {
+        return self::isHealthy();
+    }
+
+    /**
+     * Get connection info for debugging
+     */
+    public static function getConnectionInfo(): array
+    {
+        $connection = self::connection();
+        return [
+            'server_version' => $connection->getAttribute(PDO::ATTR_SERVER_VERSION),
+            'connection_status' => $connection->getAttribute(PDO::ATTR_CONNECTION_STATUS),
+            'driver_name' => $connection->getAttribute(PDO::ATTR_DRIVER_NAME)
+        ];
+    }
+
+    /**
+     * Prepare statement with caching
+     */
+    private static function prepare(string $sql): \PDOStatement
+    {
+        $hash = md5($sql);
+
+        if (!isset(self::$queryCache[$hash])) {
+            self::$queryCache[$hash] = self::connection()->prepare($sql);
+        }
+
+        return self::$queryCache[$hash];
+    }
+
+    /**
+     * Establish database connection
+     */
+    private static function connect(): void
+    {
+        // Validate database configuration when making actual DB connections
+        Config::validateDatabase();
+
+        $host = Config::get('MYSQL_HOST');
+        $port = Config::get('MYSQL_PORT');
+        $database = Config::get('MYSQL_DATABASE');
+        $username = Config::get('MYSQL_USER');
+        $password = Config::get('MYSQL_PASSWORD');
+
+        $dsn = "mysql:host={$host};port={$port};dbname={$database};charset=utf8mb4";
+
+        $options = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false,
+            PDO::ATTR_PERSISTENT => true,
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci, sql_mode='STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION'",
+            PDO::ATTR_TIMEOUT => 5
+        ];
+
+        try {
+            self::$connection = new PDO($dsn, $username, $password, $options);
+
+            Logger::info('Database connected', [
+                'host' => $host,
+                'database' => $database,
+                'username' => $username
+            ]);
+        } catch (PDOException $e) {
+            Logger::error('Database connection failed', [
+                'host' => $host,
+                'database' => $database,
+                'username' => $username,
+                'error' => $e->getMessage()
+            ]);
+
+            throw new \RuntimeException('Database connection failed: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Close connection (for testing)
+     */
+    public static function disconnect(): void
+    {
+        self::$connection = null;
+        self::$queryCache = [];
+    }
+
+    /**
+     * Execute SELECT query with Redis caching
+     */
+    public static function selectCached(string $sql, array $params = [], int $ttl = 300): array
+    {
+        $cacheKey = 'query:' . md5($sql . json_encode($params));
+        
+        try {
+            $cached = RedisClient::get($cacheKey);
+            if ($cached !== null) {
+                Logger::debug('Query cache hit', ['sql' => substr($sql, 0, 100)]);
+                return $cached;
+            }
+        } catch (\Throwable $e) {
+            // Fail gracefully on cache error
+        }
+        
+        $result = self::select($sql, $params);
+        
+        try {
+            RedisClient::set($cacheKey, $result, $ttl);
+        } catch (\Throwable $e) {
+            // Fail gracefully on cache error
+        }
+        
+        return $result;
+    }
+
+    /**
+     * Execute SELECT and return single row with caching
+     */
+    public static function selectOneCached(string $sql, array $params = [], int $ttl = 300): ?array
+    {
+        $cacheKey = 'query:one:' . md5($sql . json_encode($params));
+        
+        try {
+            $cached = RedisClient::get($cacheKey);
+            if ($cached !== null) {
+                return $cached;
+            }
+        } catch (\Throwable $e) {
+            // Fail gracefully
+        }
+        
+        $result = self::selectOne($sql, $params);
+        
+        try {
+            RedisClient::set($cacheKey, $result, $ttl);
+        } catch (\Throwable $e) {
+            // Fail gracefully
+        }
+        
+        return $result;
+    }
+
+    /**
+     * Clear query cache by pattern
+     */
+    public static function clearQueryCache(string $pattern = '*'): int
+    {
+        try {
+            $fullPattern = 'query:' . $pattern;
+            $keys = RedisClient::connection()->keys($fullPattern);
+            
+            if (empty($keys)) {
+                return 0;
+            }
+            
+            return (int)RedisClient::connection()->del($keys);
+        } catch (\Throwable $e) {
+            return 0;
+        }
+    }
+}

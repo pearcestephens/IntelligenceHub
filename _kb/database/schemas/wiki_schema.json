@@ -1,0 +1,3038 @@
+{
+    "database": "bjyvpezxum",
+    "description": "Wiki Database (wiki.vapeshed.co.nz)",
+    "application": "bjyvpezxum (Wiki System)",
+    "scanned_at": "2025-10-25 13:04:51",
+    "tables": {
+        "activities": {
+            "name": "activities",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "type",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "detail",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "user_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "ip",
+                    "Type": "varchar(45)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "entity_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "entity_type",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "activities_user_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "user_id"
+                    ]
+                },
+                {
+                    "name": "activities_entity_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "entity_id"
+                    ]
+                },
+                {
+                    "name": "activities_key_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "type"
+                    ]
+                },
+                {
+                    "name": "activities_created_at_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "created_at"
+                    ]
+                },
+                {
+                    "name": "activities_ip_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "ip"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 3415,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 409600,
+            "index_length": 507904
+        },
+        "attachments": {
+            "name": "attachments",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "name",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "path",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "extension",
+                    "Type": "varchar(20)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "uploaded_to",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "external",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "order",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "attachments_uploaded_to_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "uploaded_to"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 2,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 16384
+        },
+        "books": {
+            "name": "books",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "name",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "slug",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "description",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "image_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "deleted_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "owned_by",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "books_slug_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "slug"
+                    ]
+                },
+                {
+                    "name": "books_created_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "created_by"
+                    ]
+                },
+                {
+                    "name": "books_updated_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "updated_by"
+                    ]
+                },
+                {
+                    "name": "books_owned_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "owned_by"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 43,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 32768,
+            "index_length": 65536
+        },
+        "bookshelves": {
+            "name": "bookshelves",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "name",
+                    "Type": "varchar(180)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "slug",
+                    "Type": "varchar(180)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "description",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "image_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "deleted_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "owned_by",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "bookshelves_slug_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "slug"
+                    ]
+                },
+                {
+                    "name": "bookshelves_created_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "created_by"
+                    ]
+                },
+                {
+                    "name": "bookshelves_updated_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "updated_by"
+                    ]
+                },
+                {
+                    "name": "bookshelves_owned_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "owned_by"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 6,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 32768,
+            "index_length": 65536
+        },
+        "bookshelves_books": {
+            "name": "bookshelves_books",
+            "columns": [
+                {
+                    "Field": "bookshelf_id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "book_id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "order",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "bookshelf_id",
+                        "book_id"
+                    ]
+                },
+                {
+                    "name": "bookshelves_books_book_id_foreign",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "book_id"
+                    ]
+                }
+            ],
+            "foreign_keys": [
+                {
+                    "CONSTRAINT_NAME": "bookshelves_books_book_id_foreign",
+                    "COLUMN_NAME": "book_id",
+                    "REFERENCED_TABLE_NAME": "books",
+                    "REFERENCED_COLUMN_NAME": "id"
+                },
+                {
+                    "CONSTRAINT_NAME": "bookshelves_books_bookshelf_id_foreign",
+                    "COLUMN_NAME": "bookshelf_id",
+                    "REFERENCED_TABLE_NAME": "bookshelves",
+                    "REFERENCED_COLUMN_NAME": "id"
+                }
+            ],
+            "row_count": 42,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 16384
+        },
+        "chapters": {
+            "name": "chapters",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "book_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "slug",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "name",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "description",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "priority",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "deleted_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "owned_by",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "chapters_slug_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "slug"
+                    ]
+                },
+                {
+                    "name": "chapters_book_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "book_id"
+                    ]
+                },
+                {
+                    "name": "chapters_priority_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "priority"
+                    ]
+                },
+                {
+                    "name": "chapters_created_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "created_by"
+                    ]
+                },
+                {
+                    "name": "chapters_updated_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "updated_by"
+                    ]
+                },
+                {
+                    "name": "chapters_owned_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "owned_by"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 6,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 32768,
+            "index_length": 98304
+        },
+        "deletions": {
+            "name": "deletions",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "deleted_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "deletable_type",
+                    "Type": "varchar(100)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "deletable_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "deletions_deleted_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "deleted_by"
+                    ]
+                },
+                {
+                    "name": "deletions_deletable_type_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "deletable_type"
+                    ]
+                },
+                {
+                    "name": "deletions_deletable_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "deletable_id"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 19,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 49152
+        },
+        "email_confirmations": {
+            "name": "email_confirmations",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "user_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "token",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "email_confirmations_user_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "user_id"
+                    ]
+                },
+                {
+                    "name": "email_confirmations_token_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "token"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 12,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 32768
+        },
+        "images": {
+            "name": "images",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "name",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "url",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "path",
+                    "Type": "varchar(400)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "type",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "uploaded_to",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": "0",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "images_type_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "type"
+                    ]
+                },
+                {
+                    "name": "images_uploaded_to_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "uploaded_to"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 205,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 65536,
+            "index_length": 32768
+        },
+        "joint_permissions": {
+            "name": "joint_permissions",
+            "columns": [
+                {
+                    "Field": "role_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "entity_type",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "entity_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "status",
+                    "Type": "tinyint(3) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "owner_id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "role_id",
+                        "entity_type",
+                        "entity_id"
+                    ]
+                },
+                {
+                    "name": "joint_permissions_entity_id_entity_type_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "entity_id",
+                        "entity_type"
+                    ]
+                },
+                {
+                    "name": "joint_permissions_role_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "role_id"
+                    ]
+                },
+                {
+                    "name": "joint_permissions_status_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "status"
+                    ]
+                },
+                {
+                    "name": "joint_permissions_owner_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "owner_id"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 924,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 65536,
+            "index_length": 196608
+        },
+        "migrations": {
+            "name": "migrations",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "migration",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "batch",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 72,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 0
+        },
+        "page_revisions": {
+            "name": "page_revisions",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "page_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "name",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "html",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "text",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "slug",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "book_slug",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "type",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": "version",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "markdown",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "''",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "summary",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "revision_number",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "page_revisions_page_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "page_id"
+                    ]
+                },
+                {
+                    "name": "page_revisions_slug_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "slug"
+                    ]
+                },
+                {
+                    "name": "page_revisions_book_slug_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "book_slug"
+                    ]
+                },
+                {
+                    "name": "page_revisions_type_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "type"
+                    ]
+                },
+                {
+                    "name": "page_revisions_revision_number_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "revision_number"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 607,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 3686400,
+            "index_length": 163840
+        },
+        "pages": {
+            "name": "pages",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "book_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "chapter_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "name",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "slug",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "html",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "text",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "priority",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_by",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "draft",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": "0",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "markdown",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "''",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "revision_count",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "template",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": "0",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "deleted_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "owned_by",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "editor",
+                    "Type": "varchar(50)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "embedding_vector",
+                    "Type": "mediumtext",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "embedding_updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "pages_slug_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "slug"
+                    ]
+                },
+                {
+                    "name": "pages_book_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "book_id"
+                    ]
+                },
+                {
+                    "name": "pages_chapter_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "chapter_id"
+                    ]
+                },
+                {
+                    "name": "pages_priority_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "priority"
+                    ]
+                },
+                {
+                    "name": "pages_created_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "created_by"
+                    ]
+                },
+                {
+                    "name": "pages_updated_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "updated_by"
+                    ]
+                },
+                {
+                    "name": "pages_draft_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "draft"
+                    ]
+                },
+                {
+                    "name": "pages_template_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "template"
+                    ]
+                },
+                {
+                    "name": "pages_owned_by_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "owned_by"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 132,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 7864320,
+            "index_length": 147456
+        },
+        "permission_role": {
+            "name": "permission_role",
+            "columns": [
+                {
+                    "Field": "permission_id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "role_id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "permission_id",
+                        "role_id"
+                    ]
+                },
+                {
+                    "name": "permission_role_role_id_foreign",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "role_id"
+                    ]
+                }
+            ],
+            "foreign_keys": [
+                {
+                    "CONSTRAINT_NAME": "permission_role_permission_id_foreign",
+                    "COLUMN_NAME": "permission_id",
+                    "REFERENCED_TABLE_NAME": "role_permissions",
+                    "REFERENCED_COLUMN_NAME": "id"
+                },
+                {
+                    "CONSTRAINT_NAME": "permission_role_role_id_foreign",
+                    "COLUMN_NAME": "role_id",
+                    "REFERENCED_TABLE_NAME": "roles",
+                    "REFERENCED_COLUMN_NAME": "id"
+                }
+            ],
+            "row_count": 111,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 16384
+        },
+        "references": {
+            "name": "references",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "bigint(20) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "from_id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "from_type",
+                    "Type": "varchar(25)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "to_id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "to_type",
+                    "Type": "varchar(25)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "references_from_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "from_id"
+                    ]
+                },
+                {
+                    "name": "references_from_type_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "from_type"
+                    ]
+                },
+                {
+                    "name": "references_to_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "to_id"
+                    ]
+                },
+                {
+                    "name": "references_to_type_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "to_type"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 3,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 65536
+        },
+        "role_permissions": {
+            "name": "role_permissions",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "name",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "UNI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "display_name",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "description",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "permissions_name_unique",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "name"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 59,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 16384
+        },
+        "role_user": {
+            "name": "role_user",
+            "columns": [
+                {
+                    "Field": "user_id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "role_id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "user_id",
+                        "role_id"
+                    ]
+                },
+                {
+                    "name": "role_user_role_id_foreign",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "role_id"
+                    ]
+                }
+            ],
+            "foreign_keys": [
+                {
+                    "CONSTRAINT_NAME": "role_user_role_id_foreign",
+                    "COLUMN_NAME": "role_id",
+                    "REFERENCED_TABLE_NAME": "roles",
+                    "REFERENCED_COLUMN_NAME": "id"
+                },
+                {
+                    "CONSTRAINT_NAME": "role_user_user_id_foreign",
+                    "COLUMN_NAME": "user_id",
+                    "REFERENCED_TABLE_NAME": "users",
+                    "REFERENCED_COLUMN_NAME": "id"
+                }
+            ],
+            "row_count": 46,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 16384
+        },
+        "roles": {
+            "name": "roles",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "display_name",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "description",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "system_name",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "external_auth_id",
+                    "Type": "varchar(180)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": "",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "mfa_enforced",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "roles_system_name_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "system_name"
+                    ]
+                },
+                {
+                    "name": "roles_external_auth_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "external_auth_id"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 4,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 32768,
+            "index_length": 32768
+        },
+        "search_terms": {
+            "name": "search_terms",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "term",
+                    "Type": "varchar(180)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "entity_type",
+                    "Type": "varchar(100)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "entity_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "score",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "search_terms_term_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "term"
+                    ]
+                },
+                {
+                    "name": "search_terms_entity_type_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "entity_type"
+                    ]
+                },
+                {
+                    "name": "search_terms_entity_type_entity_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "entity_type",
+                        "entity_id"
+                    ]
+                },
+                {
+                    "name": "search_terms_score_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "score"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 17216,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 1392640,
+            "index_length": 1638400
+        },
+        "settings": {
+            "name": "settings",
+            "columns": [
+                {
+                    "Field": "setting_key",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "value",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "type",
+                    "Type": "varchar(50)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "string",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "setting_key"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 142,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 0
+        },
+        "user_invites": {
+            "name": "user_invites",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "user_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "token",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "user_invites_user_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "user_id"
+                    ]
+                },
+                {
+                    "name": "user_invites_token_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "token"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 10,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 32768
+        },
+        "users": {
+            "name": "users",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "name",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "email",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "UNI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "password",
+                    "Type": "varchar(60)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "remember_token",
+                    "Type": "varchar(100)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "email_confirmed",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "1",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "image_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "0",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "external_auth_id",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "system_name",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "slug",
+                    "Type": "varchar(180)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "UNI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "users_email_unique",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "email"
+                    ]
+                },
+                {
+                    "name": "users_slug_unique",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "slug"
+                    ]
+                },
+                {
+                    "name": "users_external_auth_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "external_auth_id"
+                    ]
+                },
+                {
+                    "name": "users_system_name_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "system_name"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 43,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 65536
+        },
+        "views": {
+            "name": "views",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(10) unsigned",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "user_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "viewable_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "viewable_type",
+                    "Type": "varchar(191)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "views",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "views_user_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "user_id"
+                    ]
+                },
+                {
+                    "name": "views_viewable_id_index",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "viewable_id"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 5125,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 327680,
+            "index_length": 262144
+        }
+    },
+    "table_count": 23,
+    "empty_tables_skipped": 14,
+    "broken_views_skipped": 0,
+    "total_columns": 178,
+    "total_indexes": 90,
+    "total_foreign_keys": 6,
+    "total_rows": 28244
+}

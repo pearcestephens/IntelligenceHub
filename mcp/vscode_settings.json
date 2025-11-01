@@ -1,0 +1,21 @@
+{
+  "github.copilot.advanced": {
+    "mcp.enabled": true,
+    "mcp.servers": {
+      "cis-knowledge-base": {
+        "url": "https://gpt.ecigdis.co.nz/mcp/server.php",
+        "description": "CIS Knowledge Base - Semantic search, patterns, quality analysis",
+        "transport": "http",
+        "timeout": 30000
+      }
+    }
+  },
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": true,
+    "markdown": true,
+    "php": true,
+    "javascript": true
+  }
+}

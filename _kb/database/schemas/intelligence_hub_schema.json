@@ -1,0 +1,1608 @@
+{
+    "database": "hdgwrzntwa",
+    "description": "Intelligence Hub - KB metadata and analysis results",
+    "application": "hdgwrzntwa (Intelligence Server)",
+    "scanned_at": "2025-10-25 13:04:49",
+    "tables": {
+        "activity_logs": {
+            "name": "activity_logs",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "user_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": "0",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "action",
+                    "Type": "varchar(100)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "details",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "ip_address",
+                    "Type": "varchar(45)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "user_agent",
+                    "Type": "varchar(255)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": "current_timestamp()",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "idx_user_id",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "user_id"
+                    ]
+                },
+                {
+                    "name": "idx_action",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "action"
+                    ]
+                },
+                {
+                    "name": "idx_created_at",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "created_at"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 3,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 49152
+        },
+        "business_units": {
+            "name": "business_units",
+            "columns": [
+                {
+                    "Field": "unit_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "org_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "unit_name",
+                    "Type": "varchar(100)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "unit_type",
+                    "Type": "enum('manufacturing','retail','wholesale','ecommerce','corporate','technical','logistics','importing','sales_analytics','inventory','financial_ops','customer_service','quality_assurance')",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "server_mapping",
+                    "Type": "varchar(50)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Maps to server applications"
+                },
+                {
+                    "Field": "domain_mapping",
+                    "Type": "varchar(100)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Maps to domain endpoints"
+                },
+                {
+                    "Field": "redis_channel",
+                    "Type": "varchar(50)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Redis pub\/sub channel"
+                },
+                {
+                    "Field": "intelligence_level",
+                    "Type": "enum('basic','advanced','neural','quantum')",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "advanced",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "scan_paths",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_bin",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "File system paths to scan"
+                },
+                {
+                    "Field": "ignore_patterns",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_bin",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Patterns to ignore during scanning"
+                },
+                {
+                    "Field": "is_active",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "1",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "on update current_timestamp()",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "unit_id"
+                    ]
+                },
+                {
+                    "name": "unique_org_unit",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "org_id",
+                        "unit_name"
+                    ]
+                },
+                {
+                    "name": "idx_unit_type",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "unit_type"
+                    ]
+                },
+                {
+                    "name": "idx_server_mapping",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "server_mapping"
+                    ]
+                },
+                {
+                    "name": "idx_redis_channel",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "redis_channel"
+                    ]
+                }
+            ],
+            "foreign_keys": [
+                {
+                    "CONSTRAINT_NAME": "business_units_ibfk_1",
+                    "COLUMN_NAME": "org_id",
+                    "REFERENCED_TABLE_NAME": "organizations",
+                    "REFERENCED_COLUMN_NAME": "org_id"
+                }
+            ],
+            "row_count": 12,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 65536
+        },
+        "dashboard_users": {
+            "name": "dashboard_users",
+            "columns": [
+                {
+                    "Field": "id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "username",
+                    "Type": "varchar(50)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "UNI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "password_hash",
+                    "Type": "varchar(255)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "email",
+                    "Type": "varchar(100)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "role",
+                    "Type": "varchar(20)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": "user",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "permissions",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_bin",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "last_login",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "on update current_timestamp()",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "id"
+                    ]
+                },
+                {
+                    "name": "username",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "username"
+                    ]
+                },
+                {
+                    "name": "idx_username",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "username"
+                    ]
+                },
+                {
+                    "name": "idx_role",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "role"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 1,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 49152
+        },
+        "ecig_kb_categories": {
+            "name": "ecig_kb_categories",
+            "columns": [
+                {
+                    "Field": "category_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "category_name",
+                    "Type": "varchar(200)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "parent_category_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "description",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "priority_weight",
+                    "Type": "decimal(3,2)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": "1.00",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "file_count",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "0",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "category_id"
+                    ]
+                },
+                {
+                    "name": "unique_category",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "category_name",
+                        "parent_category_id"
+                    ]
+                },
+                {
+                    "name": "idx_parent",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "parent_category_id"
+                    ]
+                },
+                {
+                    "name": "idx_priority",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "priority_weight"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 15,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 49152
+        },
+        "intelligence_content_types": {
+            "name": "intelligence_content_types",
+            "columns": [
+                {
+                    "Field": "content_type_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "type_name",
+                    "Type": "varchar(50)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "UNI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "type_category",
+                    "Type": "enum('code','documentation','data','media','operational','intelligence')",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "file_extensions",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_bin",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Supported file extensions"
+                },
+                {
+                    "Field": "processing_engine",
+                    "Type": "varchar(50)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "AI engine for processing this type"
+                },
+                {
+                    "Field": "intelligence_extractors",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_bin",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "List of intelligence extraction methods"
+                },
+                {
+                    "Field": "redis_cache_strategy",
+                    "Type": "enum('hot','warm','cold','smart')",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": "smart",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "description",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "is_active",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "1",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "content_type_id"
+                    ]
+                },
+                {
+                    "name": "type_name",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "type_name"
+                    ]
+                },
+                {
+                    "name": "idx_type_category",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "type_category"
+                    ]
+                },
+                {
+                    "name": "idx_cache_strategy",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "redis_cache_strategy"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 17,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 49152
+        },
+        "intelligence_files": {
+            "name": "intelligence_files",
+            "columns": [
+                {
+                    "Field": "file_id",
+                    "Type": "bigint(20)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "business_unit_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "server_id",
+                    "Type": "varchar(50)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "file_path",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "file_name",
+                    "Type": "varchar(255)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "file_type",
+                    "Type": "enum('documentation','code_intelligence','business_intelligence','operational_intelligence')",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "file_size",
+                    "Type": "bigint(20)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "file_content",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "metadata",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "intelligence_type",
+                    "Type": "varchar(100)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "intelligence_data",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_bin",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "content_summary",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "extracted_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": "current_timestamp()",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "on update current_timestamp()",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "is_active",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": "1",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "file_id"
+                    ]
+                },
+                {
+                    "name": "idx_business_unit",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "business_unit_id"
+                    ]
+                },
+                {
+                    "name": "idx_server",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "server_id"
+                    ]
+                },
+                {
+                    "name": "idx_file_type",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "file_type"
+                    ]
+                },
+                {
+                    "name": "idx_intelligence_type",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "intelligence_type"
+                    ]
+                },
+                {
+                    "name": "idx_extracted_at",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "extracted_at"
+                    ]
+                },
+                {
+                    "name": "idx_active",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "is_active"
+                    ]
+                },
+                {
+                    "name": "idx_server_intelligence",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "server_id",
+                        "intelligence_type"
+                    ]
+                },
+                {
+                    "name": "idx_type_extracted",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "intelligence_type",
+                        "extracted_at"
+                    ]
+                },
+                {
+                    "name": "idx_server_extracted",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "server_id",
+                        "extracted_at"
+                    ]
+                },
+                {
+                    "name": "ft_file_name",
+                    "unique": false,
+                    "type": "FULLTEXT",
+                    "columns": [
+                        "file_name"
+                    ]
+                },
+                {
+                    "name": "ft_content_summary",
+                    "unique": false,
+                    "type": "FULLTEXT",
+                    "columns": [
+                        "content_summary"
+                    ]
+                }
+            ],
+            "foreign_keys": [],
+            "row_count": 17420,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 538558464,
+            "index_length": 13697024
+        },
+        "organizations": {
+            "name": "organizations",
+            "columns": [
+                {
+                    "Field": "org_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "org_name",
+                    "Type": "varchar(100)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "org_type",
+                    "Type": "enum('parent','subsidiary','division','department')",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "parent_org_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "org_code",
+                    "Type": "varchar(20)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "UNI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "redis_namespace",
+                    "Type": "varchar(50)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "intelligence_level",
+                    "Type": "enum('basic','advanced','neural','quantum')",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "neural",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "is_active",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "1",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "on update current_timestamp()",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "org_id"
+                    ]
+                },
+                {
+                    "name": "org_code",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "org_code"
+                    ]
+                },
+                {
+                    "name": "idx_org_code",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "org_code"
+                    ]
+                },
+                {
+                    "name": "idx_parent_org",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "parent_org_id"
+                    ]
+                }
+            ],
+            "foreign_keys": [
+                {
+                    "CONSTRAINT_NAME": "organizations_ibfk_1",
+                    "COLUMN_NAME": "parent_org_id",
+                    "REFERENCED_TABLE_NAME": "organizations",
+                    "REFERENCED_COLUMN_NAME": "org_id"
+                }
+            ],
+            "row_count": 1,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 49152
+        },
+        "redis_cache_config": {
+            "name": "redis_cache_config",
+            "columns": [
+                {
+                    "Field": "cache_config_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "org_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "UNI",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "cache_namespace",
+                    "Type": "varchar(50)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Redis namespace for organization"
+                },
+                {
+                    "Field": "cache_strategy",
+                    "Type": "enum('hot','warm','cold','smart','custom')",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "default_ttl",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "3600",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Default TTL in seconds"
+                },
+                {
+                    "Field": "max_memory_mb",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "1024",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Max Redis memory for this org"
+                },
+                {
+                    "Field": "eviction_policy",
+                    "Type": "enum('noeviction','allkeys-lru','volatile-lru','allkeys-random','volatile-random','volatile-ttl')",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "allkeys-lru",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "compression_enabled",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "1",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "encryption_enabled",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "0",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "replication_enabled",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "1",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "clustering_enabled",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "0",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "monitoring_enabled",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "1",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "custom_config",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_bin",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Custom Redis configuration"
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "on update current_timestamp()",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "cache_config_id"
+                    ]
+                },
+                {
+                    "name": "unique_org_cache",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "org_id"
+                    ]
+                },
+                {
+                    "name": "idx_cache_strategy",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "cache_strategy"
+                    ]
+                }
+            ],
+            "foreign_keys": [
+                {
+                    "CONSTRAINT_NAME": "redis_cache_config_ibfk_1",
+                    "COLUMN_NAME": "org_id",
+                    "REFERENCED_TABLE_NAME": "organizations",
+                    "REFERENCED_COLUMN_NAME": "org_id"
+                }
+            ],
+            "row_count": 1,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 32768
+        },
+        "system_configuration": {
+            "name": "system_configuration",
+            "columns": [
+                {
+                    "Field": "config_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "PRI",
+                    "Default": null,
+                    "Extra": "auto_increment",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "org_id",
+                    "Type": "int(11)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "NULL = global config, specific org_id = org-specific"
+                },
+                {
+                    "Field": "config_section",
+                    "Type": "varchar(50)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "MUL",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Section: scanning, ai, redis, etc."
+                },
+                {
+                    "Field": "config_key",
+                    "Type": "varchar(100)",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "config_value",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "config_type",
+                    "Type": "enum('string','integer','float','boolean','json','array','encrypted')",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "description",
+                    "Type": "text",
+                    "Collation": "utf8mb4_unicode_ci",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "validation_rules",
+                    "Type": "longtext",
+                    "Collation": "utf8mb4_bin",
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": null,
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Validation rules for config value"
+                },
+                {
+                    "Field": "is_sensitive",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "MUL",
+                    "Default": "0",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Is this sensitive data"
+                },
+                {
+                    "Field": "requires_restart",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "0",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": "Does changing this require restart"
+                },
+                {
+                    "Field": "is_active",
+                    "Type": "tinyint(1)",
+                    "Collation": null,
+                    "Null": "YES",
+                    "Key": "",
+                    "Default": "1",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "created_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                },
+                {
+                    "Field": "updated_at",
+                    "Type": "timestamp",
+                    "Collation": null,
+                    "Null": "NO",
+                    "Key": "",
+                    "Default": "current_timestamp()",
+                    "Extra": "on update current_timestamp()",
+                    "Privileges": "select,insert,update,references",
+                    "Comment": ""
+                }
+            ],
+            "indexes": [
+                {
+                    "name": "PRIMARY",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "config_id"
+                    ]
+                },
+                {
+                    "name": "unique_config",
+                    "unique": true,
+                    "type": "BTREE",
+                    "columns": [
+                        "org_id",
+                        "config_section",
+                        "config_key"
+                    ]
+                },
+                {
+                    "name": "idx_config_section",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "config_section"
+                    ]
+                },
+                {
+                    "name": "idx_sensitive_configs",
+                    "unique": false,
+                    "type": "BTREE",
+                    "columns": [
+                        "is_sensitive"
+                    ]
+                }
+            ],
+            "foreign_keys": [
+                {
+                    "CONSTRAINT_NAME": "system_configuration_ibfk_1",
+                    "COLUMN_NAME": "org_id",
+                    "REFERENCED_TABLE_NAME": "organizations",
+                    "REFERENCED_COLUMN_NAME": "org_id"
+                }
+            ],
+            "row_count": 8,
+            "engine": "InnoDB",
+            "collation": "utf8mb4_unicode_ci",
+            "data_length": 16384,
+            "index_length": 49152
+        }
+    },
+    "table_count": 9,
+    "empty_tables_skipped": 18,
+    "broken_views_skipped": 5,
+    "total_columns": 99,
+    "total_indexes": 44,
+    "total_foreign_keys": 4,
+    "total_rows": 17478
+}

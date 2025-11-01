@@ -1,0 +1,107 @@
+{
+  "description": "CIS Knowledge Base - Centralized Ignore Configuration",
+  "version": "1.0.0",
+  "last_updated": "2025-10-22",
+  "purpose": "This file defines what directories and files should be ignored across ALL KB scanners",
+  
+  "ignore_patterns": {
+    "third_party_directories": [
+      "node_modules",
+      "vendor"
+    ],
+    
+    "system_directories": [
+      ".git",
+      ".svn", 
+      ".hg",
+      "cache",
+      "tmp",
+      "temp",
+      ".vscode",
+      ".idea",
+      "coverage",
+      "test-results",
+      "build",
+      "dist",
+      "compiled",
+      "frontend-tools"
+    ],
+    
+    "application_backups": [
+      "backups_*",
+      "*_backup",
+      "*_backups",
+      "*.old",
+      "*.bak"
+    ],
+    
+    "logs_and_temp": [
+      "logs",
+      "error_log",
+      "access_log",
+      "debug.log"
+    ],
+    
+    "file_extensions_to_ignore": [
+      ".log",
+      ".tmp", 
+      ".temp",
+      ".cache",
+      ".lock",
+      ".pid",
+      ".swp",
+      ".swo",
+      ".DS_Store",
+      "Thumbs.db"
+    ],
+    
+    "path_patterns_to_ignore": [
+      "*/node_modules/*",
+      "*/vendor/*/tests/*",
+      "*/.git/*",
+      "*/cache/*",
+      "*/tmp/*",
+      "*/temp/*",
+      "*/coverage/*",
+      "*/frontend-tools/*"
+    ]
+  },
+  
+  "include_patterns": {
+    "always_include": [
+      "*/README.md",
+      "*/CHANGELOG.md", 
+      "*/LICENSE.md",
+      "*/INSTALL.md",
+      "*/SETUP.md",
+      "*/_kb/*",
+      "*/docs/*"
+    ],
+    
+    "application_backups_selective": [
+      "*/backups_AI_*",
+      "*/backup_*_important*",
+      "*/*_backup.md",
+      "*/*_backup.txt"
+    ]
+  },
+  
+  "scan_paths": [
+    "/home/master/applications/hdgwrzntwa/public_html",
+    "/home/master/applications/jcepnzzkmj/public_html"
+  ],
+  
+  "file_size_limits": {
+    "max_file_size_mb": 50,
+    "warn_file_size_mb": 10,
+    "skip_empty_files": false,
+    "skip_binary_files": true
+  },
+  
+  "intelligence_rules": {
+    "content_analysis": true,
+    "duplicate_detection": true,
+    "application_ownership_detection": true,
+    "backup_value_assessment": true
+  }
+}

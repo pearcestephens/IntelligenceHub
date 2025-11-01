@@ -1,0 +1,38 @@
+# Dependencies
+/vendor/
+composer.lock
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+/logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+/coverage/
+.phpunit.result.cache
+
+# Build artifacts
+/build/
+/dist/
+
+# Agent sandbox (development)
+/agent_sandbox/
+
+# Temporary files
+/tmp/
+*.tmp

@@ -1,0 +1,1722 @@
+{
+    "nodes": [
+        {
+            "id": "scripts\/kb-harvest.php",
+            "label": "kb-harvest.php"
+        },
+        {
+            "id": "scripts\/dual_server_kb_scanner.php",
+            "label": "dual_server_kb_scanner.php"
+        },
+        {
+            "id": "scripts\/comprehensive_testing_suite.php",
+            "label": "comprehensive_testing_suite.php"
+        },
+        {
+            "id": "scripts\/md_knowledge_consolidator.php",
+            "label": "md_knowledge_consolidator.php"
+        },
+        {
+            "id": "scripts\/detailed_noise_analysis.php",
+            "label": "detailed_noise_analysis.php"
+        },
+        {
+            "id": "scripts\/safe_neural_scanner.php",
+            "label": "safe_neural_scanner.php"
+        },
+        {
+            "id": "scripts\/check_table_structure.php",
+            "label": "check_table_structure.php"
+        },
+        {
+            "id": "scripts\/standalone_cognitive_analyzer.php",
+            "label": "standalone_cognitive_analyzer.php"
+        },
+        {
+            "id": "scripts\/install-kb-smart-cron.php",
+            "label": "install-kb-smart-cron.php"
+        },
+        {
+            "id": "scripts\/kb_proactive_indexer.php",
+            "label": "kb_proactive_indexer.php"
+        },
+        {
+            "id": "scripts\/kb_md_collector.php",
+            "label": "kb_md_collector.php"
+        },
+        {
+            "id": "scripts\/ultra_tight_db_update.php",
+            "label": "ultra_tight_db_update.php"
+        },
+        {
+            "id": "scripts\/quick_neural_test.php",
+            "label": "quick_neural_test.php"
+        },
+        {
+            "id": "scripts\/check_schema.php",
+            "label": "check_schema.php"
+        },
+        {
+            "id": "scripts\/kb_content_analyzer.php",
+            "label": "kb_content_analyzer.php"
+        },
+        {
+            "id": "scripts\/status.php",
+            "label": "status.php"
+        },
+        {
+            "id": "scripts\/enhanced_security_scanner.php",
+            "label": "enhanced_security_scanner.php"
+        },
+        {
+            "id": "scripts\/local_neural_scanner.php",
+            "label": "local_neural_scanner.php"
+        },
+        {
+            "id": "scripts\/deploy_content_processor_to_cis.php",
+            "label": "deploy_content_processor_to_cis.php"
+        },
+        {
+            "id": "scripts\/build-kb-html.php",
+            "label": "build-kb-html.php"
+        },
+        {
+            "id": "scripts\/copilot_activity_integration.php",
+            "label": "copilot_activity_integration.php"
+        },
+        {
+            "id": "scripts\/error_proof_content_analyzer.php",
+            "label": "error_proof_content_analyzer.php"
+        },
+        {
+            "id": "scripts\/fix_database_encoding.php",
+            "label": "fix_database_encoding.php"
+        },
+        {
+            "id": "scripts\/proper_kb_scanner.php",
+            "label": "proper_kb_scanner.php"
+        },
+        {
+            "id": "scripts\/content_intelligence_processor.php",
+            "label": "content_intelligence_processor.php"
+        },
+        {
+            "id": "scripts\/master_index_generator.php",
+            "label": "master_index_generator.php"
+        },
+        {
+            "id": "scripts\/comprehensive_md_scanner.php",
+            "label": "comprehensive_md_scanner.php"
+        },
+        {
+            "id": "scripts\/clean_db_update.php",
+            "label": "clean_db_update.php"
+        },
+        {
+            "id": "scripts\/user_activity_tracker.php",
+            "label": "user_activity_tracker.php"
+        },
+        {
+            "id": "scripts\/filtered_flawless_db_update.php",
+            "label": "filtered_flawless_db_update.php"
+        },
+        {
+            "id": "scripts\/auto-sync-monitor.php",
+            "label": "auto-sync-monitor.php"
+        },
+        {
+            "id": "scripts\/fix_scanner_ignore.php",
+            "label": "fix_scanner_ignore.php"
+        },
+        {
+            "id": "scripts\/comprehensive_readme_generator.php",
+            "label": "comprehensive_readme_generator.php"
+        },
+        {
+            "id": "scripts\/standalone_auto_organizer.php",
+            "label": "standalone_auto_organizer.php"
+        },
+        {
+            "id": "scripts\/standalone_cognitive_analysis.php",
+            "label": "standalone_cognitive_analysis.php"
+        },
+        {
+            "id": "scripts\/diagnose_md_scanning.php",
+            "label": "diagnose_md_scanning.php"
+        },
+        {
+            "id": "scripts\/emergency_db_update.php",
+            "label": "emergency_db_update.php"
+        },
+        {
+            "id": "scripts\/kb_intelligence_engine.php",
+            "label": "kb_intelligence_engine.php"
+        },
+        {
+            "id": "scripts\/kb_crawler.php",
+            "label": "kb_crawler.php"
+        },
+        {
+            "id": "scripts\/extract_all_md_to_kb.php",
+            "label": "extract_all_md_to_kb.php"
+        },
+        {
+            "id": "scripts\/_kb_tools_map-relationships.php",
+            "label": "_kb_tools_map-relationships.php"
+        },
+        {
+            "id": "scripts\/kb-indexer-cron.php",
+            "label": "kb-indexer-cron.php"
+        },
+        {
+            "id": "scripts\/scan_all_applications.php",
+            "label": "scan_all_applications.php"
+        },
+        {
+            "id": "scripts\/analyze_noise_patterns.php",
+            "label": "analyze_noise_patterns.php"
+        },
+        {
+            "id": "scripts\/smart_md_scanner.php",
+            "label": "smart_md_scanner.php"
+        },
+        {
+            "id": "scripts\/drop_broken_views.php",
+            "label": "drop_broken_views.php"
+        },
+        {
+            "id": "scripts\/enhance_cognitive_schema.php",
+            "label": "enhance_cognitive_schema.php"
+        },
+        {
+            "id": "scripts\/_kb_tools_verify-kb.php",
+            "label": "_kb_tools_verify-kb.php"
+        },
+        {
+            "id": "scripts\/flawless_content_analyzer.php",
+            "label": "flawless_content_analyzer.php"
+        },
+        {
+            "id": "scripts\/emergency_db_update_corrected.php",
+            "label": "emergency_db_update_corrected.php"
+        },
+        {
+            "id": "scripts\/live_security_monitor.php",
+            "label": "live_security_monitor.php"
+        },
+        {
+            "id": "scripts\/detect_rogue_kb.php",
+            "label": "detect_rogue_kb.php"
+        },
+        {
+            "id": "scripts\/kb_deep_intelligence.php",
+            "label": "kb_deep_intelligence.php"
+        },
+        {
+            "id": "scripts\/_kb_tools_analyze-performance.php",
+            "label": "_kb_tools_analyze-performance.php"
+        },
+        {
+            "id": "scripts\/emergency_db_update_fixed.php",
+            "label": "emergency_db_update_fixed.php"
+        },
+        {
+            "id": "scripts\/smart_kb_scanner.php",
+            "label": "smart_kb_scanner.php"
+        },
+        {
+            "id": "scripts\/simple_cognitive_analysis.php",
+            "label": "simple_cognitive_analysis.php"
+        },
+        {
+            "id": "scripts\/kb-relationship-mapper.php",
+            "label": "kb-relationship-mapper.php"
+        },
+        {
+            "id": "scripts\/super_tight_db_update.php",
+            "label": "super_tight_db_update.php"
+        },
+        {
+            "id": "scripts\/nuclear_kb_cleanup.php",
+            "label": "nuclear_kb_cleanup.php"
+        },
+        {
+            "id": "scripts\/cognitive_content_analyzer.php",
+            "label": "cognitive_content_analyzer.php"
+        },
+        {
+            "id": "scripts\/create_kb_schema.php",
+            "label": "create_kb_schema.php"
+        },
+        {
+            "id": "scripts\/kb-auto-indexer.php",
+            "label": "kb-auto-indexer.php"
+        },
+        {
+            "id": "scripts\/kb_comprehensive_test.php",
+            "label": "kb_comprehensive_test.php"
+        },
+        {
+            "id": "scripts\/create_generic_kb_schema.php",
+            "label": "create_generic_kb_schema.php"
+        },
+        {
+            "id": "scripts\/neural_intelligence_scanner.php",
+            "label": "neural_intelligence_scanner.php"
+        },
+        {
+            "id": "scripts\/kb-cleanup.php",
+            "label": "kb-cleanup.php"
+        },
+        {
+            "id": "scripts\/kb_correlator.php",
+            "label": "kb_correlator.php"
+        },
+        {
+            "id": "scripts\/process_content_text.php",
+            "label": "process_content_text.php"
+        },
+        {
+            "id": "scripts\/enhanced_kb_crawler.php",
+            "label": "enhanced_kb_crawler.php"
+        },
+        {
+            "id": "scripts\/create_unified_ai_intelligence_system.php",
+            "label": "create_unified_ai_intelligence_system.php"
+        },
+        {
+            "id": "scripts\/smart_kb_trigger.php",
+            "label": "smart_kb_trigger.php"
+        },
+        {
+            "id": "scripts\/db_schema_scanner.php",
+            "label": "db_schema_scanner.php"
+        },
+        {
+            "id": "scripts\/kb_search_indexer.php",
+            "label": "kb_search_indexer.php"
+        },
+        {
+            "id": "scripts\/flawless_db_update.php",
+            "label": "flawless_db_update.php"
+        },
+        {
+            "id": "scripts\/code_quality_scorer.php",
+            "label": "code_quality_scorer.php"
+        },
+        {
+            "id": "scripts\/kb_priority_report.php",
+            "label": "kb_priority_report.php"
+        },
+        {
+            "id": "scripts\/kb-test-search.php",
+            "label": "kb-test-search.php"
+        },
+        {
+            "id": "scripts\/test_trigger.php",
+            "label": "test_trigger.php"
+        },
+        {
+            "id": "scripts\/show_config_examples.php",
+            "label": "show_config_examples.php"
+        },
+        {
+            "id": "scripts\/scan_all_applications_OLD_20251025_144212.php",
+            "label": "scan_all_applications_OLD_20251025_144212.php"
+        },
+        {
+            "id": "scripts\/scan_all_databases.php",
+            "label": "scan_all_databases.php"
+        },
+        {
+            "id": "scripts\/test_trigger2.php",
+            "label": "test_trigger2.php"
+        },
+        {
+            "id": "scripts\/multi_db_schema_scanner.php",
+            "label": "multi_db_schema_scanner.php"
+        },
+        {
+            "id": "scripts\/smart_kb_organizer.php",
+            "label": "smart_kb_organizer.php"
+        },
+        {
+            "id": "scripts\/test_redis.php",
+            "label": "test_redis.php"
+        },
+        {
+            "id": "scripts\/kb-cli.php",
+            "label": "kb-cli.php"
+        },
+        {
+            "id": "scripts\/kb_corrected_comprehensive_test.php",
+            "label": "kb_corrected_comprehensive_test.php"
+        },
+        {
+            "id": "scripts\/verify-kb.php",
+            "label": "verify-kb.php"
+        },
+        {
+            "id": "scripts\/migrate_scanner_to_new_tables.php",
+            "label": "migrate_scanner_to_new_tables.php"
+        },
+        {
+            "id": "scripts\/kb_multi_crawler.php",
+            "label": "kb_multi_crawler.php"
+        },
+        {
+            "id": "scripts\/simple_neural_setup.php",
+            "label": "simple_neural_setup.php"
+        },
+        {
+            "id": "scripts\/kb_schema_enhance.php",
+            "label": "kb_schema_enhance.php"
+        },
+        {
+            "id": "scripts\/create_intelligence_table.php",
+            "label": "create_intelligence_table.php"
+        },
+        {
+            "id": "scripts\/kb_deployment_system.php",
+            "label": "kb_deployment_system.php"
+        },
+        {
+            "id": "scripts\/quick_intelligence_scan.php",
+            "label": "quick_intelligence_scan.php"
+        },
+        {
+            "id": "scripts\/kb_intelligence_engine_v2.php",
+            "label": "kb_intelligence_engine_v2.php"
+        },
+        {
+            "id": "scripts\/quick_kb_scan.php",
+            "label": "quick_kb_scan.php"
+        },
+        {
+            "id": "scripts\/kb-readme-generator.php",
+            "label": "kb-readme-generator.php"
+        },
+        {
+            "id": "scripts\/quality_control_system.php",
+            "label": "quality_control_system.php"
+        },
+        {
+            "id": "scripts\/simple_search_indexer.php",
+            "label": "simple_search_indexer.php"
+        },
+        {
+            "id": "scripts\/kb-sdk.php",
+            "label": "kb-sdk.php"
+        },
+        {
+            "id": "scripts\/simple_quality_control.php",
+            "label": "simple_quality_control.php"
+        },
+        {
+            "id": "app\/Services\/RedisService.php",
+            "label": "RedisService.php"
+        },
+        {
+            "id": "api\/process_content_remote.php",
+            "label": "process_content_remote.php"
+        },
+        {
+            "id": "api\/bot-prompt.php",
+            "label": "bot-prompt.php"
+        },
+        {
+            "id": "api\/deploy-file.php",
+            "label": "deploy-file.php"
+        },
+        {
+            "id": "api\/agent_kb.php",
+            "label": "agent_kb.php"
+        },
+        {
+            "id": "api\/receive_satellite_data.php",
+            "label": "receive_satellite_data.php"
+        },
+        {
+            "id": "api\/ai-chat.php",
+            "label": "ai-chat.php"
+        },
+        {
+            "id": "api\/save_conversation.php",
+            "label": "save_conversation.php"
+        },
+        {
+            "id": "api\/multi-bot-collaboration.php",
+            "label": "multi-bot-collaboration.php"
+        },
+        {
+            "id": "api\/intelligence\/test_single_file.php",
+            "label": "test_single_file.php"
+        },
+        {
+            "id": "api\/intelligence\/deploy_intelligence_client.php",
+            "label": "deploy_intelligence_client.php"
+        },
+        {
+            "id": "api\/intelligence\/update_intelligence_schema.php",
+            "label": "update_intelligence_schema.php"
+        },
+        {
+            "id": "api\/intelligence\/intelligent_scorer.php",
+            "label": "intelligent_scorer.php"
+        },
+        {
+            "id": "api\/intelligence\/investigate_schema.php",
+            "label": "investigate_schema.php"
+        },
+        {
+            "id": "api\/intelligence\/neural_intelligence_processor.php",
+            "label": "neural_intelligence_processor.php"
+        },
+        {
+            "id": "api\/intelligence\/load_ignore_config.php",
+            "label": "load_ignore_config.php"
+        },
+        {
+            "id": "api\/intelligence\/check_functions.php",
+            "label": "check_functions.php"
+        },
+        {
+            "id": "api\/intelligence\/api_neural_scanner.php",
+            "label": "api_neural_scanner.php"
+        },
+        {
+            "id": "api\/intelligence\/check_scan_errors.php",
+            "label": "check_scan_errors.php"
+        },
+        {
+            "id": "api\/intelligence\/index.php",
+            "label": "index.php"
+        },
+        {
+            "id": "api\/intelligence\/IntelligenceAPIClient.php",
+            "label": "IntelligenceAPIClient.php"
+        },
+        {
+            "id": "api\/broadcast-to-copilots.php",
+            "label": "broadcast-to-copilots.php"
+        },
+        {
+            "id": "api\/credentials.php",
+            "label": "credentials.php"
+        },
+        {
+            "id": "api\/satellite-deploy.php",
+            "label": "satellite-deploy.php"
+        },
+        {
+            "id": "api\/deploy_satellite_scanners.php",
+            "label": "deploy_satellite_scanners.php"
+        },
+        {
+            "id": "api\/db-validate.php",
+            "label": "db-validate.php"
+        },
+        {
+            "id": "api\/process_content_batch.php",
+            "label": "process_content_batch.php"
+        },
+        {
+            "id": "test_mcp_page.php",
+            "label": "test_mcp_page.php"
+        },
+        {
+            "id": "app.php",
+            "label": "app.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/kb-harvest.php",
+            "label": "kb-harvest.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/comprehensive_testing_suite.php",
+            "label": "comprehensive_testing_suite.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/md_knowledge_consolidator.php",
+            "label": "md_knowledge_consolidator.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/detailed_noise_analysis.php",
+            "label": "detailed_noise_analysis.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/safe_neural_scanner.php",
+            "label": "safe_neural_scanner.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/standalone_cognitive_analyzer.php",
+            "label": "standalone_cognitive_analyzer.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/install-kb-smart-cron.php",
+            "label": "install-kb-smart-cron.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/ultra_tight_db_update.php",
+            "label": "ultra_tight_db_update.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/status.php",
+            "label": "status.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/local_neural_scanner.php",
+            "label": "local_neural_scanner.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/build-kb-html.php",
+            "label": "build-kb-html.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/copilot_activity_integration.php",
+            "label": "copilot_activity_integration.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/error_proof_content_analyzer.php",
+            "label": "error_proof_content_analyzer.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/master_index_generator.php",
+            "label": "master_index_generator.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/comprehensive_md_scanner.php",
+            "label": "comprehensive_md_scanner.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/clean_db_update.php",
+            "label": "clean_db_update.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/user_activity_tracker.php",
+            "label": "user_activity_tracker.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/filtered_flawless_db_update.php",
+            "label": "filtered_flawless_db_update.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/auto-sync-monitor.php",
+            "label": "auto-sync-monitor.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/comprehensive_readme_generator.php",
+            "label": "comprehensive_readme_generator.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/standalone_auto_organizer.php",
+            "label": "standalone_auto_organizer.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/standalone_cognitive_analysis.php",
+            "label": "standalone_cognitive_analysis.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/emergency_db_update.php",
+            "label": "emergency_db_update.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/extract_all_md_to_kb.php",
+            "label": "extract_all_md_to_kb.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/kb-indexer-cron.php",
+            "label": "kb-indexer-cron.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/analyze_noise_patterns.php",
+            "label": "analyze_noise_patterns.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/smart_md_scanner.php",
+            "label": "smart_md_scanner.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/drop_broken_views.php",
+            "label": "drop_broken_views.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/enhance_cognitive_schema.php",
+            "label": "enhance_cognitive_schema.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/flawless_content_analyzer.php",
+            "label": "flawless_content_analyzer.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/emergency_db_update_corrected.php",
+            "label": "emergency_db_update_corrected.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/detect_rogue_kb.php",
+            "label": "detect_rogue_kb.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/emergency_db_update_fixed.php",
+            "label": "emergency_db_update_fixed.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/simple_cognitive_analysis.php",
+            "label": "simple_cognitive_analysis.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/kb-relationship-mapper.php",
+            "label": "kb-relationship-mapper.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/super_tight_db_update.php",
+            "label": "super_tight_db_update.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/cognitive_content_analyzer.php",
+            "label": "cognitive_content_analyzer.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/kb-auto-indexer.php",
+            "label": "kb-auto-indexer.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/neural_intelligence_scanner.php",
+            "label": "neural_intelligence_scanner.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/kb-cleanup.php",
+            "label": "kb-cleanup.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/create_unified_ai_intelligence_system.php",
+            "label": "create_unified_ai_intelligence_system.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/db_schema_scanner.php",
+            "label": "db_schema_scanner.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/flawless_db_update.php",
+            "label": "flawless_db_update.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/code_quality_scorer.php",
+            "label": "code_quality_scorer.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/kb-test-search.php",
+            "label": "kb-test-search.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/show_config_examples.php",
+            "label": "show_config_examples.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/scan_all_databases.php",
+            "label": "scan_all_databases.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/multi_db_schema_scanner.php",
+            "label": "multi_db_schema_scanner.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/kb-cli.php",
+            "label": "kb-cli.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/verify-kb.php",
+            "label": "verify-kb.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/simple_neural_setup.php",
+            "label": "simple_neural_setup.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/create_intelligence_table.php",
+            "label": "create_intelligence_table.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/kb-readme-generator.php",
+            "label": "kb-readme-generator.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/quality_control_system.php",
+            "label": "quality_control_system.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/simple_search_indexer.php",
+            "label": "simple_search_indexer.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/kb-sdk.php",
+            "label": "kb-sdk.php"
+        },
+        {
+            "id": "builds\/active\/scripts\/simple_quality_control.php",
+            "label": "simple_quality_control.php"
+        },
+        {
+            "id": "builds\/active\/app\/Services\/RedisService.php",
+            "label": "RedisService.php"
+        },
+        {
+            "id": "builds\/active\/api\/agent_kb.php",
+            "label": "agent_kb.php"
+        },
+        {
+            "id": "builds\/active\/api\/intelligence\/test_single_file.php",
+            "label": "test_single_file.php"
+        },
+        {
+            "id": "builds\/active\/api\/intelligence\/deploy_intelligence_client.php",
+            "label": "deploy_intelligence_client.php"
+        },
+        {
+            "id": "builds\/active\/api\/intelligence\/update_intelligence_schema.php",
+            "label": "update_intelligence_schema.php"
+        },
+        {
+            "id": "builds\/active\/api\/intelligence\/intelligent_scorer.php",
+            "label": "intelligent_scorer.php"
+        },
+        {
+            "id": "builds\/active\/api\/intelligence\/investigate_schema.php",
+            "label": "investigate_schema.php"
+        },
+        {
+            "id": "builds\/active\/api\/intelligence\/neural_intelligence_processor.php",
+            "label": "neural_intelligence_processor.php"
+        },
+        {
+            "id": "builds\/active\/api\/intelligence\/load_ignore_config.php",
+            "label": "load_ignore_config.php"
+        },
+        {
+            "id": "builds\/active\/api\/intelligence\/check_functions.php",
+            "label": "check_functions.php"
+        },
+        {
+            "id": "builds\/active\/api\/intelligence\/api_neural_scanner.php",
+            "label": "api_neural_scanner.php"
+        },
+        {
+            "id": "builds\/active\/api\/intelligence\/check_scan_errors.php",
+            "label": "check_scan_errors.php"
+        },
+        {
+            "id": "builds\/active\/api\/intelligence\/index.php",
+            "label": "index.php"
+        },
+        {
+            "id": "builds\/active\/api\/intelligence\/IntelligenceAPIClient.php",
+            "label": "IntelligenceAPIClient.php"
+        },
+        {
+            "id": "builds\/active\/app.php",
+            "label": "app.php"
+        },
+        {
+            "id": "builds\/active\/mcp\/auto_refresh.php",
+            "label": "auto_refresh.php"
+        },
+        {
+            "id": "builds\/active\/mcp\/advanced_tools.php",
+            "label": "advanced_tools.php"
+        },
+        {
+            "id": "builds\/active\/mcp\/health.php",
+            "label": "health.php"
+        },
+        {
+            "id": "builds\/active\/mcp\/webhook.php",
+            "label": "webhook.php"
+        },
+        {
+            "id": "builds\/active\/mcp\/server.php",
+            "label": "server.php"
+        },
+        {
+            "id": "builds\/active\/_archive\/2025-10-25_cleanup\/intelligence_related\/utilities\/automation_gap_analysis.php",
+            "label": "automation_gap_analysis.php"
+        },
+        {
+            "id": "builds\/active\/_archive\/2025-10-25\/old_files\/kb-dashboard-fixed.php",
+            "label": "kb-dashboard-fixed.php"
+        },
+        {
+            "id": "builds\/active\/_archive\/2025-10-25\/old_files\/include_activity_tracker.php",
+            "label": "include_activity_tracker.php"
+        },
+        {
+            "id": "builds\/active\/config\/redis.php",
+            "label": "redis.php"
+        },
+        {
+            "id": "builds\/active\/check_db_tables.php",
+            "label": "check_db_tables.php"
+        },
+        {
+            "id": "builds\/active\/services\/run_verified_kb_pipeline.php",
+            "label": "run_verified_kb_pipeline.php"
+        },
+        {
+            "id": "builds\/active\/services\/run_complete_kb_pipeline.php",
+            "label": "run_complete_kb_pipeline.php"
+        },
+        {
+            "id": "builds\/active\/services\/kb_data_validation_final.php",
+            "label": "kb_data_validation_final.php"
+        },
+        {
+            "id": "builds\/active\/services\/kb_data_validation_corrected.php",
+            "label": "kb_data_validation_corrected.php"
+        },
+        {
+            "id": "builds\/active\/services\/kb_pipeline_analyzer.php",
+            "label": "kb_pipeline_analyzer.php"
+        },
+        {
+            "id": "builds\/active\/services\/kb_data_validation.php",
+            "label": "kb_data_validation.php"
+        },
+        {
+            "id": "builds\/active\/intelligence_control_panel.php",
+            "label": "intelligence_control_panel.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/api\/document.php",
+            "label": "document.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/api\/search.php",
+            "label": "search.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/api\/notifications.php",
+            "label": "notifications.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/api\/recent.php",
+            "label": "recent.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/api\/run_scanner.php",
+            "label": "run_scanner.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/api\/cleanup_action.php",
+            "label": "cleanup_action.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/api\/stats.php",
+            "label": "stats.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/quick_test.php",
+            "label": "quick_test.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/login.php",
+            "label": "login.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/config\/config.php",
+            "label": "config.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/comprehensive_test.php",
+            "label": "comprehensive_test.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/files.php",
+            "label": "files.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/sql-query.php",
+            "label": "sql-query.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/scanner.php",
+            "label": "scanner.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/patterns.php",
+            "label": "patterns.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/api.php",
+            "label": "api.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/documentation.php",
+            "label": "documentation.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/logs.php",
+            "label": "logs.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/settings.php",
+            "label": "settings.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/conversations.php",
+            "label": "conversations.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/bot-commands.php",
+            "label": "bot-commands.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/search.php",
+            "label": "search.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/servers.php",
+            "label": "servers.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/functions.php",
+            "label": "functions.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/analytics.php",
+            "label": "analytics.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/overview.php",
+            "label": "overview.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/neural.php",
+            "label": "neural.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/cleanup.php",
+            "label": "cleanup.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/pages\/cron.php",
+            "label": "cron.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/test_html_output.php",
+            "label": "test_html_output.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/index.php",
+            "label": "index.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/includes\/header.php",
+            "label": "header.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/includes\/auth.php",
+            "label": "auth.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/includes\/breadcrumb.php",
+            "label": "breadcrumb.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/includes\/footer.php",
+            "label": "footer.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/includes\/sidebar.php",
+            "label": "sidebar.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/includes\/functions.php",
+            "label": "functions.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/includes\/ConversationLogger.php",
+            "label": "ConversationLogger.php"
+        },
+        {
+            "id": "builds\/active\/dashboard\/logout.php",
+            "label": "logout.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/scripts\/register_intelligence_jobs.php",
+            "label": "register_intelligence_jobs.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/scripts\/php_file_watcher.php",
+            "label": "php_file_watcher.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/scripts\/cron_intelligence_refresh.php",
+            "label": "cron_intelligence_refresh.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/scripts\/generate_call_graph.php",
+            "label": "generate_call_graph.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/scripts\/fetch_cis_cron_schedule.php",
+            "label": "fetch_cis_cron_schedule.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/scripts\/smart_cron_manager.php",
+            "label": "smart_cron_manager.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/scripts\/register_with_smart_cron.php",
+            "label": "register_with_smart_cron.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/scripts\/ast_security_scanner.php",
+            "label": "ast_security_scanner.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/scripts\/analyze_single_file.php",
+            "label": "analyze_single_file.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/scripts\/universal_cron_controller.php",
+            "label": "universal_cron_controller.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/scripts\/ssh_session_detector.php",
+            "label": "ssh_session_detector.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/scripts\/register_cron_jobs.php",
+            "label": "register_cron_jobs.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/api\/intelligence_receiver.php",
+            "label": "intelligence_receiver.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/api\/intelligence_distributor.php",
+            "label": "intelligence_distributor.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/md_file_analysis.php",
+            "label": "md_file_analysis.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/config\/KBConfigManager.php",
+            "label": "KBConfigManager.php"
+        },
+        {
+            "id": "builds\/active\/_kb\/lib\/CronClient.php",
+            "label": "CronClient.php"
+        },
+        {
+            "id": "builds\/historic\/v3_demos\/_archive\/2025-10-25_cleanup\/demo_files\/example_conversation_logging.php",
+            "label": "example_conversation_logging.php"
+        },
+        {
+            "id": "builds\/historic\/v2_tests\/scripts\/quick_neural_test.php",
+            "label": "quick_neural_test.php"
+        },
+        {
+            "id": "builds\/historic\/v2_tests\/scripts\/kb_comprehensive_test.php",
+            "label": "kb_comprehensive_test.php"
+        },
+        {
+            "id": "builds\/historic\/v2_tests\/scripts\/test_trigger.php",
+            "label": "test_trigger.php"
+        },
+        {
+            "id": "builds\/historic\/v2_tests\/scripts\/test_trigger2.php",
+            "label": "test_trigger2.php"
+        },
+        {
+            "id": "builds\/historic\/v2_tests\/scripts\/test_redis.php",
+            "label": "test_redis.php"
+        },
+        {
+            "id": "builds\/historic\/v2_tests\/scripts\/kb_corrected_comprehensive_test.php",
+            "label": "kb_corrected_comprehensive_test.php"
+        },
+        {
+            "id": "builds\/historic\/v2_tests\/_archive\/2025-10-25_cleanup\/test_files\/test_search_api.php",
+            "label": "test_search_api.php"
+        },
+        {
+            "id": "builds\/historic\/v2_tests\/_archive\/2025-10-25_cleanup\/test_files\/test_search.php",
+            "label": "test_search.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/dual_server_kb_scanner.php",
+            "label": "dual_server_kb_scanner.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/check_table_structure.php",
+            "label": "check_table_structure.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_proactive_indexer.php",
+            "label": "kb_proactive_indexer.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_md_collector.php",
+            "label": "kb_md_collector.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_content_analyzer.php",
+            "label": "kb_content_analyzer.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/enhanced_security_scanner.php",
+            "label": "enhanced_security_scanner.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/fix_database_encoding.php",
+            "label": "fix_database_encoding.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/proper_kb_scanner.php",
+            "label": "proper_kb_scanner.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_intelligence_engine.php",
+            "label": "kb_intelligence_engine.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_crawler.php",
+            "label": "kb_crawler.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/_kb_tools_map-relationships.php",
+            "label": "_kb_tools_map-relationships.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/_kb_tools_verify-kb.php",
+            "label": "_kb_tools_verify-kb.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_deep_intelligence.php",
+            "label": "kb_deep_intelligence.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/_kb_tools_analyze-performance.php",
+            "label": "_kb_tools_analyze-performance.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/smart_kb_scanner.php",
+            "label": "smart_kb_scanner.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/nuclear_kb_cleanup.php",
+            "label": "nuclear_kb_cleanup.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/create_kb_schema.php",
+            "label": "create_kb_schema.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/create_generic_kb_schema.php",
+            "label": "create_generic_kb_schema.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_correlator.php",
+            "label": "kb_correlator.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/enhanced_kb_crawler.php",
+            "label": "enhanced_kb_crawler.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/smart_kb_trigger.php",
+            "label": "smart_kb_trigger.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_search_indexer.php",
+            "label": "kb_search_indexer.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_priority_report.php",
+            "label": "kb_priority_report.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/smart_kb_organizer.php",
+            "label": "smart_kb_organizer.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_multi_crawler.php",
+            "label": "kb_multi_crawler.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_schema_enhance.php",
+            "label": "kb_schema_enhance.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_deployment_system.php",
+            "label": "kb_deployment_system.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/kb_intelligence_engine_v2.php",
+            "label": "kb_intelligence_engine_v2.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/scripts\/quick_kb_scan.php",
+            "label": "quick_kb_scan.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_archive\/2025-10-25_cleanup\/intelligence_related\/utilities\/kb_cron_audit.php",
+            "label": "kb_cron_audit.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_archive\/2025-10-25_cleanup\/intelligence_related\/utilities\/kb_audit_script.php",
+            "label": "kb_audit_script.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_archive\/2025-10-25_cleanup\/intelligence_related\/utilities\/validate_kb_setup.php",
+            "label": "validate_kb_setup.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_archive\/2025-10-25_cleanup\/intelligence_related\/utilities\/fix_table_references.php",
+            "label": "fix_table_references.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_archive\/2025-10-25_cleanup\/intelligence_related\/utilities\/fix_sql_constraints.php",
+            "label": "fix_sql_constraints.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_archive\/2025-10-25\/old_files\/setup_conversation_capture.php",
+            "label": "setup_conversation_capture.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_archive\/2025-10-25\/old_files\/smart_kb_dashboard.php",
+            "label": "smart_kb_dashboard.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_archive\/2025-10-25\/old_files\/activate_conversation_system.php",
+            "label": "activate_conversation_system.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_archive\/2025-10-25\/old_files\/kb_complete_update_sequence.php",
+            "label": "kb_complete_update_sequence.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_kb\/scripts\/enhanced_security_scanner.php",
+            "label": "enhanced_security_scanner.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_kb\/scripts\/kb_cron.php",
+            "label": "kb_cron.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_kb\/scripts\/kb_intelligence_engine_v2.php",
+            "label": "kb_intelligence_engine_v2.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_kb\/kb_config_manager.php",
+            "label": "kb_config_manager.php"
+        },
+        {
+            "id": "builds\/historic\/v1_old\/_kb\/ultimate_web_dev_kb_generator.php",
+            "label": "ultimate_web_dev_kb_generator.php"
+        },
+        {
+            "id": "audit_reports.php",
+            "label": "audit_reports.php"
+        },
+        {
+            "id": "frontend-tools\/test-errors.php",
+            "label": "test-errors.php"
+        },
+        {
+            "id": "mcp\/server_v2.php",
+            "label": "server_v2.php"
+        },
+        {
+            "id": "mcp\/server_v2_complete.php",
+            "label": "server_v2_complete.php"
+        },
+        {
+            "id": "mcp\/auto_refresh.php",
+            "label": "auto_refresh.php"
+        },
+        {
+            "id": "mcp\/tools_satellite.php",
+            "label": "tools_satellite.php"
+        },
+        {
+            "id": "mcp\/advanced_tools.php",
+            "label": "advanced_tools.php"
+        },
+        {
+            "id": "mcp\/health_v2.php",
+            "label": "health_v2.php"
+        },
+        {
+            "id": "mcp\/check_satellites.php",
+            "label": "check_satellites.php"
+        },
+        {
+            "id": "mcp\/tools_impl.php",
+            "label": "tools_impl.php"
+        },
+        {
+            "id": "mcp\/health.php",
+            "label": "health.php"
+        },
+        {
+            "id": "mcp\/analytics_dashboard.php",
+            "label": "analytics_dashboard.php"
+        },
+        {
+            "id": "mcp\/webhook.php",
+            "label": "webhook.php"
+        },
+        {
+            "id": "mcp\/server.php",
+            "label": "server.php"
+        },
+        {
+            "id": "mcp\/test_search.php",
+            "label": "test_search.php"
+        },
+        {
+            "id": "test-errors.php",
+            "label": "test-errors.php"
+        },
+        {
+            "id": "config\/database.php",
+            "label": "database.php"
+        },
+        {
+            "id": "config\/redis.php",
+            "label": "redis.php"
+        },
+        {
+            "id": "check_db_tables.php",
+            "label": "check_db_tables.php"
+        },
+        {
+            "id": "tools\/hardened-security-audit.php",
+            "label": "hardened-security-audit.php"
+        },
+        {
+            "id": "tools\/platform-security-audit.php",
+            "label": "platform-security-audit.php"
+        },
+        {
+            "id": "services\/FrontendTester.php",
+            "label": "FrontendTester.php"
+        },
+        {
+            "id": "services\/CSRFProtection.php",
+            "label": "CSRFProtection.php"
+        },
+        {
+            "id": "services\/run_verified_kb_pipeline.php",
+            "label": "run_verified_kb_pipeline.php"
+        },
+        {
+            "id": "services\/CredentialManager.php",
+            "label": "CredentialManager.php"
+        },
+        {
+            "id": "services\/InputValidator.php",
+            "label": "InputValidator.php"
+        },
+        {
+            "id": "services\/DatabaseValidator.php",
+            "label": "DatabaseValidator.php"
+        },
+        {
+            "id": "services\/SecurityMonitor.php",
+            "label": "SecurityMonitor.php"
+        },
+        {
+            "id": "services\/RateLimiter.php",
+            "label": "RateLimiter.php"
+        },
+        {
+            "id": "services\/BotStandardsExpanded.php",
+            "label": "BotStandardsExpanded.php"
+        },
+        {
+            "id": "services\/run_complete_kb_pipeline.php",
+            "label": "run_complete_kb_pipeline.php"
+        },
+        {
+            "id": "services\/kb_data_validation_final.php",
+            "label": "kb_data_validation_final.php"
+        },
+        {
+            "id": "services\/kb_data_validation_corrected.php",
+            "label": "kb_data_validation_corrected.php"
+        },
+        {
+            "id": "services\/kb_pipeline_analyzer.php",
+            "label": "kb_pipeline_analyzer.php"
+        },
+        {
+            "id": "services\/AIAgentClient.php",
+            "label": "AIAgentClient.php"
+        },
+        {
+            "id": "services\/BotPromptBuilder.php",
+            "label": "BotPromptBuilder.php"
+        },
+        {
+            "id": "services\/kb_data_validation.php",
+            "label": "kb_data_validation.php"
+        },
+        {
+            "id": "services\/cloudways_cron_api.php",
+            "label": "cloudways_cron_api.php"
+        },
+        {
+            "id": "intelligence_control_panel.php",
+            "label": "intelligence_control_panel.php"
+        },
+        {
+            "id": "test_mcp_tools.php",
+            "label": "test_mcp_tools.php"
+        },
+        {
+            "id": "dashboard\/api\/sse-proxy-OLD.php",
+            "label": "sse-proxy-OLD.php"
+        },
+        {
+            "id": "dashboard\/api\/document.php",
+            "label": "document.php"
+        },
+        {
+            "id": "dashboard\/api\/search.php",
+            "label": "search.php"
+        },
+        {
+            "id": "dashboard\/api\/notifications.php",
+            "label": "notifications.php"
+        },
+        {
+            "id": "dashboard\/api\/sse-proxy.php",
+            "label": "sse-proxy.php"
+        },
+        {
+            "id": "dashboard\/api\/recent.php",
+            "label": "recent.php"
+        },
+        {
+            "id": "dashboard\/api\/sse-proxy-HARDENED.php",
+            "label": "sse-proxy-HARDENED.php"
+        },
+        {
+            "id": "dashboard\/api\/run_scanner.php",
+            "label": "run_scanner.php"
+        },
+        {
+            "id": "dashboard\/api\/cleanup_action.php",
+            "label": "cleanup_action.php"
+        },
+        {
+            "id": "dashboard\/api\/stats.php",
+            "label": "stats.php"
+        },
+        {
+            "id": "dashboard\/quick_test.php",
+            "label": "quick_test.php"
+        },
+        {
+            "id": "dashboard\/login.php",
+            "label": "login.php"
+        },
+        {
+            "id": "dashboard\/config\/config.php",
+            "label": "config.php"
+        },
+        {
+            "id": "dashboard\/comprehensive_test.php",
+            "label": "comprehensive_test.php"
+        },
+        {
+            "id": "dashboard\/pages\/ai-prompt-generator.php",
+            "label": "ai-prompt-generator.php"
+        },
+        {
+            "id": "dashboard\/pages\/crawler-monitor.php",
+            "label": "crawler-monitor.php"
+        },
+        {
+            "id": "dashboard\/pages\/files.php",
+            "label": "files.php"
+        },
+        {
+            "id": "dashboard\/pages\/sql-query.php",
+            "label": "sql-query.php"
+        },
+        {
+            "id": "dashboard\/pages\/scanner.php",
+            "label": "scanner.php"
+        },
+        {
+            "id": "dashboard\/pages\/patterns.php",
+            "label": "patterns.php"
+        },
+        {
+            "id": "dashboard\/pages\/api.php",
+            "label": "api.php"
+        },
+        {
+            "id": "dashboard\/pages\/documentation.php",
+            "label": "documentation.php"
+        },
+        {
+            "id": "dashboard\/pages\/ai-chat.php",
+            "label": "ai-chat.php"
+        },
+        {
+            "id": "dashboard\/pages\/logs.php",
+            "label": "logs.php"
+        },
+        {
+            "id": "dashboard\/pages\/settings.php",
+            "label": "settings.php"
+        },
+        {
+            "id": "dashboard\/pages\/conversations.php",
+            "label": "conversations.php"
+        },
+        {
+            "id": "dashboard\/pages\/bot-commands.php",
+            "label": "bot-commands.php"
+        },
+        {
+            "id": "dashboard\/pages\/search.php",
+            "label": "search.php"
+        },
+        {
+            "id": "dashboard\/pages\/servers.php",
+            "label": "servers.php"
+        },
+        {
+            "id": "dashboard\/pages\/functions.php",
+            "label": "functions.php"
+        },
+        {
+            "id": "dashboard\/pages\/mcp-tools.php",
+            "label": "mcp-tools.php"
+        },
+        {
+            "id": "dashboard\/pages\/bot-standards.php",
+            "label": "bot-standards.php"
+        },
+        {
+            "id": "dashboard\/pages\/analytics.php",
+            "label": "analytics.php"
+        },
+        {
+            "id": "dashboard\/pages\/overview.php",
+            "label": "overview.php"
+        },
+        {
+            "id": "dashboard\/pages\/neural.php",
+            "label": "neural.php"
+        },
+        {
+            "id": "dashboard\/pages\/cleanup.php",
+            "label": "cleanup.php"
+        },
+        {
+            "id": "dashboard\/pages\/cron.php",
+            "label": "cron.php"
+        },
+        {
+            "id": "dashboard\/test_html_output.php",
+            "label": "test_html_output.php"
+        },
+        {
+            "id": "dashboard\/index.php",
+            "label": "index.php"
+        },
+        {
+            "id": "dashboard\/includes\/header.php",
+            "label": "header.php"
+        },
+        {
+            "id": "dashboard\/includes\/auth.php",
+            "label": "auth.php"
+        },
+        {
+            "id": "dashboard\/includes\/breadcrumb.php",
+            "label": "breadcrumb.php"
+        },
+        {
+            "id": "dashboard\/includes\/footer.php",
+            "label": "footer.php"
+        },
+        {
+            "id": "dashboard\/includes\/sidebar.php",
+            "label": "sidebar.php"
+        },
+        {
+            "id": "dashboard\/includes\/functions.php",
+            "label": "functions.php"
+        },
+        {
+            "id": "dashboard\/includes\/ConversationLogger.php",
+            "label": "ConversationLogger.php"
+        },
+        {
+            "id": "dashboard\/logout.php",
+            "label": "logout.php"
+        },
+        {
+            "id": "_kb\/scripts\/generate_call_graph.php",
+            "label": "generate_call_graph.php"
+        },
+        {
+            "id": "_kb\/scripts\/ast_security_scanner.php",
+            "label": "ast_security_scanner.php"
+        },
+        {
+            "id": "_kb\/scripts\/analyze_single_file.php",
+            "label": "analyze_single_file.php"
+        },
+        {
+            "id": "_kb\/api\/intelligence_receiver.php",
+            "label": "intelligence_receiver.php"
+        },
+        {
+            "id": "_kb\/api\/intelligence_distributor.php",
+            "label": "intelligence_distributor.php"
+        },
+        {
+            "id": "_kb\/kb_config_manager.php",
+            "label": "kb_config_manager.php"
+        },
+        {
+            "id": "_kb\/ultimate_web_dev_kb_generator.php",
+            "label": "ultimate_web_dev_kb_generator.php"
+        },
+        {
+            "id": "_kb\/config\/KBConfigManager.php",
+            "label": "KBConfigManager.php"
+        },
+        {
+            "id": "_kb\/lib\/CronClient.php",
+            "label": "CronClient.php"
+        },
+        {
+            "id": "_kb\/lib\/EnvLoader.php",
+            "label": "EnvLoader.php"
+        },
+        {
+            "id": "create-real-multibot.php",
+            "label": "create-real-multibot.php"
+        }
+    ],
+    "edges": [
+        {
+            "from": "scripts\/kb-sdk.php",
+            "to": "scripts\/kb-sdk.php"
+        },
+        {
+            "from": "builds\/active\/scripts\/kb-sdk.php",
+            "to": "builds\/active\/scripts\/kb-sdk.php"
+        }
+    ]
+}

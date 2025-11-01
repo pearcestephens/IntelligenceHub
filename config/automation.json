@@ -1,0 +1,557 @@
+{
+  "version": "3.0.0",
+  "last_updated": "2025-10-28T14:40:00Z",
+  "automation": {
+    "sync_interval": 300,
+    "full_sync_interval": 3600,
+    "readme_generation_interval": 21600,
+    "vscode_update_interval": 86400,
+    "changelog_update_interval": 1800,
+    "change_detection_interval": 60,
+    "ai_analysis_interval": 180,
+    "auto_commit": true,
+    "backup_before_sync": true,
+    "verbose_logging": true,
+    "satellite_timeout": 30,
+    "max_retries": 3,
+    "track_file_changes": true,
+    "generate_changelogs": true,
+    "auto_update_instructions": true,
+    "ai_powered_analysis": true,
+    "real_time_monitoring": true,
+    "project_auto_detection": true,
+    "activity_categorization": true,
+    "smart_labeling": true
+  },
+  "sources": {
+    "cis_automation": "/home/master/applications/jcepnzzkmj/public_html/_automation",
+    "hub_kb": "/home/master/applications/hdgwrzntwa/public_html/_kb",
+    "user_prompts": "/c/Users/pearc/AppData/Roaming/Code/User/prompts",
+    "user_instructions": "C:\\Users\\pearc\\AppData\\Roaming\\Code\\User\\prompts",
+    "github_instructions": "/home/master/applications/hdgwrzntwa/.github"
+  },
+  "targets": {
+    "vscode_settings": [
+      "/home/master/applications/hdgwrzntwa/.vscode/settings.json",
+      "/home/master/applications/jcepnzzkmj/.vscode/settings.json"
+    ],
+    "github_repos": [
+      "/home/master/applications/hdgwrzntwa/.github/copilot-instructions.md",
+      "/home/master/applications/jcepnzzkmj/.github/copilot-instructions.md"
+    ],
+    "github_all_projects": [
+      "/home/master/applications/*/public_html/.github/copilot-instructions.md",
+      "/home/master/applications/*/.github/copilot-instructions.md",
+      "/home/master/applications/hdgwrzntwa/.github/copilot-instructions.md",
+      "/home/master/applications/jcepnzzkmj/.github/copilot-instructions.md"
+    ],
+    "kb_locations": [
+      "/home/master/applications/hdgwrzntwa/public_html/_kb/automation",
+      "/home/master/applications/hdgwrzntwa/public_html/_kb/prompts",
+      "/home/master/applications/hdgwrzntwa/public_html/_kb/instructions",
+      "/home/master/applications/hdgwrzntwa/public_html/_kb/user_instructions",
+      "/home/master/applications/hdgwrzntwa/public_html/_kb/github_instructions",
+      "/home/master/applications/hdgwrzntwa/public_html/_kb/changelogs",
+      "/home/master/applications/hdgwrzntwa/public_html/_kb/change_tracking"
+    ]
+  },
+  "satellites": {
+    "cis": {
+      "id": "cis",
+      "name": "CIS Staff Portal",
+      "url": "https://staff.vapeshed.co.nz",
+      "sync_endpoint": "/api/copilot-sync.php",
+      "enabled": true,
+      "priority": 1
+    },
+    "retail": {
+      "id": "retail", 
+      "name": "Retail Website",
+      "url": "https://www.vapeshed.co.nz",
+      "sync_endpoint": "/api/copilot-sync.php",
+      "enabled": true,
+      "priority": 2
+    },
+    "vaping_kiwi": {
+      "id": "vaping-kiwi",
+      "name": "Vaping Kiwi",
+      "url": "https://www.vapingkiwi.co.nz", 
+      "sync_endpoint": "/api/copilot-sync.php",
+      "enabled": true,
+      "priority": 3
+    },
+    "wholesale": {
+      "id": "wholesale",
+      "name": "Wholesale Portal",
+      "url": "https://wholesale.vapeshed.co.nz",
+      "sync_endpoint": "/api/copilot-sync.php",
+      "enabled": false,
+      "priority": 4
+    }
+  },
+  "instruction_files": [
+    "06_company_org_pack.instructions.md",
+    "BOT TOOL SET REMINDER.instructions.md",
+    "BOT_MASTER.md.instructions.md",
+    "CIS BOT CONSTITUTION.instructions.md",
+    "cis website.instructions.md",
+    "Deep Problem Solving.instructions.md",
+    "Front End Speciialist.instructions.md",
+    "Generic Project Builder.instructions.md",
+    "High Quality.instructions.md",
+    "KB-MASTER-SETUP.md.instructions.md",
+    "MCP_TOOL_ACTIVATION_MANDATE.instructions.md",
+    "Network Engineer.instructions.md",
+    "ULTRA_MASTER_CONNECTOR.instructions.md",
+    "SYSTEM_AUTO_LOADER.instructions.md",
+    "COMPLETE_SYSTEM_MANDATE.instructions.md",
+    "AUTONOMOUS_SYSTEM_MAINTAINER_PROMPT.instructions.md",
+    "AUTONOMOUS_MAINTENANCE_QUICK.instructions.md",
+    "AUTONOMOUS_SYSTEM_LEARNER_PROMPT.instructions.md",
+    "SYSTEM_LEARNING_QUICK.instructions.md"
+  ],
+  "specialized_prompts": {
+    "daily_checklist": {
+      "enabled": true,
+      "auto_generate": true,
+      "update_frequency": "daily"
+    },
+    "code_review": {
+      "enabled": true,
+      "auto_generate": true,
+      "update_frequency": "weekly"
+    },
+    "security_audit": {
+      "enabled": true,
+      "auto_generate": true,
+      "update_frequency": "weekly"
+    },
+    "performance_optimization": {
+      "enabled": true,
+      "auto_generate": true,
+      "update_frequency": "weekly"
+    },
+    "documentation": {
+      "enabled": true,
+      "auto_generate": true,
+      "update_frequency": "daily"
+    }
+  },
+  "multi_bot_config": {
+    "bots": {
+      "frontend": {
+        "name": "Frontend Specialist",
+        "instructions_file": "frontend-specialist.md",
+        "capabilities": ["UI/UX", "CSS", "JavaScript", "React", "Vue", "Bootstrap"],
+        "priority": 1
+      },
+      "backend": {
+        "name": "Backend Engineer", 
+        "instructions_file": "backend-engineer.md",
+        "capabilities": ["PHP", "Python", "Node.js", "Databases", "APIs", "Microservices"],
+        "priority": 1
+      },
+      "security": {
+        "name": "Security Auditor",
+        "instructions_file": "security-auditor.md", 
+        "capabilities": ["Security", "Compliance", "Auditing", "Penetration Testing", "OWASP"],
+        "priority": 2
+      },
+      "database": {
+        "name": "Database Specialist",
+        "instructions_file": "database-specialist.md",
+        "capabilities": ["MySQL", "PostgreSQL", "MongoDB", "Optimization", "Migrations"],
+        "priority": 2
+      },
+      "devops": {
+        "name": "DevOps Engineer",
+        "instructions_file": "devops-engineer.md",
+        "capabilities": ["Docker", "CI/CD", "Monitoring", "Automation", "Cloud"],
+        "priority": 3
+      }
+    },
+    "shared_resources": {
+      "mcp_server": "https://gpt.ecigdis.co.nz/mcp/server_v2_complete.php",
+      "knowledge_base": "/home/master/applications/hdgwrzntwa/public_html/_kb",
+      "automation": "/home/master/applications/hdgwrzntwa/public_html/_kb/automation",
+      "tools": "/home/master/applications/hdgwrzntwa/public_html/assets/services"
+    }
+  },
+  "logging": {
+    "log_directory": "/home/master/applications/hdgwrzntwa/public_html/logs",
+    "log_level": "INFO",
+    "max_log_size": "10MB",
+    "log_retention_days": 30,
+    "separate_error_log": true
+  },
+  "monitoring": {
+    "health_check_interval": 300,
+    "alert_on_failures": true,
+    "alert_threshold": 3,
+    "performance_tracking": true,
+    "success_rate_monitoring": true
+  },
+  "ai_analysis": {
+    "enabled": true,
+    "analysis_endpoint": "https://gpt.ecigdis.co.nz/mcp/ai-analyze.php",
+    "ai_providers": {
+      "claude": {
+        "enabled": true,
+        "api_endpoint": "https://api.anthropic.com/v1/messages",
+        "api_key_env": "ANTHROPIC_API_KEY",
+        "model": "claude-3-5-sonnet-20241022",
+        "default_max_tokens": 8000,
+        "models_available": [
+          "claude-3-5-sonnet-20241022",
+          "claude-3-opus-20240229",
+          "claude-3-sonnet-20240229",
+          "claude-3-haiku-20240307"
+        ],
+        "cost_per_1k_tokens": {
+          "input": 0.003,
+          "output": 0.015
+        },
+        "rate_limits": {
+          "requests_per_minute": 50,
+          "tokens_per_minute": 40000
+        }
+      },
+      "openai": {
+        "enabled": true,
+        "api_endpoint": "https://api.openai.com/v1/chat/completions",
+        "api_key_env": "OPENAI_API_KEY",
+        "model": "gpt-4-turbo-preview",
+        "cost_per_1k_tokens": {
+          "input": 0.01,
+          "output": 0.03
+        }
+      },
+      "primary_provider": "claude"
+    },
+    "real_time_analysis": true,
+    "multi_instance_analysis": {
+      "enabled": true,
+      "max_concurrent_instances": 5,
+      "rate_limits": {
+        "requests_per_minute": 60,
+        "requests_per_hour": 1000,
+        "requests_per_day": 10000
+      },
+      "batch_processing": {
+        "enabled": true,
+        "batch_size": 10,
+        "max_batch_wait_time": 30,
+        "priority_batching": true
+      },
+      "token_optimization": {
+        "enabled": true,
+        "adaptive_limits": true,
+        "token_limits": {
+          "summary_1_sentence": 50,
+          "summary_1_paragraph": 200,
+          "summary_1_page": 1000,
+          "summary_5_pages": 4000,
+          "detailed_analysis": 8000,
+          "comprehensive_review": 16000
+        },
+        "content_size_detection": true,
+        "smart_truncation": true
+      }
+    },
+    "change_detection": {
+      "enabled": true,
+      "detect_vscode_saves": true,
+      "detect_ftp_uploads": true,
+      "ignore_system_changes": true,
+      "ignore_patterns": [
+        "*.log",
+        "*.cache",
+        "*/node_modules/*",
+        "*/vendor/*",
+        "*/.git/*",
+        "*/tmp/*",
+        "*/temp/*",
+        "*backup*",
+        "*log*"
+      ],
+      "system_change_filters": {
+        "ignore_bulk_operations": true,
+        "ignore_repeated_changes": true,
+        "min_time_between_changes": 5,
+        "max_files_per_batch": 50
+      }
+    },
+    "usage_tracking": {
+      "enabled": true,
+      "track_all_bot_requests": true,
+      "log_token_usage": true,
+      "track_work_types": true,
+      "track_api_costs": true,
+      "detailed_logging": true,
+      "retention_days": 90,
+      "log_files": {
+        "bot_usage": "logs/bot-usage.log",
+        "token_usage": "logs/token-usage.log", 
+        "api_costs": "logs/api-costs.log",
+        "work_classification": "logs/work-classification.log"
+      }
+    },
+    "spending_controls": {
+      "enabled": true,
+      "budget_management": {
+        "daily_budget_usd": 50.00,
+        "weekly_budget_usd": 300.00,
+        "monthly_budget_usd": 1000.00,
+        "emergency_stop_limit": 1500.00,
+        "warning_thresholds": {
+          "50_percent": true,
+          "75_percent": true,
+          "90_percent": true
+        }
+      },
+      "token_limits": {
+        "daily_token_limit": 1000000,
+        "hourly_token_limit": 50000,
+        "per_request_token_limit": 16000,
+        "emergency_token_limit": 2000000
+      },
+      "rate_limiting": {
+        "max_requests_per_minute": 60,
+        "max_requests_per_hour": 1000,
+        "max_concurrent_requests": 10,
+        "cooldown_after_limit": 300
+      },
+      "cost_per_token": {
+        "gpt4_input": 0.00003,
+        "gpt4_output": 0.00006,
+        "gpt35_input": 0.0000015,
+        "gpt35_output": 0.000002,
+        "embedding": 0.0000001
+      },
+      "auto_throttling": {
+        "enabled": true,
+        "reduce_batch_size_at_75_percent": true,
+        "pause_non_critical_at_90_percent": true,
+        "emergency_stop_at_100_percent": true
+      },
+      "alert_system": {
+        "enabled": true,
+        "email_alerts": false,
+        "log_alerts": true,
+        "dashboard_alerts": true,
+        "alert_on_budget_warnings": true,
+        "alert_on_rate_limit_hit": true,
+        "alert_on_emergency_stop": true
+      }
+    },
+    "dashboard_controls": {
+      "enabled": true,
+      "full_remote_control": true,
+      "real_time_updates": true,
+      "settings_sync_interval": 30,
+      "dashboard_endpoint": "https://gpt.ecigdis.co.nz/dashboard/automation-controls.php",
+      "controllable_settings": {
+        "ai_analysis": {
+          "enabled": true,
+          "max_concurrent_instances": true,
+          "batch_size": true,
+          "token_limits": true,
+          "rate_limits": true,
+          "change_detection_filters": true
+        },
+        "spending_controls": {
+          "daily_budget": true,
+          "weekly_budget": true,
+          "monthly_budget": true,
+          "emergency_limits": true,
+          "token_limits": true,
+          "rate_limiting": true,
+          "auto_throttling": true,
+          "alert_thresholds": true
+        },
+        "system_monitoring": {
+          "analysis_frequency": true,
+          "logging_levels": true,
+          "retention_periods": true,
+          "performance_thresholds": true
+        },
+        "project_detection": {
+          "business_unit_mapping": true,
+          "activity_categories": true,
+          "ignore_patterns": true,
+          "priority_projects": true
+        }
+      },
+      "dashboard_widgets": {
+        "real_time_usage": true,
+        "budget_monitoring": true,
+        "token_consumption": true,
+        "api_cost_tracking": true,
+        "activity_classification": true,
+        "system_performance": true,
+        "project_activity_heatmap": true,
+        "spending_trends": true,
+        "rate_limit_status": true,
+        "emergency_controls": true
+      },
+      "remote_actions": {
+        "pause_all_analysis": true,
+        "emergency_stop": true,
+        "adjust_budgets": true,
+        "modify_rate_limits": true,
+        "update_token_limits": true,
+        "change_batch_sizes": true,
+        "toggle_analysis_types": true,
+        "export_usage_reports": true,
+        "reset_daily_counters": true,
+        "force_sync_settings": true
+      },
+      "api_endpoints": {
+        "get_current_settings": "/api/automation/get-settings",
+        "update_settings": "/api/automation/update-settings",
+        "get_usage_stats": "/api/automation/get-usage",
+        "get_budget_status": "/api/automation/get-budget",
+        "emergency_stop": "/api/automation/emergency-stop",
+        "reset_limits": "/api/automation/reset-limits",
+        "export_reports": "/api/automation/export-reports"
+      }
+    },
+    "activity_categorization": {
+      "enabled": true,
+      "categories": [
+        "project_development",
+        "general_cis_maintenance", 
+        "documentation_updates",
+        "bug_fixes",
+        "feature_additions",
+        "security_updates",
+        "performance_optimization",
+        "database_changes",
+        "api_modifications",
+        "ui_improvements"
+      ]
+    },
+    "project_detection": {
+      "enabled": true,
+      "auto_labeling": true,
+      "pattern_recognition": true,
+      "business_unit_mapping": {
+        "hdgwrzntwa": "Intelligence Hub",
+        "jcepnzzkmj": "CIS Staff Portal",
+        "vapeshed_pos": "Retail POS System",
+        "nicshots": "Nicshots Business",
+        "yorvik_electrical": "Yorvik Electrical"
+      }
+    },
+    "change_analysis": {
+      "enabled": true,
+      "file_pattern_analysis": true,
+      "impact_assessment": true,
+      "changelog_generation": true,
+      "smart_commit_messages": true
+    }
+  },
+  "change_tracking": {
+    "enabled": true,
+    "track_file_modifications": true,
+    "track_database_changes": true,
+    "track_configuration_changes": true,
+    "generate_change_reports": true,
+    "change_notification": true,
+    "changelog_formats": ["markdown", "json", "html"],
+    "change_categories": [
+      "feature",
+      "bugfix", 
+      "security",
+      "performance",
+      "documentation",
+      "refactor",
+      "breaking",
+      "maintenance"
+    ]
+  },
+  "multi_instance_analysis": {
+    "enabled": true,
+    "max_concurrent_instances": 5,
+    "batch_size": 5,
+    "instance_timeout_seconds": 300,
+    "adaptive_token_limits": {
+      "min_tokens": 50,
+      "max_tokens": 16000,
+      "auto_adjust": true
+    },
+    "rate_limiting": {
+      "requests_per_minute": 60,
+      "requests_per_hour": 1000,
+      "burst_allowance": 10
+    },
+    "load_balancing": {
+      "distribute_by_file_size": true,
+      "prefer_smaller_batches": true,
+      "queue_management": "fifo"
+    },
+    "failover": {
+      "retry_attempts": 3,
+      "retry_delay_seconds": 30,
+      "circuit_breaker_threshold": 5
+    }
+  },
+  "spending_controls": {
+    "enabled": true,
+    "currency": "USD",
+    "budget_management": {
+      "daily_budget_usd": 50,
+      "weekly_budget_usd": 300,
+      "monthly_budget_usd": 1000,
+      "emergency_stop_percentage": 90,
+      "throttle_percentage": 75,
+      "warning_percentage": 50
+    },
+    "cost_tracking": {
+      "track_per_operation": true,
+      "track_per_instance": true,
+      "track_per_day": true,
+      "include_api_costs": true,
+      "include_processing_costs": true
+    },
+    "alerts": {
+      "budget_warnings": true,
+      "cost_spike_detection": true,
+      "daily_summary": true,
+      "emergency_notifications": true
+    },
+    "optimization": {
+      "auto_token_adjustment": true,
+      "batch_size_optimization": true,
+      "instance_scaling": true,
+      "cost_prediction": true
+    }
+  },
+  "dashboard_controls": {
+    "enabled": true,
+    "real_time_updates": true,
+    "update_interval_seconds": 5,
+    "features": {
+      "instance_control": true,
+      "budget_management": true,
+      "real_time_monitoring": true,
+      "emergency_controls": true,
+      "settings_management": true,
+      "log_viewing": true,
+      "analytics_dashboard": true,
+      "performance_metrics": true
+    },
+    "api": {
+      "enabled": true,
+      "authentication": false,
+      "rate_limiting": true,
+      "logging": true
+    },
+    "ui": {
+      "theme": "dark",
+      "auto_refresh": true,
+      "notifications": true,
+      "charts": true
+    }
+  }
+}

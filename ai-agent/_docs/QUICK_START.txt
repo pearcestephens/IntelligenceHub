@@ -1,0 +1,108 @@
+╔══════════════════════════════════════════════════════════════════════╗
+║         AI AGENT MULTI-KNOWLEDGE BANK - QUICK START GUIDE            ║
+╚══════════════════════════════════════════════════════════════════════╝
+
+📚 DOCUMENTS CREATED FOR YOU:
+  1. README_APPROVAL_NEEDED.md    ← START HERE! (summary + decision checklist)
+  2. MULTI_KB_ARCHITECTURE.md     ← Full design (6,000 words)
+  3. FINAL_NAMING_SUMMARY.md      ← Visual diagram + stats
+  4. NAMING_CONVENTION.md         ← Official standards
+  5. PRODUCTION_TABLE_AUDIT.md    ← Current state analysis
+
+🚀 DEPLOYMENT SCRIPTS READY:
+  1. deploy-multi-kb-registry.sql ← Creates registry (SAFE - run first)
+  2. deploy-rename.sh             ← Renames core tables (NEEDS APPROVAL)
+  3. rename-to-ai-agent-tables.sql← Simple SQL rename
+
+═══════════════════════════════════════════════════════════════════════
+
+🎯 THE PROPOSED ARCHITECTURE:
+
+┌─────────────────────────────────────────────────────────────────────┐
+│ LAYER 1: CORE AGENT (Shared)                                       │
+│   ai_agent_conversations, ai_agent_messages, etc. (9 tables)       │
+├─────────────────────────────────────────────────────────────────────┤
+│ LAYER 2: DOMAIN KNOWLEDGE BANKS (Isolated per domain)              │
+│   ai_kb_staff_*      (CIS, transfers, HR)                          │
+│   ai_kb_web_*        (products, FAQs)                              │
+│   ai_kb_gpt_*        (AI configs, prompts)                         │
+│   ai_kb_wiki_*       (docs, SOPs)                                  │
+│   ai_kb_global_*     (shared company info)                         │
+├─────────────────────────────────────────────────────────────────────┤
+│ LAYER 3: ORCHESTRATION (Domain-aware)                              │
+│   ai_cis_kb_orchestration_log (+ domain_key column)                │
+│   ai_cis_kb_tool_executions, etc. (6 tables)                       │
+├─────────────────────────────────────────────────────────────────────┤
+│ LAYER 4: REGISTRY (NEW - enables multi-domain)                     │
+│   ai_kb_domain_registry       (domain config)                      │
+│   ai_kb_domain_inheritance    (inheritance graph)                  │
+├─────────────────────────────────────────────────────────────────────┤
+│ LAYER 5: EXTENSIONS (Future)                                       │
+│   ai_agent_ext_*     (plugin modules)                              │
+└─────────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════════
+
+📋 INHERITANCE EXAMPLE:
+
+  wiki.vapeshed.co.nz query: "What is our return policy?"
+    ↓
+  1. Search ai_kb_wiki_* (wiki-specific docs)
+  2. Search ai_kb_global_* (inherited - company policies)
+  3. Search ai_kb_staff_* (inherited - internal procedures)
+    ↓
+  Returns: Combined results, de-duplicated, sorted by relevance
+
+═══════════════════════════════════════════════════════════════════════
+
+🔧 SAFE DEPLOYMENT (3 COMMANDS):
+
+# Step 1: Deploy registry (ZERO RISK - new tables only)
+cd /home/master/applications/jcepnzzkmj/public_html/ai-agent/database
+mysql -u jcepnzzkmj -pwprKh9Jq63 jcepnzzkmj < deploy-multi-kb-registry.sql
+
+# Step 2: Verify
+mysql -u jcepnzzkmj -pwprKh9Jq63 jcepnzzkmj -e "
+  SELECT domain_key, domain_name, application_name 
+  FROM ai_kb_domain_registry;"
+
+# Step 3: Create domain KB tables (later, after approval)
+# ... (scripts ready, awaiting your decision)
+
+═══════════════════════════════════════════════════════════════════════
+
+❓ KEY DECISIONS NEEDED:
+
+1. Approve naming convention?
+   ☐ ai_agent_* for core
+   ☐ ai_kb_{domain}_* for knowledge banks
+   ☐ ai_agent_ext_* for extensions
+
+2. Multi-domain approach?
+   ☐ Separate tables per domain (RECOMMENDED)
+   ☐ Single tables + domain column
+
+3. Deploy registry now?
+   ☐ YES - deploy-multi-kb-registry.sql (safe, no impact)
+   ☐ NO - need more review
+
+4. Rename core tables?
+   ☐ YES - run deploy-rename.sh (creates backups)
+   ☐ LATER - after multi-KB is tested
+   ☐ NO - keep current names
+
+═══════════════════════════════════════════════════════════════════════
+
+📞 WHAT I NEED FROM YOU:
+
+Read: README_APPROVAL_NEEDED.md
+Then tell me:
+  1. Which multi-domain approach?
+  2. Deploy registry now?
+  3. Rename core tables now or later?
+
+═══════════════════════════════════════════════════════════════════════
+
+🎯 ALL READY TO GO - JUST AWAITING YOUR APPROVAL! 🚀
+
+Location: /home/master/applications/jcepnzzkmj/public_html/ai-agent/

@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "cis-intelligence": {
+      "command": "node",
+      "args": [
+        "/home/master/applications/hdgwrzntwa/public_html/mcp/server.js"
+      ],
+      "env": {
+        "DB_HOST": "127.0.0.1",
+        "DB_USER": "hdgwrzntwa",
+        "DB_PASS": "bFUdRjh4Jx",
+        "DB_NAME": "hdgwrzntwa",
+        "REDIS_HOST": "127.0.0.1",
+        "REDIS_PORT": "6379"
+      }
+    }
+  }
+}

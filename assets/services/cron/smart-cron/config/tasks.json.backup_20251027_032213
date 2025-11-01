@@ -1,0 +1,1010 @@
+{
+    "tasks": [
+        {
+            "name": "heartbeat",
+            "script": "assets/services/cron/scripts/heartbeat.php",
+            "description": "\u2764\ufe0f System heartbeat - keeps dashboard alive (ALWAYS RUNS)",
+            "frequency": "every_minute",
+            "type": "critical",
+            "estimated_duration": 0.1,
+            "estimated_memory_mb": 5,
+            "enabled": true,
+            "bypass_circuit_breaker": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 2,
+                "memory_alert_mb": 10
+            },
+            "comment": "Path relative to public_html - SIMPLE & RELIABLE"
+        },
+        {
+            "name": "Neuro_GenerateEmbeddings",
+            "script": "assets/services/neuro/neuro_/cron_jobs/generate_embeddings.php",
+            "description": "Generates AI embeddings for products and content",
+            "frequency": "every_2_minutes",
+            "offset": 2,
+            "type": "medium",
+            "estimated_duration": 15,
+            "estimated_memory_mb": 200,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 30,
+                "memory_alert_mb": 300
+            }
+        },
+        {
+            "name": "Neuro_SalesIntelligence",
+            "script": "assets/services/neuro/neuro_/cron_jobs/sales_intelligence.php",
+            "description": "Real-time sales pattern analysis",
+            "frequency": "every_5_minutes",
+            "offset": 9,
+            "type": "medium",
+            "estimated_duration": 12,
+            "estimated_memory_mb": 150,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 30,
+                "memory_alert_mb": 225
+            }
+        },
+        {
+            "name": "LightSpeed_ConsignmentSync",
+            "script": "assets/services/queue/bin/cron/consignment-sync.php",
+            "description": "Syncs consignments with Lightspeed/Vend",
+            "frequency": "every_15_minutes",
+            "offset": 8,
+            "type": "medium",
+            "estimated_duration": 20,
+            "estimated_memory_mb": 120,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 120,
+                "memory_alert_mb": 200
+            },
+            "schedule": "every_15_minutes"
+        },
+        {
+            "name": "KB_HealthCheck",
+            "script": "assets/services/ai-agent/public/api/health-check.php",
+            "description": "Knowledge base system health monitoring",
+            "frequency": "every_30_minutes",
+            "offset": 8,
+            "type": "light",
+            "estimated_duration": 5,
+            "estimated_memory_mb": 30,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 30,
+                "memory_alert_mb": 50
+            }
+        },
+        {
+            "name": "Neuro_CustomerIntelligence",
+            "script": "assets/services/cron/scripts/neuro/customer-intelligence.php",
+            "description": "Customer behavior analysis and insights",
+            "frequency": "every_10_minutes",
+            "offset": 11,
+            "type": "medium",
+            "estimated_duration": 15,
+            "estimated_memory_mb": 180,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 30,
+                "memory_alert_mb": 270
+            }
+        },
+        {
+            "name": "Neuro_MarketIntelligence",
+            "script": "assets/services/cron/scripts/neuro/market-intelligence.php",
+            "description": "Market trends and competitive analysis",
+            "frequency": "every_15_minutes",
+            "offset": 9,
+            "type": "medium",
+            "estimated_duration": 18,
+            "estimated_memory_mb": 200,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 36,
+                "memory_alert_mb": 300
+            }
+        },
+        {
+            "name": "KB_DocumentHarvester",
+            "script": "assets/services/cron/scripts/general/document-harvester.php",
+            "description": "Auto-discovers and indexes documentation",
+            "frequency": "every_6_hours",
+            "offset": 17,
+            "type": "medium",
+            "estimated_duration": 30,
+            "estimated_memory_mb": 150,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 60,
+                "memory_alert_mb": 225
+            }
+        },
+        {
+            "name": "KB_RefreshQuick",
+            "script": "_kb/tools/refresh-kb.php --quick",
+            "description": "Quick KB refresh (files only)",
+            "frequency": "every_4_hours",
+            "offset": 27,
+            "type": "light",
+            "estimated_duration": 45,
+            "estimated_memory_mb": 100,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 90,
+                "memory_alert_mb": 150
+            }
+        },
+        {
+            "name": "KB_MapRelationships",
+            "script": "assets/services/cron/scripts/general/map-relationships.php",
+            "description": "Maps code dependencies and relationships",
+            "frequency": "every_6_hours",
+            "offset": 42,
+            "type": "medium",
+            "estimated_duration": 180,
+            "estimated_memory_mb": 250,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 360,
+                "memory_alert_mb": 375
+            }
+        },
+        {
+            "name": "KB_Verify",
+            "script": "_kb/tools/verify-kb.php",
+            "description": "Verifies KB integrity and completeness",
+            "frequency": "every_12_hours",
+            "offset": 53,
+            "type": "light",
+            "estimated_duration": 30,
+            "estimated_memory_mb": 80,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 60,
+                "memory_alert_mb": 120
+            }
+        },
+        {
+            "name": "Neuro_SalesAggregationHourly",
+            "script": "assets/services/cron/scripts/neuro/sales-aggregation-hourly.php",
+            "description": "Hourly sales data aggregation",
+            "frequency": "hourly",
+            "minute": 5,
+            "type": "light",
+            "estimated_duration": 8,
+            "estimated_memory_mb": 80,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 30,
+                "memory_alert_mb": 120
+            }
+        },
+        {
+            "name": "Neuro_HourlyAnalytics",
+            "script": "assets/services/cron/scripts/neuro/hourly-analytics.php",
+            "description": "Comprehensive hourly analytics processing",
+            "frequency": "hourly",
+            "minute": 18,
+            "type": "medium",
+            "estimated_duration": 25,
+            "estimated_memory_mb": 300,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 180,
+                "memory_alert_mb": 300
+            },
+            "schedule": "every_hour"
+        },
+        {
+            "name": "Neuro_AnomalyDetection",
+            "script": "assets/services/cron/scripts/neuro/anomaly-detection.php",
+            "description": "Detects anomalies in sales and inventory",
+            "frequency": "hourly",
+            "minute": 25,
+            "type": "medium",
+            "estimated_duration": 20,
+            "estimated_memory_mb": 250,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 40,
+                "memory_alert_mb": 375
+            }
+        },
+        {
+            "name": "Neuro_VectorClustering",
+            "script": "assets/services/cron/scripts/neuro/vector-clustering.php",
+            "description": "AI vector clustering for product recommendations",
+            "frequency": "hourly",
+            "minute": 32,
+            "type": "heavy",
+            "estimated_duration": 45,
+            "estimated_memory_mb": 600,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 90,
+                "memory_alert_mb": 900
+            }
+        },
+        {
+            "name": "Neuro_PerformanceOptimization",
+            "script": "assets/services/cron/scripts/neuro/performance-optimization.php",
+            "description": "System performance analysis and optimization",
+            "frequency": "hourly",
+            "minute": 48,
+            "type": "medium",
+            "estimated_duration": 15,
+            "estimated_memory_mb": 150,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 30,
+                "memory_alert_mb": 225
+            }
+        },
+        {
+            "name": "check_bank_transaction",
+            "display_name": "Check Bank Transaction",
+            "script": "assets/cron/xero/check-bank-transactions.php",
+            "description": "\ud83d\udcb0 Xero bank transaction reconciliation checker - ACTIVE",
+            "frequency": "every_15_minutes",
+            "offset": 5,
+            "business_hours": true,
+            "business_hours_start": "08:00",
+            "business_hours_end": "23:00",
+            "type": "medium",
+            "estimated_duration": 30,
+            "estimated_memory_mb": 80,
+            "enabled": true,
+            "bypass_circuit_breaker": false,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 45,
+                "memory_alert_mb": 100
+            }
+        },
+        {
+            "name": "verifone_transactions",
+            "display_name": "Verifone Transactions",
+            "script": "assets/services/cron/scripts/general/sync-transactions.php",
+            "description": "Syncs Verifone payment transactions (business hours)",
+            "frequency": "every_30_minutes",
+            "offset": 5,
+            "business_hours": true,
+            "business_hours_start": "08:00",
+            "business_hours_end": "23:00",
+            "type": "medium",
+            "estimated_duration": 15,
+            "estimated_memory_mb": 100,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 30,
+                "memory_alert_mb": 150
+            }
+        },
+        {
+            "name": "google_token_refresh",
+            "display_name": "Google Token Refresh",
+            "script": "assets/services/cron/scripts/general/token-refresh.php",
+            "description": "Refreshes Google API tokens (business hours)",
+            "frequency": "every_30_minutes",
+            "offset": 10,
+            "business_hours": true,
+            "business_hours_start": "08:00",
+            "business_hours_end": "23:00",
+            "type": "light",
+            "estimated_duration": 5,
+            "estimated_memory_mb": 30,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 30,
+                "memory_alert_mb": 50
+            }
+        },
+        {
+            "name": "UpdateSalesSnapshot",
+            "script": "assets/services/cron/scripts/inventory/update-sales-snapshot.php",
+            "description": "Updates daily sales snapshot",
+            "frequency": "daily",
+            "hour": 1,
+            "minute": 15,
+            "type": "medium",
+            "estimated_duration": 30,
+            "estimated_memory_mb": 200,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 60,
+                "memory_alert_mb": 300
+            }
+        },
+        {
+            "name": "HarpProductFetch",
+            "script": "assets/services/cron/scripts/general/product-fetch.php",
+            "description": "Fetches products from Harp supplier",
+            "frequency": "daily",
+            "hour": 2,
+            "minute": 5,
+            "type": "medium",
+            "estimated_duration": 45,
+            "estimated_memory_mb": 150,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 90,
+                "memory_alert_mb": 225
+            }
+        },
+        {
+            "name": "Neuro_SystemMaintenance",
+            "script": "assets/services/cron/scripts/neuro/system-maintenance.php",
+            "description": "Daily Neuro system maintenance",
+            "frequency": "daily",
+            "hour": 2,
+            "minute": 10,
+            "type": "medium",
+            "estimated_duration": 30,
+            "estimated_memory_mb": 180,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 60,
+                "memory_alert_mb": 270
+            }
+        },
+        {
+            "name": "KB_RefreshFull",
+            "script": "_kb/tools/refresh-kb.php --full",
+            "description": "Full KB refresh with deep analysis",
+            "frequency": "daily",
+            "hour": 2,
+            "minute": 12,
+            "type": "heavy",
+            "estimated_duration": 600,
+            "estimated_memory_mb": 400,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 1200,
+                "memory_alert_mb": 600
+            }
+        },
+        {
+            "name": "Neuro_SalesAggregationFull",
+            "script": "assets/services/cron/scripts/neuro/sales-aggregation-full.php",
+            "description": "Full daily sales aggregation",
+            "frequency": "daily",
+            "hour": 2,
+            "minute": 35,
+            "type": "heavy",
+            "estimated_duration": 300,
+            "estimated_memory_mb": 500,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 600,
+                "memory_alert_mb": 750
+            }
+        },
+        {
+            "name": "Neuro_RedisOptimization",
+            "script": "assets/services/cron/scripts/neuro/redis-optimization.php",
+            "description": "Redis cache optimization",
+            "frequency": "daily",
+            "hour": 3,
+            "minute": 5,
+            "type": "medium",
+            "estimated_duration": 20,
+            "estimated_memory_mb": 150,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 40,
+                "memory_alert_mb": 225
+            }
+        },
+        {
+            "name": "KB_AnalyzePerformance",
+            "script": "assets/services/cron/scripts/general/analyze-performance.php",
+            "description": "KB performance analysis",
+            "frequency": "daily",
+            "hour": 3,
+            "minute": 18,
+            "type": "medium",
+            "estimated_duration": 180,
+            "estimated_memory_mb": 200,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 360,
+                "memory_alert_mb": 300
+            }
+        },
+        {
+            "name": "xero_petty_cash_expenses",
+            "display_name": "Xero Petty Cash Expenses",
+            "script": "assets/services/cron/scripts/xero/petty-cash-expenses.php",
+            "description": "Syncs petty cash expenses to Xero",
+            "frequency": "daily",
+            "hour": 3,
+            "minute": 25,
+            "type": "light",
+            "estimated_duration": 10,
+            "estimated_memory_mb": 80,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 120,
+                "memory_alert_mb": 150
+            },
+            "schedule": "daily_4_am"
+        },
+        {
+            "name": "vapedrop_public_holiday_check",
+            "display_name": "VapeDrop Public Holiday Check",
+            "script": "assets/services/cron/scripts/inventory/vapedrop-holiday-check.php",
+            "description": "Checks public holidays for VapeDrop",
+            "frequency": "daily",
+            "hour": 4,
+            "minute": 10,
+            "type": "light",
+            "estimated_duration": 5,
+            "estimated_memory_mb": 30,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 30,
+                "memory_alert_mb": 50
+            }
+        },
+        {
+            "name": "KB_CleanupVersions",
+            "script": "assets/services/cron/scripts/maintenance/cleanup-versions.php",
+            "description": "Cleans up old KB versions (Sundays)",
+            "frequency": "weekly",
+            "day_of_week": 0,
+            "hour": 4,
+            "minute": 22,
+            "type": "light",
+            "estimated_duration": 45,
+            "estimated_memory_mb": 80,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 90,
+                "memory_alert_mb": 120
+            }
+        },
+        {
+            "name": "PythonAutoForecast",
+            "script": "assets/services/cron/scripts/inventory/auto-forecast.py",
+            "description": "AI-powered inventory forecasting (Mondays)",
+            "frequency": "weekly",
+            "day_of_week": 1,
+            "hour": 5,
+            "minute": 10,
+            "type": "heavy",
+            "estimated_duration": 900,
+            "estimated_memory_mb": 800,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 1800,
+                "memory_alert_mb": 1200
+            }
+        },
+        {
+            "name": "AutomaticProductOrderingLive",
+            "script": "assets/services/cron/scripts/inventory/auto-ordering-live.php",
+            "description": "Automatic product ordering (Mondays)",
+            "frequency": "weekly",
+            "day_of_week": 1,
+            "hour": 5,
+            "minute": 50,
+            "type": "medium",
+            "estimated_duration": 120,
+            "estimated_memory_mb": 200,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 300,
+                "memory_alert_mb": 250
+            },
+            "schedule": "every_hour"
+        },
+        {
+            "name": "Neuro_WeeklyAnalysis",
+            "script": "assets/services/cron/scripts/neuro/weekly-analysis.php",
+            "description": "Weekly AI analysis (Mondays)",
+            "frequency": "weekly",
+            "day_of_week": 1,
+            "hour": 6,
+            "minute": 0,
+            "type": "heavy",
+            "estimated_duration": 600,
+            "estimated_memory_mb": 700,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 1200,
+                "memory_alert_mb": 1050
+            }
+        },
+        {
+            "name": "Neuro_DailyIntelligenceReport",
+            "script": "assets/services/cron/scripts/neuro/daily-intelligence-report.php",
+            "description": "Daily AI intelligence report",
+            "frequency": "daily",
+            "hour": 6,
+            "minute": 5,
+            "type": "medium",
+            "estimated_duration": 60,
+            "estimated_memory_mb": 250,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 120,
+                "memory_alert_mb": 375
+            }
+        },
+        {
+            "name": "Neuro_PredictiveModeling",
+            "script": "assets/services/cron/scripts/neuro/predictive-modeling.php",
+            "description": "AI predictive modeling",
+            "frequency": "daily",
+            "hour": 7,
+            "minute": 8,
+            "type": "heavy",
+            "estimated_duration": 360,
+            "estimated_memory_mb": 650,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 720,
+                "memory_alert_mb": 975
+            }
+        },
+        {
+            "name": "Neuro_LTVOptimization",
+            "script": "assets/services/cron/scripts/neuro/ltv-optimization.php",
+            "description": "Customer lifetime value optimization (Mondays)",
+            "frequency": "weekly",
+            "day_of_week": 1,
+            "hour": 7,
+            "minute": 0,
+            "type": "medium",
+            "estimated_duration": 180,
+            "estimated_memory_mb": 300,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 360,
+                "memory_alert_mb": 450
+            }
+        },
+        {
+            "name": "AutomaticJuiceTransfers",
+            "script": "assets/services/cron/scripts/inventory/auto-juice-transfers.php",
+            "description": "Automatic juice transfers (Mondays)",
+            "frequency": "weekly",
+            "day_of_week": 1,
+            "hour": 7,
+            "minute": 5,
+            "type": "medium",
+            "estimated_duration": 90,
+            "estimated_memory_mb": 150,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 180,
+                "memory_alert_mb": 225
+            }
+        },
+        {
+            "name": "AutomaticDiscontinueWebsiteProducts",
+            "script": "assets/services/cron/scripts/inventory/auto-discontinue-products.php",
+            "description": "Automatically discontinues old products (Mondays)",
+            "frequency": "weekly",
+            "day_of_week": 1,
+            "hour": 7,
+            "minute": 35,
+            "type": "light",
+            "estimated_duration": 30,
+            "estimated_memory_mb": 100,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 60,
+                "memory_alert_mb": 150
+            }
+        },
+        {
+            "name": "Neuro_StrategicInsights",
+            "script": "assets/services/cron/scripts/neuro/strategic-insights.php",
+            "description": "Strategic business insights",
+            "frequency": "daily",
+            "hour": 8,
+            "minute": 12,
+            "type": "medium",
+            "estimated_duration": 120,
+            "estimated_memory_mb": 300,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 240,
+                "memory_alert_mb": 450
+            }
+        },
+        {
+            "name": "Neuro_CompetitiveAnalysis",
+            "script": "assets/services/cron/scripts/neuro/competitive-analysis.php",
+            "description": "Competitive market analysis (Mondays)",
+            "frequency": "weekly",
+            "day_of_week": 1,
+            "hour": 8,
+            "minute": 0,
+            "type": "medium",
+            "estimated_duration": 180,
+            "estimated_memory_mb": 250,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 360,
+                "memory_alert_mb": 375
+            }
+        },
+        {
+            "name": "notificationGenerator",
+            "script": "assets/services/cron/scripts/general/generator.php",
+            "description": "Generates daily notifications",
+            "frequency": "daily",
+            "hour": 8,
+            "minute": 25,
+            "type": "light",
+            "estimated_duration": 15,
+            "estimated_memory_mb": 80,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 30,
+                "memory_alert_mb": 120
+            }
+        },
+        {
+            "name": "AutomaticStockTransfers",
+            "script": "assets/services/cron/scripts/inventory/auto-stock-transfers.php",
+            "description": "Automatic stock transfers (Mondays)",
+            "frequency": "weekly",
+            "day_of_week": 1,
+            "hour": 8,
+            "minute": 55,
+            "type": "medium",
+            "estimated_duration": 90,
+            "estimated_memory_mb": 180,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 180,
+                "memory_alert_mb": 270
+            }
+        },
+        {
+            "name": "Neuro_DataQualityCheck",
+            "script": "assets/services/cron/scripts/neuro/data-quality-check.php",
+            "description": "AI data quality validation",
+            "frequency": "daily",
+            "hour": 9,
+            "minute": 18,
+            "type": "medium",
+            "estimated_duration": 60,
+            "estimated_memory_mb": 200,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 120,
+                "memory_alert_mb": 300
+            }
+        },
+        {
+            "name": "TurnoverRateCalculate",
+            "script": "assets/services/cron/scripts/inventory/turnover-rate-calculate.php",
+            "description": "Calculates inventory turnover rates (Mondays)",
+            "frequency": "weekly",
+            "day_of_week": 1,
+            "hour": 9,
+            "minute": 15,
+            "type": "light",
+            "estimated_duration": 30,
+            "estimated_memory_mb": 100,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 60,
+                "memory_alert_mb": 150
+            }
+        },
+        {
+            "name": "StoreClosedNotifications_9_30AM",
+            "script": "assets/services/cron/scripts/general/store-closed-9-30am.php",
+            "description": "Store closed notifications at 9:30 AM",
+            "frequency": "daily",
+            "hour": 9,
+            "minute": 35,
+            "type": "light",
+            "estimated_duration": 5,
+            "estimated_memory_mb": 30,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 30,
+                "memory_alert_mb": 50
+            }
+        },
+        {
+            "name": "unified_cron_light",
+            "script": "assets/services/queue/bin/unified-cron.sh light",
+            "description": "\ud83d\ude80 UNIFIED SYSTEM MANAGEMENT - Light monitoring (queue jobs & workers)",
+            "frequency": "every_15_minutes",
+            "type": "critical",
+            "estimated_duration": 60,
+            "estimated_memory_mb": 150,
+            "enabled": true,
+            "timeout": 300,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 90,
+                "memory_alert_mb": 200
+            },
+            "comment": "IMMEDIATE ACTIVATION: Replaces */15 * * * * crontab entry. Monitors: Queue jobs, workers, system health check. Comprehensive performance logging enabled."
+        },
+        {
+            "name": "unified_cron_full",
+            "script": "assets/services/queue/bin/unified-cron.sh full",
+            "description": "\ud83d\udd25 UNIFIED SYSTEM MANAGEMENT - Full system management (webhooks, sync, complete recovery)",
+            "frequency": "every_2_hours",
+            "type": "critical",
+            "estimated_duration": 600,
+            "estimated_memory_mb": 300,
+            "enabled": true,
+            "timeout": 1800,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 900,
+                "memory_alert_mb": 400
+            },
+            "comment": "IMMEDIATE ACTIVATION: Replaces 0 */2 * * * crontab entry. Manages: Queue, webhooks, sync operations, auto-scaling, failure recovery. Full telemetry."
+        },
+        {
+            "name": "unified_cron_cleanup",
+            "script": "assets/services/queue/bin/unified-cron.sh cleanup",
+            "description": "\ud83e\uddf9 UNIFIED SYSTEM MANAGEMENT - Daily cleanup & maintenance (logs, database optimization, system reports)",
+            "frequency": "daily",
+            "hour": 3,
+            "minute": 0,
+            "type": "medium",
+            "estimated_duration": 900,
+            "estimated_memory_mb": 200,
+            "enabled": true,
+            "timeout": 3600,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 1200,
+                "memory_alert_mb": 300
+            },
+            "comment": "IMMEDIATE ACTIVATION: Replaces 0 3 * * * crontab entry. Cleanup: Logs, database optimization, daily health reports, emergency disk cleanup. Full audit trail."
+        },
+        {
+            "name": "ProductQtyHistory",
+            "display_name": "Product Quantity History",
+            "script": "assets/cron/product-qty-history.php",
+            "description": "\ud83d\udcca Records daily product quantity snapshots for inventory history tracking",
+            "frequency": "daily",
+            "hour": 1,
+            "minute": 0,
+            "type": "medium",
+            "estimated_duration": 30,
+            "estimated_memory_mb": 100,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 60,
+                "memory_alert_mb": 150
+            },
+            "comment": "Snapshots product quantities daily at 1 AM for historical trend analysis"
+        },
+        {
+            "name": "Gamification_Sales",
+            "script": "assets/services/cron/scripts/gamification/gamification_daily_awards.php sales",
+            "description": "🏆 Awards staff for daily sales achievements (biggest sale, highest avg, targets hit)",
+            "frequency": "daily",
+            "hour": 22,
+            "minute": 0,
+            "type": "light",
+            "estimated_duration": 15,
+            "estimated_memory_mb": 80,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 30,
+                "memory_alert_mb": 120
+            },
+            "comment": "Runs at 10 PM to capture full day's sales data from vend_sales table"
+        },
+        {
+            "name": "Gamification_Cash",
+            "script": "assets/services/cron/scripts/gamification/gamification_daily_awards.php cash",
+            "description": "💰 Awards staff for cash handling (perfect cashup, variance handling)",
+            "frequency": "daily",
+            "hour": 23,
+            "minute": 0,
+            "type": "light",
+            "estimated_duration": 10,
+            "estimated_memory_mb": 60,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 20,
+                "memory_alert_mb": 90
+            },
+            "comment": "Runs at 11 PM after stores close to analyze register_closure_totals"
+        },
+        {
+            "name": "Gamification_Stock",
+            "script": "assets/services/cron/scripts/gamification/gamification_daily_awards.php stock",
+            "description": "📦 Awards staff for stock accuracy (perfect stocktake, fast counts)",
+            "frequency": "daily",
+            "hour": 2,
+            "minute": 0,
+            "type": "light",
+            "estimated_duration": 12,
+            "estimated_memory_mb": 70,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 25,
+                "memory_alert_mb": 100
+            },
+            "comment": "Runs at 2 AM to analyze completed stocktakes from vend_consignments"
+        },
+        {
+            "name": "Gamification_Punctuality",
+            "script": "assets/services/cron/scripts/gamification/gamification_deputy_awards.php punctuality",
+            "description": "⏰ Awards staff for attendance (early +1pt, late -1pt, no-show -25pts)",
+            "frequency": "hourly",
+            "minute": 15,
+            "type": "light",
+            "estimated_duration": 8,
+            "estimated_memory_mb": 50,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 20,
+                "memory_alert_mb": 80
+            },
+            "comment": "Runs every hour at :15 to track Deputy timesheets via Deputy API"
+        },
+        {
+            "name": "Gamification_Streaks",
+            "script": "assets/services/cron/scripts/gamification/gamification_deputy_awards.php streaks",
+            "description": "🔥 Awards staff for attendance streaks (7/30/180 days, perfect week)",
+            "frequency": "daily",
+            "hour": 1,
+            "minute": 0,
+            "type": "light",
+            "estimated_duration": 10,
+            "estimated_memory_mb": 60,
+            "enabled": true,
+            "monitoring": {
+                "track_performance": true,
+                "alert_on_failure": true,
+                "slow_threshold_seconds": 25,
+                "memory_alert_mb": 90
+            },
+            "comment": "Runs at 1 AM to analyze attendance patterns and award streak bonuses"
+        }
+    ],
+    "metadata": {
+        "total_tasks": 53,
+        "created_at": "2025-10-19",
+        "migrated_from": "cron-scheduler.php",
+        "smart_cron_version": "1.0.0",
+        "notes": "Migrated from legacy GO\\Scheduler system. All tasks extracted with estimated resource usage for Smart Cron optimization.",
+        "unified_cron_added": "2025-10-22",
+        "unified_cron_note": "IMMEDIATE PRODUCTION DEPLOYMENT: Added 3 unified-cron.sh tasks (light/full/cleanup) with full performance logging, debugging, and comprehensive monitoring. Replaces manual crontab entries with Smart Cron management.",
+        "cleanup_completed": "2025-10-23",
+        "cleanup_note": "Removed 5 tasks with missing scripts. Added ProductQtyHistory and DailyStocktakes with full performance monitoring. All script paths verified.",
+        "last_modified": "2025-10-23 21:22:14",
+        "high_priority_enabled": "2025-10-23 19:26:36",
+        "enabled_in_batch": 12,
+        "user_preference_update": "2025-10-23 19:30:00",
+        "removals_completed": {
+            "fortress_tasks_removed": 4,
+            "queuev2_tasks_removed": 6,
+            "kb_autosync_removed": 1,
+            "total_removed": 14
+        },
+        "new_enabled_tasks": [
+            "Neuro_AnomalyDetection",
+            "UpdateSalesSnapshot"
+        ],
+        "enabled_tasks": 49,
+        "disabled_tasks": 0,
+        "full_enablement": "2025-10-23 21:18:30",
+        "all_tasks_enabled": true,
+        "enabled_in_this_batch": 37,
+        "full_enablement_forced": "2025-10-23 21:22:14",
+        "gamification_added": "2025-10-27 01:10:00",
+        "gamification_note": "Added 5 gamification tasks: Sales (10PM), Cash (11PM), Stock (2AM), Punctuality (hourly :15), Streaks (1AM). Integrates CISGamification.php + DeputyGamification.php modules with Smart Cron scheduling."
+    }
+}

@@ -1,0 +1,476 @@
+/**
+ * Scanner Dashboard - Main Stylesheet
+ * Bootstrap 5 Based Professional Design
+ *
+ * @version 3.0.0
+ * @updated October 31, 2025
+ */
+
+/* ============================================================================
+   CSS VARIABLES & THEME COLORS
+   ============================================================================ */
+
+:root {
+    /* Primary Colors */
+    --scanner-primary: #667eea;
+    --scanner-secondary: #764ba2;
+    --scanner-success: #10b981;
+    --scanner-danger: #ef4444;
+    --scanner-warning: #f59e0b;
+    --scanner-info: #3b82f6;
+
+    /* Neutral Colors */
+    --scanner-dark: #1e293b;
+    --scanner-gray: #64748b;
+    --scanner-light: #f8fafc;
+    --scanner-white: #ffffff;
+
+    /* Layout */
+    --scanner-sidebar-width: 280px;
+    --scanner-sidebar-collapsed: 80px;
+    --scanner-navbar-height: 70px;
+    --scanner-border-radius: 12px;
+    --scanner-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    --scanner-shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
+
+    /* Transitions */
+    --scanner-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================================
+   GLOBAL STYLES
+   ============================================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.scanner-app {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--scanner-light);
+    color: var(--scanner-dark);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ============================================================================
+   LAYOUT STRUCTURE
+   ============================================================================ */
+
+.app-wrapper {
+    min-height: 100vh;
+    display: flex;
+}
+
+.app-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: var(--scanner-sidebar-width);
+    transition: var(--scanner-transition);
+    min-height: 100vh;
+}
+
+.page-content {
+    flex: 1;
+    padding-top: var(--scanner-navbar-height);
+}
+
+/* ============================================================================
+   CARDS & PANELS
+   ============================================================================ */
+
+.card {
+    border: none;
+    border-radius: var(--scanner-border-radius);
+    box-shadow: var(--scanner-shadow);
+    transition: var(--scanner-transition);
+    background: var(--scanner-white);
+}
+
+.card:hover {
+    box-shadow: var(--scanner-shadow-lg);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background: transparent;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    color: var(--scanner-dark);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.card-footer {
+    background: transparent;
+    border-top: 1px solid #e2e8f0;
+    padding: 1rem 1.5rem;
+}
+
+/* Metric Cards */
+.metric-card {
+    background: linear-gradient(135deg, var(--scanner-primary), var(--scanner-secondary));
+    color: white;
+    border-radius: var(--scanner-border-radius);
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--scanner-transition);
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 250px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+}
+
+.metric-card .metric-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+}
+
+.metric-card .metric-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.metric-card .metric-label {
+    font-size: 0.95rem;
+    opacity: 0.95;
+    font-weight: 500;
+}
+
+/* Color Variants */
+.metric-card.bg-success {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.metric-card.bg-danger {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.metric-card.bg-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.metric-card.bg-info {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+/* ============================================================================
+   PAGE HEADER
+   ============================================================================ */
+
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--scanner-dark);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.page-title i {
+    font-size: 1.75rem;
+    color: var(--scanner-primary);
+}
+
+/* ============================================================================
+   TABLES
+   ============================================================================ */
+
+.table {
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+}
+
+.table thead th {
+    border: none;
+    color: var(--scanner-gray);
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1rem;
+    background: transparent;
+}
+
+.table tbody tr {
+    background: white;
+    box-shadow: var(--scanner-shadow);
+    transition: var(--scanner-transition);
+}
+
+.table tbody tr:hover {
+    box-shadow: var(--scanner-shadow-lg);
+    transform: translateY(-2px);
+}
+
+.table tbody td {
+    border: none;
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.table tbody tr td:first-child {
+    border-radius: var(--scanner-border-radius) 0 0 var(--scanner-border-radius);
+}
+
+.table tbody tr td:last-child {
+    border-radius: 0 var(--scanner-border-radius) var(--scanner-border-radius) 0;
+}
+
+/* ============================================================================
+   BUTTONS
+   ============================================================================ */
+
+.btn {
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: var(--scanner-transition);
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--scanner-primary), var(--scanner-secondary));
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--scanner-secondary), var(--scanner-primary));
+    color: white;
+}
+
+/* ============================================================================
+   BADGES
+   ============================================================================ */
+
+.badge {
+    padding: 0.4rem 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    font-size: 0.8125rem;
+}
+
+/* ============================================================================
+   FORMS
+   ============================================================================ */
+
+.form-control,
+.form-select {
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+    padding: 0.625rem 1rem;
+    transition: var(--scanner-transition);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--scanner-primary);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-label {
+    font-weight: 500;
+    color: var(--scanner-dark);
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================================================
+   TABS
+   ============================================================================ */
+
+.nav-tabs {
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--scanner-gray);
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    transition: var(--scanner-transition);
+}
+
+.nav-tabs .nav-link:hover {
+    border-color: transparent;
+    color: var(--scanner-primary);
+}
+
+.nav-tabs .nav-link.active {
+    border-color: var(--scanner-primary);
+    color: var(--scanner-primary);
+    background: transparent;
+}
+
+/* ============================================================================
+   ALERTS
+   ============================================================================ */
+
+.alert {
+    border: none;
+    border-radius: var(--scanner-border-radius);
+    padding: 1rem 1.25rem;
+    box-shadow: var(--scanner-shadow);
+}
+
+/* ============================================================================
+   LOADING & ANIMATIONS
+   ============================================================================ */
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* ============================================================================
+   UTILITIES
+   ============================================================================ */
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--scanner-primary), var(--scanner-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.shadow-sm {
+    box-shadow: var(--scanner-shadow) !important;
+}
+
+.shadow-lg {
+    box-shadow: var(--scanner-shadow-lg) !important;
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 991px) {
+    .app-main {
+        margin-left: 0;
+    }
+
+    .metric-card .metric-value {
+        font-size: 2rem;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-content {
+        padding-top: 60px;
+    }
+
+    .metric-card {
+        padding: 1.25rem;
+    }
+
+    .metric-card .metric-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .metric-card .metric-value {
+        font-size: 1.75rem;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+/* ============================================================================
+   SCROLLBAR STYLING
+   ============================================================================ */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--scanner-primary), var(--scanner-secondary));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--scanner-secondary), var(--scanner-primary));
+}
