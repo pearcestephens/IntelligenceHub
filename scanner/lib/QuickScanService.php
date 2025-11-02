@@ -17,6 +17,8 @@ use PDO;
 use RuntimeException;
 use InvalidArgumentException;
 
+require_once __DIR__ . '/MCPAgent.php';
+
 /**
  * Quick Scan Service
  *
@@ -27,6 +29,9 @@ class QuickScanService
     private PDO $pdo;
     private string $tempDir;
     private array $config;
+    private MCPAgent $mcp;
+    /** @var array<int, array<int, array<string, mixed>>> */
+    private array $ruleCache = [];
 
     /**
      * Constructor
@@ -40,6 +45,7 @@ class QuickScanService
         $this->pdo = $pdo;
         $this->tempDir = $tempDir;
         $this->config = array_merge($this->getDefaultConfig(), $config);
+        $this->mcp = new MCPAgent();
 
         $this->ensureTempDir();
     }
@@ -257,7 +263,7 @@ class QuickScanService
         // Scan files
         $violations = [];
         foreach ($files as $file) {
-            $fileViolations = $this->scanFile($file, $scanId);
+            $fileViolations = $this->scanFile($file);
             $violations = array_merge($violations, $fileViolations);
         }
 
@@ -308,13 +314,176 @@ class QuickScanService
      * @param string $scanId
      * @return array Violations found
      */
-    private function scanFile(array $file, string $scanId): array
+    private function scanFile(array $file): array
     {
-        // This is a simplified version - in production, use proper AST parsing
-        // For now, just check if file exists and return empty
-        // The actual scanning would be done by RealTimeScanner or similar
+        $violations = [];
 
-        return []; // Placeholder
+        try {
+            $analysis = $this->mcp->analyzeFile($file['file_path']);
+        } catch (RuntimeException $e) {
+            $this->recordScanLog((int)$file['project_id'], $file['file_path'], $e->getMessage());
+            return $violations;
+        }
+
+        if (!is_array($analysis)) {
+            return $violations;
+        }
+
+        $rules = $this->getActiveRules($file['project_id']);
+        if (empty($rules)) {
+            return $violations;
+        }
+
+        $fileContent = null;
+
+        foreach ($rules as $rule) {
+            $detected = $this->detectViolation($file, $rule, $analysis, $fileContent);
+
+            if ($detected) {
+                $violations[] = $detected;
+                $this->recordViolation((int)$file['project_id'], $detected);
+            }
+        }
+
+        return $violations;
+    }
+
+    /**
+     * Fetch active rules for project (cached per project).
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    private function getActiveRules(int $projectId): array
+    {
+        if (isset($this->ruleCache[$projectId])) {
+            return $this->ruleCache[$projectId];
+        }
+
+        $sql = <<<'SQL'
+            SELECT *
+            FROM rules
+            WHERE is_active = 1
+            ORDER BY severity DESC, rule_code ASC
+        SQL;
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $rules = $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
+        $this->ruleCache[$projectId] = $rules;
+
+        return $rules;
+    }
+
+    /**
+     * Detect violation based on rule configuration.
+     */
+    private function detectViolation(array $file, array $rule, array $analysis, ?string &$fileContent = null): ?array
+    {
+        // Pattern-based detection using raw content
+        if (!empty($rule['detection_pattern'])) {
+            if ($fileContent === null) {
+                try {
+                    $contentResult = $this->mcp->getFileContent($file['file_path']);
+                    $fileContent = (string)($contentResult['data']['content'] ?? '');
+                } catch (RuntimeException $e) {
+                    $this->recordScanLog((int)$file['project_id'], $file['file_path'], $e->getMessage());
+                    return null;
+                }
+            }
+
+            if ($fileContent !== '' && preg_match($rule['detection_pattern'], $fileContent, $matches, PREG_OFFSET_CAPTURE)) {
+                $lineNumber = substr_count(substr($fileContent, 0, $matches[0][1]), "\n") + 1;
+
+                return [
+                    'rule_id' => $rule['id'],
+                    'rule_code' => $rule['rule_code'],
+                    'rule_name' => $rule['rule_name'],
+                    'file_path' => $file['file_path'],
+                    'line_number' => $lineNumber,
+                    'severity' => $rule['severity'],
+                    'description' => $rule['description'],
+                    'matched_text' => substr($matches[0][0], 0, 120)
+                ];
+            }
+        }
+
+        // Analysis-derived detections (keywords returned from MCP)
+        if (!empty($analysis['data']['issues'])) {
+            foreach ($analysis['data']['issues'] as $issue) {
+                if (!empty($issue['rule_code']) && $issue['rule_code'] === $rule['rule_code']) {
+                    return [
+                        'rule_id' => $rule['id'],
+                        'rule_code' => $rule['rule_code'],
+                        'rule_name' => $rule['rule_name'],
+                        'file_path' => $file['file_path'],
+                        'line_number' => (int)($issue['line'] ?? 0),
+                        'severity' => $issue['severity'] ?? $rule['severity'],
+                        'description' => $issue['description'] ?? $rule['description'],
+                        'matched_text' => substr((string)($issue['excerpt'] ?? ''), 0, 120)
+                    ];
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Record violation if it is not already open for the same location.
+     */
+    private function recordViolation(int $projectId, array $violation): void
+    {
+                $sql = <<<'SQL'
+                        SELECT id
+                        FROM project_rule_violations
+                        WHERE project_id = ?
+                            AND rule_id = ?
+                            AND file_path = ?
+                            AND line_number = ?
+                            AND status = 'open'
+                        LIMIT 1
+                SQL;
+                $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            $projectId,
+            $violation['rule_id'],
+            $violation['file_path'],
+            $violation['line_number']
+        ]);
+
+        if ($stmt->fetch()) {
+            return;
+        }
+
+        $insertSql = <<<'SQL'
+            INSERT INTO project_rule_violations
+                (project_id, rule_id, file_path, line_number, violation_description, severity, status, detected_at)
+            VALUES (?, ?, ?, ?, ?, ?, 'open', NOW())
+        SQL;
+        $insert = $this->pdo->prepare($insertSql);
+        $insert->execute([
+            $projectId,
+            $violation['rule_id'],
+            $violation['file_path'],
+            $violation['line_number'],
+            $violation['description'],
+            $violation['severity']
+        ]);
+    }
+
+    private function recordScanLog(int $projectId, string $filePath, string $message): void
+    {
+        $logSql = <<<'SQL'
+            INSERT INTO scan_logs (project_id, file_path, log_message, created_at)
+            VALUES (?, ?, ?, NOW())
+        SQL;
+
+        try {
+            $stmt = $this->pdo->prepare($logSql);
+            $stmt->execute([$projectId, $filePath, $message]);
+        } catch (\Throwable $e) {
+            // Table may not exist yet; fail silently but log to PHP error log for diagnostics.
+            error_log("Scanner log insert failed: " . $e->getMessage());
+        }
     }
 
     /**

@@ -14,6 +14,7 @@ declare(strict_types=1);
  *   follow_symlinks    = 0|1 (default 0)
  *   minify             = 0|1 (default 1)
  *   redact             = 0|1 (default 1)   // redacts obvious secrets/tokens
+ *   include_content    = 0|1 (default 1)   // when 0 returns metadata only
  *   max_bytes          = per-file returned content cap (default 200_000, hard 2_000_000)
  *   skip               = csv of extra regex path segments to skip (appended to defaults)
  *
@@ -125,6 +126,7 @@ $includeHidden  = !empty($_GET['include_hidden']) && ((int)$_GET['include_hidden
 $followSymlinks = !empty($_GET['follow_symlinks']) && ((int)$_GET['follow_symlinks'] === 1);
 $doMinify       = !isset($_GET['minify']) || (int)$_GET['minify'] === 1;
 $doRedact       = !isset($_GET['redact']) || (int)$_GET['redact'] === 1;
+$includeContent = !isset($_GET['include_content']) || (int)$_GET['include_content'] === 1;
 $maxBytes       = isset($_GET['max_bytes']) ? (int)$_GET['max_bytes'] : DEFAULT_MAXB;
 $maxBytes       = max(8_000, min($maxBytes, HARD_MAXB));
 $extraSkip      = [];
@@ -217,14 +219,17 @@ foreach ($it as $info) {
   if (!isset($index[$dirKey])) $index[$dirKey] = [];
   $index[$dirKey][] = $rel;
 
-  $files[] = [
+  $fileEntry = [
     'path'      => $rel,
     'ext'       => $ext,
     'size'      => $info->getSize(),
     'mtime'     => $info->getMTime(),
     'truncated' => $trunc,
-    'content'   => $data,
   ];
+  if ($includeContent) {
+    $fileEntry['content'] = $data;
+  }
+  $files[] = $fileEntry;
   $totalBytes += strlen($data);
 }
 
@@ -247,11 +252,12 @@ jexit([
     'follow_symlinks'=> $followSymlinks,
     'minify'         => $doMinify,
     'redact'         => $doRedact,
+    'include_content'=> $includeContent,
     'max_bytes'      => $maxBytes,
     'skip_res'       => $skipRes,
   ],
   'index'       => $index,     // directory -> files[]
-  'files'       => $files,     // [{path, ext, size, mtime, truncated, content}]
+  'files'       => $files,     // [{path, ext, size, mtime, truncated[, content]}]
   'total_files' => count($files),
   'total_bytes' => $totalBytes,
 ]);
