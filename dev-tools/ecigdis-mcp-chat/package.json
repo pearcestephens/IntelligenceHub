@@ -1,0 +1,71 @@
+{
+  "name": "ecigdis-mcp-chat",
+  "displayName": "Ecigdis AI (MCP)",
+  "description": "VS Code Chat participant that talks to your IntelligenceHub MCP over HTTPS JSON-RPC",
+  "version": "1.0.0",
+  "publisher": "ecigdis",
+  "engines": { "vscode": "^1.92.0" },
+  "categories": ["Other"],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onChatParticipant:ecigdis-ai",
+    "onCommand:ecigdis.mcp.refreshTools",
+    "onCommand:ecigdis.mcp.sendSystemPrompt"
+  ],
+  "contributes": {
+    "chatParticipants": [
+      {
+        "id": "ecigdis-ai",
+        "fullName": "Ecigdis AI (MCP)",
+        "description": "Talks to IntelligenceHub MCP and your Agent",
+        "isDefault": false
+      }
+    ],
+    "configuration": {
+      "title": "Ecigdis MCP",
+      "properties": {
+        "ecigdis.mcp.rpcUrl": {
+          "type": "string",
+          "default": "https://gpt.ecigdis.co.nz/mcp/server_v3.php?action=rpc",
+          "description": "MCP JSON-RPC endpoint URL"
+        },
+        "ecigdis.mcp.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Optional MCP Bearer token (MCP_API_KEY)"
+        },
+        "ecigdis.mcp.defaultConversationId": {
+          "type": "string",
+          "default": "",
+          "description": "Optional fixed conversation_id (leave blank to let server pick)"
+        },
+        "ecigdis.mcp.timeoutMs": {
+          "type": "number",
+          "default": 45000,
+          "description": "HTTP timeout for MCP requests"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "ecigdis.mcp.refreshTools",
+        "title": "Ecigdis MCP: Refresh Tool Cache"
+      },
+      {
+        "command": "ecigdis.mcp.sendSystemPrompt",
+        "title": "Ecigdis MCP: Send System Prompt (as preface)"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "typescript": "^5.4.5",
+    "vsce": "^3.0.0",
+    "vscode": "^1.1.42"
+  }
+}

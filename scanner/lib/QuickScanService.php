@@ -622,27 +622,52 @@ class QuickScanService
      */
     public function getScanSummary(string $scanId): array
     {
-        $stmt = $this->pdo->prepare("
-            SELECT sj.*,
-                   COUNT(v.id) as total_violations,
-                   SUM(CASE WHEN v.severity = 'critical' THEN 1 ELSE 0 END) as critical_count,
-                   SUM(CASE WHEN v.severity = 'high' THEN 1 ELSE 0 END) as high_count,
-                   SUM(CASE WHEN v.severity = 'medium' THEN 1 ELSE 0 END) as medium_count,
-                   SUM(CASE WHEN v.severity = 'low' THEN 1 ELSE 0 END) as low_count
-            FROM scan_jobs sj
-            LEFT JOIN violations v ON JSON_CONTAINS(sj.project_ids, CAST(v.project_id AS JSON))
-                AND v.created_at >= sj.created_at
-            WHERE sj.scan_id = ?
-            GROUP BY sj.id
-        ");
+        $jobStmt = $this->pdo->prepare('SELECT * FROM scan_jobs WHERE scan_id = ?');
+        $jobStmt->execute([$scanId]);
+        $job = $jobStmt->fetch(PDO::FETCH_ASSOC);
 
-        $stmt->execute([$scanId]);
-        $summary = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$summary) {
+        if (!$job) {
             throw new RuntimeException("Scan not found: {$scanId}");
         }
 
-        return $summary;
+        $projectIds = json_decode((string)($job['project_ids'] ?? '[]'), true);
+        if (!is_array($projectIds)) {
+            $projectIds = [];
+        }
+
+        $summary = [
+            'total_violations' => 0,
+            'critical_count' => 0,
+            'high_count' => 0,
+            'medium_count' => 0,
+            'low_count' => 0,
+        ];
+
+        if (!empty($projectIds)) {
+            $placeholders = implode(',', array_fill(0, count($projectIds), '?'));
+            $sql = <<<SQL
+                SELECT
+                    COUNT(id) AS total_violations,
+                    SUM(CASE WHEN severity = 'critical' THEN 1 ELSE 0 END) AS critical_count,
+                    SUM(CASE WHEN severity = 'high' THEN 1 ELSE 0 END) AS high_count,
+                    SUM(CASE WHEN severity = 'medium' THEN 1 ELSE 0 END) AS medium_count,
+                    SUM(CASE WHEN severity = 'low' THEN 1 ELSE 0 END) AS low_count
+                FROM violations
+                WHERE project_id IN ($placeholders)
+                  AND created_at >= ?
+            SQL;
+
+            $createdAt = $job['created_at'] ?? '1970-01-01 00:00:00';
+            $params = array_merge($projectIds, [$createdAt]);
+            $countStmt = $this->pdo->prepare($sql);
+            $countStmt->execute($params);
+            $counts = $countStmt->fetch(PDO::FETCH_ASSOC) ?: [];
+
+            foreach ($summary as $key => $default) {
+                $summary[$key] = (int)($counts[$key] ?? 0);
+            }
+        }
+
+        return array_merge($job, $summary);
     }
 }

@@ -1,248 +1,184 @@
 <?php
-/**
- * MCP Server v3 - HTTP API Endpoint
- *
- * Provides HTTP access to MCP tools (semantic search, indexing, etc.)
- *
- * Usage:
- *   GET /mcp/server_v3.php?tool=search&query=inventory+transfer
- *   GET /mcp/server_v3.php?tool=search&query=transfer&unit_id=2&limit=10
- *
- * @package IntelligenceHub\MCP
- * @version 3.0.0
- */
-
 declare(strict_types=1);
 
-// Enable error reporting for development
-error_reporting(E_ALL);
-ini_set('display_errors', '0'); // Don't display errors in output
+/**
+ * IntelligenceHub MCP — HTTP JSON-RPC server (no custom ports)
+ * - GET  ?action=meta                -> meta ping
+ * - POST ?action=rpc  (JSON-RPC 2.0) -> initialize, tools/list, tools/call, health.ping
+ *
+ * Wraps your existing Agent APIs at:
+ *   https://gpt.ecigdis.co.nz/ai-agent/public/agent/api/chat.php
+ *   https://gpt.ecigdis.co.nz/ai-agent/public/agent/api/knowledge.php
+ *
+ * Optional auth: set MCP_API_KEY in env; client sends Authorization: Bearer <key>
+ */
 
-// Load bootstrap (includes autoloader and environment)
-require_once __DIR__ . '/bootstrap.php';
+require_once __DIR__ . '/mcp_tools_turbo.php';
 
-use IntelligenceHub\MCP\Tools\SemanticSearchTool;
+header('Content-Type: application/json; charset=utf-8');
+// Bust caches / Varnish-safe
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Pragma: no-cache');
+header('Expires: 0');
+header('X-Content-Type-Options: nosniff');
 
-// Set JSON response header
-header('Content-Type: application/json');
-header('X-MCP-Version: 3.0.0');
+if (!function_exists('str_starts_with')) { // PHP 7 fallback
+    function str_starts_with($h, $n) { return substr($h, 0, strlen($n)) === $n; }
+}
 
-// CORS headers (adjust as needed for production)
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type');
+$ACTION = $_GET['action'] ?? 'rpc';
+$METHOD = $_SERVER['REQUEST_METHOD'] ?? 'GET';
 
-// Handle OPTIONS preflight
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
+// ----- Optional API key gate -----
+$API_KEY = getenv('MCP_API_KEY') ?: '';
+if ($API_KEY !== '') {
+    $auth = $_SERVER['HTTP_AUTHORIZATION'] ?? '';
+    $ok = false;
+    if (preg_match('/^Bearer\s+(.+)/i', $auth, $m)) {
+        $ok = hash_equals($API_KEY, $m[1]);
+    }
+    if (!$ok) {
+        respond(['error' => 'Unauthorized'], 401);
+    }
+}
+
+// ----- Routes -----
+if ($ACTION === 'meta' && $METHOD === 'GET') {
+    global $TOOLS;
+    // Simple human/testable ping
+    respond([
+        'name'       => 'IntelligenceHub MCP',
+        'version'    => '3.0.0',
+        'transport'  => ['http-jsonrpc'],
+        'endpoints'  => ['rpc' => '/mcp/server_v3.php?action=rpc'],
+        'tools'      => array_values($TOOLS),
+        'time'       => date(DATE_ATOM)
+    ]);
+}
+
+if ($ACTION === 'rpc' && $METHOD === 'POST') {
+    $raw = file_get_contents('php://input');
+    $req = json_decode($raw, true);
+
+    if (!is_array($req) || !isset($req['method'])) {
+        respond(['error'=>'Invalid JSON-RPC request'], 400);
+    }
+
+    $id     = $req['id']     ?? null;
+    $method = $req['method'] ?? '';
+    $params = $req['params'] ?? [];
+
+    try {
+        $result = handle_rpc($method, $params, $id);
+        send_jsonrpc($id, $result);
+    } catch (Throwable $e) {
+        // Uniform JSON-RPC error envelope
+        send_jsonrpc_error($id, -32603, 'Internal error', ['detail' => $e->getMessage()]);
+    }
+}
+
+// Fallback
+respond(['error' => 'Not Found'], 404);
+
+// ======================== Implementation ========================
+
+function respond(array $data, int $code = 200): void {
+    http_response_code($code);
+    echo json_encode($data, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-/**
- * Send JSON response
- */
-function sendResponse(bool $success, $data = null, string $message = '', int $httpCode = 200): void
+function send_jsonrpc($id, $result): void
 {
-    http_response_code($httpCode);
+    respond(['jsonrpc' => '2.0', 'id' => $id, 'result' => $result], 200);
+}
 
-    $response = [
-        'success' => $success,
-        'timestamp' => date('Y-m-d H:i:s'),
-        'request_id' => uniqid('req_', true),
-    ];
-
-    if ($success) {
-        $response['data'] = $data;
-        if ($message) {
-            $response['message'] = $message;
-        }
-    } else {
-        $response['error'] = [
+function send_jsonrpc_error($id, int $code, string $message, array $data = []): void
+{
+    respond([
+        'jsonrpc' => '2.0',
+        'id' => $id,
+        'error' => [
+            'code' => $code,
             'message' => $message,
-            'code' => $httpCode,
-        ];
-        if ($data) {
-            $response['error']['details'] = $data;
-        }
-    }
-
-    echo json_encode($response, JSON_PRETTY_PRINT);
-    exit;
+            'data' => $data,
+        ],
+    ], 200);
 }
 
-/**
- * Rate limiting check
- */
-function checkRateLimit(string $identifier, int $maxRequests = 100, int $windowSeconds = 60): bool
-{
-    static $requests = [];
-
-    $now = time();
-    $key = md5($identifier);
-
-    // Initialize or clean old requests
-    if (!isset($requests[$key])) {
-        $requests[$key] = [];
-    }
-
-    // Remove requests outside the time window
-    $requests[$key] = array_filter($requests[$key], function($timestamp) use ($now, $windowSeconds) {
-        return ($now - $timestamp) < $windowSeconds;
-    });
-
-    // Check if limit exceeded
-    if (count($requests[$key]) >= $maxRequests) {
-        return false;
-    }
-
-    // Add current request
-    $requests[$key][] = $now;
-
-    return true;
-}
-
-try {
-    // Get request method
-    $method = $_SERVER['REQUEST_METHOD'];
-
-    // Only allow GET and POST
-    if (!in_array($method, ['GET', 'POST'])) {
-        sendResponse(false, null, 'Method not allowed. Use GET or POST.', 405);
-    }
-
-    // Get parameters (support both GET and POST)
-    $params = $method === 'POST' ? $_POST : $_GET;
-
-    // Rate limiting
-    $clientIp = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-    if (!checkRateLimit($clientIp, 100, 60)) {
-        sendResponse(false, null, 'Rate limit exceeded. Maximum 100 requests per minute.', 429);
-    }
-
-    // Get tool name
-    $tool = $params['tool'] ?? null;
-
-    if (!$tool) {
-        sendResponse(false, null, 'Missing required parameter: tool', 400);
-    }
-
-    // Route to appropriate tool
-    switch ($tool) {
-        case 'search':
-        case 'semantic_search':
-            // Required: query
-            $query = $params['query'] ?? null;
-
-            if (!$query || trim($query) === '') {
-                sendResponse(false, null, 'Missing required parameter: query', 400);
-            }
-
-            // Optional parameters
-            $options = [
-                'unit_id' => isset($params['unit_id']) ? (int)$params['unit_id'] : null,
-                'limit' => isset($params['limit']) ? min((int)$params['limit'], 100) : 10,
-                'file_type' => $params['file_type'] ?? null,
-                'category' => $params['category'] ?? null,
+function handle_rpc(string $method, array $params, $id) {
+    global $TOOLS;
+    switch ($method) {
+        case 'initialize':
+            return [
+                'server' => ['name' => 'IntelligenceHub MCP', 'version' => '3.0.0'],
+                'capabilities' => ['tools' => true],
+                'tools' => array_values($TOOLS)
             ];
 
-            // Remove null values
-            $options = array_filter($options, function($value) {
-                return $value !== null;
-            });
+        case 'tools/list':
+            return ['tools' => array_values($TOOLS)];
 
-            // Execute search
-            $searchTool = new SemanticSearchTool();
-            $startTime = microtime(true);
-            $result = $searchTool->execute(['query' => trim($query), 'options' => $options]);
-            $duration = round((microtime(true) - $startTime) * 1000, 2);
+        case 'tools/call':
+            $name = $params['name'] ?? '';
+            $args = $params['arguments'] ?? [];
+            return invoke_tool($name, $args);
 
-            if ($result['success']) {
-                // Add performance metadata
-                $result['metadata'] = [
-                    'query' => trim($query),
-                    'duration_ms' => $duration,
-                    'results_count' => count($result['results'] ?? []),
-                    'cache_hit' => $result['cache_hit'] ?? false,
-                    'options' => $options,
-                ];
-
-                sendResponse(true, $result, 'Search completed successfully');
-            } else {
-                sendResponse(false, null, $result['error'] ?? 'Search failed', 500);
-            }
-            break;
-
-        case 'health':
-        case 'ping':
-            // Health check endpoint
-            $health = [
-                'status' => 'healthy',
-                'version' => '3.0.0',
-                'timestamp' => date('Y-m-d H:i:s'),
-                'database' => 'connected',
-                'cache' => [
-                    'redis' => extension_loaded('redis') ? 'available' : 'unavailable',
-                    'apcu' => extension_loaded('apcu') ? 'available' : 'unavailable',
-                    'file' => 'available',
-                ],
-            ];
-
-            sendResponse(true, $health, 'System healthy');
-            break;
-
-        case 'stats':
-            // Statistics endpoint
-            $searchTool = new SemanticSearchTool();
-
-            // Get cache statistics
-            $cacheStats = [
-                'implementation' => 'See cache manager for detailed stats',
-                'note' => 'Use dedicated cache stats endpoint for detailed information',
-            ];
-
-            $stats = [
-                'version' => '3.0.0',
-                'cache' => $cacheStats,
-                'timestamp' => date('Y-m-d H:i:s'),
-            ];
-
-            sendResponse(true, $stats, 'Statistics retrieved');
-            break;
-
-        case 'analytics':
-            // Search analytics dashboard
-            $searchTool = new SemanticSearchTool();
-
-            $timeframe = $params['timeframe'] ?? '24h';
-            $analyticsData = $searchTool->getAnalytics(['timeframe' => $timeframe]);
-
-            if ($analyticsData['success']) {
-                sendResponse(true, $analyticsData, 'Analytics retrieved successfully');
-            } else {
-                sendResponse(false, null, 'Failed to retrieve analytics', 500);
-            }
-            break;
+        case 'health.ping':
+            return ['ok' => true, 'time' => date(DATE_ATOM)];
 
         default:
-            sendResponse(false, null, "Unknown tool: {$tool}. Available tools: search, health, stats, analytics", 400);
+            // Optional: direct tool name as method (e.g., method="chat.send")
+            if (str_starts_with($method, 'chat.') || str_starts_with($method, 'knowledge.') || str_starts_with($method, 'doc.') || str_starts_with($method, 'db.') || str_starts_with($method, 'fs.') || str_starts_with($method, 'ssh.') || str_starts_with($method, 'system.') || str_starts_with($method, 'ops.') || str_starts_with($method, 'github.')) {
+                return invoke_tool($method, $params);
+            }
+            throw new RuntimeException('Method not found: ' . $method);
+    }
+}
+
+function invoke_tool(string $name, array $args)
+{
+    global $TOOL_HANDLERS;
+    if (!isset($TOOL_HANDLERS[$name])) {
+        throw new RuntimeException('Tool not found: ' . $name);
     }
 
-} catch (Exception $e) {
-    // Log error (in production, use proper logging)
-    error_log("MCP Server Error: " . $e->getMessage());
+    $handler = $TOOL_HANDLERS[$name];
+    $response = $handler($args);
+    log_mcp_call($name, $args, $response);
 
-    // Send error response (don't expose internal details in production)
-    $errorDetails = [
-        'type' => get_class($e),
-        'file' => basename($e->getFile()),
-        'line' => $e->getLine(),
-    ];
+    return $response;
+}
 
-    // In development, include full message
-    if (Config::getInstance()->get('debug', false)) {
-        $errorDetails['message'] = $e->getMessage();
-        $errorDetails['trace'] = array_slice($e->getTrace(), 0, 5);
+function log_mcp_call(string $toolName, array $args, array $response): void
+{
+    static $pdo = null;
+    static $skip = false;
+
+    if ($skip) {
+        return;
     }
 
-    sendResponse(false, $errorDetails, 'Internal server error', 500);
+    try {
+        if ($pdo === null) {
+            $dsn = 'mysql:host=' . envv('DB_HOST', '127.0.0.1') . ';dbname=' . envv('DB_NAME', 'jcepnzzkmj') . ';charset=utf8mb4';
+            $pdo = new PDO($dsn, envv('DB_USER', 'jcepnzzkmj'), envv('DB_PASS', ''), [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES => false,
+            ]);
+        }
+
+        $stmt = $pdo->prepare('INSERT INTO mcp_tool_calls (tool_name, args_json, status, response_json) VALUES (:tool, :args, :status, :resp)');
+        $stmt->execute([
+            ':tool' => $toolName,
+            ':args' => json_encode($args, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+            ':status' => (int) ($response['status'] ?? 0),
+            ':resp' => json_encode($response, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+        ]);
+    } catch (Throwable $e) {
+        // Disable logging after first failure to avoid noisy errors.
+        $skip = true;
+        $pdo = null;
+    }
 }
