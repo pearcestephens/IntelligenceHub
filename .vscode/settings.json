@@ -1,0 +1,63 @@
+{
+  // ============================================================================
+  // MCP Configuration - Use Your Own AI Agent (Intelligence Hub)
+  // ============================================================================
+
+  "mcp.enabled": true,
+  "mcp.autoConnect": true,
+  "mcp.servers": {
+    "intelligence-hub": {
+      "type": "http",
+      "url": "https://gpt.ecigdis.co.nz/assets/services/ai-agent/mcp/server_v3.php",
+      "headers": {
+        "Authorization": "Bearer ${INTELLIGENCE_HUB_API_KEY}"
+      },
+      "description": "Ecigdis Intelligence Hub - Your Private AI Agent",
+      "autoStart": true,
+      "reconnectInterval": 5000,
+      "timeout": 30000
+    }
+  },
+
+  // ============================================================================
+  // GitHub Copilot - DISABLED (Using Intelligence Hub Instead)
+  // ============================================================================
+
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "github.copilot.editor.enableAutoCompletions": false,
+  "github.copilot.editor.enableCodeActions": false,
+
+  // ============================================================================
+  // Chat Configuration - Use Intelligence Hub MCP Server
+  // ============================================================================
+
+  "chat.experimental.mcp.enabled": true,
+  "chat.experimental.mcp.servers": ["intelligence-hub"],
+
+  // ============================================================================
+  // Editor Configuration for AI Assistance
+  // ============================================================================
+
+  "editor.inlineSuggest.enabled": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  },
+
+  // ============================================================================
+  // Intelligence Hub Custom Settings
+  // ============================================================================
+
+  "intelligenceHub.defaultModel": "gpt-4o-mini",
+  "intelligenceHub.fallbackModel": "claude-3-5-sonnet-20240620",
+  "intelligenceHub.toolsEnabled": true,
+  "intelligenceHub.memoryEnabled": true,
+  "intelligenceHub.telemetryEnabled": true,
+  "intelligenceHub.apiUrl": "https://gpt.ecigdis.co.nz/api"
+}

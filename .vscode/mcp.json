@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/modelcontextprotocol/servers/main/schema.json",
+  "mcpServers": {
+    "intelligence-hub": {
+      "type": "http",
+      "url": "https://gpt.ecigdis.co.nz/assets/services/ai-agent/mcp/server_v3.php",
+      "headers": {
+        "Authorization": "Bearer ${INTELLIGENCE_HUB_API_KEY}"
+      },
+      "description": "Ecigdis Intelligence Hub - Complete AI Agent with Tools",
+      "capabilities": {
+        "tools": true,
+        "resources": true,
+        "prompts": false
+      },
+      "autoStart": true,
+      "reconnectInterval": 5000,
+      "timeout": 30000
+    }
+  }
+}
