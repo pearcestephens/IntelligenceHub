@@ -1,8 +1,8 @@
 # AI Conversation Tracking - Full Integration Guide
 
-**Status**: Schema Deployed ✅ | Services Created ✅ | Integration Pending  
-**Version**: 1.0.0  
-**Created**: 2025-01-27  
+**Status**: Schema Deployed ✅ | Services Created ✅ | Integration Pending
+**Version**: 1.0.0
+**Created**: 2025-01-27
 
 ## 📋 Overview
 
@@ -26,7 +26,7 @@ This document describes the complete conversation tracking, tool logging, and me
 - **ConversationLogger** - Unified conversation + tool tracking service
   - Location: `ai-agent/src/Services/ConversationLogger.php`
   - Methods: `logUserMessage()`, `logAssistantMessage()`, `logProviderRequest()`, `logToolCallStart()`, `logToolCallComplete()`, `linkMessageFile()`
-  
+
 - **MemoryService** - Scoped persistent memory
   - Location: `ai-agent/src/Services/MemoryService.php`
   - Methods: `store()`, `get()`, `getAll()`, `delete()`, `cleanExpired()`, `updateImportance()`
@@ -43,7 +43,7 @@ This document describes the complete conversation tracking, tool logging, and me
 
 ### Step 1: Update Chat Controller (ai-agent/api/chat.php)
 
-**Current State**: Likely using basic message storage  
+**Current State**: Likely using basic message storage
 **Target State**: Full conversation tracking with provider telemetry
 
 ```php
@@ -120,12 +120,12 @@ foreach ($response->choices[0]->message->tool_calls ?? [] as $toolCall) {
         requestId: $toolCall->id,
         requestArgs: json_decode($toolCall->function->arguments, true)
     );
-    
+
     // Execute tool
     $toolStart = microtime(true);
     $toolResult = executeToolFunction($toolCall->function->name, $toolCall->function->arguments);
     $toolEnd = microtime(true);
-    
+
     // Log tool result
     $conversationLogger->logToolCallComplete(
         toolCallId: $toolCallId,
@@ -139,8 +139,8 @@ foreach ($response->choices[0]->message->tool_calls ?? [] as $toolCall) {
 
 ### Step 2: Wire MemoryService into MemoryTool.php
 
-**File**: `ai-agent/public/api/MemoryTool.php` (exists)  
-**Current State**: Uses `App\Tools\MemoryTool`  
+**File**: `ai-agent/public/api/MemoryTool.php` (exists)
+**Current State**: Uses `App\Tools\MemoryTool`
 **Target**: Add database persistence via `MemoryService`
 
 ```php
@@ -158,7 +158,7 @@ if ($action === 'get_context') {
     $scope = $arguments['scope'] ?? 'conversation';
     $scopeId = $arguments['scope_identifier'] ?? 'default';
     $memories = $memoryService->getAll($scope, $scopeId);
-    
+
     return [
         'success' => true,
         'memories' => $memories
@@ -175,7 +175,7 @@ if ($action === 'store') {
         importance: $arguments['importance'] ?? 'medium',
         ttlSeconds: $arguments['ttl_seconds'] ?? null
     );
-    
+
     return [
         'success' => true,
         'memory_id' => $memoryId
@@ -185,8 +185,8 @@ if ($action === 'store') {
 
 ### Step 3: Update MCP server_v3.php Routes for Memory
 
-**File**: `mcp/server_v3.php`  
-**Current Routes**: Lines 615-656  
+**File**: `mcp/server_v3.php`
+**Current Routes**: Lines 615-656
 
 ```php
 // In tool_routes() function, ensure memory tools point correctly:
@@ -200,7 +200,7 @@ if ($action === 'store') {
 
 ### Step 4: Tool Gateway Integration
 
-**File**: Tool gateway/dispatcher (location TBD - likely in ai-agent/src/)  
+**File**: Tool gateway/dispatcher (location TBD - likely in ai-agent/src/)
 **Purpose**: Wrap all tool executions with ai_tool_calls logging
 
 ```php
@@ -222,14 +222,14 @@ function executeToolWithLogging(
         $requestId,
         $arguments
     );
-    
+
     $start = microtime(true);
-    
+
     try {
         // Execute actual tool
         $result = ToolRegistry::execute($toolName, $arguments);
         $end = microtime(true);
-        
+
         // Log success
         $logger->logToolCallComplete(
             toolCallId: $toolCallId,
@@ -237,12 +237,12 @@ function executeToolWithLogging(
             result: $result,
             latencyMs: (int) (($end - $start) * 1000)
         );
-        
+
         return $result;
-        
+
     } catch (\Exception $e) {
         $end = microtime(true);
-        
+
         // Log error
         $logger->logToolCallComplete(
             toolCallId: $toolCallId,
@@ -251,7 +251,7 @@ function executeToolWithLogging(
             latencyMs: (int) (($end - $start) * 1000),
             errorCode: get_class($e)
         );
-        
+
         throw $e;
     }
 }
@@ -358,7 +358,7 @@ logToolCallComplete(toolCallId, 'ok', {rows: [...], count: 5}, latency: 45ms)
 ### Get Full Conversation Trace
 
 ```sql
-SELECT * 
+SELECT *
 FROM v_ai_conversation_trace
 WHERE conversation_id = 'conv_abc123'
 ORDER BY message_sequence;
@@ -379,7 +379,7 @@ ORDER BY t.started_at;
 ### Get User's Memories
 
 ```sql
-SELECT * 
+SELECT *
 FROM v_ai_memory_active
 WHERE scope = 'user' AND scope_identifier = 'user123'
 ORDER BY importance DESC, updated_at DESC;
@@ -388,7 +388,7 @@ ORDER BY importance DESC, updated_at DESC;
 ### Provider Cost Summary (Today)
 
 ```sql
-SELECT provider, model, 
+SELECT provider, model,
        SUM(total_tokens) as total_tokens,
        SUM(cost_nzd_cents)/100 as total_cost_nzd,
        COUNT(*) as request_count
@@ -509,12 +509,12 @@ function calculateCost(string $model, object $usage): int {
             'output' => 2250
         ]
     ];
-    
+
     $prices = $priceMap[$model] ?? ['input' => 0, 'output' => 0];
-    
+
     $inputCost = ($usage->prompt_tokens / 1_000_000) * $prices['input'];
     $outputCost = ($usage->completion_tokens / 1_000_000) * $prices['output'];
-    
+
     return (int) round($inputCost + $outputCost);
 }
 ```
