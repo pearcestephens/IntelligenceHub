@@ -186,9 +186,10 @@ function json_slim($obj, int $max = 2000)
  * @param int $timeout
  * @return array{0: string|null, 1: int, 2: string|null}
  */
-function http_raw(string $method, string $url, ?array $payload = null, array $headers = [], int $timeout = 45): array
+function http_raw(string $method, string $url, ?array $payload = null, array $headers = [], int $timeout = 45, ?array &$responseHeaders = null): array
 {
     $ch = curl_init();
+    $headerBag = [];
     curl_setopt_array($ch, [
         CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true,
@@ -196,6 +197,18 @@ function http_raw(string $method, string $url, ?array $payload = null, array $he
         CURLOPT_HTTPHEADER => $headers,
         CURLOPT_TIMEOUT => $timeout,
         CURLOPT_CONNECTTIMEOUT => min(10, $timeout),
+        CURLOPT_HEADERFUNCTION => static function ($curl, string $header) use (&$headerBag): int {
+            $len = strlen($header);
+            $header = trim($header);
+            if ($header === '' || strpos($header, ':') === false) {
+                return $len;
+            }
+
+            [$name, $value] = explode(':', $header, 2);
+            $headerBag[strtolower(trim($name))] = trim($value);
+
+            return $len;
+        },
     ]);
     if ($payload !== null) {
         $headers[] = 'Content-Type: application/json';
@@ -206,9 +219,14 @@ function http_raw(string $method, string $url, ?array $payload = null, array $he
     $code = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
     $err = curl_error($ch);
     curl_close($ch);
+    if ($responseHeaders !== null) {
+        $responseHeaders = $headerBag;
+    }
+
     if ($err !== '') {
         return [null, 0, $err];
     }
+
     return [$body === false ? null : $body, $code, null];
 }
 
