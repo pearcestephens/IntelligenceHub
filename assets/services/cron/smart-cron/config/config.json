@@ -1,9 +1,9 @@
 {
   "db": {
     "host": "127.0.0.1",
-    "database": "jcepnzzkmj",
-    "username": "jcepnzzkmj",
-    "password": "wprKh9Jq63",
+    "database": "hdgwrzntwa",
+    "username": "hdgwrzntwa",
+    "password": "bFUdRjh4Jx",
     "charset": "utf8mb4"
   },
   "metrics": {
@@ -16,16 +16,26 @@
     "auto_optimize_frequency": "weekly"
   },
   "load_balancer": {
-    "max_concurrent_heavy": 2,
-    "max_concurrent_medium": 5,
-    "max_concurrent_light": 15,
+    "enabled": true,
+    "dynamic_monitoring": true,
+    "max_concurrent_heavy": 3,
+    "max_concurrent_medium": 8,
+    "max_concurrent_light": 20,
     "cpu_threshold": 90,
-    "memory_threshold": 95
+    "memory_threshold": 95,
+    "emergency_mode": false,
+    "allow_critical_bypass": true
   },
   "thresholds": {
     "heavy_duration_seconds": 60,
     "heavy_memory_mb": 512,
     "medium_duration_seconds": 10,
     "medium_memory_mb": 100
+  },
+  "paths": {
+    "root": "/home/master/applications/hdgwrzntwa/public_html",
+    "logs": "/home/master/applications/hdgwrzntwa/public_html/assets/services/cron/smart-cron/logs",
+    "config": "/home/master/applications/hdgwrzntwa/public_html/assets/services/cron/smart-cron/config",
+    "tasks_config": "/home/master/applications/hdgwrzntwa/public_html/assets/services/cron/smart-cron/config/tasks.json"
   }
 }

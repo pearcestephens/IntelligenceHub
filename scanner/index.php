@@ -271,8 +271,8 @@ try {
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
-    <!-- Scanner Bootstrap-Based Custom CSS -->
-    <link rel="stylesheet" href="<?php echo SCANNER_ASSETS; ?>/css/scanner-bootstrap.css">
+    <!-- Scanner Clean Modern Design (COMPLETE REDESIGN) -->
+    <link rel="stylesheet" href="<?php echo SCANNER_ASSETS; ?>/css/scanner-clean.css">
 
     <!-- Chart.js for visualizations -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>

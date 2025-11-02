@@ -2,19 +2,19 @@
 <?php
 /**
  * Smart Cron System - Main Executable
- * 
+ *
  * Single entry point for intelligent, self-optimizing cron management.
- * 
+ *
  * Usage:
  *   php smart-cron.php                    # Run scheduled tasks
  *   php smart-cron.php --analyze          # Analyze metrics and optimize
  *   php smart-cron.php --status           # Show system status
  *   php smart-cron.php --dashboard        # Open web dashboard
  *   php smart-cron.php --task=name        # Run specific task manually
- * 
+ *
  * Installation:
  *   Add to crontab: * * * * * php /path/to/smart-cron.php >> /path/to/logs/cron.log 2>&1
- * 
+ *
  * @package SmartCron
  * @version 1.0.0
  * @author CIS Development Team
@@ -45,18 +45,12 @@ define('SMART_CRON_ROOT', __DIR__ . '/smart-cron');
 define('SMART_CRON_START', microtime(true));
 define('SMART_CRON_VERSION', '1.0.0');
 
-// Load PSR-4 autoloader (automatically loads all classes)
-require_once __DIR__ . '/autoloader.php';
+// Load bootstrap (handles database, app.php, and environment + autoloader)
+require_once SMART_CRON_ROOT . '/bootstrap.php';
 
-// Load environment variables from .env file
-use SmartCron\Core\EnvLoader;
-EnvLoader::load(__DIR__);
-
-// Set timezone from environment or default
-date_default_timezone_set(EnvLoader::get('APP_TIMEZONE', 'Pacific/Auckland'));
-
-// Database credentials are now defined by EnvLoader::load()
-// No need to define again - EnvLoader already did it!
+// Timezone already set by app.php
+// Database already connected via getMysqliConnection()
+// Autoloader loaded by bootstrap.php
 
 use SmartCron\Core\Config;
 use SmartCron\Core\CircuitBreaker;
@@ -106,9 +100,9 @@ try {
     } else {
         handleScheduledTasks($optimizer, $balancer, $metrics);
     }
-    
+
     exit(0);
-    
+
 } catch (\Exception $e) {
     error_log("Smart Cron Error: " . $e->getMessage());
     exit(1);
@@ -125,23 +119,23 @@ function handleScheduledTasks(ScheduleOptimizer $optimizer, LoadBalancer $balanc
 {
     $currentMinute = (int)date('i');
     $currentHour = (int)date('H');
-    
+
     echo "=== Smart Cron: " . date('Y-m-d H:i:s') . " ===\n";
     echo "Current minute: {$currentMinute}, Current hour: {$currentHour}\n";
-    
+
     // Get tasks scheduled for this minute
     $tasks = $optimizer->getTasksForMinute($currentMinute, $currentHour);
-    
+
     echo "Tasks found for this minute: " . count($tasks) . "\n";
-    
+
     if (empty($tasks)) {
         echo "No tasks scheduled for this minute.\n";
         echo "Run 'php smart-cron.php --analyze' to generate schedule.\n";
         return;
     }
-    
+
     echo "Tasks scheduled: " . count($tasks) . "\n\n";
-    
+
     foreach ($tasks as $task) {
         // 🔒 CRITICAL: Check if task is explicitly disabled
         if (isset($task['enabled']) && $task['enabled'] === false) {
@@ -149,27 +143,27 @@ function handleScheduledTasks(ScheduleOptimizer $optimizer, LoadBalancer $balanc
             $metrics->recordSkip($task['name'], 'disabled');
             continue;
         }
-        
+
         // Check if we can run this task (load balancing)
         if (!$balancer->canRunTask($task)) {
             echo "⏸️  SKIPPED: {$task['name']} (load balancer: too much concurrent load)\n";
             $metrics->recordSkip($task['name'], 'load_balancer');
             continue;
         }
-        
+
         // Run task with metrics collection
         echo "▶️  RUNNING: {$task['name']}\n";
         $result = $metrics->executeTask($task);
-        
+
         if ($result['success']) {
             echo "✅ SUCCESS: {$task['name']} ({$result['duration']}s, {$result['memory_mb']}MB)\n";
         } else {
             echo "❌ FAILED: {$task['name']} - {$result['error']}\n";
         }
-        
+
         echo "\n";
     }
-    
+
     $totalDuration = round(microtime(true) - SMART_CRON_START, 2);
     echo "Completed in {$totalDuration}s\n";
 }
@@ -180,36 +174,36 @@ function handleScheduledTasks(ScheduleOptimizer $optimizer, LoadBalancer $balanc
 function handleAnalyze(TaskAnalyzer $analyzer, ScheduleOptimizer $optimizer): void
 {
     echo "=== Smart Cron Analysis ===\n\n";
-    
+
     // Analyze task metrics
     echo "📊 Analyzing task metrics...\n";
     $analysis = $analyzer->analyzeAll();
-    
+
     echo "\nTask Classification:\n";
     echo "  Heavy tasks: " . count($analysis['heavy']) . "\n";
     echo "  Medium tasks: " . count($analysis['medium']) . "\n";
     echo "  Light tasks: " . count($analysis['light']) . "\n";
-    
+
     // Generate optimized schedule
     echo "\n🔧 Generating optimized schedule...\n";
     $schedule = $optimizer->generateSchedule($analysis);
-    
+
     // Save schedule
     $optimizer->saveSchedule($schedule);
-    
+
     // Count tasks in schedule
     $totalTasks = 0;
     foreach ($schedule as $minute => $tasks) {
         $totalTasks += count($tasks);
     }
-    
+
     echo "\nOptimization Results:\n";
     echo "  Total tasks scheduled: {$totalTasks}\n";
     echo "  Heavy tasks: " . count($analysis['heavy']) . " (will run 2-4 AM after metrics collected)\n";
     echo "  Medium tasks: " . count($analysis['medium']) . " (off-peak hours)\n";
     echo "  Light tasks: " . count($analysis['light']) . " (distributed across all minutes)\n";
     echo "  Schedule saved to: smart-cron/config/schedule.json\n";
-    
+
     echo "\n✅ Analysis complete. New schedule activated.\n";
 }
 
@@ -219,9 +213,9 @@ function handleAnalyze(TaskAnalyzer $analyzer, ScheduleOptimizer $optimizer): vo
 function handleStatus(MetricsCollector $metrics, TaskAnalyzer $analyzer): void
 {
     echo "=== Smart Cron Status ===\n\n";
-    
+
     $status = $metrics->getSystemStatus();
-    
+
     echo "System Health: " . ($status['healthy'] ? '✅ HEALTHY' : '⚠️  WARNING') . "\n";
     echo "Total Tasks: {$status['total_tasks']}\n";
     echo "Last Run: " . date('Y-m-d H:i:s', $status['last_run']) . "\n";
@@ -230,7 +224,7 @@ function handleStatus(MetricsCollector $metrics, TaskAnalyzer $analyzer): void
     echo "  Successes: {$status['successes_24h']}\n";
     echo "  Failures: {$status['failures_24h']}\n";
     echo "  Avg Duration: {$status['avg_duration_24h']}s\n";
-    
+
     // Top 5 heaviest tasks
     echo "\n🐘 Top 5 Heaviest Tasks:\n";
     $heavy = $analyzer->getHeaviestTasks(5);
@@ -238,7 +232,7 @@ function handleStatus(MetricsCollector $metrics, TaskAnalyzer $analyzer): void
         $num = $i + 1;
         echo "  {$num}. {$task['name']} - {$task['avg_duration']}s, {$task['avg_memory_mb']}MB\n";
     }
-    
+
     // Recent failures
     $failures = $metrics->getRecentFailures(5);
     if (!empty($failures)) {
@@ -256,31 +250,31 @@ function handleManualTask(string $taskName, MetricsCollector $metrics, LoadBalan
 {
     echo "=== Manual Task Execution ===\n\n";
     echo "Task: {$taskName}\n";
-    
+
     if ($force) {
         echo "⚡ Force mode: ON (bypassing cooldowns and circuit breakers)\n";
     }
-    
+
     // Find task configuration
     $task = $balancer->getTaskConfig($taskName);
-    
+
     if (!$task) {
         echo "❌ ERROR: Task '{$taskName}' not found\n";
         exit(1);
     }
-    
+
     echo "Script: {$task['script']}\n";
     echo "\n▶️  Starting execution...\n\n";
-    
+
     // Execute with metrics
     // If force mode, bypass cooldowns and circuit breakers
     if ($force) {
         // Set a flag in the task config to bypass checks
         $task['_force_execution'] = true;
     }
-    
+
     $result = $metrics->executeTask($task);
-    
+
     if ($result['success']) {
         echo "\n✅ SUCCESS\n";
         echo "Duration: {$result['duration']}s\n";
@@ -299,10 +293,10 @@ function handleManualTask(string $taskName, MetricsCollector $metrics, LoadBalan
 function handleDashboard(Config $config): void
 {
     $dashboardUrl = $config->get('dashboard_url', 'http://localhost/assets/cron/dashboard/');
-    
+
     echo "=== Smart Cron Dashboard ===\n\n";
     echo "Opening dashboard at: {$dashboardUrl}\n";
-    
+
     // Try to open browser
     if (PHP_OS_FAMILY === 'Darwin') {
         exec("open {$dashboardUrl}");
@@ -311,7 +305,7 @@ function handleDashboard(Config $config): void
     } else {
         exec("xdg-open {$dashboardUrl} 2>/dev/null &");
     }
-    
+
     echo "\nIf browser didn't open, visit: {$dashboardUrl}\n";
 }
 

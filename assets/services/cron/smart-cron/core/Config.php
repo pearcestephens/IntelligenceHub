@@ -1,9 +1,9 @@
 <?php
 /**
  * Smart Cron - Configuration Manager
- * 
+ *
  * Manages all configuration settings for Smart Cron system.
- * 
+ *
  * @package SmartCron\Core
  */
 
@@ -20,7 +20,7 @@ class Config
     private static ?array $configCache = null;
     private static ?int $cacheTimestamp = null;
     private const CACHE_TTL = 300; // 5 minutes
-    
+
     public function __construct()
     {
         $this->configFile = dirname(__DIR__) . '/config/config.json';
@@ -28,7 +28,7 @@ class Config
         $this->load();
         $this->loadSettings();
     }
-    
+
     /**
      * Load configuration from file
      */
@@ -41,26 +41,26 @@ class Config
                 return;
             }
         }
-        
+
         if (file_exists($this->configFile)) {
             $json = file_get_contents($this->configFile);
             $this->config = json_decode($json, true);
-            
+
             if ($this->config === null && json_last_error() !== JSON_ERROR_NONE) {
                 error_log('[Config] JSON decode error: ' . json_last_error_msg());
                 $this->config = [];
             }
         }
-        
+
         // Set defaults if not configured
         $this->setDefaults();
         $this->validateConfig();
-        
+
         // Cache the config
         self::$configCache = $this->config;
         self::$cacheTimestamp = time();
     }
-    
+
     /**
      * Load settings from settings.json
      */
@@ -70,7 +70,7 @@ class Config
             $this->settings = json_decode(file_get_contents($this->settingsFile), true) ?? [];
         }
     }
-    
+
     /**
      * Get a setting value by dot notation path
      * Example: getSetting('logging.level') returns 'info'
@@ -79,17 +79,17 @@ class Config
     {
         $keys = explode('.', $key);
         $value = $this->settings;
-        
+
         foreach ($keys as $k) {
             if (!isset($value[$k])) {
                 return $default;
             }
             $value = $value[$k];
         }
-        
+
         return $value;
     }
-    
+
     /**
      * Get all settings
      */
@@ -97,7 +97,7 @@ class Config
     {
         return $this->settings;
     }
-    
+
     /**
      * Update settings and save to file
      */
@@ -105,12 +105,12 @@ class Config
     {
         $this->settings = $newSettings;
         $this->settings['metadata']['updated_at'] = date('c');
-        
+
         $json = json_encode($this->settings, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-        
+
         return file_put_contents($this->settingsFile, $json) !== false;
     }
-    
+
     /**
      * Set default configuration values
      */
@@ -123,21 +123,21 @@ class Config
             if ($value !== false && $value !== '') {
                 return $value;
             }
-            
+
             // Priority 2: PHP constant
             if (defined($constantKey)) {
                 return constant($constantKey);
             }
-            
+
             // Priority 3: Default
             return $default;
         };
-        
+
         $host = $getCredential('DB_HOST', 'DB_HOST', '127.0.0.1');
         $user = $getCredential('DB_USER', 'DB_USER', 'jcepnzzkmj');
         $pass = $getCredential('DB_PASS', 'DB_PASS', '');
         $db = $getCredential('DB_NAME', 'DB_NAME', 'jcepnzzkmj');
-        
+
         $defaults = [
             'db' => [
                 'host' => $host,
@@ -171,11 +171,10 @@ class Config
             'paths' => [
                 // ✅ ABSOLUTE PATHS ONLY - NO SYMLINKS!
                 // NEVER use /home/master/applications/ (it's a symlink to /home/129337.cloudwaysapps.com/)
-                // ALWAYS use the REAL absolute path: /home/129337.cloudwaysapps.com/jcepnzzkmj/public_html
-                'root' => $_SERVER['DOCUMENT_ROOT'] ?? '/home/129337.cloudwaysapps.com/jcepnzzkmj/public_html',
-                'project_root' => $_SERVER['DOCUMENT_ROOT'] ?? '/home/129337.cloudwaysapps.com/jcepnzzkmj/public_html',
+                // ALWAYS use the REAL absolute path: /home/129337.cloudwaysapps.com/hdgwrzntwa/public_html
+                'root' => $_SERVER['DOCUMENT_ROOT'] ?? '/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html',
+                'project_root' => $_SERVER['DOCUMENT_ROOT'] ?? '/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html',
                 'logs' => dirname(__DIR__) . '/logs',
-                'tasks_config' => dirname(__DIR__) . '/config/tasks.json',
             ],
             'alerts' => [
                 'email_from' => getenv('ALERT_EMAIL_FROM') ?: 'smart-cron@vapeshed.co.nz',
@@ -185,11 +184,11 @@ class Config
                 'end' => (int)(getenv('BUSINESS_HOURS_END') ?: 23),
             ],
         ];
-        
+
         // Merge with existing config (existing values take precedence)
         $this->config = array_replace_recursive($defaults, $this->config);
     }
-    
+
     /**
      * Validate required configuration
      */
@@ -202,14 +201,14 @@ class Config
             'paths.root',
             'paths.logs',
         ];
-        
+
         foreach ($required as $key) {
             $value = $this->get($key);
             if ($value === null || $value === '') {
                 error_log("[Config] Warning: Required config '{$key}' is not set");
             }
         }
-        
+
         // Validate numeric ranges
         $numericValidations = [
             'load_balancer.cpu_threshold' => [0, 100],
@@ -217,7 +216,7 @@ class Config
             'business_hours.start' => [0, 23],
             'business_hours.end' => [0, 23],
         ];
-        
+
         foreach ($numericValidations as $key => $range) {
             $value = $this->get($key);
             if ($value !== null && ($value < $range[0] || $value > $range[1])) {
@@ -225,7 +224,7 @@ class Config
             }
         }
     }
-    
+
     /**
      * Get configuration value
      */
@@ -233,17 +232,17 @@ class Config
     {
         $keys = explode('.', $key);
         $value = $this->config;
-        
+
         foreach ($keys as $k) {
             if (!isset($value[$k])) {
                 return $default;
             }
             $value = $value[$k];
         }
-        
+
         return $value;
     }
-    
+
     /**
      * Set configuration value
      */
@@ -251,7 +250,7 @@ class Config
     {
         $keys = explode('.', $key);
         $config = &$this->config;
-        
+
         foreach ($keys as $i => $k) {
             if ($i === count($keys) - 1) {
                 $config[$k] = $value;
@@ -263,7 +262,7 @@ class Config
             }
         }
     }
-    
+
     /**
      * Save configuration to file
      */
@@ -273,17 +272,17 @@ class Config
         if (!is_dir($dir)) {
             mkdir($dir, 0755, true);
         }
-        
+
         file_put_contents(
             $this->configFile,
             json_encode($this->config, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES)
         );
     }
-    
+
     /**
      * Get database connection - Enhanced with health checking
      * Uses constants defined in smart-cron.php
-     * 
+     *
      * 🔒 CRITICAL FIX #2: CONNECTION LEAK FIX - Add ping, reconnect, and health checks
      */
     public function getDbConnection(): ?\mysqli
@@ -292,11 +291,11 @@ class Config
         static $lastPingTime = null;
         static $connectionAttempts = 0;
         static $maxAttempts = 3;
-        
+
         // Health check: ping every 60 seconds
         if ($connection !== null && $lastPingTime !== null) {
             $timeSinceLastPing = time() - $lastPingTime;
-            
+
             if ($timeSinceLastPing > 60) {
                 try {
                     if (!$connection->ping()) {
@@ -315,56 +314,56 @@ class Config
                 }
             }
         }
-        
+
         // Return cached connection if still valid
         if ($connection !== null) {
             return $connection;
         }
-        
+
         // Prevent infinite reconnection attempts
         if ($connectionAttempts >= $maxAttempts) {
             error_log('[Config] Max DB connection attempts reached, giving up');
             return null;
         }
-        
+
         $connectionAttempts++;
-        
+
         // Use hardcoded constants from smart-cron.php
         $host = defined('DB_HOST') ? DB_HOST : 'localhost';
         $user = defined('DB_USER') ? DB_USER : 'jcepnzzkmj';
         $pass = defined('DB_PASS') ? DB_PASS : 'wprKh9Jq63';
         $dbName = defined('DB_NAME') ? DB_NAME : 'jcepnzzkmj';
         $port = defined('DB_PORT') ? (int)DB_PORT : 3306;
-        
+
         // Try direct mysqli connection with socket support
         try {
             mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-            
+
             // First try with 'localhost' which will use socket if available
             $connection = new \mysqli($host, $user, $pass, $dbName, $port);
             $connection->set_charset('utf8mb4');
-            
+
             // Set connection timeout and wait_timeout to prevent stale connections
             $connection->options(MYSQLI_OPT_CONNECT_TIMEOUT, 10);
             $connection->query("SET SESSION wait_timeout = 28800"); // 8 hours
             $connection->query("SET SESSION interactive_timeout = 28800"); // 8 hours
-            
+
             // Test the connection
             $connection->query("SELECT 1");
-            
+
             $lastPingTime = time();
             $connectionAttempts = 0; // Reset counter on success
-            
+
             error_log('[Config] DB connection established successfully');
-            
+
             return $connection;
-            
+
         } catch (\mysqli_sql_exception $e) {
             error_log('[Config] DB connection failed (attempt ' . $connectionAttempts . '/' . $maxAttempts . '): ' . $e->getMessage());
             return null;
         }
     }
-    
+
     /**
      * Close database connection (for graceful shutdown)
      */
@@ -373,7 +372,7 @@ class Config
         // Access the static connection via reflection or add a getter
         $reflection = new \ReflectionMethod($this, 'getDbConnection');
         $reflection->setAccessible(true);
-        
+
         // Get static variables
         $staticVars = $reflection->getStaticVariables();
         if (isset($staticVars['connection']) && $staticVars['connection'] !== null) {
@@ -385,30 +384,109 @@ class Config
             }
         }
     }
-    
+
     /**
-     * Get all tasks from tasks.json
+     * Get all tasks from database (hub_cron_jobs table)
      */
     public function getTasks(): array
     {
-        $tasksFile = dirname(__DIR__) . '/config/tasks.json';
-        
-        if (!file_exists($tasksFile)) {
-            error_log('[Config] Tasks file not found: ' . $tasksFile);
+        try {
+            $db = getMysqliConnection();
+            $result = $db->query("
+                SELECT
+                    name,
+                    command,
+                    schedule,
+                    enabled,
+                    timeout,
+                    priority
+                FROM hub_cron_jobs
+                WHERE enabled = 1
+                ORDER BY priority DESC, id ASC
+            ");
+
+            if (!$result) {
+                error_log('[Config] Database query failed: ' . $db->error);
+                return [];
+            }
+
+            $tasks = [];
+            while ($row = $result->fetch_assoc()) {
+                // Convert database row to task format
+                $tasks[] = [
+                    'name' => $row['name'],
+                    'script' => $row['command'],
+                    'description' => $row['name'],
+                    'frequency' => $this->convertScheduleToFrequency($row['schedule']),
+                    'type' => 'medium', // Default type
+                    'estimated_duration' => $row['timeout'] ?? 60,
+                    'estimated_memory_mb' => 50,
+                    'enabled' => (bool)$row['enabled'],
+                    'bypass_circuit_breaker' => false,
+                    'monitoring' => [
+                        'track_performance' => true,
+                        'alert_on_failure' => true,
+                        'slow_threshold_seconds' => $row['timeout'] ?? 60,
+                        'memory_alert_mb' => 100
+                    ]
+                ];
+            }
+
+            return $tasks;
+
+        } catch (\Exception $e) {
+            error_log('[Config] Error loading tasks from database: ' . $e->getMessage());
             return [];
         }
-        
-        $json = file_get_contents($tasksFile);
-        $data = json_decode($json, true);
-        
-        if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
-            error_log('[Config] Tasks JSON decode error: ' . json_last_error_msg());
-            return [];
-        }
-        
-        return $data['tasks'] ?? [];
     }
-    
+
+    /**
+     * Convert cron schedule format to frequency string
+     */
+    private function convertScheduleToFrequency(string $schedule): string
+    {
+        // Parse cron schedule format: minute hour day month weekday
+        $parts = preg_split('/\s+/', trim($schedule));
+
+        if (count($parts) < 5) {
+            return 'daily';
+        }
+
+        list($minute, $hour, $day, $month, $weekday) = $parts;
+
+        // Check for common patterns
+        if ($minute === '*' && $hour === '*') {
+            return 'every_minute';
+        }
+
+        if (strpos($minute, '*/5') === 0 && $hour === '*') {
+            return 'every_5_minutes';
+        }
+
+        if (strpos($minute, '*/15') === 0 && $hour === '*') {
+            return 'every_15_minutes';
+        }
+
+        if (strpos($minute, '*/30') === 0 && $hour === '*') {
+            return 'every_30_minutes';
+        }
+
+        if ($minute !== '*' && strpos($hour, '*/') === 0) {
+            // Every X hours
+            $hours = (int)str_replace('*/', '', $hour);
+            return "every_{$hours}_hours";
+        }
+
+        if ($hour !== '*' && $minute !== '*') {
+            if ($weekday !== '*') {
+                return 'weekly';
+            }
+            return 'daily';
+        }
+
+        return 'daily';
+    }
+
     /**
      * Get enabled tasks only
      */
@@ -418,7 +496,7 @@ class Config
             return isset($task['enabled']) && $task['enabled'] === true;
         });
     }
-    
+
     /**
      * Get task by name
      */
