@@ -1,7 +1,7 @@
 # Intelligence Hub - Complete Documentation Index
 
-**Location:** `_kb/mcp/intelligence-hub/`  
-**Last Updated:** November 2, 2025  
+**Location:** `_kb/mcp/intelligence-hub/`
+**Last Updated:** November 2, 2025
 **Status:** ✅ Complete & Organized
 
 ---
@@ -118,7 +118,7 @@
 → Start with [01_SYSTEM_OVERVIEW.md](01_SYSTEM_OVERVIEW.md)
 
 **Building Integrations:**
-→ [10_API_EXAMPLES.md](10_API_EXAMPLES.md) for code samples  
+→ [10_API_EXAMPLES.md](10_API_EXAMPLES.md) for code samples
 → [02_MCP_SERVER.md](02_MCP_SERVER.md) for MCP protocol
 
 **VS Code Setup:**
@@ -231,5 +231,5 @@ EOF
 
 **Everything you need to build, deploy, and integrate with Intelligence Hub is here! 🎉**
 
-*Documentation maintained by: Intelligence Hub Team*  
+*Documentation maintained by: Intelligence Hub Team*
 *Contact: pearce.stephens@ecigdis.co.nz*

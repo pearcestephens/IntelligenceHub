@@ -13,7 +13,14 @@ require_once __DIR__ . '/mcp_tools_turbo.php';
 
 $action = $_GET['action'] ?? 'rpc';
 $method = strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
-$apiKey = envv('MCP_API_KEY', '');
+
+// Read API key from header (X-API-Key or Authorization Bearer)
+$apiKey = $_SERVER['HTTP_X_API_KEY'] ?? '';
+if (empty($apiKey) && isset($_SERVER['HTTP_AUTHORIZATION'])) {
+    if (preg_match('/^Bearer\s+(.+)$/i', $_SERVER['HTTP_AUTHORIZATION'], $matches)) {
+        $apiKey = $matches[1];
+    }
+}
 
 header('X-Content-Type-Options: nosniff');
 

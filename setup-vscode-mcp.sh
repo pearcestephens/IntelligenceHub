@@ -12,7 +12,7 @@ echo "Intelligence Hub VS Code Setup"
 echo "=========================================="
 echo ""
 
-# Step 1: Get API Key from server
+# Step 1: Get API KeNBy from server
 echo "Step 1: Getting API Key from server..."
 API_KEY=$(cat /home/master/applications/hdgwrzntwa/private_html/config/.env | grep MCP_API_KEY | cut -d'=' -f2)
 

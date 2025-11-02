@@ -58,12 +58,7 @@ function envv(string $key, string $default = ''): string
 }
 
 /**
- * Exception for unauthorized access
- */
-class UnauthorizedException extends Exception {}
-
-/**
- * Enforce API key authentication
+ * Enforce API key authentication (used by server_v3.php)
  *
  * @param string $providedKey
  * @throws UnauthorizedException
@@ -80,84 +75,6 @@ function enforce_api_key(string $providedKey): void
     if ($providedKey !== $expectedKey) {
         throw new UnauthorizedException('Invalid API key');
     }
-}
-
-/**
- * Generate a unique request ID for tracing
- *
- * @return string
- */
-function current_request_id(): string
-{
-    static $id = null;
-    if ($id === null) {
-        $id = 'mcp_' . date('Ymd_His') . '_' . bin2hex(random_bytes(4));
-    }
-    return $id;
-}
-
-/**
- * Send JSON-RPC error response and exit
- *
- * @param string $code
- * @param string $message
- * @param array<string, mixed> $data
- * @param int $httpStatus
- * @return never
- */
-function respond_error(string $code, string $message, array $data = [], int $httpStatus = 400): never
-{
-    if (!headers_sent()) {
-        http_response_code($httpStatus);
-        header('Content-Type: application/json; charset=utf-8');
-    }
-
-    echo json_encode([
-        'jsonrpc' => '2.0',
-        'error' => [
-            'code' => -32000,
-            'message' => $message,
-            'data' => array_merge(['error_code' => $code], $data),
-        ],
-        'id' => null,
-    ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-    exit;
-}
-
-/**
- * Build meta manifest for tool discovery
- *
- * @return array<string, mixed>
- */
-function build_meta_manifest(): array
-{
-    return [
-        'name' => 'Ecigdis MCP Server',
-        'version' => '3.0.0',
-        'protocol' => 'json-rpc-2.0',
-        'capabilities' => [
-            'tools',
-            'prompts',
-            'resources',
-        ],
-        'tools' => [
-            'semantic_search',
-            'find_code',
-            'analyze_file',
-            'get_file_content',
-            'health_check',
-            'get_stats',
-            'top_keywords',
-            'search_by_category',
-            'list_categories',
-            'get_analytics',
-            'list_satellites',
-            'sync_satellite',
-            'find_similar',
-            'explore_by_tags',
-        ],
-    ];
 }
 
 /**
