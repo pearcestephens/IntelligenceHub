@@ -72,11 +72,11 @@ class UnauthorizedException extends Exception {}
 function enforce_api_key(string $providedKey): void
 {
     $expectedKey = envv('MCP_API_KEY', 'bFUdRjh4Jx');
-    
+
     if ($providedKey === '') {
         throw new UnauthorizedException('API key required');
     }
-    
+
     if ($providedKey !== $expectedKey) {
         throw new UnauthorizedException('Invalid API key');
     }
@@ -111,7 +111,7 @@ function respond_error(string $code, string $message, array $data = [], int $htt
         http_response_code($httpStatus);
         header('Content-Type: application/json; charset=utf-8');
     }
-    
+
     echo json_encode([
         'jsonrpc' => '2.0',
         'error' => [
@@ -121,7 +121,7 @@ function respond_error(string $code, string $message, array $data = [], int $htt
         ],
         'id' => null,
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    
+
     exit;
 }
 
