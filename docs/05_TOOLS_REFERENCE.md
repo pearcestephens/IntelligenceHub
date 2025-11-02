@@ -1,9 +1,9 @@
 # Tools Reference Documentation
 
-**Component:** AI Agent Local Tools  
-**Location:** `/assets/services/ai-agent/api/tools/invoke.php`  
-**Registry:** Tool definitions with schemas  
-**Status:** 8 Tools Operational ✅  
+**Component:** AI Agent Local Tools
+**Location:** `/assets/services/ai-agent/api/tools/invoke.php`
+**Registry:** Tool definitions with schemas
+**Status:** 8 Tools Operational ✅
 
 ---
 
@@ -821,7 +821,7 @@ curl -X POST https://gpt.ecigdis.co.nz/assets/services/ai-agent/api/tools/invoke
 
 ### Path Validation (secure_path)
 
-**Function:** `secure_path($relativePath)`  
+**Function:** `secure_path($relativePath)`
 **Location:** `lib/Bootstrap.php` lines 79-98
 
 **Purpose:** Validate and resolve file paths safely
@@ -831,21 +831,21 @@ curl -X POST https://gpt.ecigdis.co.nz/assets/services/ai-agent/api/tools/invoke
 function secure_path(string $relativePath): string
 {
     $docRoot = rtrim($_SERVER['DOCUMENT_ROOT'] ?? '', '/');
-    
+
     // Remove leading slash
     $relativePath = ltrim($relativePath, '/');
-    
+
     // Build absolute path
     $absolutePath = $docRoot . '/' . $relativePath;
-    
+
     // Resolve canonical path (resolves .., symlinks)
     $realPath = realpath($absolutePath);
-    
+
     // Verify path is within DOCUMENT_ROOT
     if ($realPath === false || strpos($realPath, $docRoot) !== 0) {
         throw new Exception("PATH_OUTSIDE_ROOT: $relativePath");
     }
-    
+
     return $realPath;
 }
 ```
@@ -1070,6 +1070,6 @@ curl -X POST https://gpt.ecigdis.co.nz/assets/services/ai-agent/api/tools/invoke
 
 ---
 
-**Document Version:** 1.0.0  
-**Last Updated:** November 2, 2025  
+**Document Version:** 1.0.0
+**Last Updated:** November 2, 2025
 **Related Docs:** 03_AI_AGENT_ENDPOINTS.md, 07_SECURITY.md, 09_TROUBLESHOOTING.md

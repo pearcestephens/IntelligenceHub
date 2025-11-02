@@ -1,9 +1,9 @@
 # Telemetry & Logging Documentation
 
-**Component:** AI Agent Observability System  
-**Location:** `/assets/services/ai-agent/lib/Telemetry.php`  
-**Database:** hdgwrzntwa (logging tables)  
-**Status:** Production Ready ✅  
+**Component:** AI Agent Observability System
+**Location:** `/assets/services/ai-agent/lib/Telemetry.php`
+**Database:** hdgwrzntwa (logging tables)
+**Status:** Production Ready ✅
 
 ---
 
@@ -59,14 +59,14 @@ class Telemetry
     private PDO $pdo;
     private string $requestId;
     private float $startTime;
-    
+
     public function __construct(PDO $pdo, ?string $requestId = null)
     {
         $this->pdo = $pdo;
         $this->requestId = $requestId ?? $this->generateRequestId();
         $this->startTime = microtime(true);
     }
-    
+
     // Methods documented below...
 }
 ```
@@ -143,7 +143,7 @@ $requestDbId = $telemetry->logRequest(
 **Database Record:**
 ```sql
 INSERT INTO ai_agent_requests (
-    request_id, endpoint, method, conversation_id, message_id, 
+    request_id, endpoint, method, conversation_id, message_id,
     session_key, ip, user_agent, created_at
 ) VALUES (
     '48e8429615a4d75aa6d5dfd568291b5e',
@@ -199,8 +199,8 @@ $telemetry->updateRequestStatus(
 
 **Database Update:**
 ```sql
-UPDATE ai_agent_requests 
-SET 
+UPDATE ai_agent_requests
+SET
     status_code = 200,
     latency_ms = 1115,
     error_code = NULL,
@@ -303,8 +303,8 @@ $telemetry->updateToolCallStatus(
 **Database Updates:**
 ```sql
 -- Update ai_tool_calls
-UPDATE ai_tool_calls 
-SET 
+UPDATE ai_tool_calls
+SET
     status = 'ok',
     latency_ms = 5,
     error = NULL,
@@ -385,19 +385,19 @@ try {
         method: $_SERVER['REQUEST_METHOD'],
         sessionKey: $data['session_key'] ?? null
     );
-    
+
     // 3. Do work (chat, tools, etc.)
     $result = doWork($data);
-    
+
     // 4. Log success
     $telemetry->updateRequestStatus(
         requestDbId: $requestDbId,
         statusCode: 200
     );
-    
+
     // 5. Return response
     envelope_success($result, $requestId);
-    
+
 } catch (Exception $e) {
     // 6. Log error
     $telemetry->updateRequestStatus(
@@ -406,7 +406,7 @@ try {
         errorCode: 'UNEXPECTED_ERROR',
         errorMessage: $e->getMessage()
     );
-    
+
     // 7. Return error
     envelope_error(
         code: 'UNEXPECTED_ERROR',
@@ -422,7 +422,7 @@ All telemetry linked by `request_id`:
 
 ```sql
 -- Find all data for a request
-SELECT 
+SELECT
     ar.request_id,
     ar.endpoint,
     ar.status_code,
@@ -463,10 +463,10 @@ $startTime = microtime(true);
 try {
     // 2. Execute tool
     $result = executeTool('fs.read', ['path' => 'assets/config.php']);
-    
+
     // 3. Calculate latency
     $latencyMs = (int) round((microtime(true) - $startTime) * 1000);
-    
+
     // 4. Log success
     $telemetry->updateToolCallStatus(
         toolCallId: $toolCallId,
@@ -474,18 +474,18 @@ try {
         result: $result,
         latencyMs: $latencyMs
     );
-    
+
 } catch (Exception $e) {
     // 5. Log error
     $latencyMs = (int) round((microtime(true) - $startTime) * 1000);
-    
+
     $telemetry->updateToolCallStatus(
         toolCallId: $toolCallId,
         status: 'error',
         error: $e->getMessage(),
         latencyMs: $latencyMs
     );
-    
+
     throw $e;
 }
 ```
@@ -514,7 +514,7 @@ started → timeout  (exceeded limit)
 ```php
 // Create conversation
 $stmt = $pdo->prepare("
-    INSERT INTO ai_conversations (session_key, provider, model) 
+    INSERT INTO ai_conversations (session_key, provider, model)
     VALUES (?, ?, ?)
 ");
 $stmt->execute(['user-123', 'openai', 'gpt-4o-mini']);
@@ -533,7 +533,7 @@ $telemetry->logRequest(
 ```php
 // User message
 $stmt = $pdo->prepare("
-    INSERT INTO ai_conversation_messages (conversation_id, role, content) 
+    INSERT INTO ai_conversation_messages (conversation_id, role, content)
     VALUES (?, ?, ?)
 ");
 $stmt->execute([$conversationId, 'user', 'Hello!']);
@@ -557,8 +557,8 @@ $assistantMessageId = (int) $pdo->lastInsertId();
 ```php
 // Update conversation totals
 $stmt = $pdo->prepare("
-    UPDATE ai_conversations 
-    SET 
+    UPDATE ai_conversations
+    SET
         total_tokens = total_tokens + ?,
         cost_nzd_cents = cost_nzd_cents + ?,
         updated_at = NOW()
@@ -568,7 +568,7 @@ $stmt->execute([37, 0, $conversationId]);
 
 // Update message tokens
 $stmt = $pdo->prepare("
-    UPDATE ai_conversation_messages 
+    UPDATE ai_conversation_messages
     SET tokens = ?, cost_nzd_cents = ?
     WHERE id = ?
 ");
@@ -644,7 +644,7 @@ $costNZDCents = (int) round($totalCostNZD * 100);
 ### Daily Request Statistics
 
 ```sql
-SELECT 
+SELECT
     DATE(created_at) as date,
     COUNT(*) as total_requests,
     SUM(CASE WHEN status_code = 200 THEN 1 ELSE 0 END) as success_count,
@@ -673,7 +673,7 @@ ORDER BY date DESC;
 ### Tool Usage Analytics
 
 ```sql
-SELECT 
+SELECT
     tool_name,
     COUNT(*) as total_calls,
     SUM(CASE WHEN status = 'ok' THEN 1 ELSE 0 END) as success_count,
@@ -704,7 +704,7 @@ ORDER BY total_calls DESC;
 ### Error Rate Monitoring
 
 ```sql
-SELECT 
+SELECT
     error_code,
     COUNT(*) as occurrences,
     GROUP_CONCAT(DISTINCT endpoint SEPARATOR ', ') as affected_endpoints,
@@ -733,7 +733,7 @@ ORDER BY occurrences DESC;
 ### Active Conversations
 
 ```sql
-SELECT 
+SELECT
     c.id,
     c.session_key,
     c.provider,
@@ -756,7 +756,7 @@ ORDER BY c.updated_at DESC;
 ### Slow Requests (> 1 second)
 
 ```sql
-SELECT 
+SELECT
     request_id,
     endpoint,
     method,
@@ -776,7 +776,7 @@ LIMIT 20;
 ### Failed Tool Calls
 
 ```sql
-SELECT 
+SELECT
     tc.tool_name,
     tc.args,
     tc.error,
@@ -808,10 +808,10 @@ LIMIT 20;
 | ai_memory | Never | Never | Never | Manual only |
 | mcp_tool_usage | 7 days | 30 days | 90 days | After 1 year |
 
-**Hot Data:** Frequently accessed, keep in main tables  
-**Warm Data:** Archived to `_archive` tables, compressed  
-**Cold Data:** Moved to object storage (S3/R2), compressed  
-**Deletion:** Permanently removed  
+**Hot Data:** Frequently accessed, keep in main tables
+**Warm Data:** Archived to `_archive` tables, compressed
+**Cold Data:** Moved to object storage (S3/R2), compressed
+**Deletion:** Permanently removed
 
 ---
 
@@ -884,6 +884,6 @@ echo "[" . date('Y-m-d H:i:s') . "] Archived: $archived, Deleted: $deleted\n";
 
 ---
 
-**Document Version:** 1.0.0  
-**Last Updated:** November 2, 2025  
+**Document Version:** 1.0.0
+**Last Updated:** November 2, 2025
 **Related Docs:** 03_AI_AGENT_ENDPOINTS.md, 04_DATABASE_SCHEMA.md, 09_TROUBLESHOOTING.md
