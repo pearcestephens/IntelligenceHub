@@ -51,10 +51,20 @@ class AutoFixService
         $this->aiAssistant = $aiAssistant;
         $this->backupDir = rtrim($backupDir, '/');
 
-        if (!is_dir($this->backupDir) && !mkdir($this->backupDir, 0755, true)) {
-            throw new InvalidArgumentException(
-                "Cannot create backup directory: {$this->backupDir}"
-            );
+        // Validate parent directory before attempting to create to avoid PHP warnings
+        $parent = dirname($this->backupDir);
+        if (!is_dir($this->backupDir)) {
+            if (!is_dir($parent) || !is_writable($parent)) {
+                throw new InvalidArgumentException(
+                    "Cannot create backup directory: {$this->backupDir} (parent not writable)"
+                );
+            }
+
+            if (!mkdir($this->backupDir, 0755, true)) {
+                throw new InvalidArgumentException(
+                    "Cannot create backup directory: {$this->backupDir}"
+                );
+            }
         }
     }
 

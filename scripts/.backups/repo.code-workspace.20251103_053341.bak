@@ -1,0 +1,35 @@
+{
+  // <!-- generated: kb_holy_grail -->
+  
+    "folders": [
+        {
+            "path": "home/129337.cloudwaysapps.com/hdgwrzntwa/public_html"
+        },
+        {
+            "path": "home/129337.cloudwaysapps.com/jcepnzzkmj/public_html/modules/consignments"
+        },
+        {
+            "path": "home/129337.cloudwaysapps.com/jcepnzzkmj/public_html/modules/base"
+        },
+        {
+            "path": "home/129337.cloudwaysapps.com/fhrehrpjmu/public_html"
+        },
+        {
+            "path": "home/129337.cloudwaysapps.com/dvaxgvsxmz/public_html"
+        },
+        {
+            "path": "home/129337.cloudwaysapps.com/jcepnzzkmj/public_html"
+        }
+    ],
+    "settings": {
+        "files.exclude": {
+            "**/.git": true,
+            "**/node_modules": true,
+            "**/vendor": false
+        }
+    },
+    "launch": {
+        "version": "0.2.0",
+        "configurations": []
+    }
+}
