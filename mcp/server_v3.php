@@ -166,7 +166,7 @@ function build_meta_manifest(): array
         'endpoints'       => [
             'meta'    => "{$baseUrl}{$prefix}/server_v3.php?action=meta",
             'rpc'     => "{$baseUrl}{$prefix}/server_v3.php?action=rpc",
-            'health'  => "{$baseUrl}{$prefix}/server_v3.php?show=health"
+            'health'  => "{$baseUrl}{$prefix}/server_v3.php?action=health"
         ],
         'auth'            => [
             'type'     => envv('MCP_API_KEY') ? 'bearer' : 'none',
@@ -303,7 +303,7 @@ function tool_catalog(): array
                 'type' => 'object',
                 'properties' => [
                     'query' => ['type' => 'string','minLength'=>1],
-                    'param' => ['type' => 'array','items'=>['type'=>'string']]
+                    'params' => ['type' => 'array','items'=>['type'=>'string']]
                 ],
                 'required' => ['query']
             ]
@@ -596,9 +596,9 @@ function tool_routes(): array
 
     $routes = [
         'db.query'         => ['endpoint'=>'public/api/DatabaseTool.php','action'=>'query'],
-        'db.schema'        => [' endpoint'=>'public/api/DatabaseTool.php','action'=>'schema'],
-        'db.tables'        => [' endpoint'=>'public/api/DatabaseTool.php','action'=>'tables'],
-        'db.explain'       => [' endpoint'=>'public/api/DatabaseTool.php','action'=>'explain'],
+    'db.schema'        => ['endpoint'=>'public/api/DatabaseTool.php','action'=>'schema'],
+    'db.tables'        => ['endpoint'=>'public/api/DatabaseTool.php','action'=>'tables'],
+    'db.explain'       => ['endpoint'=>'public/api/DatabaseTool.php','action'=>'explain'],
 
         'fs.list'          => ['endpoint'=>'public/api/Files.php','action'=>'list'],
         'fs.read'          => ['endpoint'=>'public/api/Files.php','action'=>'read'],
@@ -699,27 +699,4 @@ function forward_tool_call(string $toolName, array $arguments, bool $stream=fals
     }
 
     return is_array($decoded) ? $decoded : ['status'=>$status,'data'=>$body,'request_id'=>current_request_id()];
-}
-
-/** Build meta manifest; called by /?action=meta */
-function build_meta_manifest(): array {
-    return [
-        'name'            => 'Ecigdis MCP',
-        'version'         => '3.0.0',
-        'protocolVersion' => '0.1.0',
-        'description'     => 'MCP JSON-RPC server exposing Ecigdis IntelligenceHub tools.',
-        'capabilities'    => ['tools'=>['list'=>true,'call'=>true]],
-        'endpoints'       => [
-            'meta'   => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] ? 'https://' : 'http://') . ($_SERVER['HTTP_HOST'] ?? '') . rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? '/mcp/'), '/') . '/server_v3.php?action=meta'),
-            'rpc'    => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] ? 'https://' : 'http://') . ($_SERVER['HTTP_HOST'] ?? '') . rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? '/mcp/'), '/') . '/server_v3.php?action=rpc'),
-            'health' => ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] ? 'https://' : 'http://') . ($_SERVER['HTTP_HOST'] ?? '') . rtrim(dirname($_SERVER['SCRIPT_NAME'] ?? '/mcp/'), '/') . '/server_v3.php?action=health'),
-        ],
-        'auth'            => [
-            'type'   => envv('MCP_API_KEY') ? 'bearer' : 'none',
-            'header' => 'Authorization: Bearer <MCP_API_KEY>'
-        ],
-        'tools'           => tool_catalog(),
-        'time'            => date(DATE_ATOM),
-        'request_id'      => current_request_id(),
-    ];
 }

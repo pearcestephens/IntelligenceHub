@@ -186,49 +186,31 @@ function json_slim($obj, int $max = 2000)
  * @param int $timeout
  * @return array{0: string|null, 1: int, 2: string|null}
  */
-function http_raw(string $method, string $url, ?array $payload = null, array $headers = [], int $timeout = 45, ?array &$responseHeaders = null): array
-{
-    $ch = curl_init();
-    $headerBag = [];
-    curl_setopt_array($ch, [
-        CURLOPT_URL => $url,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_CUSTOMREQUEST => strtoupper($method),
-        CURLOPT_HTTPHEADER => $headers,
-        CURLOPT_TIMEOUT => $timeout,
-        CURLOPT_CONNECTTIMEOUT => min(10, $timeout),
-        CURLOPT_HEADERFUNCTION => static function ($curl, string $header) use (&$headerBag): int {
-            $len = strlen($header);
-            $header = trim($header);
-            if ($header === '' || strpos($header, ':') === false) {
-                return $len;
-            }
-
-            [$name, $value] = explode(':', $header, 2);
-            $headerBag[strtolower(trim($name))] = trim($value);
-
-            return $len;
-        },
-    ]);
-    if ($payload !== null) {
-        $headers[] = 'Content-Type: application/json';
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+function http_raw(string $method, string $url, $payload, array $headers, int $timeout, ?array &$responseHeaders = null): array {
+    $opts = [
+        'http' => [
+            'method'  => $method,
+            'header'  => implode("\r\n", $headers),
+            'content' => is_string($payload) ? $payload : json_encode($payload),
+            'timeout' => $timeout,
+            'ignore_errors' => true,
+        ]
+    ];
+    $ctx = stream_context_create($opts);
+    $body = @file_get_contents($url, false, $ctx);
+    $status = 0;
+    $respHeaders = [];
+    foreach ($http_response_header ?? [] as $line) {
+        if (preg_match('#^HTTP/\S+\s+(\d{3})#', $line, $m)) { $status = (int)$m[1]; }
+        else {
+            [$k,$v] = array_map('trim', explode(':', $line, 2) + [1=>'']);
+            if ($k) $respHeaders[strtolower($k)] = $v;
+        }
     }
-    $body = curl_exec($ch);
-    $code = (int)curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    $err = curl_error($ch);
-    curl_close($ch);
-    if ($responseHeaders !== null) {
-        $responseHeaders = $headerBag;
-    }
-
-    if ($err !== '') {
-        return [null, 0, $err];
-    }
-
-    return [$body === false ? null : $body, $code, null];
+    $responseHeaders = $respHeaders;
+    return [$body, $status ?: 200, $body === false ? 'fetch_failed' : null];
 }
+
 
 /**
  * Build GitHub API headers with optional overrides.
