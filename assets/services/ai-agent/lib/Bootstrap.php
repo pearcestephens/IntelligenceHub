@@ -14,6 +14,27 @@ date_default_timezone_set('Pacific/Auckland');
 
 const AI_AGENT_VERSION = '2025.11.02';
 
+// ---------- LOAD ENV ----------
+$docRoot = rtrim($_SERVER['DOCUMENT_ROOT'] ?? '', '/');
+$envFile = $docRoot . '/.env';
+if (file_exists($envFile)) {
+    $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        $line = trim($line);
+        // Skip comments
+        if (empty($line) || $line[0] === '#') continue;
+        // Parse KEY=VALUE
+        if (strpos($line, '=') !== false) {
+            list($key, $value) = explode('=', $line, 2);
+            $key = trim($key);
+            $value = trim($value);
+            if (!empty($key) && !isset($_ENV[$key])) {
+                $_ENV[$key] = $value;
+            }
+        }
+    }
+}
+
 // ---------- ENV HELPERS ----------
 function env(string $key, ?string $default=null): ?string {
   $v = getenv($key);

@@ -7,7 +7,7 @@ $rid = new_request_id();
 try {
   $db = get_pdo();
   $db->query("SELECT 1")->fetchColumn();
-  envelope_success(['db'=> 'ok'], $rid, 200);
+  envelope_success(['alive' => true, 'db' => 'ok'], $rid, 200);
 } catch (Throwable $e) {
   envelope_error('HEALTH_FAIL', $e->getMessage(), $rid, [], 500);
 }

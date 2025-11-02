@@ -107,7 +107,8 @@ try {
         'message' => 'Calling tool...',
     ]);
 
-    $invokeUrl = 'http://' . ($_SERVER['HTTP_HOST'] ?? 'localhost')
+    $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'https'; // Force HTTPS
+    $invokeUrl = $protocol . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost')
                . '/assets/services/ai-agent/api/tools/invoke.php';
 
     $ch = curl_init($invokeUrl);

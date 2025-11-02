@@ -25,7 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     $reqId = new_request_id();
-    response_json(envelope_error('METHOD_NOT_ALLOWED', 'Only POST supported', $reqId), 405);
+    envelope_error('METHOD_NOT_ALLOWED', 'Only POST supported', $reqId, [], 405);
+    exit;
 }
 
 try {
@@ -41,11 +42,13 @@ try {
     $idempotencyKey = $body['idempotency_key'] ?? null;
 
     if (!$tool || !is_string($tool)) {
-        response_json(envelope_error('INVALID_REQUEST', 'Missing or invalid tool name', $requestId), 400);
+        envelope_error('INVALID_REQUEST', 'Missing or invalid tool name', $requestId, [], 400);
+        exit;
     }
 
     if (!is_array($args)) {
-        response_json(envelope_error('INVALID_REQUEST', 'Arguments must be an object', $requestId), 400);
+        envelope_error('INVALID_REQUEST', 'Arguments must be an object', $requestId, [], 400);
+        exit;
     }
 
     // Check idempotency if key provided
@@ -63,16 +66,17 @@ try {
             $result = json_decode($cached['result'], true);
             $result['_cached'] = true;
             $result['_cached_at'] = $cached['created_at'];
-            response_json(envelope_success($result));
+            envelope_success($result, $requestId);
+            exit;
         }
     }
 
     // Start telemetry
     $toolStartTime = microtime(true);
-    $tel->toolStart($tool, $args, [
-        'request_id' => $requestId,
+    $toolCallId = $tel->toolStart(null, null, $tool, $requestId, [
         'stream' => $stream,
         'idempotency_key' => $idempotencyKey,
+        'args' => $args,
     ]);
 
     // If streaming requested, generate ticket and return SSE URL
@@ -97,22 +101,25 @@ try {
         $sseUrl = 'https://' . ($_SERVER['HTTP_HOST'] ?? 'localhost')
                 . '/assets/services/ai-agent/mcp/events.php?ticket=' . $ticket;
 
-        $tel->toolFinish($tool, [
+        $latencyMs = (int)((microtime(true) - $toolStartTime) * 1000);
+        $tel->toolFinish($toolCallId, 'ok', null, $latencyMs, null, null, [
             'ticket' => $ticket,
             'sse_url' => $sseUrl,
-        ], microtime(true) - $toolStartTime);
+        ]);
 
-        response_json(envelope_success([
+        envelope_success([
             'streaming' => true,
             'ticket' => $ticket,
             'sse_url' => $sseUrl,
             'expires_at' => $expiresAt,
             'instructions' => 'Open SSE URL to receive streamed results',
-        ]));
+        ], $requestId);
+        exit;
     }
 
     // Non-streaming: forward to invoke.php
-    $invokeUrl = 'http://' . ($_SERVER['HTTP_HOST'] ?? 'localhost')
+    $protocol = 'https'; // Always use HTTPS
+    $invokeUrl = $protocol . '://' . ($_SERVER['HTTP_HOST'] ?? 'localhost')
                . '/assets/services/ai-agent/api/tools/invoke.php';
 
     $ch = curl_init($invokeUrl);
@@ -137,26 +144,31 @@ try {
     curl_close($ch);
 
     if ($curlError) {
-        $tel->toolFinish($tool, ['error' => $curlError], microtime(true) - $toolStartTime, false);
-        response_json(envelope_error('TOOL_ERROR', 'Failed to invoke tool', $requestId, [
+        $latencyMs = (int)((microtime(true) - $toolStartTime) * 1000);
+        $tel->toolFinish($toolCallId, 'error', 'CURL_ERROR', $latencyMs, null, null, ['error' => $curlError]);
+        envelope_error('TOOL_ERROR', 'Failed to invoke tool', $requestId, [
             'tool' => $tool,
             'error' => $curlError,
-        ]), 500);
+        ], 500);
+        exit;
     }
 
     $result = json_decode($response, true);
     if (!$result) {
-        $tel->toolFinish($tool, ['error' => 'Invalid JSON response'], microtime(true) - $toolStartTime, false);
-        response_json(envelope_error('TOOL_ERROR', 'Invalid tool response', $requestId, [
+        $latencyMs = (int)((microtime(true) - $toolStartTime) * 1000);
+        $tel->toolFinish($toolCallId, 'error', 'INVALID_JSON', $latencyMs, null, null, ['error' => 'Invalid JSON response']);
+        envelope_error('TOOL_ERROR', 'Invalid tool response', $requestId, [
             'tool' => $tool,
             'http_code' => $httpCode,
-        ]), 500);
+        ], 500);
+        exit;
     }
 
     $success = ($result['success'] ?? false) === true;
     $toolData = $result['data'] ?? $result;
 
-    $tel->toolFinish($tool, $toolData, microtime(true) - $toolStartTime, $success);
+    $latencyMs = (int)((microtime(true) - $toolStartTime) * 1000);
+    $tel->toolFinish($toolCallId, $success ? 'ok' : 'error', $success ? null : 'TOOL_ERROR', $latencyMs, null, null, $toolData);
 
     // Store idempotent result if key provided
     if ($idempotencyKey && $success) {
@@ -174,7 +186,8 @@ try {
 } catch (Throwable $e) {
     error_log("MCP call error: " . $e->getMessage());
     $reqId = $requestId ?? new_request_id();
-    response_json(envelope_error('INTERNAL_ERROR', 'Tool invocation failed', $reqId, [
+    envelope_error('INTERNAL_ERROR', 'Tool invocation failed', $reqId, [
         'detail' => $e->getMessage()
-    ]), 500);
+    ], 500);
+    exit;
 }

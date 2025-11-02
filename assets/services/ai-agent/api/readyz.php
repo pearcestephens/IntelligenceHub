@@ -26,6 +26,7 @@ try {
   @unlink($tmpFile);
 
   envelope_success([
+    'ready' => empty($missing),
     'db' => 'ok',
     'missing_tables' => $missing,
     'fs' => 'ok',

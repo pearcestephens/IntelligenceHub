@@ -216,12 +216,12 @@ try {
         'request_id' => new_request_id(),
     ];
 
-    response_json(envelope_success($registry, $registry['request_id']));
+    envelope_success($registry, $registry['request_id']);
 
 } catch (Throwable $e) {
     error_log("Registry error: " . $e->getMessage());
     $reqId = new_request_id();
-    response_json(envelope_error('INTERNAL_ERROR', 'Failed to build registry', $reqId, [
+    envelope_error('INTERNAL_ERROR', 'Failed to build registry', $reqId, [
         'detail' => $e->getMessage()
-    ]), 500);
+    ], 500);
 }
