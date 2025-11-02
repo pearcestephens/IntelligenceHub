@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Scanner\Lib;
 
 use PDO;
+use PDOException;
 use RuntimeException;
 use InvalidArgumentException;
 
@@ -32,6 +33,8 @@ class QuickScanService
     private MCPAgent $mcp;
     /** @var array<int, array<int, array<string, mixed>>> */
     private array $ruleCache = [];
+    private bool $scanLogsTableChecked = false;
+    private bool $scanLogsTableExists = false;
 
     /**
      * Constructor
@@ -223,7 +226,7 @@ class QuickScanService
             $elapsed = time() - strtotime($progress['started_at']);
             $rate = $progress['files_scanned'] / max($elapsed, 1);
             $remaining = $progress['total_files'] - $progress['files_scanned'];
-            $etaSeconds = ceil($remaining / max($rate, 1));
+            $etaSeconds = (int)ceil($remaining / max($rate, 1));
 
             $progress['eta_seconds'] = $etaSeconds;
             $progress['estimated_completion'] = date('Y-m-d H:i:s', time() + $etaSeconds);
@@ -472,6 +475,11 @@ class QuickScanService
 
     private function recordScanLog(int $projectId, string $filePath, string $message): void
     {
+        if (!$this->ensureScanLogsTable()) {
+            error_log('Scanner log insert skipped: scan_logs table unavailable');
+            return;
+        }
+
         $logSql = <<<'SQL'
             INSERT INTO scan_logs (project_id, file_path, log_message, created_at)
             VALUES (?, ?, ?, NOW())
@@ -480,10 +488,66 @@ class QuickScanService
         try {
             $stmt = $this->pdo->prepare($logSql);
             $stmt->execute([$projectId, $filePath, $message]);
-        } catch (\Throwable $e) {
-            // Table may not exist yet; fail silently but log to PHP error log for diagnostics.
-            error_log("Scanner log insert failed: " . $e->getMessage());
+        } catch (PDOException $e) {
+            error_log('Scanner log insert failed: ' . $e->getMessage());
         }
+    }
+
+    private function ensureScanLogsTable(): bool
+    {
+        if ($this->scanLogsTableChecked) {
+            return $this->scanLogsTableExists;
+        }
+
+        try {
+            $this->pdo->query('SELECT 1 FROM scan_logs LIMIT 1');
+            $this->scanLogsTableExists = true;
+        } catch (PDOException $e) {
+            if ($this->isTableMissing($e)) {
+                $this->scanLogsTableExists = $this->createScanLogsTable();
+            } else {
+                error_log('scan_logs availability check failed: ' . $e->getMessage());
+                $this->scanLogsTableExists = false;
+            }
+        }
+
+        $this->scanLogsTableChecked = true;
+
+        return $this->scanLogsTableExists;
+    }
+
+    private function createScanLogsTable(): bool
+    {
+        $sql = <<<'SQL'
+            CREATE TABLE IF NOT EXISTS scan_logs (
+                id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                project_id INT NOT NULL,
+                file_path TEXT NOT NULL,
+                log_message TEXT NOT NULL,
+                created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                INDEX idx_project_created (project_id, created_at),
+                CONSTRAINT fk_scan_logs_project
+                    FOREIGN KEY (project_id) REFERENCES projects(id)
+                    ON DELETE CASCADE
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+        SQL;
+
+        try {
+            $this->pdo->exec($sql);
+            return true;
+        } catch (PDOException $e) {
+            error_log('scan_logs table creation failed: ' . $e->getMessage());
+            return false;
+        }
+    }
+
+    private function isTableMissing(PDOException $e): bool
+    {
+        if ($e->getCode() === '42S02') {
+            return true;
+        }
+
+        return stripos($e->getMessage(), 'scan_logs') !== false && stripos($e->getMessage(), 'doesn\'t exist') !== false;
     }
 
     /**
