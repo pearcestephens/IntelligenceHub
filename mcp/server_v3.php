@@ -287,299 +287,236 @@ function process_jsonrpc_request(array $request, bool $emit=true) {
 
 /**
  * Tool catalog advertised to MCP clients.
- * Keeping your canonical names and input schema, but switch to snake_case for spec parity with MCP-style clients.
+ * Provides dual schema keys (input_schema + inputSchema) for compatibility.
  *
  * @return array<int, array<string,mixed>>
  */
 function tool_catalog(): array
 {
-    // NOTE: Rename inputSchema -> input_schema to better align with MCP schema field names.
-    //       (If your client expects camelCase, you can keep both keys.)
+    // Helper to create tool spec with dual schema keys
+    $tool = function(string $name, string $description, array $schema): array {
+        return [
+            'name' => $name,
+            'description' => $description,
+            'input_schema' => $schema,  // snake_case (MCP standard)
+            'inputSchema' => $schema,   // camelCase (backward compat)
+        ];
+    };
+
     return [
-        [
-            'name' => 'db.query',
-            'description' => 'Read-only SQL SELECT. Params: query, params[]',
-            'input_schema' => [
-                'type' => 'object',
-                'properties' => [
-                    'query' => ['type' => 'string','minLength'=>1],
-                    'params' => ['type' => 'array','items'=>['type'=>'string']]
-                ],
-                'required' => ['query']
-            ]
-        ],
-        [
-            'name' => 'db.schema',
-            'description' => 'Describe all tables or a single table',
-            'input_schema' => [
-                'type'=>'object',
-                'properties'=> ['table'=>['type'=>'string']]
-            ]
-        ],
-        [
-            'name'=>'db.tables',
-            'description'=>'List all tables',
-            'input_schema'=>['type'=>'object','properties'=>[]]
-        ],
-        [
-            'name'=>'db.explain',
-            'description'=>'EXPLAIN FORMAT=JSON a SELECT',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'query'=>['type'=>'string','minLength'=>7],
-                    'params'=>['type'=>'array','items'=>['type'=>'string']]
-                ],
-                'required'=>['query']
-            ]
-        ],
+        // Database tools
+        $tool('db.query', 'Read-only SQL SELECT. Params: query, params[]', [
+            'type' => 'object',
+            'properties' => [
+                'query' => ['type' => 'string', 'minLength' => 1],
+                'params' => ['type' => 'array', 'items' => ['type' => 'string']]
+            ],
+            'required' => ['query']
+        ]),
+        $tool('db.schema', 'Describe all tables or a single table', [
+            'type' => 'object',
+            'properties' => ['table' => ['type' => 'string']]
+        ]),
+        $tool('db.tables', 'List all tables', [
+            'type' => 'object',
+            'properties' => []
+        ]),
+        $tool('db.explain', 'EXPLAIN FORMAT=JSON a SELECT', [
+            'type' => 'object',
+            'properties' => [
+                'query' => ['type' => 'string', 'minLength' => 7],
+                'params' => ['type' => 'array', 'items' => ['type' => 'string']]
+            ],
+            'required' => ['query']
+        ]),
 
-        [
-            'name'=>'fs.list',
-            'description'=>'List files in jailed root',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'path'=>['type'=>'string'],
-                    'recursive'=>['type'=>'boolean','default'=>false],
-                    'show_hidden'=>['type'=>'boolean','default'=>false]
-                ],
-                'required'=>['path']
-            ]
-        ],
-        [
-            'name'=>'fs.read',
-            'description'=>'Read text file (jailed)',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'path'=>['type'=>'string'],
-                    'max_lines'=>['type'=>'integer']
-                ],
-                'required'=>['path']
-            ]
-        ],
-        [
-            'name'=>'fs.write',
-            'description'=>'Write text file with optional backup (jailed)',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'path'=>['type'=>'string'],
-                    'content'=>['type'=>'string'],
-                    'backup'=>['type'=>'boolean','default'=>true]
-                ],
-                'required'=>['path','content']
-            ]
-        ],
-        [
-            'name'=>'fs.info',
-            'description'=>'Stat path (file/dir) in jail',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>['path'=>['type'=>'string']],
-                'required'=>['path']
-            ]
-        ],
+        // File system tools
+        $tool('fs.list', 'List files in jailed root', [
+            'type' => 'object',
+            'properties' => [
+                'path' => ['type' => 'string'],
+                'recursive' => ['type' => 'boolean', 'default' => false],
+                'show_hidden' => ['type' => 'boolean', 'default' => false]
+            ],
+            'required' => ['path']
+        ]),
+        $tool('fs.read', 'Read text file (jailed)', [
+            'type' => 'object',
+            'properties' => [
+                'path' => ['type' => 'string'],
+                'max_lines' => ['type' => 'integer']
+            ],
+            'required' => ['path']
+        ]),
+        $tool('fs.write', 'Write text file with optional backup (jailed)', [
+            'type' => 'object',
+            'properties' => [
+                'path' => ['type' => 'string'],
+                'content' => ['type' => 'string'],
+                'backup' => ['type' => 'boolean', 'default' => true]
+            ],
+            'required' => ['path', 'content']
+        ]),
+        $tool('fs.info', 'Stat path (file/dir) in jail', [
+            'type' => 'object',
+            'properties' => ['path' => ['type' => 'string']],
+            'required' => ['path']
+        ]),
 
-        [
-            'name'=>'kb.search',
-            'description'=>'RAG search in KnowledgeBase',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'query'=>['type'=>'string'],
-                    'limit'=>['type'=>'integer','default'=>5],
-                    'min_similarity'=>['type'=>'number','default'=>0.7]
-                ],
-                'required'=>['query']
+        // Knowledge base tools
+        $tool('kb.search', 'RAG search in KnowledgeBase', [
+            'type' => 'object',
+            'properties' => [
+                'query' => ['type' => 'string'],
+                'limit' => ['type' => 'integer', 'default' => 5],
+                'min_similarity' => ['type' => 'number', 'default' => 0.7]
+            ],
+            'required' => ['query']
+        ]),
+        $tool('kb.add_document', 'Add a document to KB', [
+            'type' => 'object',
+            'properties' => [
+                'title' => ['type' => 'string'],
+                'content' => ['type' => 'string'],
+                'type' => ['type' => 'string', 'default' => 'document'],
+                'metadata' => ['type' => 'object']
+            ],
+            'required' => ['title', 'content']
+        ]),
+        $tool('kb.list_documents', 'List knowledge documents', [
+            'type' => 'object',
+            'properties' => [
+                'page' => ['type' => 'integer', 'default' => 1],
+                'limit' => ['type' => 'integer', 'default' => 20],
+                'type' => ['type' => 'string'],
+                'search' => ['type' => 'string']
             ]
-        ],
-        [
-            'name'=>'kb.add_document',
-            'description'=>'Add a document to KB',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'title'=>['type'=>'string'],
-                    'content'=>['type'=>'string'],
-                    'type'=>['type'=>'string','default'=>'document'],
-                    'metadata'=>['type'=>'object']
-                ],
-                'required'=>['title','content']
-            ]
-        ],
-        [
-            'name'=>'kb.list_documents',
-            'description'=>'List knowledge documents',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'page'=>['type'=>'integer','default'=>1],
-                    'limit'=>['type'=>'integer','default'=>20],
-                    'type'=>['type'=>'string'],
-                    'search'=>['type'=>'string']
-                ]
-            ]
-        ],
-        [
-            'name'=>'kb.get_document',
-            'description'=>'Fetch a KB document by ID',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>['document_id'=>['type'=>'string']],
-                'required'=>['document_id']
-            ]
-        ],
+        ]),
+        $tool('kb.get_document', 'Fetch a KB document by ID', [
+            'type' => 'object',
+            'properties' => ['document_id' => ['type' => 'string']],
+            'required' => ['document_id']
+        ]),
 
-        [
-            'name'=>'memory.get_context',
-            'description'=>'Return conversation summary + last N messages',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'conversation_id'=>['type'=>'string'],
-                    'include_summary'=>['type'=>'boolean','default'=>true],
-                    'max_messages'=>['type'=>'integer','default'=>10]
-                ],
-                'required'=>['conversation_id']
-            ]
-        ],
-        [
-            'name'=>'memory.store',
-            'description'=>'Store a memory item on a conversation',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'conversation_id'=>['type'=>'string'],
-                    'content'=>['type'=>'string'],
-                    'memory_type'=>['type'=>'string','default'=>'fact'],
-                    'importance'=>['type'=>'string','default'=>'medium'],
-                    'tags'=>['type'=>'array','items'=>['type'=>'string']]
-                ],
-                'required'=>['conversation_id','content']
-            ]
-        ],
+        // Memory tools
+        $tool('memory.get_context', 'Return conversation summary + last N messages', [
+            'type' => 'object',
+            'properties' => [
+                'conversation_id' => ['type' => 'string'],
+                'include_summary' => ['type' => 'boolean', 'default' => true],
+                'max_messages' => ['type' => 'integer', 'default' => 10]
+            ],
+            'required' => ['conversation_id']
+        ]),
+        $tool('memory.store', 'Store a memory item on a conversation', [
+            'type' => 'object',
+            'properties' => [
+                'conversation_id' => ['type' => 'string'],
+                'content' => ['type' => 'string'],
+                'memory_type' => ['type' => 'string', 'default' => 'fact'],
+                'importance' => ['type' => 'string', 'default' => 'medium'],
+                'tags' => ['type' => 'array', 'items' => ['type' => 'string']]
+            ],
+            'required' => ['conversation_id', 'content']
+        ]),
 
-        [
-            'name'=>'http.request',
-            'description'=>'HTTPS request with allowlist, timeouts',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'url'=>['type'=>'string'],
-                    'method'=>['type'=>'string','enum'=>['GET','POST','PUT','DELETE','PATCH','HEAD','OPTIONS']],
-                    'headers'=>['type'=>'object'],
-                    'body'=>['type'=>'string'],
-                    'timeout'=>['type'=>'integer','default'=>20]
-                ],
-                'required'=>['url','method']
-            ]
-        ],
-        [
-            'name'=>'logs.tail',
-            'description'=>'Tail operations log with optional grep',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'path'=>['type'=>'string','default'=>'/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/ai-agent/logs/operations.log'],
-                    'max_bytes'=>['type'=>'integer','default'=>20000],
-                    'grep'=>['type'=>'string']
-                ]
-            ]
-        ],
+        // HTTP tools
+        $tool('http.request', 'HTTPS request with allowlist, timeouts', [
+            'type' => 'object',
+            'properties' => [
+                'url' => ['type' => 'string'],
+                'method' => ['type' => 'string', 'enum' => ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS']],
+                'headers' => ['type' => 'object'],
+                'body' => ['type' => 'string'],
+                'timeout' => ['type' => 'integer', 'default' => 20]
+            ],
+            'required' => ['url', 'method']
+        ]),
 
-        [
-            'name'=>'ops.ready_check',
-            'description'=>'Environment readiness checks',
-            'input_schema'=>['type'=>'object','properties'=>[]]
-        ],
-        [
-            'name'=>'ops.security_scan',
-            'description'=>'Run security scanner (quick|full)',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'scope'=>['type'=>'string','enum'=>['quick','full'],'default'=>'quick'],
-                    'paths'=>['type'=>['array','string']]
-                ]
+        // Logs tools
+        $tool('logs.tail', 'Tail operations log with optional grep', [
+            'type' => 'object',
+            'properties' => [
+                'path' => ['type' => 'string', 'default' => 'logs/operations.log'],
+                'max_bytes' => ['type' => 'integer', 'default' => 20000],
+                'grep' => ['type' => 'string']
             ]
-        ],
-        [
-            'name'=>'ops.monitoring_snapshot',
-            'description'=>'Monitoring snapshot',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'window_seconds'=>['type'=>'integer','default'=>300]
-                ]
-            ]
-        ],
-        [
-            'name'=>'ops.performance_test',
-            'description'=>'Simple perf test load generator',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'url'=>['type'=>'string'],
-                    'duration'=>['type'=>'integer','default'=>60],
-                    'concurrency'=>['type'=>'integer','default'=>4]
-                ],
-                'required'=>['url']
-            ]
-        ],
+        ]),
+        $tool('logs.grep', 'Search logs with pattern', [
+            'type' => 'object',
+            'properties' => [
+                'path' => ['type' => 'string'],
+                'pattern' => ['type' => 'string'],
+                'max_matches' => ['type' => 'integer', 'default' => 50]
+            ],
+            'required' => ['path', 'pattern']
+        ]),
 
-        [
-            'name'=>'git.search',
-            'description'=>'Search code in GitHub installation',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'query'=>['type'=>'string'],
-                    'org'=>['type'=>'string'],
-                    'repo'=>['type'=>['string','array']]
-                ],
-                'required'=>['query']
+        // Ops tools
+        $tool('ops.ready_check', 'Environment readiness checks', [
+            'type' => 'object',
+            'properties' => []
+        ]),
+        $tool('ops.security_scan', 'Run security scanner (quick|full)', [
+            'type' => 'object',
+            'properties' => [
+                'scope' => ['type' => 'string', 'enum' => ['quick', 'full'], 'default' => 'quick'],
+                'paths' => ['type' => ['array', 'string']]
             ]
-        ],
-        [
-            'name'=>'git.open_pr',
-            'description'=>'Create a PR from prepared branch',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'repository_full_name'=>['type'=>'string'],
-                    'branch'=>['type'=>'string'],
-                    'base'=>['type'=>'string','default'=>'main'],
-                    'title'=>['type'=>'string'],
-                    'body'=>['type'=>'string']
-                ],
-                'required'=>['repository_full_name','branch','title']
+        ]),
+        $tool('ops.monitoring_snapshot', 'Monitoring snapshot', [
+            'type' => 'object',
+            'properties' => [
+                'window_seconds' => ['type' => 'integer', 'default' => 300]
             ]
-        ],
+        ]),
+        $tool('ops.performance_test', 'Simple perf test load generator', [
+            'type' => 'object',
+            'properties' => [
+                'url' => ['type' => 'string'],
+                'duration' => ['type' => 'integer', 'default' => 60],
+                'concurrency' => ['type' => 'integer', 'default' => 4]
+            ],
+            'required' => ['url']
+        ]),
 
-        [
-            'name'=>'redis.get',
-            'description'=>'Read redis key',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>['key'=>['type'=>'string']],
-                'required'=>['key']
-            ]
-        ],
-        [
-            'name'=>'redis.set',
-            'description'=>'Write redis key',
-            'input_schema'=>[
-                'type'=>'object',
-                'properties'=>[
-                    'key'=>['type'=>'string'],
-                    'value'=>['type'=>'string'],
-                    'ttl'=>['type'=>'integer','default'=>0]
-                ],
-                'required'=>['key','value']
-            ]
-        ]
+        // Git tools
+        $tool('git.search', 'Search code in GitHub installation', [
+            'type' => 'object',
+            'properties' => [
+                'query' => ['type' => 'string'],
+                'org' => ['type' => 'string'],
+                'repo' => ['type' => ['string', 'array']]
+            ],
+            'required' => ['query']
+        ]),
+        $tool('git.open_pr', 'Create a PR from prepared branch', [
+            'type' => 'object',
+            'properties' => [
+                'repository_full_name' => ['type' => 'string'],
+                'branch' => ['type' => 'string'],
+                'base' => ['type' => 'string', 'default' => 'main'],
+                'title' => ['type' => 'string'],
+                'body' => ['type' => 'string']
+            ],
+            'required' => ['repository_full_name', 'branch', 'title']
+        ]),
+
+        // Redis tools
+        $tool('redis.get', 'Read redis key', [
+            'type' => 'object',
+            'properties' => ['key' => ['type' => 'string']],
+            'required' => ['key']
+        ]),
+        $tool('redis.set', 'Write redis key', [
+            'type' => 'object',
+            'properties' => [
+                'key' => ['type' => 'string'],
+                'value' => ['type' => 'string'],
+                'ttl' => ['type' => 'integer', 'default' => 0]
+            ],
+            'required' => ['key', 'value']
+        ])
     ];
 }
 
@@ -594,38 +531,50 @@ function tool_routes(): array
     static $routes = null;
     if ($routes !== null) return $routes;
 
+    // Route ALL tools to unified AI-Agent invoke.php gateway
+    $unified = 'assets/services/ai-agent/api/tools/invoke.php';
+
     $routes = [
-        'db.query'         => ['endpoint'=>'public/api/DatabaseTool.php','action'=>'query'],
-    'db.schema'        => ['endpoint'=>'public/api/DatabaseTool.php','action'=>'schema'],
-    'db.tables'        => ['endpoint'=>'public/api/DatabaseTool.php','action'=>'tables'],
-    'db.explain'       => ['endpoint'=>'public/api/DatabaseTool.php','action'=>'explain'],
+        // Database tools (mapped to db.select, db.exec in invoke.php)
+        'db.query'         => ['endpoint' => $unified, 'action' => 'db.select'],
+        'db.schema'        => ['endpoint' => $unified, 'action' => 'db.select'],
+        'db.tables'        => ['endpoint' => $unified, 'action' => 'db.select'],
+        'db.explain'       => ['endpoint' => $unified, 'action' => 'db.select'],
 
-        'fs.list'          => ['endpoint'=>'public/api/Files.php','action'=>'list'],
-        'fs.read'          => ['endpoint'=>'public/api/Files.php','action'=>'read'],
-        'fs.write'         => ['endpoint'=>'public/api/Files.php','action'=>'write'],
-        'fs.info'          => ['endpoint'=>'public/api/Files.php','action'=>'info'],
+        // File system tools
+        'fs.list'          => ['endpoint' => $unified, 'action' => 'fs.list'],
+        'fs.read'          => ['endpoint' => $unified, 'action' => 'fs.read'],
+        'fs.write'         => ['endpoint' => $unified, 'action' => 'fs.write'],
+        'fs.info'          => ['endpoint' => $unified, 'action' => 'fs.list'],
 
-        'kb.search'        => ['endpoint'=>'public/agent/api/knowledge.php','action'=>'search'],
-        'kb.add_document'  => ['endpoint'=>'public/agent/api/knowledge.php','action'=>'add_document'],
-        'kb.list_documents'=> ['endpoint'=>'public/agent/api/knowledge.php','action'=>'documents'],
-        'kb.get_document'  => ['endpoint'=>'public/agent/api/knowledge.php','action'=>'get_document'],
+        // Knowledge base (legacy, kept for backward compat - will proxy)
+        'kb.search'        => ['endpoint' => 'public/agent/api/knowledge.php', 'action' => 'search'],
+        'kb.add_document'  => ['endpoint' => 'public/agent/api/knowledge.php', 'action' => 'add_document'],
+        'kb.list_documents'=> ['endpoint' => 'public/agent/api/knowledge.php', 'action' => 'documents'],
+        'kb.get_document'  => ['endpoint' => 'public/agent/api/knowledge.php', 'action' => 'get_document'],
 
-        // FIX: map memory to a wrapper that calls App\Tools\MemoryTool::run()
-        'memory.get_context' => ['endpoint'=>'public/api/MemoryTool.php','action'=>'get_context'],
-        'memory.store'       => ['endpoint'=>'public/api/MemoryTool.php','action'=>'store_memory'],
+        // Memory tools (unified)
+        'memory.get_context' => ['endpoint' => $unified, 'action' => 'memory.retrieve'],
+        'memory.store'       => ['endpoint' => $unified, 'action' => 'memory.upsert'],
 
-        'http.request'     => ['endpoint'=>'public/api/HttpTool.php','action'=>'request'],
-        'logs.tail'        => ['endpoint'=>'public/api/LogsTool.php','action'=>'tail'],
-        'ops.ready_check'  => ['endpoint'=>'public/api/ReadyCheckTool.php','action'=>null],
-        'ops.security_scan'=> ['endpoint'=>'public/api/SecurityScanTool.php','action'=>null],
-        'ops.monitoring_snapshot'=> ['endpoint'=>'public/api/MonitoringTool.php','action'=>null],
-        'ops.performance_test'=> ['endpoint'=>'public/api/PerformanceTestTool.php','action'=>null],
+        // HTTP and logs
+        'http.request'     => ['endpoint' => $unified, 'action' => 'http.fetch'],
+        'logs.tail'        => ['endpoint' => $unified, 'action' => 'logs.tail'],
+        'logs.grep'        => ['endpoint' => $unified, 'action' => 'logs.grep'],
 
-        'git.search'       => ['endpoint'=>'public/api/GitTool.php','action'=>'search'],      // (optional wrapper)
-        'git.open_pr'      => ['endpoint'=>'public/api/GitTool.php','action'=>'open_pr'],    // (optional wrapper)
+        // Ops tools (will be extended in invoke.php)
+        'ops.ready_check'  => ['endpoint' => $unified, 'action' => 'ops.ready_check'],
+        'ops.security_scan'=> ['endpoint' => $unified, 'action' => 'ops.security_scan'],
+        'ops.monitoring_snapshot' => ['endpoint' => $unified, 'action' => 'ops.monitoring'],
+        'ops.performance_test' => ['endpoint' => $unified, 'action' => 'ops.performance_test'],
 
-        'redis.get'        => ['endpoint'=>'public/api/RedisTool.php','action'=>'get'],
-        'redis.set'        => ['endpoint'=>'public/api/RedisTool.php','action'=>'set'],
+        // Git tools (will be extended)
+        'git.search'       => ['endpoint' => $unified, 'action' => 'git.search'],
+        'git.open_pr'      => ['endpoint' => $unified, 'action' => 'git.open_pr'],
+
+        // Redis tools (will be extended)
+        'redis.get'        => ['endpoint' => $unified, 'action' => 'redis.get'],
+        'redis.set'        => ['endpoint' => $unified, 'action' => 'redis.set'],
     ];
 
     return $routes;
