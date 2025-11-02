@@ -1,9 +1,9 @@
 # Database Schema Documentation
 
-**Component:** AI Agent Database Layer  
-**Database:** hdgwrzntwa @ gpt.ecigdis.co.nz  
-**Engine:** MySQL/MariaDB with InnoDB  
-**Status:** Production Ready ✅  
+**Component:** AI Agent Database Layer
+**Database:** hdgwrzntwa @ gpt.ecigdis.co.nz
+**Engine:** MySQL/MariaDB with InnoDB
+**Status:** Production Ready ✅
 
 ---
 
@@ -107,8 +107,8 @@ The AI Agent database consists of **8 core tables** managing:
 
 ### 1. ai_conversations
 
-**Purpose:** Track conversation sessions  
-**Key Fields:** session_key (user identifier), provider, model  
+**Purpose:** Track conversation sessions
+**Key Fields:** session_key (user identifier), provider, model
 
 **Use Cases:**
 - Link messages together
@@ -120,8 +120,8 @@ The AI Agent database consists of **8 core tables** managing:
 
 ### 2. ai_conversation_messages
 
-**Purpose:** Store individual messages in conversations  
-**Key Fields:** conversation_id (FK), role (user/assistant/system), content  
+**Purpose:** Store individual messages in conversations
+**Key Fields:** conversation_id (FK), role (user/assistant/system), content
 
 **Use Cases:**
 - Build conversation history
@@ -133,8 +133,8 @@ The AI Agent database consists of **8 core tables** managing:
 
 ### 3. ai_agent_requests
 
-**Purpose:** Track API requests (chat, tools, memory)  
-**Key Fields:** request_id (UUID), endpoint, conversation_id (FK), message_id (FK)  
+**Purpose:** Track API requests (chat, tools, memory)
+**Key Fields:** request_id (UUID), endpoint, conversation_id (FK), message_id (FK)
 
 **Use Cases:**
 - Request tracing
@@ -146,8 +146,8 @@ The AI Agent database consists of **8 core tables** managing:
 
 ### 4. ai_tool_calls
 
-**Purpose:** Log all tool invocations  
-**Key Fields:** agent_request_id (FK), tool_name, status (enum), args (JSON)  
+**Purpose:** Log all tool invocations
+**Key Fields:** agent_request_id (FK), tool_name, status (enum), args (JSON)
 
 **Use Cases:**
 - Tool usage analytics
@@ -165,8 +165,8 @@ The AI Agent database consists of **8 core tables** managing:
 
 ### 5. ai_tool_results
 
-**Purpose:** Store tool execution results  
-**Key Fields:** tool_call_id (FK), result_data (JSON), error_message  
+**Purpose:** Store tool execution results
+**Key Fields:** tool_call_id (FK), result_data (JSON), error_message
 
 **Use Cases:**
 - Result caching
@@ -178,8 +178,8 @@ The AI Agent database consists of **8 core tables** managing:
 
 ### 6. ai_memory
 
-**Purpose:** Persistent key-value memory storage  
-**Key Fields:** scope (enum), key, value (JSON), confidence  
+**Purpose:** Persistent key-value memory storage
+**Key Fields:** scope (enum), key, value (JSON), confidence
 
 **Use Cases:**
 - Session context persistence
@@ -197,8 +197,8 @@ The AI Agent database consists of **8 core tables** managing:
 
 ### 7. mcp_tool_usage
 
-**Purpose:** MCP-specific telemetry tracking  
-**Key Fields:** tool_name, status, latency_ms, tokens_in, tokens_out  
+**Purpose:** MCP-specific telemetry tracking
+**Key Fields:** tool_name, status, latency_ms, tokens_in, tokens_out
 
 **Use Cases:**
 - MCP performance monitoring
@@ -210,8 +210,8 @@ The AI Agent database consists of **8 core tables** managing:
 
 ### 8. ai_stream_tickets
 
-**Purpose:** Manage SSE streaming sessions  
-**Key Fields:** ticket (UUID), conversation_id (FK), expires_at  
+**Purpose:** Manage SSE streaming sessions
+**Key Fields:** ticket (UUID), conversation_id (FK), expires_at
 
 **Use Cases:**
 - Streaming authentication
@@ -222,8 +222,8 @@ The AI Agent database consists of **8 core tables** managing:
 
 ### 9. ai_idempotency_keys
 
-**Purpose:** Prevent duplicate operations  
-**Key Fields:** idempotency_key (UUID), resource_id, response_data (JSON)  
+**Purpose:** Prevent duplicate operations
+**Key Fields:** idempotency_key (UUID), resource_id, response_data (JSON)
 
 **Use Cases:**
 - Retry safety
@@ -246,7 +246,7 @@ CREATE TABLE ai_conversations (
   cost_nzd_cents INT UNSIGNED DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  
+
   INDEX idx_session_key (session_key),
   INDEX idx_created_at (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -272,11 +272,11 @@ CREATE TABLE ai_conversation_messages (
   tokens INT UNSIGNED DEFAULT 0,
   cost_nzd_cents INT UNSIGNED DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  
-  FOREIGN KEY (conversation_id) 
-    REFERENCES ai_conversations(id) 
+
+  FOREIGN KEY (conversation_id)
+    REFERENCES ai_conversations(id)
     ON DELETE CASCADE,
-  
+
   INDEX idx_conversation_id (conversation_id),
   INDEX idx_role (role),
   INDEX idx_created_at (created_at)
@@ -313,14 +313,14 @@ CREATE TABLE ai_agent_requests (
   error_code VARCHAR(50) DEFAULT NULL,
   error_message TEXT DEFAULT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  
-  FOREIGN KEY (conversation_id) 
-    REFERENCES ai_conversations(id) 
+
+  FOREIGN KEY (conversation_id)
+    REFERENCES ai_conversations(id)
     ON DELETE SET NULL,
-  FOREIGN KEY (message_id) 
-    REFERENCES ai_conversation_messages(id) 
+  FOREIGN KEY (message_id)
+    REFERENCES ai_conversation_messages(id)
     ON DELETE SET NULL,
-  
+
   INDEX idx_request_id (request_id),
   INDEX idx_endpoint (endpoint),
   INDEX idx_conversation_id (conversation_id),
@@ -357,11 +357,11 @@ CREATE TABLE ai_tool_calls (
   error TEXT DEFAULT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  
-  FOREIGN KEY (agent_request_id) 
-    REFERENCES ai_agent_requests(id) 
+
+  FOREIGN KEY (agent_request_id)
+    REFERENCES ai_agent_requests(id)
     ON DELETE CASCADE,
-  
+
   INDEX idx_agent_request_id (agent_request_id),
   INDEX idx_tool_name (tool_name),
   INDEX idx_status (status),
@@ -390,11 +390,11 @@ CREATE TABLE ai_tool_results (
   result_data JSON DEFAULT NULL,
   error_message TEXT DEFAULT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  
-  FOREIGN KEY (tool_call_id) 
-    REFERENCES ai_tool_calls(id) 
+
+  FOREIGN KEY (tool_call_id)
+    REFERENCES ai_tool_calls(id)
     ON DELETE CASCADE,
-  
+
   UNIQUE KEY (tool_call_id),
   INDEX idx_created_at (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -427,11 +427,11 @@ CREATE TABLE ai_memory (
   session_key VARCHAR(255) DEFAULT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  
-  FOREIGN KEY (conversation_id) 
-    REFERENCES ai_conversations(id) 
+
+  FOREIGN KEY (conversation_id)
+    REFERENCES ai_conversations(id)
     ON DELETE SET NULL,
-  
+
   UNIQUE KEY idx_scope_key (scope, `key`),
   INDEX idx_scope (scope),
   INDEX idx_conversation_id (conversation_id),
@@ -469,7 +469,7 @@ CREATE TABLE mcp_tool_usage (
   tokens_out INT UNSIGNED DEFAULT 0,
   error TEXT DEFAULT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  
+
   INDEX idx_tool_name (tool_name),
   INDEX idx_status (status),
   INDEX idx_created_at (created_at)
@@ -499,11 +499,11 @@ CREATE TABLE ai_stream_tickets (
   session_key VARCHAR(255) DEFAULT NULL,
   expires_at TIMESTAMP NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  
-  FOREIGN KEY (conversation_id) 
-    REFERENCES ai_conversations(id) 
+
+  FOREIGN KEY (conversation_id)
+    REFERENCES ai_conversations(id)
     ON DELETE CASCADE,
-  
+
   INDEX idx_ticket (ticket),
   INDEX idx_expires_at (expires_at),
   INDEX idx_conversation_id (conversation_id)
@@ -531,7 +531,7 @@ CREATE TABLE ai_idempotency_keys (
   response_data JSON DEFAULT NULL,
   expires_at TIMESTAMP NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  
+
   INDEX idx_idempotency_key (idempotency_key),
   INDEX idx_endpoint (endpoint),
   INDEX idx_expires_at (expires_at)
@@ -570,7 +570,7 @@ All foreign keys enforced at database level:
 
 ```sql
 -- Example: Verify foreign key constraints
-SELECT 
+SELECT
   TABLE_NAME,
   COLUMN_NAME,
   CONSTRAINT_NAME,
@@ -659,8 +659,8 @@ INDEX idx_created_at (created_at)              -- Time-based queries
 
 ### PHASE1_MIGRATION.sql
 
-**Applied:** October 28, 2025  
-**Purpose:** Initial schema creation  
+**Applied:** October 28, 2025
+**Purpose:** Initial schema creation
 
 **Created Tables:**
 - ai_conversations
@@ -677,8 +677,8 @@ INDEX idx_created_at (created_at)              -- Time-based queries
 
 ### PHASE2_SCHEMA_MIGRATION.sql
 
-**Applied:** October 29, 2025  
-**Purpose:** Add stream tickets and idempotency keys  
+**Applied:** October 29, 2025
+**Purpose:** Add stream tickets and idempotency keys
 
 **Created Tables:**
 - ai_stream_tickets
@@ -712,7 +712,7 @@ mysql -u [user] -p hdgwrzntwa < migrations/verify_foreign_keys.sql
 ### Get Conversation with Messages
 
 ```sql
-SELECT 
+SELECT
   c.id as conversation_id,
   c.session_key,
   m.role,
@@ -730,7 +730,7 @@ ORDER BY m.created_at ASC;
 ### Tool Usage Analytics
 
 ```sql
-SELECT 
+SELECT
   tool_name,
   COUNT(*) as total_calls,
   SUM(CASE WHEN status = 'ok' THEN 1 ELSE 0 END) as success_count,
@@ -748,7 +748,7 @@ ORDER BY total_calls DESC;
 ### Recent Errors
 
 ```sql
-SELECT 
+SELECT
   tc.tool_name,
   tc.args,
   tc.error,
@@ -766,7 +766,7 @@ LIMIT 20;
 ### Memory Lookup
 
 ```sql
-SELECT 
+SELECT
   `key`,
   value,
   confidence,
@@ -780,6 +780,6 @@ ORDER BY updated_at DESC;
 
 ---
 
-**Document Version:** 1.0.0  
-**Last Updated:** November 2, 2025  
+**Document Version:** 1.0.0
+**Last Updated:** November 2, 2025
 **Related Docs:** 01_SYSTEM_OVERVIEW.md, 03_AI_AGENT_ENDPOINTS.md, 06_TELEMETRY_LOGGING.md
