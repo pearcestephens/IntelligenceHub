@@ -20,7 +20,7 @@ set_time_limit(3600); // 1 hour max
 ini_set('memory_limit', '1G');
 
 // Bootstrap
-require_once dirname(__DIR__) . '/app.php';
+require_once __DIR__ . '/bootstrap.php';
 require_once dirname(__DIR__) . '/scanner/vendor/autoload.php';
 
 mb_internal_encoding('UTF-8');
@@ -91,7 +91,7 @@ function ingestProject(PDO $pdo, int $projectId, string $projectPath): array
     $delete->execute([$projectId]);
 
     $insertSql = <<<'SQL'
-        INSERT INTO intelligence_files (
+        INSERT IGNORE INTO intelligence_files (
             project_id,
             business_unit_id,
             server_id,

@@ -24,9 +24,31 @@ try {
   $platform       = (string)($in['platform'] ?? 'github_copilot');
   $userIdentifier = isset($in['user_identifier']) ? (string)$in['user_identifier'] : null;
   $userId         = isset($in['user_id']) ? (int)$in['user_id'] : null;
+  // Org context / identifiers
+  $orgId          = isset($in['org_id']) ? (int)$in['org_id'] : 1;
+  $unitId         = isset($in['unit_id']) ? (int)$in['unit_id'] : null;
+  $projectId      = isset($in['project_id']) ? (int)$in['project_id'] : null;
+  $sourceBot      = isset($in['bot']) ? (string)$in['bot'] : (isset($in['source']) ? (string)$in['source'] : null);
+  $correlationId  = isset($in['correlation_id']) ? (string)$in['correlation_id'] : null;
+  $forceConvId    = isset($in['conversation_id']) ? (int)$in['conversation_id'] : null;
+
+  // Fallbacks from environment (per-domain or global) if client didn't provide
+  if ($unitId === null && env('AI_DEFAULT_UNIT_ID')) {
+    $unitId = (int)env('AI_DEFAULT_UNIT_ID');
+  }
+  if ($projectId === null && env('AI_DEFAULT_PROJECT_ID')) {
+    $projectId = (int)env('AI_DEFAULT_PROJECT_ID');
+  }
+  if ($sourceBot === null && env('AI_DEFAULT_BOT')) {
+    $sourceBot = (string)env('AI_DEFAULT_BOT');
+  }
   $message        = trim((string)($in['message'] ?? ''));
-  $system         = (string)($in['system'] ?? 'You are Ecigdis Assistant. Timezone: Pacific/Auckland.');
+  // System prompt: client-provided takes priority; otherwise allow env override before falling back
+  $system         = isset($in['system'])
+    ? (string)$in['system']
+    : ((env('AI_AGENT_DEFAULT_SYSTEM') ?: 'You are Ecigdis Assistant. Timezone: Pacific/Auckland.'));
   $history        = is_array($in['history'] ?? null) ? $in['history'] : [];
+  $attachments    = is_array($in['attachments'] ?? null) ? $in['attachments'] : null; // array of attachment metadata from upload.php
   $provider       = (string)($in['provider'] ?? 'openai'); // openai | anthropic
   $model          = (string)($in['model'] ?? ($provider === 'openai' ? 'gpt-4o-mini' : 'claude-3-5-sonnet-latest'));
   $temperature    = isset($in['temperature']) ? (float)$in['temperature'] : 0.2;
@@ -37,7 +59,19 @@ try {
   }
 
   // Conversation
-  $conversationId = upsert_conversation($db, $sessionKey, $platform, $userIdentifier, 1);
+  // Upsert conversation with extended identifiers
+  $conversationId = upsert_conversation_ext($db, [
+    'conversation_id' => $forceConvId,
+    'session_id'      => $sessionKey,
+    'platform'        => $platform,
+    'user_identifier' => $userIdentifier,
+    'org_id'          => $orgId,
+    'unit_id'         => $unitId,
+    'project_id'      => $projectId,
+    'source'          => $sourceBot,
+    'correlation_id'  => $correlationId,
+    'status'          => 'active',
+  ]);
   $seq = next_message_sequence($db, $conversationId);
 
   // Optional: memory injection
@@ -57,7 +91,7 @@ try {
   $messages[] = ['role'=>'user','content'=>$message];
 
   // Log user message
-  $userMsgId = $tele->logUserMessage($conversationId, $seq, $message);
+  $userMsgId = $tele->logUserMessage($conversationId, $seq, $message, $attachments);
 
   // Provider call
   $openaiKey   = env('OPENAI_API_KEY');
@@ -128,9 +162,10 @@ try {
     $endpoint,
     $promptTok, $compTok, $totalTok, $costCents,
     $latencyMs, 'success', null,
-    ['ua' => $_SERVER['HTTP_USER_AGENT'] ?? null],
+    ['ua' => $_SERVER['HTTP_USER_AGENT'] ?? null, 'correlation_id' => $correlationId],
     ['temperature' => $temperature],
-    $resp
+    $resp,
+    $unitId, $projectId, $sourceBot
   );
 
   // Log assistant message
@@ -158,8 +193,12 @@ try {
   envelope_success([
     'session_key' => $sessionKey,
     'conversation_id' => $conversationId,
+    'correlation_id' => $correlationId,
     'user_message_id' => $userMsgId,
     'assistant_message_id' => $assistantMsgId,
+    'unit_id' => $unitId,
+    'project_id' => $projectId,
+    'bot' => $sourceBot,
     'provider' => $provider,
     'model'    => $model,
     'tokens'   => ['in'=>$promptTok, 'out'=>$compTok, 'total'=>$totalTok],

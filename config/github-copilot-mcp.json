@@ -1,0 +1,167 @@
+{
+  "mcpServers": {
+    "intelligence-hub": {
+      "url": "https://gpt.ecigdis.co.nz/mcp/server_v3.php?action=rpc",
+      "description": "Ecigdis Intelligence Hub - Complete system knowledge and context",
+      "transport": {
+        "type": "http",
+        "method": "POST"
+      },
+      "authentication": {
+        "type": "bearer",
+        "token": "${INTELLIGENCE_HUB_API_KEY}"
+      },
+      "metadata": {
+        "version": "3.0.0",
+        "capabilities": [
+          "database_queries",
+          "file_operations",
+          "knowledge_base_search",
+          "context_memory",
+          "satellite_coordination",
+          "business_intelligence"
+        ],
+        "satellites": [
+          {
+            "name": "Intelligence Hub",
+            "unit_id": 1,
+            "url": "https://gpt.ecigdis.co.nz",
+            "intelligence_level": "QUANTUM"
+          },
+          {
+            "name": "CIS",
+            "unit_id": 2,
+            "url": "https://staff.vapeshed.co.nz",
+            "intelligence_level": "NEURAL",
+            "tables": 385,
+            "records": "13.5M+"
+          },
+          {
+            "name": "VapeShed Retail",
+            "unit_id": 3,
+            "url": "https://vapeshed.co.nz",
+            "intelligence_level": "ADVANCED"
+          },
+          {
+            "name": "Wholesale",
+            "unit_id": 4,
+            "url": "https://wholesale.ecigdis.co.nz",
+            "intelligence_level": "ADVANCED"
+          }
+        ]
+      },
+      "tools": [
+        {
+          "name": "db.query",
+          "description": "Execute read-only SQL queries with parameter binding",
+          "parameters": {
+            "query": "SQL SELECT statement",
+            "params": "Optional array of parameters for prepared statement"
+          }
+        },
+        {
+          "name": "db.schema",
+          "description": "Get database schema information for tables",
+          "parameters": {
+            "table": "Optional table name, omit for all tables"
+          }
+        },
+        {
+          "name": "fs.read",
+          "description": "Read file contents from jailed filesystem",
+          "parameters": {
+            "path": "Relative path from project root"
+          }
+        },
+        {
+          "name": "fs.write",
+          "description": "Write file with automatic backup",
+          "parameters": {
+            "path": "Relative path from project root",
+            "content": "File content to write",
+            "backup": "Optional boolean, default true"
+          }
+        },
+        {
+          "name": "kb.search",
+          "description": "Semantic search across knowledge base",
+          "parameters": {
+            "query": "Natural language search query",
+            "limit": "Max results, default 10",
+            "unit_id": "Optional satellite filter"
+          }
+        },
+        {
+          "name": "memory.get_context",
+          "description": "Retrieve conversation context and history",
+          "parameters": {
+            "conversation_id": "Optional conversation ID"
+          }
+        },
+        {
+          "name": "satellite.list",
+          "description": "List all satellites with status",
+          "parameters": {}
+        },
+        {
+          "name": "satellite.sync",
+          "description": "Trigger satellite data synchronization",
+          "parameters": {
+            "unit_id": "Satellite unit ID",
+            "batch_size": "Optional batch size, default 100"
+          }
+        }
+      ],
+      "usage": {
+        "examples": [
+          {
+            "description": "Search for inventory management code",
+            "request": {
+              "jsonrpc": "2.0",
+              "method": "tools/call",
+              "params": {
+                "name": "kb.search",
+                "arguments": {
+                  "query": "inventory transfer validation",
+                  "limit": 5
+                }
+              },
+              "id": 1
+            }
+          },
+          {
+            "description": "Query CIS sales data",
+            "request": {
+              "jsonrpc": "2.0",
+              "method": "tools/call",
+              "params": {
+                "name": "db.query",
+                "arguments": {
+                  "query": "SELECT COUNT(*) as total FROM vend_sales WHERE DATE(sale_date) = CURDATE()",
+                  "params": []
+                }
+              },
+              "id": 2
+            }
+          },
+          {
+            "description": "Read configuration file",
+            "request": {
+              "jsonrpc": "2.0",
+              "method": "tools/call",
+              "params": {
+                "name": "fs.read",
+                "arguments": {
+                  "path": "config/database.php"
+                }
+              },
+              "id": 3
+            }
+          }
+        ]
+      }
+    }
+  },
+  "version": "1.0.0",
+  "last_updated": "2025-11-04"
+}

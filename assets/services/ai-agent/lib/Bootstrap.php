@@ -16,23 +16,28 @@ const AI_AGENT_VERSION = '2025.11.02';
 
 // ---------- LOAD ENV ----------
 $docRoot = rtrim($_SERVER['DOCUMENT_ROOT'] ?? '', '/');
-$envFile = $docRoot . '/.env';
-if (file_exists($envFile)) {
-    $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-    foreach ($lines as $line) {
-        $line = trim($line);
-        // Skip comments
-        if (empty($line) || $line[0] === '#') continue;
-        // Parse KEY=VALUE
-        if (strpos($line, '=') !== false) {
-            list($key, $value) = explode('=', $line, 2);
-            $key = trim($key);
-            $value = trim($value);
-            if (!empty($key) && !isset($_ENV[$key])) {
-                $_ENV[$key] = $value;
-            }
-        }
+// Candidate env files (public then private)
+$envCandidates = [];
+if ($docRoot) {
+  $envCandidates[] = $docRoot . '/.env';
+  $envCandidates[] = dirname($docRoot) . '/private_html/config/.env';
+}
+
+foreach ($envCandidates as $envFile) {
+  if (!is_file($envFile)) continue;
+  $lines = @file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+  if ($lines === false) continue;
+  foreach ($lines as $line) {
+    $line = trim($line);
+    if ($line === '' || $line[0] === '#') continue; // Skip comments/empty
+    if (strpos($line, '=') === false) continue;
+    [$key, $value] = explode('=', $line, 2);
+    $key = trim($key);
+    $value = trim($value);
+    if ($key !== '' && !array_key_exists($key, $_ENV)) {
+      $_ENV[$key] = $value;
     }
+  }
 }
 
 // ---------- ENV HELPERS ----------
@@ -196,4 +201,68 @@ function next_message_sequence(PDO $db, int $conversationId): int {
   $stmt = $db->prepare("SELECT COALESCE(MAX(message_sequence),0)+1 FROM ai_conversation_messages WHERE conversation_id=?");
   $stmt->execute([$conversationId]);
   return (int)$stmt->fetchColumn();
+}
+
+/**
+ * Extended upsert for conversations with identifiers.
+ * Accepts either an existing conversation_id to update, or will
+ * use (session_id, platform) to find/insert. Optionally sets
+ * unit_id, project_id, source (bot), correlation_id, and user_identifier.
+ */
+function upsert_conversation_ext(PDO $db, array $params): int {
+  $conversationId   = isset($params['conversation_id']) ? (int)$params['conversation_id'] : null;
+  $sessionId        = (string)($params[ 'session_id' ] ?? '');
+  $platform         = (string)($params[ 'platform' ] ?? 'github_copilot');
+  $userIdentifier   = isset($params['user_identifier']) ? (string)$params['user_identifier'] : null;
+  $orgId            = isset($params['org_id']) ? (int)$params['org_id'] : 1;
+  $unitId           = isset($params['unit_id']) ? (int)$params['unit_id'] : null;
+  $projectId        = isset($params['project_id']) ? (int)$params['project_id'] : null;
+  $source           = isset($params['source']) ? (string)$params['source'] : null; // bot / origin
+  $correlationId    = isset($params['correlation_id']) ? (string)$params['correlation_id'] : null;
+  $status           = (string)($params['status'] ?? 'active');
+
+  if ($conversationId) {
+    // Update the provided conversation id with any non-null identifiers
+    $stmt = $db->prepare("UPDATE ai_conversations
+      SET unit_id = COALESCE(?, unit_id),
+          project_id = COALESCE(?, project_id),
+          source = COALESCE(?, source),
+          correlation_id = COALESCE(?, correlation_id),
+          user_identifier = COALESCE(?, user_identifier),
+          status = COALESCE(?, status),
+          last_message_at = CURRENT_TIMESTAMP
+      WHERE conversation_id = ?");
+    $stmt->execute([$unitId, $projectId, $source, $correlationId, $userIdentifier, $status, $conversationId]);
+    return (int)$conversationId;
+  }
+
+  // Try existing by (session, platform)
+  if ($sessionId !== '') {
+    $stmt = $db->prepare("SELECT conversation_id FROM ai_conversations WHERE session_id=? AND platform=? ORDER BY started_at DESC LIMIT 1");
+    $stmt->execute([$sessionId, $platform]);
+    $cid = $stmt->fetchColumn();
+    if ($cid) {
+      $cid = (int)$cid;
+      // Update identifiers if provided
+      $db->prepare("UPDATE ai_conversations
+        SET unit_id = COALESCE(?, unit_id),
+            project_id = COALESCE(?, project_id),
+            source = COALESCE(?, source),
+            correlation_id = COALESCE(?, correlation_id),
+            user_identifier = COALESCE(?, user_identifier),
+            status = COALESCE(?, status),
+            last_message_at = CURRENT_TIMESTAMP
+        WHERE conversation_id=?")
+        ->execute([$unitId, $projectId, $source, $correlationId, $userIdentifier, $status, $cid]);
+      return $cid;
+    }
+  }
+
+  // Insert new
+  $stmt = $db->prepare("INSERT INTO ai_conversations
+    (org_id, unit_id, project_id, source, correlation_id,
+     session_id, platform, user_identifier, status, started_at)
+    VALUES (?,?,?,?,?, ?,?,?,?, NOW())");
+  $stmt->execute([$orgId, $unitId, $projectId, $source, $correlationId, $sessionId, $platform, $userIdentifier, $status]);
+  return (int)$db->lastInsertId();
 }

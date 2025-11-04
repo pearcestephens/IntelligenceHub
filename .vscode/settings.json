@@ -8,56 +8,141 @@
   "mcp.servers": {
     "intelligence-hub": {
       "type": "http",
-      "url": "https://gpt.ecigdis.co.nz/assets/services/ai-agent/mcp/server_v3.php",
+      "url": "https://gpt.ecigdis.co.nz/mcp/server_v3.php",
       "headers": {
-        "Authorization": "Bearer ${INTELLIGENCE_HUB_API_KEY}"
+        "Authorization": "Bearer ${env:INTELLIGENCE_HUB_API_KEY}"
       },
-      "description": "Ecigdis Intelligence Hub - Your Private AI Agent",
+      "description": "Ecigdis Intelligence Hub - Private AI Agent (MCP v3)",
       "autoStart": true,
       "reconnectInterval": 5000,
       "timeout": 30000
     }
   },
 
-  // ============================================================================
-  // GitHub Copilot - DISABLED (Using Intelligence Hub Instead)
-  // ============================================================================
-
-  "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
+  // Optional: Copilot advanced MCP (uses HTTP transport)
+  "github.copilot.advanced": {
+    "mcp.enabled": true,
+    "mcp.servers": {
+      "cis-kb": {
+        "url": "https://gpt.ecigdis.co.nz/mcp/server.php",
+        "description": "CIS Knowledge Base",
+        "transport": "http"
+      }
+    }
   },
-  "github.copilot.editor.enableAutoCompletions": false,
-  "github.copilot.editor.enableCodeActions": false,
 
-  // ============================================================================
-  // Chat Configuration - Use Intelligence Hub MCP Server
-  // ============================================================================
-
+  // Chat MCP wiring (for clients that honor this flag)
   "chat.experimental.mcp.enabled": true,
   "chat.experimental.mcp.servers": ["intelligence-hub"],
 
   // ============================================================================
-  // Editor Configuration for AI Assistance
+  // Editor Configuration
   // ============================================================================
-
   "editor.inlineSuggest.enabled": true,
-  "editor.quickSuggestions": {
-    "other": true,
-    "comments": false,
-    "strings": true
+  "editor.quickSuggestions": { "other": true, "comments": false, "strings": true },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.rulers": [100],
+  "editor.wordWrap": "on",
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+
+  // File associations and excludes
+  "files.associations": { "*.mdx": "markdown" },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/.idea": true,
+    "**/node_modules": true,
+    "**/logs/**": true,
+    "**/private_html/sessions/**": true,
+    "**/private_html/cache/**": true
+  },
+  "search.exclude": {
+    "**/.git": true,
+    "**/node_modules": true,
+    "**/logs/**": true,
+    "**/private_html/sessions/**": true,
+    "**/private_html/cache/**": true
   },
 
-  // ============================================================================
-  // Intelligence Hub Custom Settings
-  // ============================================================================
+  // PHP setup (PSR-12 via Intelephense; php-cs-fixer optional)
+  "php.validate.enable": true,
+  "php.validate.executablePath": "php",
+  "php.suggest.basic": false,
+  "intelephense.environment.phpVersion": "8.1",
+  "intelephense.files.maxSize": 2000000,
+  "intelephense.diagnostics.enable": true,
+  "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+  "php-cs-fixer.onsave": true,
+  "php-cs-fixer.rules": { "@PSR12": true, "array_syntax": { "syntax": "short" }, "no_unused_imports": true },
+  "emmet.includeLanguages": { "php": "html" },
 
-  "intelligenceHub.defaultModel": "gpt-4o-mini",
-  "intelligenceHub.fallbackModel": "claude-3-5-sonnet-20240620",
-  "intelligenceHub.toolsEnabled": true,
-  "intelligenceHub.memoryEnabled": true,
-  "intelligenceHub.telemetryEnabled": true,
-  "intelligenceHub.apiUrl": "https://gpt.ecigdis.co.nz/api"
+  // JS/TS formatting
+  "eslint.enable": true,
+  "prettier.enable": true,
+  "prettier.singleQuote": true,
+  "prettier.semi": true,
+  "prettier.trailingComma": "es5",
+  "prettier.printWidth": 100,
+  "prettier.tabWidth": 2,
+  "editor.codeActionsOnSave": { "source.fixAll": true, "source.fixAll.eslint": true, "source.organizeImports": true },
+
+  // Git + Workbench
+  "git.enableSmartCommit": true,
+  "git.autofetch": true,
+  "workbench.editor.enablePreview": false,
+  "workbench.colorTheme": "Default Dark+",
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "security.workspace.trust.enabled": true,
+
+  // Copilot core (enabled)
+  "github.copilot.enable": { "*": true, "plaintext": false, "markdown": true, "scminput": false },
+  "github.copilot.suggestions.showLowConfidence": false,
+  "github.copilot.inlineSuggest.enable": true,
+  "github.copilot.chat.enableAutoNetworkAccess": false,
+  "github.copilot.chat.codeGeneration.enabled": true,
+
+  // ============================================================================
+  // Bot Preload Configuration - Load Master Docs on Session Start
+  // ============================================================================
+  "copilot.preload": {
+    "enabled": true,
+    "documents": [
+      "/MASTER_SYSTEM_GUIDE.md",
+      "/COMPLETE_TOOLS_QUICK_REFERENCE.md",
+      "/.vscode/bot-preload-config.json",
+      "/.vscode/BOTS_GUIDE.md",
+      "/FRONTEND_TOOLS_BREAKDOWN.md",
+      "/frontend-tools/INTEGRATION_MASTER_PLAN.md",
+      "/frontend-tools/AUTOMATION_ROADMAP.md",
+      "/frontend-tools/ARCHITECTURE_DEEP_DIVE.md",
+      "/ai-agent/FRONTEND_INTEGRATION_SETUP.md",
+      "/PRODUCTION_READY.md",
+      "/README.md"
+    ],
+    "onSessionStart": true,
+    "autoRefresh": true,
+    "refreshInterval": 3600
+  },
+
+  // AI context configuration
+  "ai.context": {
+    "alwaysInclude": [
+      "/.vscode/BOTS_GUIDE.md",
+      "/MASTER_SYSTEM_GUIDE.md",
+      "/COMPLETE_TOOLS_QUICK_REFERENCE.md"
+    ],
+    "maxContextSize": 32768,
+    "includeFileTree": true
+  },
+
+  // Security hygiene
+  "git.ignoreLimitWarning": true,
+  "secrets.detectOnOpen": true,
+  "secrets.exclude": ["**/.env", "**/private_html/config/**", "**/ai-agent/.env"]
 }

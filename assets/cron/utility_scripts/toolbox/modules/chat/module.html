@@ -1,0 +1,104 @@
+<section data-module-root>
+  <h2 style="margin:0 0 8px 0">Chat Bot</h2>
+  <div class="small">Talk to the on-server AI Agent. No-stream or SSE stream. Upload files and get tool notifications.</div>
+  <hr>
+  <div class="grid">
+    <div class="card">
+      <h3>Settings</h3>
+      <label class="small">Provider
+        <select id="chat-provider" class="code">
+          <option value="openai">OpenAI</option>
+          <option value="anthropic">Anthropic</option>
+        </select>
+      </label>
+      <br>
+      <div class="small">Pickers</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <select id="picker-unit" class="code"><option value="">Unit…</option></select>
+        <select id="picker-project" class="code"><option value="">Project…</option></select>
+        <select id="picker-domain" class="code"><option value="">Domain…</option></select>
+      </div>
+      <div class="small">These update Unit/Project ID automatically.</div>
+      <label class="small">Model
+        <input id="chat-model" class="code" value="gpt-4o-mini" />
+      </label>
+      <br>
+      <label class="small">Temperature
+        <input id="chat-temp" class="code" value="0.2" />
+      </label>
+      <br>
+      <label class="small">Stream (SSE)
+        <select id="chat-stream" class="code">
+          <option value="off">Off (no-stream)</option>
+          <option value="on">On (SSE)</option>
+        </select>
+      </label>
+      <br>
+      <label class="small">Session Key
+        <input id="chat-session" class="code" placeholder="optional" />
+      </label>
+      <br>
+      <label class="small">Bot Name
+        <input id="chat-bot" class="code" value="WebDev Assistant" />
+      </label>
+      <br>
+      <label class="small">Persona
+        <select id="chat-persona" class="code">
+          <option value="default">Default</option>
+          <option value="neuro">Neuro Tech Specialist</option>
+          <option value="security">Security Analyst</option>
+          <option value="perf">Performance Tuner</option>
+        </select>
+      </label>
+      <br>
+      <label class="small">Mode
+        <select id="chat-mode" class="code">
+          <option value="chat">Chat</option>
+          <option value="webdev">Web Dev</option>
+          <option value="codeprint">Code Printer</option>
+        </select>
+      </label>
+      <br>
+      <label class="small">Bearer Token
+        <input id="chat-token" class="code" placeholder="optional if auth disabled" />
+      </label>
+      <details style="margin-top:8px">
+        <summary class="small">Advanced MCP</summary>
+        <div class="small" style="margin-top:6px">
+          <label><input type="checkbox" id="chat-mcp-route-all" /> Route all messages to MCP (semantic_search)</label>
+        </div>
+        <div class="small" style="margin-top:6px">
+          MCP Server: <span id="chat-mcp-url" class="code">(loading…)</span>
+        </div>
+      </details>
+      <hr>
+      <h3>Context</h3>
+      <label class="small">Org ID <input id="chat-org" class="code" value="1" /></label><br>
+      <label class="small">Unit ID <input id="chat-unit" class="code" placeholder="optional" /></label><br>
+      <label class="small">Project ID <input id="chat-project" class="code" placeholder="optional" /></label>
+      <div style="margin-top:6px;display:flex;gap:8px">
+        <button id="chat-load-conv" class="tab">Load Conversations</button>
+        <button id="chat-load-history" class="tab">Load History</button>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Chat</h3>
+      <div id="chat-log" style="max-height:280px;overflow:auto;margin-bottom:8px"></div>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px">
+        <input type="file" id="chat-file" multiple />
+        <button id="chat-upload" class="tab">Upload</button>
+        <span id="chat-upload-status" class="small"></span>
+      </div>
+      <div id="chat-drop" class="small" style="border:1px dashed #999;padding:8px;margin-bottom:6px">Drag & drop files here</div>
+      <textarea id="chat-input" rows="3" class="code" placeholder="Type a message…"></textarea>
+      <div style="margin-top:6px;display:flex;gap:8px">
+        <button id="chat-send" class="tab">Send</button>
+        <button id="chat-clear" class="tab">Clear</button>
+        <button id="chat-tool-ticket" class="tab">Tool Ticket</button>
+      </div>
+      <div class="small" style="margin-top:4px;color:#666">Tip: Type /help for MCP quick commands (/kb, /code, /category, /health, /analytics, /stats, /top, /list-categories)</div>
+      <div id="chat-sse-status" class="small" style="margin-top:6px"></div>
+      <div id="chat-attachments" class="small" style="margin-top:6px"></div>
+    </div>
+  </div>
+</section>

@@ -558,32 +558,53 @@ class SemanticSearchEngine {
             return '';
         }
 
+        // CRITICAL INSIGHT: Document beginnings contain most valuable information
+        // Priority order:
+        // 1. First 500 chars (headers, docblocks, imports, class/function definitions)
+        // 2. First occurrence of search term
+        // 3. Fallback to start if no match
+
+        $contentLength = strlen($content);
+        $previewLength = 400; // Increased from 300 for better context
+
         // Find first occurrence of any search term
-        $pos = false;
+        $matchPos = false;
         foreach ($terms as $term) {
             $termPos = stripos($content, $term);
-            if ($termPos !== false && ($pos === false || $termPos < $pos)) {
-                $pos = $termPos;
+            if ($termPos !== false && ($matchPos === false || $termPos < $matchPos)) {
+                $matchPos = $termPos;
             }
         }
 
-        // Extract context around match
-        $start = max(0, $pos - 100);
-        $length = 300;
-        $preview = substr($content, $start, $length);
+        // Decision logic: Prioritize document start
+        if ($matchPos === false || $matchPos > 500) {
+            // No match or match is far down: Return document beginning (most valuable)
+            $start = 0;
+            $preview = substr($content, 0, $previewLength);
+            $prefix = '';
+            $suffix = $contentLength > $previewLength ? '...' : '';
 
-        // Clean up
-        $preview = preg_replace('/\s+/', ' ', $preview);
+        } elseif ($matchPos < 200) {
+            // Match is near beginning: Return from start (captures headers + context)
+            $start = 0;
+            $preview = substr($content, 0, $previewLength);
+            $prefix = '';
+            $suffix = $contentLength > $previewLength ? '...' : '';
+
+        } else {
+            // Match is in middle: Show context around match
+            $start = max(0, $matchPos - 150);
+            $preview = substr($content, $start, $previewLength);
+            $prefix = $start > 0 ? '...' : '';
+            $suffix = ($start + $previewLength) < $contentLength ? '...' : '';
+        }
+
+        // Clean up whitespace but preserve structure
+        $preview = preg_replace('/[ \t]+/', ' ', $preview); // Collapse spaces/tabs
+        $preview = preg_replace('/\n{3,}/', "\n\n", $preview); // Max 2 newlines
         $preview = trim($preview);
 
-        if ($start > 0) {
-            $preview = '...' . $preview;
-        }
-        if (strlen($content) > $start + $length) {
-            $preview .= '...';
-        }
-
-        return $preview;
+        return $prefix . $preview . $suffix;
     }
 
     /**

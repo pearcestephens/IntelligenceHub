@@ -1,0 +1,732 @@
+Loaded schema with 140 tables
+
+═══════════════════════════════════════════════════════════════════
+   INTELLIGENCE HUB - COMPLETE DATABASE ANALYSIS
+═══════════════════════════════════════════════════════════════════
+
+Database: hdgwrzntwa
+Extracted: 2025-11-03 08:03:00
+Total Tables: 140
+Total Relationships: 92
+
+
+══════════════════════════════════════════════════════════════════════
+1. ORGANIZATIONAL HIERARCHY
+══════════════════════════════════════════════════════════════════════
+
+Tables (4):
+  • business_units (4 rows)
+    - unit_id: int(11)
+    - org_id: int(11)
+    - unit_name: varchar(100)
+    Sample data:
+    {"unit_id":1,"org_id":1,"unit_name":"Intelligence Hub"}...
+    {"unit_id":2,"org_id":1,"unit_name":"CIS - Central Information System"}...
+
+  • organizations (1 rows)
+    - org_id: int(11)
+    - org_name: varchar(100)
+    - parent_org_id: int(11)
+    - redis_namespace: varchar(50)
+    Sample data:
+    {"org_id":1,"org_name":"Ecigdis Limited","org_type":"parent"}...
+
+  • project_domains (11 rows)
+    - id: int(11)
+    - project_id: int(11)
+    Sample data:
+    {"id":12,"project_id":1,"domain":"gpt.ecigdis.co.nz"}...
+    {"id":13,"project_id":2,"domain":"staff.vapeshed.co.nz"}...
+
+  • project_unit_mapping (0 rows)
+    - mapping_id: int(11)
+    - project_id: int(11)
+    - unit_id: int(11)
+
+Relationships:
+  ai_agent_requests.unit_id → business_units.unit_id
+  ai_conversations.org_id → organizations.org_id
+  ai_conversations.unit_id → business_units.unit_id
+  ai_models.org_id → organizations.org_id
+  ai_predictions.org_id → organizations.org_id
+  ai_tool_calls.unit_id → business_units.unit_id
+  business_units.org_id → organizations.org_id
+  intelligence_alerts.org_id → organizations.org_id
+  intelligence_automation.org_id → organizations.org_id
+  intelligence_content.org_id → organizations.org_id
+  intelligence_content.unit_id → business_units.unit_id
+  intelligence_metrics.org_id → organizations.org_id
+  intelligence_metrics.unit_id → business_units.unit_id
+  neural_patterns.org_id → organizations.org_id
+  organizations.parent_org_id → organizations.org_id
+  project_domains.project_id → projects.id
+  project_unit_mapping.project_id → projects.id
+  project_unit_mapping.unit_id → business_units.unit_id
+  redis_cache_config.org_id → organizations.org_id
+  redis_performance_metrics.org_id → organizations.org_id
+  system_configuration.org_id → organizations.org_id
+  system_health.org_id → organizations.org_id
+
+📊 HIERARCHY DIAGRAM:
+
+┌─────────────────┐
+│ organizations   │ (org_id, org_name, parent_org_id, org_type)
+│    1 row        │
+└────────┬────────┘
+         │
+         ├─→ business_units (business_unit_id, organization_id, unit_name)
+         │      4 rows
+         │
+         └─→ project_unit_mapping (links projects to business units)
+                0 rows
+
+══════════════════════════════════════════════════════════════════════
+2. PROJECT MANAGEMENT SYSTEM
+══════════════════════════════════════════════════════════════════════
+
+Tables (8):
+  • hub_projects (5 rows, 0 FKs)
+  • project_metadata (3 rows, 1 FKs)
+  • project_metrics (1 rows, 1 FKs)
+  • project_requirements (5 rows, 1 FKs)
+  • project_rule_violations (3 rows, 2 FKs)
+  • project_rules (6 rows, 1 FKs)
+  • project_scan_config (3 rows, 1 FKs)
+  • project_standards (5 rows, 1 FKs)
+
+📊 PROJECT HIERARCHY:
+
+┌─────────────────┐
+│   projects      │ (id, project_name, project_path, business_unit_id)
+│    12 rows      │
+└────────┬────────┘
+         │
+         ├─→ project_domains (domain, subdomain, full_url)
+         │      11 rows
+         │
+         ├─→ project_metadata (key, value pairs)
+         │      3 rows
+         │
+         ├─→ project_requirements (requirement_text, priority)
+         │      5 rows
+         │
+         ├─→ project_rules (rule_name, rule_type)
+         │      6 rows
+         │
+         ├─→ project_scan_config (scan settings)
+         │      3 rows
+         │
+         ├─→ project_standards (standard_name, standard_type)
+         │      5 rows
+         │
+         └─→ project_metrics (files_count, violations_count)
+                1 row
+
+ACTUAL PROJECTS:
+  • ID 1: Intelligence Hub (Scanner)
+    Path: /home/master/applications/hdgwrzntwa/public_html
+  • ID 2: CIS - Consignments Module
+    Path: /home/master/applications/jcepnzzkmj/public_html/modules/consignments
+  • ID 3: CIS - Supplier Portal
+    Path: /home/master/applications/jcepnzzkmj/public_html/modules/supplier
+  • ID 4: CIS - Purchase Orders
+    Path: /home/master/applications/jcepnzzkmj/public_html/modules/purchase_orde
+  • ID 5: CIS - Inventory Management
+    Path: /home/master/applications/jcepnzzkmj/public_html/modules/inventory
+
+══════════════════════════════════════════════════════════════════════
+3. INTELLIGENCE FILE SYSTEM
+══════════════════════════════════════════════════════════════════════
+
+Tables (9):
+  • intelligence_alerts (0 rows)
+  • intelligence_automation (0 rows)
+  • intelligence_automation_executions (0 rows)
+  • intelligence_content (22191 rows)
+  • intelligence_content_text (11286 rows)
+  • intelligence_content_types (31 rows)
+  • intelligence_files (26121 rows)
+  • intelligence_files_backup_20251025 (55357 rows)
+  • intelligence_metrics (3000 rows)
+
+📊 INTELLIGENCE ARCHITECTURE:
+
+┌──────────────────────────────┐
+│ intelligence_files           │ (NEW SYSTEM - Scanner V3)
+│       26,121 rows            │
+│                              │
+│ • project_id, business_unit_id
+│ • file_path, file_content    │
+│ • intelligence_data (JSON)   │
+│ • content_summary            │
+│ • extracted_at               │
+└──────────┬───────────────────┘
+           │
+           │ UNIQUE KEY: (business_unit_id, file_path)
+           │
+           │
+┌──────────▼───────────────────┐
+│ intelligence_content         │ (OLD SYSTEM - V2 Tools)
+│       22,191 rows            │
+│                              │
+│ • project_id, file_path      │
+│ • content_type               │
+│ • raw_content                │
+│ • metadata (JSON)            │
+│ • analysis_result            │
+└──────────┬───────────────────┘
+           │
+           ├─→ intelligence_content_text (11,286 rows)
+           │   Full-text search index
+           │
+           ├─→ intelligence_content_types (31 types)
+           │   Type definitions
+           │
+           ├─→ intelligence_metrics (3,000 rows)
+           │   Usage analytics
+           │
+           ├─→ intelligence_automation (0 rows)
+           │   Automated actions
+           │
+           └─→ intelligence_alerts (0 rows)
+               Alert rules
+
+BACKUP TABLE:
+│ intelligence_files_backup_20251025 (55,357 rows) │
+
+══════════════════════════════════════════════════════════════════════
+4. SCANNER & CODE QUALITY SYSTEM
+══════════════════════════════════════════════════════════════════════
+
+Tables (11):
+  • auto_fix_log (0 rows)
+  • cis_rule_categories (10 rows)
+  • cis_rule_learning_log (0 rows)
+  • cis_rule_violations (0 rows)
+  • cis_rules (0 rows)
+  • scan_config (10 rows)
+  • scan_history (0 rows)
+  • scan_jobs (9 rows)
+  • scan_logs (41481 rows)
+  • scanner_ignore_config (146 rows)
+  • violations (1 rows)
+
+📊 SCANNER PIPELINE:
+
+┌─────────────────┐
+│  scan_config    │ → Project scan settings
+│    10 rows      │   (ignore patterns, file types)
+└────────┬────────┘
+         │
+         ├─→ scan_jobs (9 jobs)
+         │      Job queue
+         │
+         ├─→ scan_history (0 records)
+         │      Scan execution history
+         │
+         └─→ scan_logs (41,481 records!) ⚠️
+                Detailed scan output
+
+┌──────────────────────────┐
+│  scanner_ignore_config   │
+│      146 patterns        │ → .git, node_modules, vendor, etc.
+└──────────────────────────┘
+
+┌─────────────────┐
+│   cis_rules     │ → Code quality rules
+│    0 rows       │   (needs population)
+└────────┬────────┘
+         │
+         ├─→ cis_rule_categories (10 categories)
+         │      security, performance, best_practices
+         │
+         ├─→ cis_rule_violations (0 violations)
+         │      Found issues
+         │
+         ├─→ cis_rule_learning_log (0 records)
+         │      AI learning from feedback
+         │
+         └─→ cis_user_rule_preferences (0 prefs)
+                User customizations
+
+┌─────────────────┐
+│   violations    │ → Generic violation tracker
+│     1 row       │
+└─────────────────┘
+
+┌─────────────────┐
+│ auto_fix_log    │ → Automatic fix attempts
+│    0 rows       │
+└─────────────────┘
+
+══════════════════════════════════════════════════════════════════════
+5. COMPLETE FOREIGN KEY RELATIONSHIP MAP
+══════════════════════════════════════════════════════════════════════
+
+Total Foreign Key Relationships: 92
+
+┌─ ai_agent_domains
+│   ← ai_agent_requests.domain_id
+└──────────────────────────────────────────────────
+┌─ ai_conversations
+│   ← ai_agent_requests.conversation_id
+│   ← ai_conversation_messages.conversation_id
+│   ← ai_conversation_topics.conversation_id
+│   ← ai_memory.conversation_id
+│   ← ai_tool_calls.conversation_id
+└──────────────────────────────────────────────────
+┌─ ai_conversation_messages
+│   ← ai_agent_requests.message_id
+│   ← ai_message_files.message_id
+│   ← ai_tool_calls.message_id
+└──────────────────────────────────────────────────
+┌─ projects
+│   ← ai_agent_requests.project_id
+│   ← ai_conversations.project_id
+│   ← ai_tool_calls.project_id
+│   ← circular_dependencies.project_id
+│   ← code_dependencies.project_id
+│   ← file_dependencies.project_id
+│   ← intelligence_files.project_id
+│   ← project_domains.project_id
+│   ← project_metadata.project_id
+│   ← project_metrics.project_id
+│   ← project_requirements.project_id
+│   ← project_rule_violations.project_id
+│   ← project_rules.project_id
+│   ← project_scan_config.project_id
+│   ← project_standards.project_id
+│   ← project_unit_mapping.project_id
+│   ← scan_config.project_id
+│   ← scan_history.project_id
+│   ← scan_logs.project_id
+│   ← violations.project_id
+└──────────────────────────────────────────────────
+┌─ business_units
+│   ← ai_agent_requests.unit_id
+│   ← ai_conversations.unit_id
+│   ← ai_tool_calls.unit_id
+│   ← intelligence_content.unit_id
+│   ← intelligence_metrics.unit_id
+│   ← project_unit_mapping.unit_id
+└──────────────────────────────────────────────────
+┌─ organizations
+│   ← ai_conversations.org_id
+│   ← ai_models.org_id
+│   ← ai_predictions.org_id
+│   ← business_units.org_id
+│   ← intelligence_alerts.org_id
+│   ← intelligence_automation.org_id
+│   ← intelligence_content.org_id
+│   ← intelligence_metrics.org_id
+│   ← neural_patterns.org_id
+│   ← organizations.parent_org_id
+│   ← redis_cache_config.org_id
+│   ← redis_performance_metrics.org_id
+│   ← system_configuration.org_id
+│   ← system_health.org_id
+└──────────────────────────────────────────────────
+┌─ intelligence_content
+│   ← ai_message_files.content_id
+│   ← intelligence_content_text.content_id
+└──────────────────────────────────────────────────
+┌─ intelligence_files
+│   ← ai_message_files.file_id
+│   ← violations.file_id
+└──────────────────────────────────────────────────
+┌─ ai_models
+│   ← ai_predictions.model_id
+└──────────────────────────────────────────────────
+┌─ ai_tool_calls
+│   ← ai_tool_results.tool_call_id
+└──────────────────────────────────────────────────
+┌─ violations
+│   ← auto_fix_log.violation_id
+└──────────────────────────────────────────────────
+┌─ bot_instances
+│   ← bot_alerts.bot_instance_id
+│   ← bot_deployments.bot_instance_id
+│   ← bot_logs.bot_instance_id
+│   ← bot_metrics.bot_instance_id
+│   ← bot_project_assignments.bot_instance_id
+│   ← bot_project_tasks.assigned_bot_id
+└──────────────────────────────────────────────────
+┌─ bot_servers
+│   ← bot_alerts.server_id
+│   ← bot_deployments.server_id
+└──────────────────────────────────────────────────
+┌─ bot_projects
+│   ← bot_alerts.project_id
+│   ← bot_project_assignments.project_id
+│   ← bot_project_tasks.project_id
+└──────────────────────────────────────────────────
+┌─ bot_event_chains
+│   ← bot_event_chain_executions.chain_id
+└──────────────────────────────────────────────────
+┌─ cis_rules
+│   ← cis_rule_learning_log.rule_id
+│   ← cis_rule_violations.rule_id
+│   ← cis_user_rule_preferences.rule_id
+└──────────────────────────────────────────────────
+┌─ cis_rule_categories
+│   ← cis_rules.category_id
+└──────────────────────────────────────────────────
+┌─ content_index
+│   ← content_elements.content_id
+│   ← content_metrics.content_id
+│   ← content_relationships.source_content_id
+│   ← content_relationships.target_content_id
+│   ← kb_sections.content_id
+└──────────────────────────────────────────────────
+┌─ cron_jobs
+│   ← cron_executions.job_id
+└──────────────────────────────────────────────────
+┌─ hub_cron_jobs
+│   ← hub_cron_alerts.job_id
+│   ← hub_cron_executions.job_id
+│   ← hub_cron_metrics.job_id
+└──────────────────────────────────────────────────
+┌─ hub_cron_satellites
+│   ← hub_cron_alerts.satellite_id
+│   ← hub_cron_metrics.satellite_id
+└──────────────────────────────────────────────────
+┌─ intelligence_automation
+│   ← intelligence_automation_executions.automation_id
+└──────────────────────────────────────────────────
+┌─ intelligence_content_types
+│   ← intelligence_content.content_type_id
+└──────────────────────────────────────────────────
+┌─ kb_categories
+│   ← kb_categories.parent_category_id
+└──────────────────────────────────────────────────
+┌─ kb_sections
+│   ← kb_links.dst_section_id
+│   ← kb_links.src_section_id
+└──────────────────────────────────────────────────
+┌─ neural_patterns
+│   ← neural_pattern_relationships.source_pattern_id
+│   ← neural_pattern_relationships.target_pattern_id
+└──────────────────────────────────────────────────
+┌─ project_rules
+│   ← project_rule_violations.rule_id
+└──────────────────────────────────────────────────
+┌─ project_scan_config
+│   ← scan_history.config_id
+└──────────────────────────────────────────────────
+
+══════════════════════════════════════════════════════════════════════
+6. CRITICAL FINDINGS & RECOMMENDATIONS
+══════════════════════════════════════════════════════════════════════
+
+✅ WELL-DESIGNED AREAS:
+  • Intelligence system has both old (intelligence_content) and new
+    (intelligence_files) tables for migration
+  • Proper indexing on most tables (24 indexes on intelligence_files)
+  • Business unit segregation via business_unit_id
+  • Comprehensive audit logging (activity_logs, scan_logs)
+
+⚠️  ISSUES IDENTIFIED:
+  1. DUAL INTELLIGENCE SYSTEMS: Two separate intelligence tables
+     - intelligence_content (22,191 rows) ← OLD, used by V2 tools
+     - intelligence_files (26,121 rows) ← NEW, used by Scanner V3
+     → Need to migrate V2 tools to use intelligence_files
+
+  2. BROKEN VIEWS:
+     - kb_files: References invalid tables
+     - simple_quality: View definition error
+     → Need to drop or fix these views
+
+  3. MASSIVE LOG TABLE:
+     - scan_logs: 41,481 records
+     → Consider archiving/rotation strategy
+
+  4. UNPOPULATED RULE SYSTEM:
+     - cis_rules: 0 rows (should have rules defined)
+     - cis_rule_violations: 0 rows (scanner not recording violations)
+     → Scanner V3 may not be properly writing violations
+
+  5. ORGANIZATIONAL HIERARCHY INCOMPLETE:
+     - organizations: Only 1 row
+     - business_units: Only 4 rows
+     - project_unit_mapping: 0 rows (projects not linked to units!)
+     → Need to properly map projects to business units
+
+
+══════════════════════════════════════════════════════════════════════
+7. RECOMMENDED ORGANIZATIONAL STRUCTURE
+══════════════════════════════════════════════════════════════════════
+
+Based on the schema analysis, here is the CORRECT hierarchy:
+
+┌─────────────────────────────────────────────────────────────┐
+│                      ORGANIZATION                           │
+│                    (organizations)                          │
+│                         1 row                               │
+│                                                             │
+│   • org_id, org_name, org_type                             │
+│   • parent_org_id (for nested orgs)                        │
+│   • intelligence_level (basic/advanced/neural/quantum)     │
+└──────────────────────┬──────────────────────────────────────┘
+                       │
+                       │ organization_id
+                       ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    BUSINESS UNITS                           │
+│                  (business_units)                           │
+│                       4 rows                                │
+│                                                             │
+│   • business_unit_id, unit_name                            │
+│   • organization_id (FK)                                   │
+│   • unit_type, is_active                                   │
+└──────────────────────┬──────────────────────────────────────┘
+                       │
+                       │ business_unit_id
+                       ▼
+┌─────────────────────────────────────────────────────────────┐
+│                      PROJECTS                               │
+│                    (projects)                               │
+│                      12 rows                                │
+│                                                             │
+│   • id, project_name, project_path                         │
+│   • business_unit_id (FK) ← MISSING IN CURRENT DATA!      │
+│   • status, priority                                       │
+└──────────────────────┬──────────────────────────────────────┘
+                       │
+                       │ project_id
+                       ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   PROJECT DOMAINS                           │
+│                 (project_domains)                           │
+│                      11 rows                                │
+│                                                             │
+│   • domain, subdomain, full_url                            │
+│   • project_id (FK)                                        │
+│   • is_primary                                             │
+└──────────────────────┬──────────────────────────────────────┘
+                       │
+                       │ Scanned files stored in:
+                       ▼
+┌─────────────────────────────────────────────────────────────┐
+│              INTELLIGENCE FILES (Scanner V3)                │
+│                (intelligence_files)                         │
+│                     26,121 rows                             │
+│                                                             │
+│   • project_id, business_unit_id                           │
+│   • file_path, file_content                                │
+│   • intelligence_data (JSON analysis)                      │
+│   • UNIQUE KEY: (business_unit_id, file_path)             │
+└─────────────────────────────────────────────────────────────┘
+
+══════════════════════════════════════════════════════════════════════
+8. REDUNDANT TABLES vs EMPTY BUT USEFUL TABLES
+══════════════════════════════════════════════════════════════════════
+
+🗑️  REDUNDANT TABLES (SAFE TO DROP):
+----------------------------------------------------------------------
+  ❌ cron_executions
+     Reason: Duplicate of hub_cron_executions (which has data)
+     Action: DROP - use hub_* version instead
+
+  ❌ cron_jobs
+     Reason: Duplicate of hub_cron_jobs (which has data)
+     Action: DROP - use hub_* version instead
+
+  ❌ cron_metrics
+     Reason: Duplicate of hub_cron_metrics (which has data)
+     Action: DROP - use hub_* version instead
+
+  ❌ cron_satellites
+     Reason: Duplicate of hub_cron_satellites (which has data)
+     Action: DROP - use hub_* version instead
+
+
+✅ EMPTY BUT USEFUL TABLES (KEEP FOR FUTURE USE):
+----------------------------------------------------------------------
+
+📁 AI/ML System (8 tables):
+  • ai_idempotency_keys
+    → For future AI features and learning
+  • ai_memory [1 FKs]
+    → For future AI features and learning
+  • ai_message_files [3 FKs]
+    → For future AI features and learning
+  • ai_models [1 FKs]
+    → For future AI features and learning
+  • ai_predictions [2 FKs]
+    → For future AI features and learning
+  • mcp_category_usage
+    → For future AI features and learning
+  • mcp_routing_bandit
+    → For future AI features and learning
+  • neural_pattern_relationships [2 FKs]
+    → For future AI features and learning
+
+📁 Utility (24 tables):
+  • api_dependencies
+    → Future use or logging
+  • api_request_logs
+    → Future use or logging
+  • cis_mcp_tool_usage
+    → Future use or logging
+  • cis_user_rule_preferences [1 FKs]
+    → Future use or logging
+  • class_relationships
+    → Future use or logging
+  • code_dependencies [1 FKs]
+    → Future use or logging
+  • config_dependencies
+    → Future use or logging
+  • critical_table_operations
+    → Future use or logging
+  • dashboard_config
+    → Future use or logging
+  • dashboard_notifications
+    → Future use or logging
+  • frontend_dependencies
+    → Future use or logging
+  • function_usage
+    → Future use or logging
+  • high_impact_files
+    → Future use or logging
+  • hub_satellites
+    → Future use or logging
+  • indexing_queue
+    → Future use or logging
+  • redis_performance_metrics [1 FKs]
+    → Future use or logging
+  • relationship_summary
+    → Future use or logging
+  • search_analytics
+    → Future use or logging
+  • search_cache
+    → Future use or logging
+  • system_health [1 FKs]
+    → Future use or logging
+  • table_usage
+    → Future use or logging
+  • unused_functions
+    → Future use or logging
+  • vscode_sync_config
+    → Future use or logging
+  • vscode_sync_history
+    → Future use or logging
+
+📁 Scanner System (4 tables):
+  • auto_fix_log [1 FKs]
+    → Will be populated when Scanner V3 runs with rules
+  • cis_rule_learning_log [1 FKs]
+    → Will be populated when Scanner V3 runs with rules
+  • cis_rule_violations [1 FKs]
+    → Will be populated when Scanner V3 runs with rules
+  • cis_rules [1 FKs]
+    → Will be populated when Scanner V3 runs with rules
+
+📁 Bot Orchestration (8 tables):
+  • bot_alerts [3 FKs]
+    → For bot deployment and automation
+  • bot_deployments [2 FKs]
+    → For bot deployment and automation
+  • bot_event_chain_executions [1 FKs]
+    → For bot deployment and automation
+  • bot_event_chains
+    → For bot deployment and automation
+  • bot_logs [1 FKs]
+    → For bot deployment and automation
+  • bot_metrics [1 FKs]
+    → For bot deployment and automation
+  • bot_project_tasks [2 FKs]
+    → For bot deployment and automation
+  • chrome_operation_logs
+    → For bot deployment and automation
+
+📁 Monitoring/Tracking (2 tables):
+  • circular_dependencies [1 FKs]
+    → Will populate as system is used
+  • scan_history [2 FKs]
+    → Will populate as system is used
+
+📁 Knowledge Base (8 tables):
+  • content_elements [1 FKs]
+    → For content management and linking
+  • content_index
+    → For content management and linking
+  • content_metrics [1 FKs]
+    → For content management and linking
+  • content_relationships [2 FKs]
+    → For content management and linking
+  • content_types
+    → For content management and linking
+  • kb_links [2 FKs]
+    → For content management and linking
+  • kb_sections [1 FKs]
+    → For content management and linking
+  • kb_terms
+    → For content management and linking
+
+📁 Cron Scheduling (4 tables):
+  • cron_circuit_breaker
+    → For scheduled job management
+  • cron_job_stats
+    → For scheduled job management
+  • cron_schedule_minutes
+    → For scheduled job management
+  • hub_cron_metrics [2 FKs]
+    → For scheduled job management
+
+📁 Intelligence System (3 tables):
+  • intelligence_alerts [1 FKs]
+    → For automated intelligence actions
+  • intelligence_automation [1 FKs]
+    → For automated intelligence actions
+  • intelligence_automation_executions [1 FKs]
+    → For automated intelligence actions
+
+📁 Organizational (2 tables):
+  • project_unit_mapping [2 FKs]
+    → CRITICAL: Needs data to link projects to units
+  • unit_team_members
+    → CRITICAL: Needs data to link projects to units
+
+
+📊 SUMMARY:
+----------------------------------------------------------------------
+Total Tables: 140
+Tables with Data: 67
+Empty but Useful: 63
+Redundant/Broken: 4
+
+══════════════════════════════════════════════════════════════════════
+9. CRITICAL ACTION ITEMS
+══════════════════════════════════════════════════════════════════════
+
+🚨 IMMEDIATE ACTIONS REQUIRED:
+
+1. FIX ORGANIZATIONAL HIERARCHY:
+   - project_unit_mapping has 0 rows!
+   - Need to link all 12 projects to their business units
+   - SQL: INSERT INTO project_unit_mapping (project_id, unit_id) VALUES ...
+
+2. POPULATE SCANNER RULES:
+   - cis_rules table is empty (0 rows)
+   - Scanner V3 cannot detect violations without rules
+   - Need to import rule definitions
+
+3. MIGRATE MCP V2 TOOLS TO USE intelligence_files:
+   - V2 tools use intelligence_content (22,191 rows)
+   - V3 scanner uses intelligence_files (26,121 rows)
+   - Need unified storage or route V2 to intelligence_files
+
+4. FIX OR DROP BROKEN VIEWS:
+   - kb_files and simple_quality reference invalid tables
+   - Either fix view definitions or DROP them
+
+5. ARCHIVE MASSIVE LOG TABLE:
+   - scan_logs: 41,481 records
+   - Implement log rotation/archival strategy
+
+
+══════════════════════════════════════════════════════════════════════
+ANALYSIS COMPLETE
+══════════════════════════════════════════════════════════════════════
+
+✓ Analysis generated successfully!

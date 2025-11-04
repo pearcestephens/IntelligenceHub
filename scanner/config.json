@@ -1,0 +1,123 @@
+{
+  "intelligence_scanner_config": {
+    "version": "2.0.0",
+    "mode": "whitelist",
+
+    "include_paths": [
+      "/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/modules/",
+      "/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/api/",
+      "/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/assets/functions/",
+      "/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/_kb/",
+      "/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/docs/"
+    ],
+
+    "exclude_paths": [
+      "**/vendor/**",
+      "**/node_modules/**",
+      "**/.git/**",
+      "**/OLD/**",
+      "**/TEMP/**",
+      "**/old/**",
+      "**/temp/**",
+      "**/backup/**",
+      "**/backups/**",
+      "**/archive/**",
+      "**/ARCHIVE/**",
+      "**/test/**",
+      "**/tests/**",
+      "**/*.backup",
+      "**/*.bak",
+      "**/*.old",
+      "**/cleanup_*/**",
+      "**/CLEANUP_*/**"
+    ],
+
+    "allowed_extensions": [
+      "php",
+      "md",
+      "sql",
+      "json",
+      "js",
+      "html",
+      "css",
+      "txt",
+      "sh"
+    ],
+
+    "exclude_extensions": [
+      "png",
+      "jpg",
+      "jpeg",
+      "gif",
+      "svg",
+      "ico",
+      "woff",
+      "woff2",
+      "ttf",
+      "eot",
+      "mp3",
+      "mp4",
+      "wav",
+      "avi",
+      "zip",
+      "tar",
+      "gz",
+      "rar",
+      "7z",
+      "pdf",
+      "doc",
+      "docx",
+      "xls",
+      "xlsx",
+      "ppt",
+      "pptx",
+      "log",
+      "stream",
+      "cache",
+      "lock",
+      "phar",
+      "deploy"
+    ],
+
+    "file_size_limits": {
+      "max_file_size_mb": 5,
+      "min_file_size_bytes": 10,
+      "skip_empty_files": true
+    },
+
+    "content_extraction": {
+      "extract_text": true,
+      "extract_keywords": true,
+      "extract_semantic_tags": true,
+      "extract_entities": true,
+      "min_word_count": 10
+    },
+
+    "priority_paths": {
+      "high": [
+        "/modules/",
+        "/api/",
+        "/_kb/"
+      ],
+      "medium": [
+        "/assets/functions/",
+        "/docs/"
+      ],
+      "low": []
+    },
+
+    "scanner_behavior": {
+      "skip_existing": false,
+      "force_rescan": true,
+      "batch_size": 100,
+      "max_execution_time_seconds": 3600,
+      "enable_caching": true
+    },
+
+    "cleanup_rules": {
+      "delete_missing_files": true,
+      "delete_excluded_paths": true,
+      "mark_inactive_instead_of_delete": false
+    }
+  }
+}

@@ -105,6 +105,7 @@
             "AutoFixService::applyAutoFix",
             "AutoFixService::batchApplyFixes",
             "CISMaximizedProjectManager::initializeRedis",
+            "applyFix",
             "closeDbConnection",
             "sendSSE",
             "logError",
@@ -509,6 +510,8 @@
             "SingleFileAnalyzer::analyze",
             "IntelligenceReceiver::storeIntelligence",
             "IntelligenceDistributor::pushToSatellite",
+            "PayrollBot::processPayroll",
+            "PayrollBot::sendErrorNotification",
             "CronClient::registerIntelligenceHubJobs",
             "getIntelligenceDB",
             "fetchCISSchedule",
@@ -554,7 +557,8 @@
         "calls": [],
         "called_by": [
             "handleApply",
-            "AutoFixService::batchApplyFixes"
+            "AutoFixService::batchApplyFixes",
+            "FrontendAuditTool::execute"
         ]
     },
     "handleBatch": {
@@ -887,6 +891,7 @@
             "DatabaseCLI::showAuditLog",
             "UniversalCopilotAutomation::syncGitHubInstructions",
             "UniversalCopilotAutomation::generateDirectoryReadme",
+            "updateStatus",
             "IndexPhpCommand::execute",
             "SearchCommand::displayResults",
             "PHPCodeIndexer::indexDirectory",
@@ -1186,6 +1191,8 @@
             "KBConfigManager::generateIgnoreReport",
             "KBConfigManager::getFindCommand",
             "KBConfigManager::getConfigStats",
+            "PayrollBot::processPayroll",
+            "PayrollBot::createXeroPayRun",
             "DynamicCISStandardsManager::generateDailyStartPrompt",
             "DynamicCISStandardsManager::renderApprovalsDashboard",
             "processChanges",
@@ -1292,6 +1299,7 @@
             "logQuery",
             "updateConversation",
             "getKnowledgeContext",
+            "logDeployment",
             "checkRateLimit",
             "ApiAuth::checkIdempotency",
             "ApiAuth::storeIdempotentResponse",
@@ -1317,6 +1325,9 @@
             "SecurityScanner::storeScanResults",
             "DB::query",
             "DB::prepare",
+            "FrontendAuditTool::storeAuditHistory",
+            "FrontendAuditTool::storePendingFixes",
+            "FrontendMonitorTool::execute",
             "MemoryService::store",
             "MemoryService::get",
             "MemoryService::getAll",
@@ -1400,6 +1411,7 @@
             "StandardsManager::getProjects",
             "StandardsManager::createProject",
             "StandardsManager::createSatellite",
+            "ContextDetector::getProjectName",
             "PHPCodeIndexer::saveToDatabase",
             "MCPServer::toolSemanticSearch",
             "MCPServer::toolFindCode",
@@ -1445,12 +1457,16 @@
             "require_api_key_if_enabled",
             "upsert_conversation",
             "next_message_sequence",
+            "upsert_conversation_ext",
             "Telemetry::logUserMessage",
             "Telemetry::logAssistantMessage",
             "Telemetry::logProviderRequest",
             "Telemetry::toolStart",
             "Telemetry::toolFinish",
             "Telemetry::toolFlatStream",
+            "StreamStore::start",
+            "StreamStore::appendChunk",
+            "StreamStore::finish",
             "MemoryStore::upsert",
             "MemoryStore::retrieveForUser",
             "IntelligenceHubCron::runScheduledTasks",
@@ -1610,7 +1626,10 @@
             "ConversationLogger::logMessage",
             "ConversationLogger::addTags",
             "ConversationLogger::endConversation",
-            "ConversationLogger::getAgents"
+            "ConversationLogger::getAgents",
+            "PayrollBot::getEmployee",
+            "PayrollBot::storePayrollRun",
+            "PayrollBot::log"
         ]
     },
     "execute": {
@@ -1660,6 +1679,7 @@
             "logQuery",
             "updateConversation",
             "getKnowledgeContext",
+            "logDeployment",
             "checkRateLimit",
             "ApiAuth::checkIdempotency",
             "ApiAuth::storeIdempotentResponse",
@@ -1693,6 +1713,9 @@
             "ToolExecutor::executeSequence",
             "ToolExecutor::executeWithRetry",
             "ToolExecutor::executeBatch",
+            "FrontendAuditTool::storeAuditHistory",
+            "FrontendAuditTool::storePendingFixes",
+            "FrontendMonitorTool::execute",
             "ToolChainOrchestrator::executeChain",
             "ToolChain::executeSequential",
             "MemoryService::store",
@@ -1778,6 +1801,7 @@
             "StandardsManager::createProject",
             "StandardsManager::createSatellite",
             "SearchCommand::execute",
+            "ContextDetector::getProjectName",
             "PHPCodeIndexer::saveToDatabase",
             "MCPServer::toolSemanticSearch",
             "MCPServer::toolFindCode",
@@ -1823,12 +1847,16 @@
             "require_api_key_if_enabled",
             "upsert_conversation",
             "next_message_sequence",
+            "upsert_conversation_ext",
             "Telemetry::logUserMessage",
             "Telemetry::logAssistantMessage",
             "Telemetry::logProviderRequest",
             "Telemetry::toolStart",
             "Telemetry::toolFinish",
             "Telemetry::toolFlatStream",
+            "StreamStore::start",
+            "StreamStore::appendChunk",
+            "StreamStore::finish",
             "MemoryStore::upsert",
             "MemoryStore::retrieveForUser",
             "IntelligenceHubCron::runScheduledTasks",
@@ -1989,7 +2017,10 @@
             "ConversationLogger::logMessage",
             "ConversationLogger::addTags",
             "ConversationLogger::endConversation",
-            "ConversationLogger::getAgents"
+            "ConversationLogger::getAgents",
+            "PayrollBot::getEmployee",
+            "PayrollBot::storePayrollRun",
+            "PayrollBot::log"
         ]
     },
     "fetchAll": {
@@ -2440,7 +2471,8 @@
             "getAIAgentStats",
             "getBotStats",
             "loginUser",
-            "logoutUser"
+            "logoutUser",
+            "PayrollBot::getEmployee"
         ]
     },
     "round": {
@@ -2480,6 +2512,7 @@
             "KnowledgeTool::findSimilar",
             "KnowledgeTool::generateSearchSummary",
             "DatabaseTool::getStats",
+            "FrontendAuditTool::execute",
             "FileTool::formatBytes",
             "EnterprisePerformanceMonitor::getLoadAverage",
             "EnterprisePerformanceMonitor::getSystemTemperature",
@@ -2660,6 +2693,7 @@
             "IntelligenceDistributor::testConnectivity",
             "IntelligenceDistributor::formatBytes",
             "KBConfigManager::getConfigStats",
+            "PayrollBot::createXeroPayRun",
             "format_bytes",
             "executeTask",
             "showStatus",
@@ -2682,6 +2716,7 @@
             "ingestProject",
             "validateInput",
             "getConversationHistory",
+            "applyFix",
             "ApiBootstrap::getJsonBody",
             "getJsonBody",
             "runPerformanceTest",
@@ -2745,7 +2780,9 @@
             "UniversalCopilotAutomation::updateVSCodeSettingsFile",
             "UniversalCopilotAutomation::generateMasterInstructionFile",
             "UniversalCopilotAutomation::updateUserPrompts",
+            "updateStatus",
             "getRequestParams",
+            "ContextDetector::detectFromVSCodeConfig",
             "PHPCodeIndexer::indexFile",
             "http_raw",
             "needsRefresh",
@@ -2981,6 +3018,8 @@
             "SystemDoctorTool::run",
             "DatabaseTool::explainQuery",
             "RepoCleanerTool::run",
+            "FrontendAuditTool::parseAuditOutput",
+            "FrontendScreenshotTool::uploadToGallery",
             "ToolChain::executeSequential",
             "ToolChain::executeParallel",
             "SecurityScanTool::run",
@@ -3042,7 +3081,10 @@
             "StandardsManager::extractProjectName",
             "UniversalCopilotAutomation::loadConfig",
             "UniversalCopilotAutomation::updateVSCodeSettingsFile",
+            "updateStatus",
+            "githubAPI",
             "getRequestParams",
+            "ContextDetector::detectFromVSCodeConfig",
             "http_json",
             "MCPServer::toolSyncSatellite",
             "forward_tool_call",
@@ -3053,6 +3095,8 @@
             "req_json",
             "ProviderFactory::openai",
             "ProviderFactory::anthropic",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "LoadBalancer::getRunningTasks",
             "CircuitBreaker::loadStateFromFile",
             "CircuitBreaker::loadStateFromRedis",
@@ -3137,6 +3181,8 @@
             "IntelligenceDistributor::loadSatellites",
             "IntelligenceDistributor::sendRequest",
             "KBConfigManager::loadConfig",
+            "PayrollBot::deputyApiCall",
+            "PayrollBot::xeroApiCall",
             "CronClient::request",
             "loadState",
             "loadSchedule",
@@ -3364,6 +3410,9 @@
             "DeploymentManagerTool::run",
             "SystemDoctorTool::run",
             "RepoCleanerTool::run",
+            "FrontendAuditTool::storeAuditHistory",
+            "FrontendAuditTool::storePendingFixes",
+            "FrontendMonitorTool::execute",
             "ToolChain::executeSequential",
             "ToolChain::executeParallel",
             "ToolChain::getCacheKey",
@@ -3454,6 +3503,8 @@
             "UniversalCopilotAutomation::updateMultiBotConfigs",
             "UniversalCopilotAutomation::updateVSCodeSettingsFile",
             "UniversalCopilotAutomation::syncToSatellite",
+            "updateStatus",
+            "githubAPI",
             "logRequest",
             "SearchCommand::execute",
             "http_json",
@@ -3482,6 +3533,7 @@
             "PHPIndexer::extractEntities",
             "SearchAnalytics::logSearch",
             "MySQLQueryTool::formatResults",
+            "sse_send",
             "send_sse",
             "response_json",
             "Telemetry::logUserMessage",
@@ -3491,6 +3543,8 @@
             "Telemetry::toolFlatStream",
             "ProviderFactory::openai",
             "ProviderFactory::anthropic",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "MemoryStore::upsert",
             "LiveStatusAPI::successResponse",
             "LiveStatusAPI::errorResponse",
@@ -3514,6 +3568,7 @@
             "SatelliteSync::recordSatelliteMetrics",
             "HubCronConfig::insertDefaultSatellites",
             "HubCronLogger::log",
+            "sse_event",
             "FrontendTester::analyzeWithGPTVision",
             "FrontendTester::saveTestResults",
             "CSRFProtection::requireValidToken",
@@ -3616,6 +3671,8 @@
             "UltimateWebDevKBGenerator::generateQuickReference",
             "UltimateWebDevKBGenerator::generateSearchIndex",
             "KBConfigManager::logUsage",
+            "PayrollBot::deputyApiCall",
+            "PayrollBot::xeroApiCall",
             "DynamicCISStandardsManager::renderApprovalsDashboard",
             "CronClient::request",
             "saveState",
@@ -3790,6 +3847,7 @@
             "UniversalCopilotAutomation::generateDirectoryReadme",
             "UniversalCopilotAutomation::generateYAMLFrontmatter",
             "UniversalCopilotAutomation::log",
+            "updateStatus",
             "ok",
             "fail",
             "MCPServer::toolSyncSatellite",
@@ -3974,6 +4032,9 @@
             "UltimateWebDevKBGenerator::__construct",
             "UltimateWebDevKBGenerator::generateSearchIndex",
             "KBConfigManager::logUsage",
+            "PayrollBot::fetchTimesheetsFromDeputy",
+            "PayrollBot::createXeroPayRun",
+            "PayrollBot::log",
             "VSCodeSettingsManager::syncSettings",
             "DynamicCISStandardsManager::detectNewModules",
             "DynamicCISStandardsManager::submitForApproval",
@@ -4171,6 +4232,7 @@
             "QuickScanService::getScanProgress",
             "AutoFixService::applyAutoFix",
             "getConversationHistory",
+            "applyFix",
             "runSecurityScan",
             "viewSystemLogs",
             "KBIndexHandler::handleIndex",
@@ -4241,6 +4303,7 @@
             "UniversalCopilotAutomation::syncToVSCodeServer",
             "UniversalCopilotAutomation::autoOrganizeKBDirectories",
             "IndexPhpCommand::execute",
+            "ContextDetector::detectFromVSCodeConfig",
             "PHPCodeIndexer::indexFile",
             "needsRefresh",
             "SemanticSearchEngine::getFromCache",
@@ -4390,6 +4453,7 @@
             "QuickScanService::getScanProgress",
             "getConversationHistory",
             "saveConversationHistory",
+            "logDeployment",
             "isCircuitOpen",
             "recordCircuitFailure",
             "sendHeartbeat",
@@ -4407,6 +4471,8 @@
             "AgentPoolManager::createAgent",
             "AgentPoolManager::getAgentStats",
             "AgentPoolManager::spawnAgent",
+            "FrontendAuditTool::parseAuditOutput",
+            "FrontendAuditTool::storeAuditHistory",
             "ConversationManager::markConversationActive",
             "EventBus::publish",
             "EnterprisePerformanceMonitor::getPerformanceAnalytics",
@@ -4539,6 +4605,7 @@
             "checkRateLimit",
             "saveConversationHistory",
             "streamResponse",
+            "applyFix",
             "runPerformanceTest",
             "logLine",
             "SystemDoctor::analyzeFileOperations",
@@ -4590,6 +4657,7 @@
             "UniversalCopilotAutomation::updateUserPrompts",
             "UniversalCopilotAutomation::generateAutoUpdatedInstructions",
             "UniversalCopilotAutomation::log",
+            "updateStatus",
             "runRefresh",
             "SemanticSearchEngine::saveToCache",
             "FileCache::set",
@@ -4901,6 +4969,8 @@
             "IntelligenceReceiver::validatePayload",
             "IntelligenceReceiver::storeIntelligence",
             "KBConfigManager::shouldIgnoreFile",
+            "PayrollBot::deputyApiCall",
+            "PayrollBot::xeroApiCall",
             "scanFiles",
             "generateStaggeredSchedule",
             "matchCronField",
@@ -4939,12 +5009,15 @@
             "deployFile",
             "testConnection",
             "UniversalCopilotAutomation::syncToSatellite",
+            "githubAPI",
             "http_json",
             "MCPServer::toolSyncSatellite",
             "WebBrowserTool::fetchPage",
             "WebBrowserTool::getHeaders",
             "ProviderFactory::openai",
             "ProviderFactory::anthropic",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "AlertManager::sendSlack",
             "AlertManager::sendWebhook",
             "SatelliteSync::makeHttpRequest",
@@ -4958,6 +5031,8 @@
             "MCPHubClient::makeRequest",
             "IntelligenceDistributor::sendRequest",
             "IntelligenceDistributor::testConnectivity",
+            "PayrollBot::deputyApiCall",
+            "PayrollBot::xeroApiCall",
             "CronClient::request",
             "apiCall"
         ]
@@ -4983,11 +5058,14 @@
             "deployFile",
             "testConnection",
             "UniversalCopilotAutomation::syncToSatellite",
+            "githubAPI",
             "http_json",
             "WebBrowserTool::fetchPage",
             "WebBrowserTool::getHeaders",
             "ProviderFactory::openai",
             "ProviderFactory::anthropic",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "AlertManager::sendSlack",
             "AlertManager::sendWebhook",
             "SatelliteSync::makeHttpRequest",
@@ -4999,6 +5077,8 @@
             "MCPHubClient::makeRequest",
             "IntelligenceDistributor::sendRequest",
             "IntelligenceDistributor::testConnectivity",
+            "PayrollBot::deputyApiCall",
+            "PayrollBot::xeroApiCall",
             "CronClient::request"
         ]
     },
@@ -5025,12 +5105,15 @@
             "deployFile",
             "testConnection",
             "UniversalCopilotAutomation::syncToSatellite",
+            "githubAPI",
             "http_json",
             "MCPServer::toolSyncSatellite",
             "WebBrowserTool::fetchPage",
             "WebBrowserTool::getHeaders",
             "ProviderFactory::openai",
             "ProviderFactory::anthropic",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "AlertManager::sendSlack",
             "AlertManager::sendWebhook",
             "SatelliteSync::makeHttpRequest",
@@ -5044,6 +5127,8 @@
             "MCPHubClient::makeRequest",
             "IntelligenceDistributor::sendRequest",
             "IntelligenceDistributor::testConnectivity",
+            "PayrollBot::deputyApiCall",
+            "PayrollBot::xeroApiCall",
             "CronClient::request",
             "apiCall"
         ]
@@ -5070,12 +5155,15 @@
             "deployFile",
             "testConnection",
             "UniversalCopilotAutomation::syncToSatellite",
+            "githubAPI",
             "http_json",
             "MCPServer::toolSyncSatellite",
             "WebBrowserTool::fetchPage",
             "WebBrowserTool::getHeaders",
             "ProviderFactory::openai",
             "ProviderFactory::anthropic",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "AlertManager::sendSlack",
             "AlertManager::sendWebhook",
             "SatelliteSync::makeHttpRequest",
@@ -5088,6 +5176,8 @@
             "MCPHubClient::makeRequest",
             "IntelligenceDistributor::sendRequest",
             "IntelligenceDistributor::testConnectivity",
+            "PayrollBot::deputyApiCall",
+            "PayrollBot::xeroApiCall",
             "CronClient::request",
             "apiCall"
         ]
@@ -5115,6 +5205,8 @@
             "WebBrowserTool::getHeaders",
             "ProviderFactory::openai",
             "ProviderFactory::anthropic",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "SatelliteSync::makeHttpRequest",
             "AIAgentClient::request",
             "KnowledgeBaseSDK::fetch",
@@ -5147,10 +5239,13 @@
             "deployFile",
             "testConnection",
             "UniversalCopilotAutomation::syncToSatellite",
+            "githubAPI",
             "http_json",
             "MCPServer::toolSyncSatellite",
             "WebBrowserTool::fetchPage",
             "WebBrowserTool::getHeaders",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "AlertManager::sendSlack",
             "AlertManager::sendWebhook",
             "SatelliteSync::makeHttpRequest",
@@ -5164,6 +5259,8 @@
             "MCPHubClient::makeRequest",
             "IntelligenceDistributor::sendRequest",
             "IntelligenceDistributor::testConnectivity",
+            "PayrollBot::deputyApiCall",
+            "PayrollBot::xeroApiCall",
             "CronClient::request",
             "apiCall"
         ]
@@ -5306,9 +5403,11 @@
             "PHPCodeIndexer::saveToDatabase",
             "PHPIndexer::storeInDatabase",
             "upsert_conversation",
+            "upsert_conversation_ext",
             "Telemetry::logUserMessage",
             "Telemetry::logAssistantMessage",
             "Telemetry::toolStart",
+            "StreamStore::start",
             "IntelligenceHubCron::executeJob",
             "buildTopicHierarchy",
             "insertFile",
@@ -5352,6 +5451,7 @@
             "AIAssistant::extractCodeSnippet",
             "QuickScanService::getScanSummary",
             "AutoFixService::extractCodeSnippet",
+            "applyFix",
             "ApiBootstrap::validateRequired",
             "extractPdfText",
             "handleUpdateToolCall",
@@ -5369,6 +5469,9 @@
             "KnowledgeTool::generateSearchSummary",
             "DatabaseTool::run",
             "DatabaseTool::validateQuery",
+            "FrontendAuditTool::execute",
+            "FrontendScreenshotTool::execute",
+            "FrontendScreenshotTool::uploadToGallery",
             "ToolCatalog::toYaml",
             "LogsTool::run",
             "FileTool::read",
@@ -5718,7 +5821,9 @@
             "AIBatchProcessor::getWeeklySpending",
             "timeAgo",
             "detectDate",
-            "scanArchive"
+            "scanArchive",
+            "PayrollBot::fetchTimesheetsFromDeputy",
+            "PayrollBot::createXeroPayRun"
         ]
     },
     "RealTimeScanner::scanFiles": {
@@ -5855,6 +5960,8 @@
             "SecurityScanner::scanDirectory",
             "KBConfigManager::getIgnorePatterns",
             "KBConfigManager::getFileTypeExclusions",
+            "PayrollBot::processPayroll",
+            "PayrollBot::validateTimesheets",
             "VSCodeSettingsManager::addCISConfiguration",
             "DynamicCISStandardsManager::detectNewPatterns",
             "main",
@@ -5953,6 +6060,8 @@
             "GrepTool::run",
             "DatabaseTool::getSchema",
             "DatabaseTool::validateQuery",
+            "FrontendAuditTool::parseAuditOutput",
+            "FrontendScreenshotTool::extractScreenshotPath",
             "ToolChain::resolveParams",
             "ToolCatalog::yaml",
             "ToolRegistry::validateToolDefinition",
@@ -5996,6 +6105,7 @@
             "PHPCodeIndexer::estimateQuality",
             "PHPCodeIndexer::generateSemanticTags",
             "PHPCodeIndexer::generateEntities",
+            "agent_url",
             "http_raw",
             "getLastModifiedTime",
             "MCPAdvancedTools::enforceStandards",
@@ -6297,6 +6407,8 @@
             "Telemetry::toolFlatStream",
             "ProviderFactory::openai",
             "ProviderFactory::anthropic",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "IntelligenceHubCron::executeJob",
             "analyzeContent",
             "LoadBalancer::parseMemoryLimit",
@@ -6398,6 +6510,7 @@
             "MetadataManager::getStatistics",
             "DatabaseIntelligence::inspectTable",
             "DatabaseIntelligence::getStatistics",
+            "ContextDetector::getProjectName",
             "MCPServer::toolSearchByCategory",
             "MCPServer::toolListCategories",
             "MCPServer::getArchitecture",
@@ -6407,6 +6520,7 @@
             "require_api_key_if_enabled",
             "upsert_conversation",
             "next_message_sequence",
+            "upsert_conversation_ext",
             "verifyDatabaseState",
             "updateFile",
             "AIBatchProcessor::getDailySpending",
@@ -6474,6 +6588,7 @@
             "KnowledgeBase::search",
             "Agent::getHealth",
             "DatabaseCLI::inspectTable",
+            "updateStatus",
             "PHPCodeIndexer::extractCodeElements",
             "MCPServer::callTool",
             "MCPAdvancedTools::suggestImplementation",
@@ -6502,6 +6617,7 @@
             "generatePerformanceMetrics",
             "KBIntelligenceEngineV2::generateReports",
             "createArchiveStructure",
+            "PayrollBot::createXeroPayRun",
             "generateCronExpression",
             "calculateFinalMetrics"
         ]
@@ -6842,6 +6958,8 @@
             "UniversalCopilotAutomation::getApplyToFromFilename",
             "UniversalCopilotAutomation::autoOrganizeKBDirectories",
             "getRequestParams",
+            "ContextDetector::detectFromPath",
+            "ContextDetector::detectProjectFromModulePath",
             "PHPCodeIndexer::indexDirectory",
             "jail_path",
             "FuzzySearchEngine::fuzzyMatch",
@@ -7217,6 +7335,9 @@
             "KBIndexHandler::handleCleanup",
             "SystemDoctor::checkSecurity",
             "AgentPoolManager::createAgent",
+            "FrontendAuditTool::execute",
+            "FrontendScreenshotTool::execute",
+            "FrontendScreenshotTool::uploadToGallery",
             "FileTool::listDirectory",
             "FileTool::getInfo",
             "AlertSlackPlugin::handle",
@@ -7422,6 +7543,7 @@
             "ConversationLogger::logMessage",
             "ConversationLogger::addTags",
             "ConversationLogger::endConversation",
+            "PayrollBot::log",
             "getIntelligenceDB"
         ]
     },
@@ -7759,6 +7881,9 @@
             "IntelligenceReceiver::sendError",
             "IntelligenceDistributor::pushToAll",
             "IntelligenceDistributor::pushToSatellite",
+            "PayrollBot::processPayroll",
+            "PayrollBot::sendNotifications",
+            "PayrollBot::sendErrorNotification",
             "KBReorganizer::reorganize",
             "KBReorganizer::createNewStructure",
             "KBReorganizer::analyzeExistingContent",
@@ -7814,6 +7939,7 @@
         ],
         "called_by": [
             "AutoFixService::applyAutoFix",
+            "applyFix",
             "DatabaseIntelligence::executeQuery"
         ]
     },
@@ -8284,6 +8410,8 @@
             "HealthCheckTool::convertToBytes",
             "SemanticSearchTool::getClientIp",
             "require_api_key_if_enabled",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "HubCronSetup::setupCrontab",
             "HubCronSetup::uninstallSystem",
             "analyzeContent",
@@ -8388,6 +8516,7 @@
             "AutoFixService::calculateLinesChanged",
             "getKnowledgeContext",
             "streamOpenAI",
+            "applyFix",
             "handleOpenAIStream",
             "handleAnthropicStream",
             "streamText",
@@ -8441,6 +8570,8 @@
             "MySQLQueryTool::execute",
             "WebBrowserTool::getHeaders",
             "SemanticSearchTool::getClientIp",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "IntelligenceHubCron::shouldRunJob",
             "IntelligenceHubCron::matchesCronField",
             "HubCronSetup::removeCrontabEntries",
@@ -8623,7 +8754,8 @@
             "analyzeNamingQuality",
             "analyzeDocumentationQuality",
             "calculateQualityScore",
-            "PlatformSecurityAudit::calculateSecurityScore"
+            "PlatformSecurityAudit::calculateSecurityScore",
+            "PayrollBot::calculatePay"
         ]
     },
     "min": {
@@ -8732,6 +8864,7 @@
             "calculateQualityScore",
             "PlatformSecurityAudit::calculateSecurityScore",
             "AIBatchProcessor::makeAIRequest",
+            "PayrollBot::calculatePay",
             "KBReorganizer::calculatePriority",
             "HubToCISDeployer::calculateImportance"
         ]
@@ -9097,6 +9230,7 @@
             "AutoFixService::__construct",
             "ingestProject",
             "logMessage",
+            "createBackup",
             "Migration::getAvailableMigrations",
             "rrmdir",
             "rcopy",
@@ -9106,6 +9240,7 @@
             "SecurityScanner::checkFilePermissions",
             "SecurityScanner::checkDirectorySecurity",
             "SecurityScanner::checkLoggingConfiguration",
+            "FrontendToolRegistry::__construct",
             "FileTool::write",
             "FileTool::listDirectory",
             "FileTool::getInfo",
@@ -9265,7 +9400,6 @@
             "AIBatchProcessor::__construct",
             "AIBatchProcessor::scanProjectForChanges",
             "SingleFileAnalyzer::updateIntelligence",
-            "createBackup",
             "createArchiveStructure",
             "moveFilesToArchive",
             "IntelligenceReceiver::loadApiKey",
@@ -9298,7 +9432,9 @@
             "QuickScanService::ensureTempDir",
             "AutoFixService::__construct",
             "logMessage",
+            "createBackup",
             "rcopy",
+            "FrontendToolRegistry::__construct",
             "FileTool::validateAndNormalizePath",
             "Config::validateBasicConfiguration",
             "AgentKnowledgeBaseAPI::update",
@@ -9387,7 +9523,6 @@
             "AIActivityAnalyzer::log",
             "AIBatchProcessor::__construct",
             "SingleFileAnalyzer::updateIntelligence",
-            "createBackup",
             "createArchiveStructure",
             "moveFilesToArchive",
             "IntelligenceReceiver::loadApiKey",
@@ -9732,6 +9867,9 @@
             "Migration::initializeMigrationTable",
             "Migration::runSingleMigration",
             "SecurityScanner::storeScanResults",
+            "FrontendAuditTool::execute",
+            "FrontendScreenshotTool::execute",
+            "FrontendScreenshotTool::uploadToGallery",
             "AIControlAPI::runAnalysis",
             "AIControlAPI::syncSettings",
             "AIControlAPI::resetBudgets",
@@ -9960,6 +10098,7 @@
             "CompleteContextGenerator::__construct",
             "MetadataManager::saveProjectMetadata",
             "MetadataManager::loadProjectMetadata",
+            "ContextDetector::detectFromVSCodeConfig",
             "PHPCodeIndexer::__construct",
             "agent_url",
             "jail_root",
@@ -10272,6 +10411,7 @@
         "called_by": [
             "AutoFixService::applyFixToContent",
             "HttpRequest::fromGlobals",
+            "applyFix",
             "extractRtfText",
             "Migration::getAvailableMigrations",
             "norm_path",
@@ -10483,6 +10623,21 @@
             "prepare",
             "execute"
         ],
+        "called_by": []
+    },
+    "getIntelligenceDB": {
+        "file": ".\/scripts\/bootstrap.php",
+        "calls": [
+            "error_log",
+            "getMessage"
+        ],
+        "called_by": [
+            "DatabaseSchemaScanner::__construct"
+        ]
+    },
+    "getCISDB": {
+        "file": ".\/scripts\/bootstrap.php",
+        "calls": [],
         "called_by": []
     },
     "sanitizeUtf8": {
@@ -10807,6 +10962,7 @@
             "ContextGenerator::generateCompleteContext",
             "DatabaseCLI::showAuditLog",
             "UniversalCopilotAutomation::syncDirectory",
+            "ContextDetector::detectFromPath",
             "PHPCodeIndexer::saveToDatabase",
             "json_slim",
             "MCPServer::extractQueryKeywords",
@@ -10820,6 +10976,9 @@
             "FileTool::analyzeFile",
             "WebBrowserTool::fetchPage",
             "HealthCheckTool::convertToBytes",
+            "StreamStore::appendChunk",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "AlertManager::formatContextFields",
             "runPipelineStep",
             "DatabaseValidator::calculateSimilarity",
@@ -11597,6 +11756,8 @@
             "Claude::processStreamData",
             "OpenAI::makeRequestStream",
             "require_api_key_if_enabled",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "scanDirectory",
             "analyzeContent"
         ]
@@ -11960,6 +12121,7 @@
             "logQuery",
             "updateConversation",
             "getKnowledgeContext",
+            "logDeployment",
             "checkRateLimit",
             "AIOrchestrator::loadConversationMemory",
             "AIOrchestrator::readRelevantFiles",
@@ -11968,6 +12130,9 @@
             "AIOrchestrator::gatherMetadata",
             "AIOrchestrator::logOrchestration",
             "AIOrchestrator::logToolExecution",
+            "FrontendAuditTool::storeAuditHistory",
+            "FrontendAuditTool::storePendingFixes",
+            "FrontendMonitorTool::execute",
             "LiveStatusAPI::getRecentExecutions",
             "LiveStatusAPI::getFailureRates",
             "LiveStatusAPI::getExecutionHistory",
@@ -12256,6 +12421,7 @@
             "ToolExecutor::execute",
             "HttpTool::request",
             "DatabaseTool::execute",
+            "FrontendAuditTool::execute",
             "ToolChain::execute",
             "FileTool::read",
             "FileTool::write",
@@ -12303,6 +12469,8 @@
             "CrawlerTool::execute",
             "ProviderFactory::openai",
             "ProviderFactory::anthropic",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "IntelligenceHubCron::run",
             "IntelligenceHubCron::executeJob",
             "handleScheduledTasks",
@@ -12402,6 +12570,7 @@
             "SSE::emit",
             "SSE::setHeaders",
             "SSE::keepAlive",
+            "sse_send",
             "send_sse",
             "AIAgentClient::streamRequest"
         ]
@@ -12428,7 +12597,9 @@
             "SSE::setHeaders",
             "SSE::startKeepAlive",
             "SSE::keepAlive",
+            "sse_send",
             "send_sse",
+            "sse_event",
             "AIAgentClient::streamRequest",
             "proxySSEStream",
             "streamBotLogs"
@@ -12443,7 +12614,9 @@
             "SSEHandler::flush",
             "SSE::emit",
             "SSE::keepAlive",
+            "sse_send",
             "send_sse",
+            "sse_event",
             "AIAgentClient::streamRequest",
             "proxySSEStream"
         ]
@@ -12549,6 +12722,186 @@
             "file_put_contents"
         ],
         "called_by": []
+    },
+    "applyFix": {
+        "file": ".\/ai-agent\/api\/approve-fix.php",
+        "calls": [
+            "file_exists",
+            "createBackup",
+            "file_get_contents",
+            "str_replace",
+            "explode",
+            "implode",
+            "file_put_contents",
+            "logDeployment",
+            "info",
+            "error",
+            "getMessage"
+        ],
+        "called_by": []
+    },
+    "logDeployment": {
+        "file": "(unknown)",
+        "calls": [
+            "prepare",
+            "time",
+            "bind_param",
+            "execute"
+        ],
+        "called_by": [
+            "applyFix"
+        ]
+    },
+    "info": {
+        "file": "(unknown)",
+        "calls": [
+            "log",
+            "self::ensureInitialized",
+            "self::dispatch"
+        ],
+        "called_by": [
+            "applyFix",
+            "SSEHandler::startStream",
+            "KBIndexHandler::log",
+            "Migration::run",
+            "Migration::runSingleMigration",
+            "SecurityScanner::runComprehensiveScan",
+            "MessageHandler::processMessage",
+            "MessageHandler::optimizeContextForTokens",
+            "AgentPoolManager::__construct",
+            "AgentPoolManager::createAgent",
+            "AgentPoolManager::processMessage",
+            "AgentPoolManager::removeAgent",
+            "AgentPoolManager::clearPool",
+            "AgentPoolManager::spawnAgent",
+            "AgentPoolManager::terminateAgent",
+            "AgentPoolManager::delegateTask",
+            "AgentPoolManager::setCoordinator",
+            "FrontendAuditTool::execute",
+            "FrontendScreenshotTool::execute",
+            "FrontendMonitorTool::execute",
+            "ToolChainOrchestrator::createChain",
+            "ToolChain::execute",
+            "ConversationManager::createConversation",
+            "ConversationManager::addMessage",
+            "ConversationManager::updateConversationTitle",
+            "ConversationManager::deleteConversation",
+            "ConversationManager::cleanupInactiveConversations",
+            "RedisClient::getInfo",
+            "RedisClient::info",
+            "CircuitBreaker::call",
+            "CircuitBreaker::reset",
+            "Retry::withBackoff",
+            "Claude::__construct",
+            "MemoryCompressor::compressConversation",
+            "MemoryCompressor::updateConversationMessages",
+            "SemanticClusterer::clusterConversations",
+            "Agent::initialize",
+            "Agent::chat",
+            "Agent::registerTools",
+            "Agent::shutdown",
+            "RedisService::getStats",
+            "RedisService::info",
+            "DatabaseCLI::storeCredentials",
+            "DatabaseCLI::listTables",
+            "DatabaseCLI::inspectTable",
+            "DatabaseCLI::executeQuery",
+            "DatabaseCLI::showAuditLog",
+            "DatabaseCLI::showStatistics",
+            "IndexPhpCommand::execute",
+            "SearchCommand::execute",
+            "SearchCommand::displayResults",
+            "RedisCache::getStats",
+            "RedisTool::getStats",
+            "RedisTool::getKeyspaceStats",
+            "RedisTool::getInfo",
+            "HubCronSetup::installComplete",
+            "HubCronSetup::setupDatabase",
+            "HubCronSetup::setupCrontab",
+            "HubCronSetup::addToCrontab",
+            "HubCronSetup::createLogDirectory",
+            "HubCronSetup::setPermissions",
+            "HubCronSetup::testInstallation",
+            "HubCronSetup::uninstallSystem",
+            "HubCronSetup::removeCrontabEntries",
+            "HubCronSetup::dropDatabaseTables",
+            "SatelliteSync::run",
+            "SatelliteSync::syncAllSatellites",
+            "SatelliteSync::syncSpecificSatellite",
+            "SatelliteSync::syncSatellite",
+            "SatelliteSync::sendHubCommands",
+            "SatelliteSync::updateSatelliteRecord",
+            "SatelliteSync::sendHeartbeatToAll"
+        ]
+    },
+    "error": {
+        "file": "(unknown)",
+        "calls": [
+            "log",
+            "self::ensureInitialized",
+            "self::dispatch"
+        ],
+        "called_by": [
+            "applyFix",
+            "ApiBootstrap::error",
+            "ApiBootstrap::handleException",
+            "ApiAuth::storeIdempotentResponse",
+            "SSEHandler::startStream",
+            "Migration::run",
+            "Migration::runSingleMigration",
+            "SecurityScanner::runComprehensiveScan",
+            "SecurityScanner::storeScanResults",
+            "MessageHandler::processMessage",
+            "MessageHandler::processToolCalls",
+            "AgentPoolManager::processMessage",
+            "AgentPoolManager::delegateTask",
+            "ToolChain::execute",
+            "ConversationManager::createConversation",
+            "ConversationManager::getConversation",
+            "ConversationManager::addMessage",
+            "ConversationManager::getMessages",
+            "ConversationManager::updateConversationTitle",
+            "ConversationManager::listConversations",
+            "ConversationManager::deleteConversation",
+            "ConversationManager::getConversationStats",
+            "ConversationManager::cleanupInactiveConversations",
+            "CircuitBreaker::call",
+            "CircuitBreaker::recordFailure",
+            "Retry::withBackoff",
+            "Claude::streamCompletion",
+            "Claude::completion",
+            "Claude::test",
+            "MemoryCompressor::compressConversation",
+            "MemoryCompressor::updateConversationMessages",
+            "SemanticClusterer::clusterConversations",
+            "Agent::initialize",
+            "Agent::chat",
+            "Agent::createConversation",
+            "Agent::getConversation",
+            "Agent::listConversations",
+            "Agent::deleteConversation",
+            "Agent::addDocument",
+            "Agent::searchKnowledge",
+            "Agent::switchDomain",
+            "DatabaseCLI::run",
+            "DatabaseCLI::storeCredentials",
+            "DatabaseCLI::listTables",
+            "DatabaseCLI::inspectTable",
+            "DatabaseCLI::validateQuery",
+            "DatabaseCLI::executeQuery",
+            "DatabaseCLI::showAuditLog",
+            "DatabaseCLI::showStatistics",
+            "DatabaseCLI::testConnection",
+            "IndexPhpCommand::execute",
+            "SearchCommand::execute",
+            "HubCronSetup::installComplete",
+            "HubCronSetup::addToCrontab",
+            "HubCronSetup::testInstallation",
+            "HubCronSetup::uninstallSystem",
+            "SatelliteSync::syncSpecificSatellite",
+            "SatelliteSync::syncSatellite",
+            "SatelliteSync::sendHubCommands"
+        ]
     },
     "ping": {
         "file": "(unknown)",
@@ -13181,6 +13534,7 @@
             "HttpTool::validateUrl",
             "HttpTool::checkRateLimit",
             "HttpTool::sanitizeUrl",
+            "FrontendMonitorTool::execute",
             "RedisClient::connect"
         ]
     },
@@ -13375,74 +13729,6 @@
             "handleUpdateToolCall",
             "handleCreateMessage",
             "handleGetMessages"
-        ]
-    },
-    "error": {
-        "file": "(unknown)",
-        "calls": [
-            "log",
-            "self::ensureInitialized",
-            "self::dispatch"
-        ],
-        "called_by": [
-            "ApiBootstrap::error",
-            "ApiBootstrap::handleException",
-            "ApiAuth::storeIdempotentResponse",
-            "SSEHandler::startStream",
-            "Migration::run",
-            "Migration::runSingleMigration",
-            "SecurityScanner::runComprehensiveScan",
-            "SecurityScanner::storeScanResults",
-            "MessageHandler::processMessage",
-            "MessageHandler::processToolCalls",
-            "AgentPoolManager::processMessage",
-            "AgentPoolManager::delegateTask",
-            "ToolChain::execute",
-            "ConversationManager::createConversation",
-            "ConversationManager::getConversation",
-            "ConversationManager::addMessage",
-            "ConversationManager::getMessages",
-            "ConversationManager::updateConversationTitle",
-            "ConversationManager::listConversations",
-            "ConversationManager::deleteConversation",
-            "ConversationManager::getConversationStats",
-            "ConversationManager::cleanupInactiveConversations",
-            "CircuitBreaker::call",
-            "CircuitBreaker::recordFailure",
-            "Retry::withBackoff",
-            "Claude::streamCompletion",
-            "Claude::completion",
-            "Claude::test",
-            "MemoryCompressor::compressConversation",
-            "MemoryCompressor::updateConversationMessages",
-            "SemanticClusterer::clusterConversations",
-            "Agent::initialize",
-            "Agent::chat",
-            "Agent::createConversation",
-            "Agent::getConversation",
-            "Agent::listConversations",
-            "Agent::deleteConversation",
-            "Agent::addDocument",
-            "Agent::searchKnowledge",
-            "Agent::switchDomain",
-            "DatabaseCLI::run",
-            "DatabaseCLI::storeCredentials",
-            "DatabaseCLI::listTables",
-            "DatabaseCLI::inspectTable",
-            "DatabaseCLI::validateQuery",
-            "DatabaseCLI::executeQuery",
-            "DatabaseCLI::showAuditLog",
-            "DatabaseCLI::showStatistics",
-            "DatabaseCLI::testConnection",
-            "IndexPhpCommand::execute",
-            "SearchCommand::execute",
-            "HubCronSetup::installComplete",
-            "HubCronSetup::addToCrontab",
-            "HubCronSetup::testInstallation",
-            "HubCronSetup::uninstallSystem",
-            "SatelliteSync::syncSpecificSatellite",
-            "SatelliteSync::syncSatellite",
-            "SatelliteSync::sendHubCommands"
         ]
     },
     "self::getLogger": {
@@ -14337,84 +14623,6 @@
             "SSEHandler::startStream"
         ]
     },
-    "info": {
-        "file": "(unknown)",
-        "calls": [
-            "log",
-            "self::ensureInitialized",
-            "self::dispatch"
-        ],
-        "called_by": [
-            "SSEHandler::startStream",
-            "KBIndexHandler::log",
-            "Migration::run",
-            "Migration::runSingleMigration",
-            "SecurityScanner::runComprehensiveScan",
-            "MessageHandler::processMessage",
-            "MessageHandler::optimizeContextForTokens",
-            "AgentPoolManager::__construct",
-            "AgentPoolManager::createAgent",
-            "AgentPoolManager::processMessage",
-            "AgentPoolManager::removeAgent",
-            "AgentPoolManager::clearPool",
-            "AgentPoolManager::spawnAgent",
-            "AgentPoolManager::terminateAgent",
-            "AgentPoolManager::delegateTask",
-            "AgentPoolManager::setCoordinator",
-            "ToolChainOrchestrator::createChain",
-            "ToolChain::execute",
-            "ConversationManager::createConversation",
-            "ConversationManager::addMessage",
-            "ConversationManager::updateConversationTitle",
-            "ConversationManager::deleteConversation",
-            "ConversationManager::cleanupInactiveConversations",
-            "RedisClient::getInfo",
-            "RedisClient::info",
-            "CircuitBreaker::call",
-            "CircuitBreaker::reset",
-            "Retry::withBackoff",
-            "Claude::__construct",
-            "MemoryCompressor::compressConversation",
-            "MemoryCompressor::updateConversationMessages",
-            "SemanticClusterer::clusterConversations",
-            "Agent::initialize",
-            "Agent::chat",
-            "Agent::registerTools",
-            "Agent::shutdown",
-            "RedisService::getStats",
-            "RedisService::info",
-            "DatabaseCLI::storeCredentials",
-            "DatabaseCLI::listTables",
-            "DatabaseCLI::inspectTable",
-            "DatabaseCLI::executeQuery",
-            "DatabaseCLI::showAuditLog",
-            "DatabaseCLI::showStatistics",
-            "IndexPhpCommand::execute",
-            "SearchCommand::execute",
-            "SearchCommand::displayResults",
-            "RedisCache::getStats",
-            "RedisTool::getStats",
-            "RedisTool::getKeyspaceStats",
-            "RedisTool::getInfo",
-            "HubCronSetup::installComplete",
-            "HubCronSetup::setupDatabase",
-            "HubCronSetup::setupCrontab",
-            "HubCronSetup::addToCrontab",
-            "HubCronSetup::createLogDirectory",
-            "HubCronSetup::setPermissions",
-            "HubCronSetup::testInstallation",
-            "HubCronSetup::uninstallSystem",
-            "HubCronSetup::removeCrontabEntries",
-            "HubCronSetup::dropDatabaseTables",
-            "SatelliteSync::run",
-            "SatelliteSync::syncAllSatellites",
-            "SatelliteSync::syncSpecificSatellite",
-            "SatelliteSync::syncSatellite",
-            "SatelliteSync::sendHubCommands",
-            "SatelliteSync::updateSatelliteRecord",
-            "SatelliteSync::sendHeartbeatToAll"
-        ]
-    },
     "connection_status": {
         "file": "(unknown)",
         "calls": [],
@@ -15234,6 +15442,9 @@
             "DeploymentManagerTool::run",
             "SystemDoctorTool::run",
             "RepoCleanerTool::run",
+            "FrontendAuditTool::execute",
+            "FrontendScreenshotTool::execute",
+            "FrontendScreenshotTool::uploadToGallery",
             "SecurityScanTool::run",
             "StaticAnalysisTool::run",
             "DatabaseIntelligence::createBackup",
@@ -16900,6 +17111,7 @@
             "SearchRelevanceTester::testQuery",
             "Embeddings::normalize",
             "SemanticClusterer::initializeCentroids",
+            "updateStatus",
             "MCPServer::callTool",
             "MCPAdvancedTools::analyzeImpact",
             "MCPAdvancedTools::generateRecommendation",
@@ -16926,6 +17138,7 @@
             "CodeQualityScorer::calculateScores",
             "KBIntelligenceEngineV2::generateReports",
             "AIActivityAnalyzer::categorizeActivity",
+            "PayrollBot::createXeroPayRun",
             "calculateFinalMetrics"
         ]
     },
@@ -17258,13 +17471,18 @@
             "OpenAI::makeRequest",
             "OpenAI::makeRequestStream",
             "IntelligenceAPIClient::request",
+            "githubAPI",
             "http_json",
             "MCPServer::toolSyncSatellite",
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
             "SatelliteSync::makeHttpRequest",
             "FrontendTester::analyzeWithGPTVision",
             "AIAgentClient::request",
             "KnowledgeBaseSDK::fetch",
             "MCPHubClient::makeRequest",
+            "PayrollBot::deputyApiCall",
+            "PayrollBot::xeroApiCall",
             "CronClient::request",
             "apiCall"
         ]
@@ -17292,6 +17510,7 @@
             "SecurityScanner::checkSecurityHeaders",
             "RelationshipMapper::isBuiltInFunction",
             "HubCronUtils::getSystemLoad",
+            "metrics_fetch",
             "setupSignalHandlers",
             "main"
         ]
@@ -18959,6 +19178,7 @@
             "Embeddings::getCacheKey",
             "NeuralIntelligenceProcessor::processFile",
             "NeuralIntelligenceProcessor::storePattern",
+            "APINeuralScanner::recordIntelligence",
             "MCPServer::getOrCreateSession",
             "MCPServer::updatePopularQueriesCache",
             "PasswordStorageTool::__construct",
@@ -19318,6 +19538,7 @@
         "calls": [],
         "called_by": [
             "Redactor::addRule",
+            "updateStatus",
             "verifyDirectoryStructure",
             "verifyRequiredFiles",
             "verifyJsonFiles",
@@ -22850,6 +23071,7 @@
             "sanitizeForLog",
             "Summarizer::summarizeMessages",
             "Agent::createConversation",
+            "envv",
             "http_raw",
             "process_jsonrpc_request",
             "NeuralIntelligenceScanner::findJSONEndpoints",
@@ -23189,7 +23411,8 @@
         "file": "(unknown)",
         "calls": [],
         "called_by": [
-            "DeputyHRTool::getEmployeeById"
+            "DeputyHRTool::getEmployeeById",
+            "PayrollBot::calculatePay"
         ]
     },
     "DeputyHRTool::getLeaveRequests": {
@@ -24055,6 +24278,318 @@
     },
     "RepoCleanerTool::spec": {
         "file": ".\/ai-agent\/src\/Tools\/OpsTools.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendToolRegistry::__construct": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [
+            "is_dir",
+            "mkdir"
+        ],
+        "called_by": []
+    },
+    "FrontendToolRegistry::getTools": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAuditTool::__construct": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAuditTool::getName": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAuditTool::getDescription": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAuditTool::getParameters": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAuditTool::execute": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [
+            "info",
+            "microtime",
+            "sprintf",
+            "escapeshellarg",
+            "exec",
+            "implode",
+            "parseAuditOutput",
+            "round",
+            "storeAuditHistory",
+            "storePendingFixes",
+            "applyAutoFix"
+        ],
+        "called_by": []
+    },
+    "parseAuditOutput": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "FrontendAuditTool::execute"
+        ]
+    },
+    "storeAuditHistory": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "FrontendAuditTool::execute"
+        ]
+    },
+    "storePendingFixes": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "FrontendAuditTool::execute"
+        ]
+    },
+    "FrontendAuditTool::parseAuditOutput": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [
+            "preg_match",
+            "json_decode",
+            "time"
+        ],
+        "called_by": []
+    },
+    "FrontendAuditTool::storeAuditHistory": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [
+            "prepare",
+            "time",
+            "json_encode",
+            "bind_param",
+            "execute"
+        ],
+        "called_by": []
+    },
+    "FrontendAuditTool::storePendingFixes": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [
+            "prepare",
+            "json_encode",
+            "bind_param",
+            "execute"
+        ],
+        "called_by": []
+    },
+    "FrontendAuditTool::applyAutoFix": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendScreenshotTool::__construct": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendScreenshotTool::getName": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendScreenshotTool::getDescription": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendScreenshotTool::getParameters": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendScreenshotTool::execute": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [
+            "info",
+            "sprintf",
+            "escapeshellarg",
+            "exec",
+            "implode",
+            "extractScreenshotPath",
+            "uploadToGallery"
+        ],
+        "called_by": []
+    },
+    "extractScreenshotPath": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "FrontendScreenshotTool::execute"
+        ]
+    },
+    "uploadToGallery": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "FrontendScreenshotTool::execute"
+        ]
+    },
+    "FrontendScreenshotTool::extractScreenshotPath": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [
+            "preg_match"
+        ],
+        "called_by": []
+    },
+    "FrontendScreenshotTool::uploadToGallery": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [
+            "sprintf",
+            "escapeshellarg",
+            "addslashes",
+            "exec",
+            "json_decode",
+            "implode"
+        ],
+        "called_by": []
+    },
+    "addslashes": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "FrontendScreenshotTool::uploadToGallery",
+            "CsrfProtection::getJavaScript"
+        ]
+    },
+    "FrontendMonitorTool::__construct": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendMonitorTool::getName": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendMonitorTool::getDescription": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendMonitorTool::getParameters": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendMonitorTool::execute": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [
+            "prepare",
+            "parse_url",
+            "json_encode",
+            "bind_param",
+            "execute",
+            "info"
+        ],
+        "called_by": []
+    },
+    "FrontendAutoFixTool::__construct": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAutoFixTool::getName": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAutoFixTool::getDescription": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAutoFixTool::getParameters": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAutoFixTool::execute": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendVisualRegressionTool::__construct": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendVisualRegressionTool::getName": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendVisualRegressionTool::getDescription": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendVisualRegressionTool::getParameters": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendVisualRegressionTool::execute": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendPerformanceTool::__construct": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendPerformanceTool::getName": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendPerformanceTool::getDescription": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendPerformanceTool::getParameters": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendPerformanceTool::execute": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAccessibilityTool::__construct": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAccessibilityTool::getName": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAccessibilityTool::getDescription": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAccessibilityTool::getParameters": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
+        "calls": [],
+        "called_by": []
+    },
+    "FrontendAccessibilityTool::execute": {
+        "file": ".\/ai-agent\/src\/Tools\/Frontend\/FrontendToolRegistry.php",
         "calls": [],
         "called_by": []
     },
@@ -33718,7 +34253,8 @@
             "UniversalCopilotAutomation::__construct",
             "AIActivityAnalyzer::__construct",
             "AIBatchProcessor::__construct",
-            "KBConfigManager::__construct"
+            "KBConfigManager::__construct",
+            "PayrollBot::__construct"
         ]
     },
     "initializeDatabase": {
@@ -35350,6 +35886,7 @@
             "substr",
             "strlen",
             "getIntelligenceType",
+            "hash",
             "prepare",
             "execute",
             "basename",
@@ -41082,6 +41619,35 @@
         ],
         "called_by": []
     },
+    "updateStatus": {
+        "file": ".\/onboard\/deploy_automation.php",
+        "calls": [
+            "json_decode",
+            "file_get_contents",
+            "compact",
+            "array_sum",
+            "array_column",
+            "count",
+            "file_put_contents",
+            "json_encode",
+            "date"
+        ],
+        "called_by": []
+    },
+    "githubAPI": {
+        "file": ".\/onboard\/deploy_automation.php",
+        "calls": [
+            "curl_init",
+            "curl_setopt_array",
+            "curl_setopt",
+            "json_encode",
+            "curl_exec",
+            "curl_getinfo",
+            "curl_close",
+            "json_decode"
+        ],
+        "called_by": []
+    },
     "getRequestParams": {
         "file": ".\/mcp\/dispatcher.php",
         "calls": [
@@ -41264,6 +41830,151 @@
         "file": ".\/mcp\/cli\/Commands\/SearchCommand.php",
         "calls": [],
         "called_by": []
+    },
+    "ContextDetector::detectFromPath": {
+        "file": ".\/mcp\/detect_context.php",
+        "calls": [
+            "strpos",
+            "strlen"
+        ],
+        "called_by": []
+    },
+    "ContextDetector::detectFromVSCodeConfig": {
+        "file": ".\/mcp\/detect_context.php",
+        "calls": [
+            "rtrim",
+            "file_exists",
+            "json_decode",
+            "file_get_contents"
+        ],
+        "called_by": []
+    },
+    "ContextDetector::detectFromEnvironment": {
+        "file": ".\/mcp\/detect_context.php",
+        "calls": [],
+        "called_by": []
+    },
+    "ContextDetector::detectFromCwd": {
+        "file": ".\/mcp\/detect_context.php",
+        "calls": [
+            "getcwd",
+            "detectFromPath"
+        ],
+        "called_by": []
+    },
+    "getcwd": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "ContextDetector::detectFromCwd",
+            "secure_path",
+            "PlatformSecurityAudit::__construct"
+        ]
+    },
+    "detectFromPath": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "ContextDetector::detectFromCwd",
+            "ContextDetector::detectContext"
+        ]
+    },
+    "ContextDetector::detectContext": {
+        "file": ".\/mcp\/detect_context.php",
+        "calls": [
+            "detectFromVSCodeConfig",
+            "detectFromPath",
+            "detectFromEnvironment",
+            "detectFromCwd"
+        ],
+        "called_by": []
+    },
+    "detectFromVSCodeConfig": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "ContextDetector::detectContext"
+        ]
+    },
+    "detectFromEnvironment": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "ContextDetector::detectContext"
+        ]
+    },
+    "detectFromCwd": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "ContextDetector::detectContext"
+        ]
+    },
+    "ContextDetector::detectProjectFromModulePath": {
+        "file": ".\/mcp\/detect_context.php",
+        "calls": [
+            "strpos"
+        ],
+        "called_by": []
+    },
+    "ContextDetector::getProjectName": {
+        "file": ".\/mcp\/detect_context.php",
+        "calls": [
+            "parse_ini_file",
+            "prepare",
+            "execute",
+            "fetchColumn"
+        ],
+        "called_by": []
+    },
+    "parse_ini_file": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "ContextDetector::getProjectName",
+            "CloudwaysCronAPI::__construct",
+            "initAIAgent"
+        ]
+    },
+    "ContextDetector::validateContext": {
+        "file": ".\/mcp\/detect_context.php",
+        "calls": [],
+        "called_by": []
+    },
+    "ContextDetector::formatForAPI": {
+        "file": ".\/mcp\/detect_context.php",
+        "calls": [],
+        "called_by": []
+    },
+    "detect_context": {
+        "file": ".\/mcp\/detect_context.php",
+        "calls": [
+            "detectContext"
+        ],
+        "called_by": []
+    },
+    "detectContext": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "detect_context",
+            "get_api_context"
+        ]
+    },
+    "get_api_context": {
+        "file": ".\/mcp\/detect_context.php",
+        "calls": [
+            "detectContext",
+            "formatForAPI"
+        ],
+        "called_by": []
+    },
+    "formatForAPI": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "get_api_context"
+        ]
     },
     "PHPCodeIndexer::__construct": {
         "file": ".\/mcp\/php_code_indexer.php",
@@ -41479,7 +42190,8 @@
     "envv": {
         "file": ".\/mcp\/mcp_tools_turbo.php",
         "calls": [
-            "getenv"
+            "getenv",
+            "is_string"
         ],
         "called_by": [
             "enforce_api_key",
@@ -41518,6 +42230,7 @@
     "agent_url": {
         "file": ".\/mcp\/mcp_tools_turbo.php",
         "calls": [
+            "preg_match",
             "rtrim",
             "envv",
             "ltrim"
@@ -42618,6 +43331,7 @@
     "process_jsonrpc_request": {
         "file": ".\/mcp\/server_v3.php",
         "calls": [
+            "is_array",
             "respond",
             "current_request_id",
             "headers_sent",
@@ -42625,7 +43339,6 @@
             "http_response_code",
             "json_encode",
             "is_string",
-            "is_array",
             "tool_catalog",
             "date",
             "forward_tool_call",
@@ -42936,12 +43649,12 @@
     "SemanticSearchEngine::generatePreview": {
         "file": ".\/mcp\/semantic_search_engine.php",
         "calls": [
+            "strlen",
             "stripos",
-            "max",
             "substr",
+            "max",
             "preg_replace",
-            "trim",
-            "strlen"
+            "trim"
         ],
         "called_by": []
     },
@@ -43250,7 +43963,8 @@
         "file": "(unknown)",
         "calls": [],
         "called_by": [
-            "APCuCache::get"
+            "APCuCache::get",
+            "metrics_fetch"
         ]
     },
     "APCuCache::set": {
@@ -45489,6 +46203,16 @@
         "calls": [],
         "called_by": []
     },
+    "sse_send": {
+        "file": ".\/assets\/services\/ai-agent\/api\/chat_stream.php",
+        "calls": [
+            "json_encode",
+            "ob_get_level",
+            "ob_flush",
+            "flush"
+        ],
+        "called_by": []
+    },
     "send_sse": {
         "file": ".\/assets\/services\/ai-agent\/mcp\/events.php",
         "calls": [
@@ -45614,14 +46338,6 @@
         ],
         "called_by": []
     },
-    "getcwd": {
-        "file": "(unknown)",
-        "calls": [],
-        "called_by": [
-            "secure_path",
-            "PlatformSecurityAudit::__construct"
-        ]
-    },
     "ensure_backup": {
         "file": ".\/assets\/services\/ai-agent\/lib\/Bootstrap.php",
         "calls": [
@@ -45652,6 +46368,16 @@
             "prepare",
             "execute",
             "fetchColumn"
+        ],
+        "called_by": []
+    },
+    "upsert_conversation_ext": {
+        "file": ".\/assets\/services\/ai-agent\/lib\/Bootstrap.php",
+        "calls": [
+            "prepare",
+            "execute",
+            "fetchColumn",
+            "lastInsertId"
         ],
         "called_by": []
     },
@@ -45717,6 +46443,37 @@
         ],
         "called_by": []
     },
+    "StreamStore::__construct": {
+        "file": ".\/assets\/services\/ai-agent\/lib\/StreamStore.php",
+        "calls": [],
+        "called_by": []
+    },
+    "StreamStore::start": {
+        "file": ".\/assets\/services\/ai-agent\/lib\/StreamStore.php",
+        "calls": [
+            "prepare",
+            "execute",
+            "lastInsertId"
+        ],
+        "called_by": []
+    },
+    "StreamStore::appendChunk": {
+        "file": ".\/assets\/services\/ai-agent\/lib\/StreamStore.php",
+        "calls": [
+            "prepare",
+            "execute",
+            "strlen"
+        ],
+        "called_by": []
+    },
+    "StreamStore::finish": {
+        "file": ".\/assets\/services\/ai-agent\/lib\/StreamStore.php",
+        "calls": [
+            "prepare",
+            "execute"
+        ],
+        "called_by": []
+    },
     "ProviderFactory::openai": {
         "file": ".\/assets\/services\/ai-agent\/lib\/ProviderFactory.php",
         "calls": [
@@ -45752,6 +46509,60 @@
     "ProviderFactory::toAnthropicMessages": {
         "file": ".\/assets\/services\/ai-agent\/lib\/ProviderFactory.php",
         "calls": [],
+        "called_by": []
+    },
+    "ProviderFactory::openaiStream": {
+        "file": ".\/assets\/services\/ai-agent\/lib\/ProviderFactory.php",
+        "calls": [
+            "microtime",
+            "curl_init",
+            "curl_setopt_array",
+            "json_encode",
+            "curl_setopt",
+            "explode",
+            "array_pop",
+            "trim",
+            "str_starts_with",
+            "substr",
+            "json_decode",
+            "strlen",
+            "curl_exec",
+            "curl_getinfo",
+            "curl_error",
+            "curl_close"
+        ],
+        "called_by": []
+    },
+    "array_pop": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "ProviderFactory::openaiStream",
+            "ProviderFactory::anthropicStream",
+            "KBRelationshipMapper::resolveIncludePath",
+            "resolveRelativePath"
+        ]
+    },
+    "ProviderFactory::anthropicStream": {
+        "file": ".\/assets\/services\/ai-agent\/lib\/ProviderFactory.php",
+        "calls": [
+            "microtime",
+            "curl_init",
+            "curl_setopt_array",
+            "json_encode",
+            "curl_setopt",
+            "explode",
+            "array_pop",
+            "str_starts_with",
+            "trim",
+            "substr",
+            "json_decode",
+            "strlen",
+            "curl_exec",
+            "curl_getinfo",
+            "curl_error",
+            "curl_close"
+        ],
         "called_by": []
     },
     "MemoryStore::__construct": {
@@ -49935,13 +50746,6 @@
         ],
         "called_by": []
     },
-    "addslashes": {
-        "file": "(unknown)",
-        "calls": [],
-        "called_by": [
-            "CsrfProtection::getJavaScript"
-        ]
-    },
     "UseCaseEngine::__construct": {
         "file": ".\/assets\/services\/cron\/smart-cron\/core\/UseCaseEngine.php",
         "calls": [],
@@ -51358,6 +52162,23 @@
         ],
         "called_by": []
     },
+    "sse_event": {
+        "file": ".\/admin\/traffic\/live.php",
+        "calls": [
+            "json_encode",
+            "ob_flush",
+            "flush"
+        ],
+        "called_by": []
+    },
+    "metrics_fetch": {
+        "file": ".\/admin\/traffic\/live.php",
+        "calls": [
+            "function_exists",
+            "apcu_fetch"
+        ],
+        "called_by": []
+    },
     "FrontendTester::__construct": {
         "file": ".\/services\/FrontendTester.php",
         "calls": [
@@ -52623,14 +53444,6 @@
             "parse_ini_file"
         ],
         "called_by": []
-    },
-    "parse_ini_file": {
-        "file": "(unknown)",
-        "calls": [],
-        "called_by": [
-            "CloudwaysCronAPI::__construct",
-            "initAIAgent"
-        ]
     },
     "CloudwaysCronAPI::authenticate": {
         "file": ".\/services\/cloudways_cron_api.php",
@@ -58474,14 +59287,6 @@
         ],
         "called_by": []
     },
-    "array_pop": {
-        "file": "(unknown)",
-        "calls": [],
-        "called_by": [
-            "KBRelationshipMapper::resolveIncludePath",
-            "resolveRelativePath"
-        ]
-    },
     "KBRelationshipMapper::mapFunctionCalls": {
         "file": ".\/_dev-tools\/scripts\/kb-relationship-mapper.php",
         "calls": [
@@ -60342,7 +61147,8 @@
         "called_by": [
             "generateReadmeContent",
             "KBReadmeGenerator::buildReadmeContent",
-            "KBReadmeGenerator::buildBreadcrumb"
+            "KBReadmeGenerator::buildBreadcrumb",
+            "PayrollBot::fetchTimesheetsFromDeputy"
         ]
     },
     "watchForChanges": {
@@ -60859,16 +61665,6 @@
             "getMessage"
         ],
         "called_by": []
-    },
-    "getIntelligenceDB": {
-        "file": "(unknown)",
-        "calls": [
-            "error_log",
-            "getMessage"
-        ],
-        "called_by": [
-            "DatabaseSchemaScanner::__construct"
-        ]
     },
     "DatabaseSchemaScanner::scan": {
         "file": ".\/_dev-tools\/scripts\/db_schema_scanner.php",
@@ -67272,6 +68068,318 @@
             "mkdir",
             "file_put_contents",
             "json_encode"
+        ],
+        "called_by": []
+    },
+    "PayrollBot::__construct": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "get_db",
+            "loadConfig",
+            "loadCredentials"
+        ],
+        "called_by": []
+    },
+    "get_db": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::__construct"
+        ]
+    },
+    "loadCredentials": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::__construct"
+        ]
+    },
+    "PayrollBot::loadConfig": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [],
+        "called_by": []
+    },
+    "PayrollBot::loadCredentials": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "getCredential"
+        ],
+        "called_by": []
+    },
+    "getCredential": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::loadCredentials"
+        ]
+    },
+    "PayrollBot::processPayroll": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "log",
+            "fetchTimesheetsFromDeputy",
+            "count",
+            "validateTimesheets",
+            "calculatePay",
+            "checkCompliance",
+            "array_merge",
+            "createXeroPayRun",
+            "sendNotifications",
+            "storePayrollRun",
+            "getMessage",
+            "sendErrorNotification"
+        ],
+        "called_by": []
+    },
+    "fetchTimesheetsFromDeputy": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::processPayroll"
+        ]
+    },
+    "validateTimesheets": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::processPayroll"
+        ]
+    },
+    "calculatePay": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::processPayroll"
+        ]
+    },
+    "checkCompliance": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::processPayroll"
+        ]
+    },
+    "createXeroPayRun": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::processPayroll"
+        ]
+    },
+    "sendNotifications": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::processPayroll"
+        ]
+    },
+    "storePayrollRun": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::processPayroll"
+        ]
+    },
+    "sendErrorNotification": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::processPayroll"
+        ]
+    },
+    "PayrollBot::fetchTimesheetsFromDeputy": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "date",
+            "strtotime",
+            "urlencode",
+            "deputyApiCall"
+        ],
+        "called_by": []
+    },
+    "deputyApiCall": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::fetchTimesheetsFromDeputy"
+        ]
+    },
+    "PayrollBot::validateTimesheets": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "validateSingleTimesheet",
+            "array_merge"
+        ],
+        "called_by": []
+    },
+    "validateSingleTimesheet": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::validateTimesheets"
+        ]
+    },
+    "PayrollBot::validateSingleTimesheet": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "calculateDailyHours"
+        ],
+        "called_by": []
+    },
+    "calculateDailyHours": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::validateSingleTimesheet"
+        ]
+    },
+    "PayrollBot::calculatePay": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "getEmployee",
+            "min",
+            "max",
+            "calculateIncomeTax"
+        ],
+        "called_by": []
+    },
+    "calculateIncomeTax": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::calculatePay"
+        ]
+    },
+    "PayrollBot::createXeroPayRun": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "getXeroPayrollCalendarId",
+            "date",
+            "strtotime",
+            "getXeroEarningsRateId",
+            "xeroApiCall",
+            "array_sum",
+            "array_column",
+            "count",
+            "round"
+        ],
+        "called_by": []
+    },
+    "getXeroPayrollCalendarId": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::createXeroPayRun"
+        ]
+    },
+    "getXeroEarningsRateId": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::createXeroPayRun"
+        ]
+    },
+    "xeroApiCall": {
+        "file": "(unknown)",
+        "calls": [],
+        "called_by": [
+            "PayrollBot::createXeroPayRun"
+        ]
+    },
+    "PayrollBot::checkCompliance": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [],
+        "called_by": []
+    },
+    "PayrollBot::deputyApiCall": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "curl_init",
+            "curl_setopt_array",
+            "in_array",
+            "curl_setopt",
+            "json_encode",
+            "curl_exec",
+            "curl_getinfo",
+            "curl_close",
+            "json_decode"
+        ],
+        "called_by": []
+    },
+    "PayrollBot::xeroApiCall": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "curl_init",
+            "curl_setopt_array",
+            "in_array",
+            "curl_setopt",
+            "json_encode",
+            "curl_exec",
+            "curl_getinfo",
+            "curl_close",
+            "json_decode"
+        ],
+        "called_by": []
+    },
+    "PayrollBot::getEmployee": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "prepare",
+            "execute",
+            "fetch"
+        ],
+        "called_by": []
+    },
+    "PayrollBot::calculateDailyHours": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [],
+        "called_by": []
+    },
+    "PayrollBot::calculateIncomeTax": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [],
+        "called_by": []
+    },
+    "PayrollBot::getXeroPayrollCalendarId": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [],
+        "called_by": []
+    },
+    "PayrollBot::getXeroEarningsRateId": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [],
+        "called_by": []
+    },
+    "PayrollBot::storePayrollRun": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "prepare",
+            "execute"
+        ],
+        "called_by": []
+    },
+    "PayrollBot::sendNotifications": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "log"
+        ],
+        "called_by": []
+    },
+    "PayrollBot::sendErrorNotification": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "log",
+            "getMessage"
+        ],
+        "called_by": []
+    },
+    "PayrollBot::log": {
+        "file": ".\/_kb\/bots\/PayrollBot.php",
+        "calls": [
+            "date",
+            "error_log",
+            "prepare",
+            "execute"
         ],
         "called_by": []
     },

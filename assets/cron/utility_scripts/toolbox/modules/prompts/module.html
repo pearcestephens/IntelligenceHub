@@ -1,0 +1,23 @@
+<section data-module-root>
+  <h2 style="margin:0 0 8px 0">Prompts</h2>
+  <div class="small">Create and reuse saved prompts. Click to send to Chat input.</div>
+  <hr>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <div style="flex:1;min-width:280px">
+      <h3>Saved</h3>
+      <div id="prompts-list" style="max-height:260px;overflow:auto"></div>
+      <button id="prompts-refresh" class="tab" style="margin-top:6px">Refresh</button>
+    </div>
+    <div style="flex:1;min-width:280px">
+      <h3>New / Edit</h3>
+      <label class="small">Title <input id="prompt-title" class="code" /></label>
+      <label class="small">Tags <input id="prompt-tags" class="code" /></label>
+      <textarea id="prompt-content" rows="8" class="code" placeholder="Write your system or user prompt here"></textarea>
+      <div style="margin-top:6px;display:flex;gap:8px">
+        <button id="prompt-save" class="tab">Save</button>
+        <button id="prompt-clear" class="tab">Clear</button>
+      </div>
+      <div id="prompt-status" class="small" style="margin-top:6px"></div>
+    </div>
+  </div>
+</section>

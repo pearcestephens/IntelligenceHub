@@ -53,8 +53,9 @@ function fail(string $message, int $status = 500, array $extra = []): array
  */
 function envv(string $key, string $default = ''): string
 {
-    $value = getenv($key);
-    return ($value === false || $value === '') ? $default : $value;
+    // Check $_ENV first (most reliable), then $_SERVER, then getenv() (may be disabled)
+    $value = $_ENV[$key] ?? $_SERVER[$key] ?? (@getenv($key) ?: $default);
+    return is_string($value) ? $value : $default;
 }
 
 /**
@@ -133,6 +134,11 @@ function http_json(string $method, string $url, ?array $payload = null, array $h
  */
 function agent_url(string $path): string
 {
+    // If already a full URL (starts with http:// or https://), return as-is
+    if (preg_match('#^https?://#i', $path)) {
+        return $path;
+    }
+
     $base = rtrim(envv('AGENT_BASE', 'https://gpt.ecigdis.co.nz/ai-agent'), '/');
     return $base . '/' . ltrim($path, '/');
 }

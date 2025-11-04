@@ -1,0 +1,4 @@
+/* WebDev UI module styles (scoped) */
+[data-module-root] .grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+[data-module-root] .card{background:#0e1626;border:1px solid #1f2937;border-radius:8px;padding:10px}
+[data-module-root] .card h3{margin:0 0 6px 0;font-size:14px}

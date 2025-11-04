@@ -1,0 +1,5 @@
+/* Chat module styles */
+[data-module-root] #chat-log .msg{padding:6px 8px;border-radius:8px;margin:6px 0;max-width:85%}
+[data-module-root] #chat-log .me{background:#1f2937;margin-left:auto}
+[data-module-root] #chat-log .bot{background:#0e1626;border:1px solid #1f2937}
+[data-module-root] textarea.code{width:100%;min-height:72px}

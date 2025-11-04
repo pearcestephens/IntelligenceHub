@@ -1,18 +1,18 @@
 <?php
 /**
  * API-Based Neural Intelligence Scanner
- * 
+ *
  * Remote-triggered neural scanner that extracts intelligence from any application
  * Can be called via REST API from any client application
- * 
+ *
  * Usage via API:
  *   POST https://gpt.ecigdis.co.nz/api/intelligence/scan
  *   Headers: X-API-Key: master_api_key_2025
  *   Body: {"server": "jcepnzzkmj", "full": true}
- * 
+ *
  * Direct execution:
  *   php api_neural_scanner.php --server=jcepnzzkmj --full
- * 
+ *
  * @package Intelligence_Scanner
  * @version 2.0.0
  */
@@ -129,18 +129,18 @@ class APINeuralScanner {
         'readmes_created' => 0,
         'errors' => []
     ];
-    
+
     private $ignore_patterns = [];
-    
+
     public function __construct($server, $full_scan = false) {
         if (!isset(SERVER_CONFIGS[$server])) {
             throw new Exception("Unknown server: $server");
         }
-        
+
         $this->server = $server;
         $this->config = SERVER_CONFIGS[$server];
         $this->full_scan = $full_scan;
-        
+
         // Connect to database
         try {
             $this->db = new PDO(
@@ -149,31 +149,31 @@ class APINeuralScanner {
                 DB_PASS,
                 [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
             );
-            
+
             // Load ignore patterns from database
             $this->loadIgnorePatterns();
-            
+
         } catch (PDOException $e) {
             throw new Exception("Database connection failed: " . $e->getMessage());
         }
     }
-    
+
     /**
      * Load ignore patterns from database
      */
     private function loadIgnorePatterns() {
         $stmt = $this->db->query("
-            SELECT pattern_type, pattern_value 
-            FROM scanner_ignore_config 
+            SELECT pattern_type, pattern_value
+            FROM scanner_ignore_config
             WHERE is_active = 1
             ORDER BY priority
         ");
-        
+
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
             $this->ignore_patterns[$row['pattern_type']][] = $row['pattern_value'];
         }
     }
-    
+
     /**
      * Execute scan
      */
@@ -181,10 +181,10 @@ class APINeuralScanner {
         $this->log("🔍 Starting API Neural Scanner for {$this->config['name']}");
         $this->log("📁 Base path: {$this->config['path']}");
         $this->log("🎯 Scan mode: " . ($this->full_scan ? 'FULL' : 'INCREMENTAL'));
-        
+
         // Create intelligence directories if needed
         $this->createIntelligenceStructure();
-        
+
         // Scan each configured path
         foreach ($this->config['scan_paths'] as $scan_path) {
             $full_path = $this->config['path'] . '/' . $scan_path;
@@ -195,10 +195,10 @@ class APINeuralScanner {
                 $this->log("⚠️  Path not found: $scan_path");
             }
         }
-        
+
         // Create master README in client KB folder
         $this->createClientKBStructure();
-        
+
         // Generate scan report
         $this->log("\n" . str_repeat('=', 60));
         $this->log("✅ SCAN COMPLETE");
@@ -209,14 +209,14 @@ class APINeuralScanner {
         $this->log("   Code intelligence: {$this->stats['code_analyzed']}");
         $this->log("   Business intelligence: {$this->stats['business_intel']}");
         $this->log("   README files created: {$this->stats['readmes_created']}");
-        
+
         if (!empty($this->stats['errors'])) {
             $this->log("\n⚠️  Errors encountered: " . count($this->stats['errors']));
         }
-        
+
         return $this->stats;
     }
-    
+
     /**
      * Create intelligence directory structure
      */
@@ -226,7 +226,7 @@ class APINeuralScanner {
             INTELLIGENCE_ROOT . "/code_intelligence/{$this->server}",
             INTELLIGENCE_ROOT . "/business_intelligence/{$this->server}"
         ];
-        
+
         foreach ($dirs as $dir) {
             if (!is_dir($dir)) {
                 mkdir($dir, 0755, true);
@@ -234,7 +234,7 @@ class APINeuralScanner {
             }
         }
     }
-    
+
     /**
      * Scan directory recursively
      */
@@ -244,22 +244,22 @@ class APINeuralScanner {
                 new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS),
                 RecursiveIteratorIterator::SELF_FIRST
             );
-            
+
             foreach ($iterator as $file) {
                 if ($file->isFile()) {
                     $this->stats['files_scanned']++;
-                    
+
                     $file_path = $file->getPathname();
                     $file_relative = str_replace($this->config['path'] . '/', '', $file_path);
-                    
+
                     // Check if should be ignored
                     if ($this->shouldIgnore($file_relative)) {
                         continue;
                     }
-                    
+
                     // Process file based on type
                     $extension = strtolower($file->getExtension());
-                    
+
                     if (in_array($extension, ['md', 'txt', 'rst'])) {
                         $this->extractDocumentation($file, $file_relative);
                     } elseif (in_array($extension, ['php', 'js', 'py', 'java'])) {
@@ -273,7 +273,7 @@ class APINeuralScanner {
             $this->stats['errors'][] = "Error scanning $path: " . $e->getMessage();
         }
     }
-    
+
     /**
      * Check if path should be ignored (using database config)
      */
@@ -286,7 +286,7 @@ class APINeuralScanner {
                 }
             }
         }
-        
+
         // Check filename patterns
         if (isset($this->ignore_patterns['filename_pattern'])) {
             foreach ($this->ignore_patterns['filename_pattern'] as $pattern) {
@@ -297,19 +297,19 @@ class APINeuralScanner {
                 }
             }
         }
-        
+
         // Check extensions
         $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
         if (isset($this->ignore_patterns['extension']) && in_array($ext, $this->ignore_patterns['extension'])) {
             return true;
         }
-        
+
         // Check specific files
         $filename = basename($path);
         if (isset($this->ignore_patterns['file']) && in_array($filename, $this->ignore_patterns['file'])) {
             return true;
         }
-        
+
         // Still check legacy hardcoded ignore_files from config
         if (isset($this->config['ignore_files'])) {
             foreach ($this->config['ignore_files'] as $ignore_file) {
@@ -318,16 +318,16 @@ class APINeuralScanner {
                 }
             }
         }
-        
+
         return false;
     }
-    
+
     /**
      * Extract documentation file - just store in database
      */
     private function extractDocumentation($file, $relative_path) {
         $this->stats['docs_extracted']++;
-        
+
         // Store content in database for AI search
         $this->recordIntelligence(
             $relative_path,
@@ -337,7 +337,7 @@ class APINeuralScanner {
             $file->getPathname()   // Read from original
         );
     }
-    
+
     /**
      * Categorize document intelligently
      * Categories: introduction, database, code_standards, structure, modules, templating
@@ -345,41 +345,41 @@ class APINeuralScanner {
     private function categorizeDocument($path, $file) {
         $filename = strtolower(basename($file));
         $path_lower = strtolower($path);
-        
+
         // Introduction - README, overview, getting started
         if (preg_match('/(readme|overview|introduction|getting.?started|quickstart)/i', $filename)) {
             return 'introduction';
         }
-        
+
         // Database - schema, migrations, queries
         if (preg_match('/(database|schema|migration|sql|query|table)/i', $path_lower)) {
             return 'database';
         }
-        
+
         // Code Standards - coding style, conventions, best practices
         if (preg_match('/(standard|convention|style|best.?practice|coding|guideline)/i', $path_lower)) {
             return 'code_standards';
         }
-        
+
         // Structure - architecture, system design, file structure
         if (preg_match('/(structure|architecture|design|system|organization)/i', $path_lower)) {
             return 'structure';
         }
-        
+
         // Modules - module-specific docs
         if (preg_match('/(module|component|feature)/i', $path_lower)) {
             return 'modules';
         }
-        
+
         // Templating - views, templates, UI
         if (preg_match('/(template|view|ui|frontend|layout)/i', $path_lower)) {
             return 'templating';
         }
-        
+
         // Default to introduction for uncategorized
         return 'introduction';
     }
-    
+
     /**
      * Extract code intelligence - just store in database
      */
@@ -389,7 +389,7 @@ class APINeuralScanner {
         if ($this->full_scan) {
             // FULL SCAN: Process everything
             $this->stats['code_analyzed']++;
-            
+
             $this->recordIntelligence(
                 $relative_path,
                 $file->getPathname(),
@@ -400,7 +400,7 @@ class APINeuralScanner {
         } elseif ($file->getMTime() > time() - 86400) {
             // INCREMENTAL: Only recent files
             $this->stats['code_analyzed']++;
-            
+
             $this->recordIntelligence(
                 $relative_path,
                 $file->getPathname(),
@@ -410,13 +410,13 @@ class APINeuralScanner {
             );
         }
     }
-    
+
     /**
      * Extract business intelligence - just store in database
      */
     private function extractBusinessIntelligence($file, $relative_path) {
         $this->stats['business_intel']++;
-        
+
         $this->recordIntelligence(
             $relative_path,
             $file->getPathname(),
@@ -425,7 +425,7 @@ class APINeuralScanner {
             $file->getPathname()
         );
     }
-    
+
     /**
      * Record intelligence in database with full content and function extraction
      */
@@ -437,11 +437,11 @@ class APINeuralScanner {
             if ($call_count <= 10 && $category === 'code') {
                 echo "[DEBUG] recordIntelligence call #$call_count - category: $category, path: $original_path\n";
             }
-            
+
             // Read file content from source file (original location)
             $content = '';
             $read_path = $source_file_path ?: $intelligence_path;
-            
+
             if (file_exists($read_path)) {
                 $content = file_get_contents($read_path);
                 if ($content === false) {
@@ -451,14 +451,14 @@ class APINeuralScanner {
             } else {
                 $this->stats['errors'][] = "File not found for content reading: $read_path";
             }
-            
+
             // Extract functions if it's a code file
             $functions = [];
             $extension = pathinfo($read_path, PATHINFO_EXTENSION);
             if (!empty($content) && in_array($extension, ['php', 'js', 'py'])) {
                 $functions = $this->extractFunctions($content, $extension);
             }
-            
+
             // Prepare intelligence data (metadata)
             $intelligence_data = json_encode([
                 'extension' => $extension,
@@ -470,33 +470,37 @@ class APINeuralScanner {
                 'intelligence_path' => $intelligence_path,
                 'extracted_at' => date('Y-m-d H:i:s')
             ]);
-            
+
             // Generate content summary (first 500 chars)
             $summary = substr($content, 0, 500);
             if (strlen($content) > 500) {
                 $summary .= '...';
             }
-            
+
             // Get business unit ID (default to 1 for now)
             $business_unit_id = 1;
-            
+
             // Determine intelligence type
             $intelligence_type = $this->getIntelligenceType($extension, $category);
-            
+
+            // Calculate content hash for deduplication
+            $content_hash = hash('sha256', $content ?? '');
+
             $stmt = $this->db->prepare("
-                INSERT INTO intelligence_files 
-                (business_unit_id, server_id, file_path, file_name, file_type, file_size, 
-                 file_content, intelligence_type, intelligence_data, content_summary, extracted_at)
-                VALUES (:business_unit, :server, :path, :filename, :type, :size, 
-                        :content, :intel_type, :intel_data, :summary, NOW())
+                INSERT INTO intelligence_files
+                (business_unit_id, server_id, file_path, file_name, file_type, file_size,
+                 file_content, content_hash, intelligence_type, intelligence_data, content_summary, extracted_at)
+                VALUES (:business_unit, :server, :path, :filename, :type, :size,
+                        :content, :hash, :intel_type, :intel_data, :summary, NOW())
                 ON DUPLICATE KEY UPDATE
                     file_size = :size,
                     file_content = :content,
+                    content_hash = :hash,
                     intelligence_data = :intel_data,
                     content_summary = :summary,
                     updated_at = NOW()
             ");
-            
+
             $result = $stmt->execute([
                 'business_unit' => $business_unit_id,
                 'server' => $this->server,
@@ -505,30 +509,31 @@ class APINeuralScanner {
                 'type' => $category,
                 'size' => $file_size,
                 'content' => $content,
+                'hash' => $content_hash,
                 'intel_type' => $intelligence_type,
                 'intel_data' => $intelligence_data,
                 'summary' => $summary
             ]);
-            
+
             // DEBUG: Log first few successful inserts for code category
             static $insert_count = 0;
             $insert_count++;
             if ($result && $category === 'code' && $insert_count <= 5) {
                 echo "[DEBUG] Successfully inserted code file #$insert_count: type=$intelligence_type, path=$original_path\n";
             }
-            
+
             if (!$result) {
                 $this->stats['errors'][] = "Database insert failed for: $original_path - " . implode(', ', $stmt->errorInfo());
                 if ($category === 'code') {
                     echo "[ERROR] Failed to insert code file: $original_path - " . implode(', ', $stmt->errorInfo()) . "\n";
                 }
             }
-            
+
         } catch (PDOException $e) {
             $this->stats['errors'][] = "Database error for $original_path: " . $e->getMessage();
         }
     }
-    
+
     /**
      * Get intelligence type based on file extension and category
      */
@@ -542,13 +547,13 @@ class APINeuralScanner {
         }
         return 'general_' . $extension;
     }
-    
+
     /**
      * Extract functions from code content
      */
     private function extractFunctions($content, $extension) {
         $functions = [];
-        
+
         switch ($extension) {
             case 'php':
                 // Extract PHP functions
@@ -560,7 +565,7 @@ class APINeuralScanner {
                         'type' => 'function'
                     ];
                 }
-                
+
                 // Extract PHP classes
                 preg_match_all('/class\s+([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)/i', $content, $classMatches);
                 foreach ($classMatches[1] as $className) {
@@ -571,7 +576,7 @@ class APINeuralScanner {
                     ];
                 }
                 break;
-                
+
             case 'js':
                 // Extract JavaScript functions
                 preg_match_all('/function\s+([a-zA-Z_$][a-zA-Z0-9_$]*)\s*\([^)]*\)/i', $content, $matches);
@@ -582,7 +587,7 @@ class APINeuralScanner {
                         'type' => 'function'
                     ];
                 }
-                
+
                 // Extract arrow functions assigned to variables
                 preg_match_all('/(?:const|let|var)\s+([a-zA-Z_$][a-zA-Z0-9_$]*)\s*=\s*(?:\([^)]*\)|[a-zA-Z_$][a-zA-Z0-9_$]*)\s*=>/i', $content, $arrowMatches);
                 foreach ($arrowMatches[1] as $funcName) {
@@ -593,7 +598,7 @@ class APINeuralScanner {
                     ];
                 }
                 break;
-                
+
             case 'py':
                 // Extract Python functions
                 preg_match_all('/def\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\([^)]*\)/i', $content, $matches);
@@ -604,7 +609,7 @@ class APINeuralScanner {
                         'type' => 'function'
                     ];
                 }
-                
+
                 // Extract Python classes
                 preg_match_all('/class\s+([a-zA-Z_][a-zA-Z0-9_]*)/i', $content, $classMatches);
                 foreach ($classMatches[1] as $className) {
@@ -616,21 +621,21 @@ class APINeuralScanner {
                 }
                 break;
         }
-        
+
         return $functions;
     }
-    
+
     /**
      * Create README in original documentation location
      */
     private function createDocumentationReadme($dir, $filename) {
         $readme_path = $dir . '/README_INTELLIGENCE.md';
-        
+
         // Don't recreate if already exists
         if (file_exists($readme_path)) {
             return;
         }
-        
+
         $content = <<<MD
 # 📚 Documentation Moved to Intelligence Server
 
@@ -664,21 +669,21 @@ Intelligence Server: https://gpt.ecigdis.co.nz/intelligence/
 *Last updated: {date('Y-m-d H:i:s')}*
 *Server: {$this->config['name']}*
 MD;
-        
+
         file_put_contents($readme_path, $content);
         $this->stats['readmes_created']++;
     }
-    
+
     /**
      * Create client KB structure with search tools
      */
     private function createClientKBStructure() {
         $kb_path = $this->config['path'] . '/_kb';
-        
+
         if (!is_dir($kb_path)) {
             mkdir($kb_path, 0755, true);
         }
-        
+
         // Create main README
         $readme_content = <<<MD
 # 📚 Knowledge Base - {$this->config['name']}
@@ -721,10 +726,10 @@ This is a lightweight KB folder for bot interaction and quick access.
 *Server: {$this->config['name']} ({$this->server})*
 *Last scan: {date('Y-m-d H:i:s')}*
 MD;
-        
+
         file_put_contents($kb_path . '/README.md', $readme_content);
         $this->stats['readmes_created']++;
-        
+
         // Create quick links file
         $quick_links = <<<MD
 # 🔗 Quick Links
@@ -749,17 +754,17 @@ Use `!search recent` to find recently extracted intelligence.
 - Stats: `/api/intelligence/stats`
 
 MD;
-        
+
         file_put_contents($kb_path . '/QUICK_LINKS.md', $quick_links);
     }
-    
+
     /**
      * Log message
      */
     private function log($message) {
         $timestamp = date('Y-m-d H:i:s');
         echo "[$timestamp] $message\n";
-        
+
         // Also log to file
         $log_file = INTELLIGENCE_ROOT . '/scanner_logs/' . $this->server . '_' . date('Y-m-d') . '.log';
         $log_dir = dirname($log_file);
@@ -773,14 +778,14 @@ MD;
 // CLI execution
 if (php_sapi_name() === 'cli') {
     $options = getopt('', ['server:', 'full']);
-    
+
     $server = $options['server'] ?? 'jcepnzzkmj';
     $full = isset($options['full']);
-    
+
     try {
         $scanner = new APINeuralScanner($server, $full);
         $stats = $scanner->scan();
-        
+
         echo "\n✅ Scan completed successfully\n";
         exit(0);
     } catch (Exception $e) {

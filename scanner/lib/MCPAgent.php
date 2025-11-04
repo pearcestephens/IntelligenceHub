@@ -42,7 +42,7 @@ class MCPAgent
 
     public function __construct(?string $endpoint = null)
     {
-        $this->endpoint = $endpoint ?? 'https://gpt.ecigdis.co.nz/mcp/server_v2_complete.php';
+        $this->endpoint = $endpoint ?? 'https://gpt.ecigdis.co.nz/mcp/server_v3.php';
     }
 
     /**

@@ -128,6 +128,69 @@ try {
       }
       return ['url'=>$url, 'status'=>$code, 'body'=>$raw];
     },
+
+    // Password Storage Tool
+    'password.store' => function(array $a): array {
+      require_once $_SERVER['DOCUMENT_ROOT'].'/mcp/src/Tools/PasswordStorageTool.php';
+      $tool = new \IntelligenceHub\MCP\Tools\PasswordStorageTool();
+      return $tool->execute(array_merge(['action' => 'store'], $a));
+    },
+    'password.retrieve' => function(array $a): array {
+      require_once $_SERVER['DOCUMENT_ROOT'].'/mcp/src/Tools/PasswordStorageTool.php';
+      $tool = new \IntelligenceHub\MCP\Tools\PasswordStorageTool();
+      return $tool->execute(array_merge(['action' => 'retrieve'], $a));
+    },
+    'password.list' => function(array $a): array {
+      require_once $_SERVER['DOCUMENT_ROOT'].'/mcp/src/Tools/PasswordStorageTool.php';
+      $tool = new \IntelligenceHub\MCP\Tools\PasswordStorageTool();
+      return $tool->execute(['action' => 'list']);
+    },
+    'password.delete' => function(array $a): array {
+      require_once $_SERVER['DOCUMENT_ROOT'].'/mcp/src/Tools/PasswordStorageTool.php';
+      $tool = new \IntelligenceHub\MCP\Tools\PasswordStorageTool();
+      return $tool->execute(array_merge(['action' => 'delete'], $a));
+    },
+
+    // MySQL Query Tool
+    'mysql.query' => function(array $a): array {
+      require_once $_SERVER['DOCUMENT_ROOT'].'/mcp/src/Tools/MySQLQueryTool.php';
+      $tool = new \IntelligenceHub\MCP\Tools\MySQLQueryTool();
+      return $tool->execute($a);
+    },
+    'mysql.common_queries' => function(array $a): array {
+      require_once $_SERVER['DOCUMENT_ROOT'].'/mcp/src/Tools/MySQLQueryTool.php';
+      $tool = new \IntelligenceHub\MCP\Tools\MySQLQueryTool();
+      return $tool->execute(['action' => 'common_queries']);
+    },
+
+    // Web Browser Tool
+    'browser.fetch' => function(array $a): array {
+      require_once $_SERVER['DOCUMENT_ROOT'].'/mcp/src/Tools/WebBrowserTool.php';
+      $tool = new \IntelligenceHub\MCP\Tools\WebBrowserTool();
+      return $tool->execute(array_merge(['action' => 'fetch'], $a));
+    },
+    'browser.extract' => function(array $a): array {
+      require_once $_SERVER['DOCUMENT_ROOT'].'/mcp/src/Tools/WebBrowserTool.php';
+      $tool = new \IntelligenceHub\MCP\Tools\WebBrowserTool();
+      return $tool->execute(array_merge(['action' => 'extract'], $a));
+    },
+    'browser.headers' => function(array $a): array {
+      require_once $_SERVER['DOCUMENT_ROOT'].'/mcp/src/Tools/WebBrowserTool.php';
+      $tool = new \IntelligenceHub\MCP\Tools\WebBrowserTool();
+      return $tool->execute(array_merge(['action' => 'headers'], $a));
+    },
+
+    // Crawler Tool
+    'crawler.deep_crawl' => function(array $a): array {
+      require_once $_SERVER['DOCUMENT_ROOT'].'/mcp/src/Tools/CrawlerTool.php';
+      $tool = new \IntelligenceHub\MCP\Tools\CrawlerTool();
+      return $tool->execute(array_merge(['action' => 'deep_crawl'], $a));
+    },
+    'crawler.single_page' => function(array $a): array {
+      require_once $_SERVER['DOCUMENT_ROOT'].'/mcp/src/Tools/CrawlerTool.php';
+      $tool = new \IntelligenceHub\MCP\Tools\CrawlerTool();
+      return $tool->execute(array_merge(['action' => 'single_page'], $a));
+    },
   ];
 
   if (!isset($TOOLS[$tool])) {

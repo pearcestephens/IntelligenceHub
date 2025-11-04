@@ -5,11 +5,43 @@ declare(strict_types=1);
  * File: mcp/server_v3.php
  * Purpose: Expose the Ecigdis MCP JSON-RPC endpoint and bridge tool calls into the AI-Agent ToolRegistry (via HTTP wrappers).
  * Author: GitHub Copilot (AI Assistant)
- * Last Modified: 2025-11-02
- * Dependencies: mcp_tools_turbo.php (envv(), http_raw(), agent_url(), etc.)
+ * Last Modified: 2025-11-04
+ * Dependencies: mcp_tools_turbo.php, .env for configuration
  */
 
+// Load .env directly (skip bootstrap to avoid Config::init issues)
+// Note: putenv() is disabled on this server, so we only set $_ENV and $_SERVER
+if (file_exists(__DIR__ . '/.env') && is_readable(__DIR__ . '/.env')) {
+    $env = @parse_ini_file(__DIR__ . '/.env');
+    if ($env && is_array($env)) {
+        foreach ($env as $key => $value) {
+            $_ENV[$key] = $value;
+            $_SERVER[$key] = $value;
+        }
+    }
+}
+
 require_once __DIR__ . '/mcp_tools_turbo.php';
+
+// Load context detection library
+require_once __DIR__ . '/detect_context.php';
+
+// Auto-detect workspace context from multiple sources (priority order):
+// 1. HTTP headers (X-Workspace-Root, X-Current-File) - from GitHub Copilot
+// 2. Environment variables (WORKSPACE_ROOT, CURRENT_FILE)
+// 3. Current working directory
+$workspaceRoot = $_SERVER['HTTP_X_WORKSPACE_ROOT']
+    ?? $_SERVER['WORKSPACE_ROOT']
+    ?? $_ENV['WORKSPACE_ROOT']
+    ?? getcwd();
+
+$currentFile = $_SERVER['HTTP_X_CURRENT_FILE']
+    ?? $_SERVER['CURRENT_FILE']
+    ?? $_ENV['CURRENT_FILE']
+    ?? null;
+
+// Detect and store context globally
+$GLOBALS['workspace_context'] = detect_context($currentFile, $workspaceRoot);
 
 $action = $_GET['action'] ?? 'rpc';
 $method = strtoupper($_SERVER['REQUEST_METHOD'] ?? 'GET');
@@ -199,6 +231,11 @@ function process_jsonrpc_request(array $request, bool $emit=true) {
     $params = $request['params']?? [];
 
     $send_ok = function($result) use ($id, $emit) {
+        // Inject workspace context into result
+        if (isset($GLOBALS['workspace_context']) && is_array($result)) {
+            $result['_context'] = $GLOBALS['workspace_context'];
+        }
+
         $payload = ['jsonrpc'=>'2.0','id'=>$id,'result'=>$result];
         if ($emit) { respond($payload, 200); }
         return $payload;
@@ -523,6 +560,239 @@ function tool_catalog(): array
                 'ttl' => ['type' => 'integer', 'default' => 0]
             ],
             'required' => ['key', 'value']
+        ]),
+
+        // Intelligence Hub Tools (from V2)
+        $tool('semantic_search', 'Natural language search across intelligence files with relevance scoring', [
+            'type' => 'object',
+            'properties' => [
+                'query' => ['type' => 'string', 'description' => 'Natural language search query'],
+                'limit' => ['type' => 'integer', 'default' => 10, 'description' => 'Maximum results to return'],
+                'unit_id' => ['type' => 'integer', 'description' => 'Filter by business unit ID'],
+                'file_type' => ['type' => 'string', 'description' => 'Filter by file type']
+            ],
+            'required' => ['query']
+        ]),
+        $tool('search_by_category', 'Search files within specific business categories', [
+            'type' => 'object',
+            'properties' => [
+                'query' => ['type' => 'string', 'description' => 'Search keywords'],
+                'category_name' => ['type' => 'string', 'description' => 'Category name to search within'],
+                'limit' => ['type' => 'integer', 'default' => 20],
+                'unit_id' => ['type' => 'integer']
+            ],
+            'required' => ['query', 'category_name']
+        ]),
+        $tool('find_code', 'Precise pattern matching in code, keywords, tags', [
+            'type' => 'object',
+            'properties' => [
+                'pattern' => ['type' => 'string', 'description' => 'Code pattern to search for'],
+                'search_in' => ['type' => 'string', 'enum' => ['all', 'keywords', 'tags', 'entities'], 'default' => 'all'],
+                'limit' => ['type' => 'integer', 'default' => 20],
+                'unit_id' => ['type' => 'integer']
+            ],
+            'required' => ['pattern']
+        ]),
+        $tool('analyze_file', 'Deep file analysis with metrics and insights', [
+            'type' => 'object',
+            'properties' => [
+                'file_path' => ['type' => 'string', 'description' => 'Path to file to analyze']
+            ],
+            'required' => ['file_path']
+        ]),
+        $tool('get_file_content', 'Retrieve complete file content with context', [
+            'type' => 'object',
+            'properties' => [
+                'file_path' => ['type' => 'string', 'description' => 'Path to file'],
+                'include_related' => ['type' => 'boolean', 'default' => false, 'description' => 'Include related files']
+            ],
+            'required' => ['file_path']
+        ]),
+        $tool('find_similar', 'Find files similar to reference by keywords/tags', [
+            'type' => 'object',
+            'properties' => [
+                'file_path' => ['type' => 'string', 'description' => 'Reference file path'],
+                'limit' => ['type' => 'integer', 'default' => 10]
+            ],
+            'required' => ['file_path']
+        ]),
+        $tool('explore_by_tags', 'Browse files by semantic tags', [
+            'type' => 'object',
+            'properties' => [
+                'semantic_tags' => ['type' => 'array', 'items' => ['type' => 'string'], 'description' => 'Tags to search for'],
+                'match_all' => ['type' => 'boolean', 'default' => false, 'description' => 'Require all tags or any'],
+                'limit' => ['type' => 'integer', 'default' => 20]
+            ],
+            'required' => ['semantic_tags']
+        ]),
+        $tool('get_stats', 'System-wide intelligence statistics and trends', [
+            'type' => 'object',
+            'properties' => [
+                'breakdown_by' => ['type' => 'string', 'enum' => ['unit', 'type', 'category'], 'description' => 'How to group statistics']
+            ]
+        ]),
+        $tool('top_keywords', 'Most common keywords across system or unit', [
+            'type' => 'object',
+            'properties' => [
+                'unit_id' => ['type' => 'integer', 'description' => 'Filter by business unit'],
+                'limit' => ['type' => 'integer', 'default' => 50]
+            ]
+        ]),
+        $tool('list_categories', 'List all business categories with file counts', [
+            'type' => 'object',
+            'properties' => [
+                'min_priority' => ['type' => 'number', 'default' => 1.0, 'description' => 'Minimum priority threshold'],
+                'order_by' => ['type' => 'string', 'enum' => ['priority', 'name', 'file_count'], 'default' => 'priority']
+            ]
+        ]),
+        $tool('get_analytics', 'Real-time analytics and usage data', [
+            'type' => 'object',
+            'properties' => [
+                'action' => ['type' => 'string', 'enum' => ['overview', 'popular_queries', 'trends'], 'default' => 'overview'],
+                'timeframe' => ['type' => 'string', 'enum' => ['1h', '24h', '7d', '30d'], 'default' => '24h']
+            ]
+        ]),
+        $tool('health_check', 'System health status and diagnostics', [
+            'type' => 'object',
+            'properties' => []
+        ]),
+        $tool('list_satellites', 'Status and statistics for satellite servers', [
+            'type' => 'object',
+            'properties' => []
+        ]),
+        $tool('sync_satellite', 'Trigger satellite data synchronization', [
+            'type' => 'object',
+            'properties' => [
+                'satellite_id' => ['type' => 'integer', 'description' => 'Satellite to sync']
+            ],
+            'required' => ['satellite_id']
+        ]),
+
+        // Password Storage Tool
+        $tool('password.store', 'Securely store encrypted credentials', [
+            'type' => 'object',
+            'properties' => [
+                'service' => ['type' => 'string', 'description' => 'Service identifier (e.g., "xero_api", "vend_api")'],
+                'username' => ['type' => 'string', 'description' => 'Username or account identifier'],
+                'password' => ['type' => 'string', 'description' => 'Password or API key to encrypt and store'],
+                'url' => ['type' => 'string', 'description' => 'Optional service URL'],
+                'notes' => ['type' => 'string', 'description' => 'Optional notes about this credential']
+            ],
+            'required' => ['service', 'password']
+        ]),
+        $tool('password.retrieve', 'Retrieve decrypted credentials', [
+            'type' => 'object',
+            'properties' => [
+                'service' => ['type' => 'string', 'description' => 'Service identifier']
+            ],
+            'required' => ['service']
+        ]),
+        $tool('password.list', 'List all stored credential services (passwords NOT included)', [
+            'type' => 'object',
+            'properties' => []
+        ]),
+        $tool('password.delete', 'Delete stored credentials', [
+            'type' => 'object',
+            'properties' => [
+                'service' => ['type' => 'string', 'description' => 'Service identifier to delete']
+            ],
+            'required' => ['service']
+        ]),
+
+        // MySQL Query Tool
+        $tool('mysql.query', 'Execute safe read-only MySQL queries (SELECT, SHOW, DESCRIBE, EXPLAIN)', [
+            'type' => 'object',
+            'properties' => [
+                'query' => ['type' => 'string', 'description' => 'SQL query to execute (read-only)'],
+                'limit' => ['type' => 'integer', 'default' => 100, 'description' => 'Max rows to return'],
+                'format' => ['type' => 'string', 'enum' => ['array', 'json', 'csv'], 'default' => 'array']
+            ],
+            'required' => ['query']
+        ]),
+        $tool('mysql.common_queries', 'Get list of useful pre-built queries', [
+            'type' => 'object',
+            'properties' => []
+        ]),
+
+        // Web Browser Tool
+        $tool('browser.fetch', 'Fetch and parse web page content', [
+            'type' => 'object',
+            'properties' => [
+                'url' => ['type' => 'string', 'description' => 'URL to fetch'],
+                'include_html' => ['type' => 'boolean', 'default' => false, 'description' => 'Include raw HTML'],
+                'extract_links' => ['type' => 'boolean', 'default' => true, 'description' => 'Extract all links'],
+                'extract_images' => ['type' => 'boolean', 'default' => false, 'description' => 'Extract image URLs']
+            ],
+            'required' => ['url']
+        ]),
+        $tool('browser.extract', 'Extract structured content from HTML', [
+            'type' => 'object',
+            'properties' => [
+                'url' => ['type' => 'string', 'description' => 'URL to extract from'],
+                'selectors' => ['type' => 'object', 'description' => 'CSS selectors for content extraction']
+            ],
+            'required' => ['url']
+        ]),
+        $tool('browser.headers', 'Get HTTP headers for a URL', [
+            'type' => 'object',
+            'properties' => [
+                'url' => ['type' => 'string', 'description' => 'URL to check']
+            ],
+            'required' => ['url']
+        ]),
+
+        // Crawler Tool
+        $tool('crawler.deep_crawl', 'Deep crawl website with headless Chrome (screenshots, performance)', [
+            'type' => 'object',
+            'properties' => [
+                'start_url' => ['type' => 'string', 'description' => 'Starting URL to crawl'],
+                'max_depth' => ['type' => 'integer', 'default' => 3, 'description' => 'Maximum crawl depth'],
+                'max_pages' => ['type' => 'integer', 'default' => 50, 'description' => 'Maximum pages to crawl'],
+                'same_domain_only' => ['type' => 'boolean', 'default' => true, 'description' => 'Stay on same domain'],
+                'take_screenshots' => ['type' => 'boolean', 'default' => true, 'description' => 'Capture screenshots'],
+                'performance_metrics' => ['type' => 'boolean', 'default' => true, 'description' => 'Collect performance data']
+            ],
+            'required' => ['start_url']
+        ]),
+        $tool('crawler.single_page', 'Crawl single page with full analysis', [
+            'type' => 'object',
+            'properties' => [
+                'url' => ['type' => 'string', 'description' => 'URL to analyze'],
+                'include_screenshot' => ['type' => 'boolean', 'default' => true],
+                'include_console' => ['type' => 'boolean', 'default' => true, 'description' => 'Capture console logs'],
+                'include_network' => ['type' => 'boolean', 'default' => true, 'description' => 'Capture network requests']
+            ],
+            'required' => ['url']
+        ]),
+
+        // Conversation Context Tools - AUTOMATIC MEMORY RETRIEVAL
+        $tool('conversation.get_project_context', 'Get past conversations for current project - USE THIS AT START OF EVERY CONVERSATION!', [
+            'type' => 'object',
+            'properties' => [
+                'project_id' => ['type' => 'integer', 'description' => 'Project ID (from workspace context)'],
+                'limit' => ['type' => 'integer', 'default' => 5, 'description' => 'Number of past conversations to retrieve'],
+                'include_messages' => ['type' => 'boolean', 'default' => true, 'description' => 'Include full message history'],
+                'date_from' => ['type' => 'string', 'description' => 'Optional: filter from date (YYYY-MM-DD)']
+            ],
+            'required' => []
+        ]),
+        $tool('conversation.search', 'Search past conversations by keywords', [
+            'type' => 'object',
+            'properties' => [
+                'search' => ['type' => 'string', 'description' => 'Keywords to search for in conversation titles/context'],
+                'project_id' => ['type' => 'integer', 'description' => 'Filter by project'],
+                'unit_id' => ['type' => 'integer', 'description' => 'Filter by business unit'],
+                'limit' => ['type' => 'integer', 'default' => 10]
+            ],
+            'required' => ['search']
+        ]),
+        $tool('conversation.get_unit_context', 'Get all conversations for a business unit (all projects)', [
+            'type' => 'object',
+            'properties' => [
+                'unit_id' => ['type' => 'integer', 'description' => 'Business unit ID (from workspace context)'],
+                'limit' => ['type' => 'integer', 'default' => 20, 'description' => 'Number of conversations to retrieve']
+            ],
+            'required' => ['unit_id']
         ])
     ];
 }
@@ -582,6 +852,46 @@ function tool_routes(): array
         // Redis tools (will be extended)
         'redis.get'        => ['endpoint' => $unified, 'action' => 'redis.get'],
         'redis.set'        => ['endpoint' => $unified, 'action' => 'redis.set'],
+
+        // Intelligence Hub Tools (route to V2 complete server as backend - use full URL)
+        'semantic_search'   => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'search_by_category'=> ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'find_code'         => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'analyze_file'      => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'get_file_content'  => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'find_similar'      => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'explore_by_tags'   => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'get_stats'         => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'top_keywords'      => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'list_categories'   => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'get_analytics'     => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'health_check'      => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'list_satellites'   => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+        'sync_satellite'    => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/OLD_BUILD/server_v2_complete.php'],
+
+        // Password Storage Tool (routes to unified)
+        'password.store'    => ['endpoint' => $unified, 'action' => 'password.store'],
+        'password.retrieve' => ['endpoint' => $unified, 'action' => 'password.retrieve'],
+        'password.list'     => ['endpoint' => $unified, 'action' => 'password.list'],
+        'password.delete'   => ['endpoint' => $unified, 'action' => 'password.delete'],
+
+        // MySQL Query Tool (routes to unified)
+        'mysql.query'       => ['endpoint' => $unified, 'action' => 'mysql.query'],
+        'mysql.common_queries' => ['endpoint' => $unified, 'action' => 'mysql.common_queries'],
+
+        // Web Browser Tool (routes to unified)
+        'browser.fetch'     => ['endpoint' => $unified, 'action' => 'browser.fetch'],
+        'browser.extract'   => ['endpoint' => $unified, 'action' => 'browser.extract'],
+        'browser.headers'   => ['endpoint' => $unified, 'action' => 'browser.headers'],
+
+        // Crawler Tool (routes to unified)
+        'crawler.deep_crawl' => ['endpoint' => $unified, 'action' => 'crawler.deep_crawl'],
+        'crawler.single_page' => ['endpoint' => $unified, 'action' => 'crawler.single_page'],
+
+        // Conversation Context Tools - AUTOMATIC MEMORY RETRIEVAL
+        'conversation.get_project_context' => ['endpoint' => 'https://gpt.ecigdis.co.nz/api/get_project_conversations.php'],
+        'conversation.search' => ['endpoint' => 'https://gpt.ecigdis.co.nz/api/get_project_conversations.php'],
+        'conversation.get_unit_context' => ['endpoint' => 'https://gpt.ecigdis.co.nz/api/get_project_conversations.php'],
     ];
 
     return $routes;

@@ -42,17 +42,20 @@ final class Telemetry {
     string $requestId, string $model, string $endpoint,
     ?int $promptTokens, ?int $completionTokens, ?int $totalTokens, ?int $costCents,
     int $latencyMs, string $status, ?string $errorMessage,
-    ?array $headers=null, ?array $payload=null, ?array $response=null
+    ?array $headers=null, ?array $payload=null, ?array $response=null,
+    ?int $unitId=null, ?int $projectId=null, ?string $source=null
   ): void {
     $stmt = $this->db->prepare("
       INSERT INTO ai_agent_requests
-        (domain_id, provider, conversation_id, message_id, request_id, model, endpoint,
+        (domain_id, provider, conversation_id, unit_id, project_id, source,
+         message_id, request_id, model, endpoint,
          prompt_tokens, completion_tokens, total_tokens, cost_nzd_cents,
          response_time_ms, status, error_message, request_headers, request_payload, response_body)
-      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
     ");
     $stmt->execute([
-      $domainId, $provider, $conversationId, $messageId, $requestId, $model, $endpoint,
+      $domainId, $provider, $conversationId, $unitId, $projectId, $source,
+      $messageId, $requestId, $model, $endpoint,
       $promptTokens, $completionTokens, $totalTokens, $costCents,
       $latencyMs, $status, $errorMessage,
       $headers ? json_encode($headers, JSON_UNESCAPED_UNICODE) : null,
