@@ -1,0 +1,40 @@
+{
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "text": "You have access to a custom AI Agent with GPT-5, RAG, and semantic search across 8,645 indexed files. Use the ai_agent.query tool for complex questions that need knowledge base context or codebase search."
+    }
+  ],
+  "github.copilot.chat.tools.enabled": true,
+  "github.copilot.chat.tools.mcpServers": {
+    "intelligence-hub-v3": {
+      "command": "ssh",
+      "args": [
+        "master@main.cloudways",
+        "-p", "22",
+        "cd /home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/mcp && node mcp-server-wrapper.js"
+      ],
+      "env": {
+        "MCP_SERVER_URL": "https://gpt.ecigdis.co.nz/mcp/server_v3.php",
+        "MCP_API_KEY": "31ce0106609a6c5bc4f7ece0deb2f764df90a06167bda83468883516302a6a35",
+        "PROJECT_ID": "2",
+        "BUSINESS_UNIT_ID": "2",
+        "NODE_PATH": "/usr/bin/node"
+      },
+      "metadata": {
+        "displayName": "IntelligenceHub V3 + AI Agent",
+        "description": "MCP Server with GPT-5 AI Agent, semantic search (8,645 files), RAG, conversation memory, and all V3 tools",
+        "version": "3.0.0",
+        "capabilities": [
+          "ai_agent.query (GPT-5 with RAG)",
+          "semantic_search (8,645 files)",
+          "database_query",
+          "file_operations",
+          "knowledge_base_search",
+          "grep_search",
+          "context_memory",
+          "streaming_responses"
+        ]
+      }
+    }
+  }
+}

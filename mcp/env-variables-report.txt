@@ -1,0 +1,224 @@
+================================================================================
+ENVIRONMENT VARIABLES COMPREHENSIVE REPORT
+================================================================================
+
+Generated: 2025-11-05 17:02:54
+Files Scanned: 2045
+Variables Found: 161
+
+
+Database:
+----------------------------------------
+  DB_PASS                             used 24 times
+  DB_NAME                             used 24 times [REQUIRED]
+  DB_HOST                             used 22 times [REQUIRED]
+  DB_USER                             used 22 times [REQUIRED]
+  DB_PORT                             used 4 times
+  DB_PASSWORD                         used 3 times
+  DB_CHARSET                          used 2 times
+
+AI/API Keys:
+----------------------------------------
+  OPENAI_API_KEY                      used 18 times [REQUIRED]
+  ANTHROPIC_API_KEY                   used 11 times
+  MCP_API_KEY                         used 8 times [REQUIRED]
+  CIS_API_KEY                         used 5 times
+  API_KEY                             used 3 times
+  KB_API_KEY                          used 2 times
+  AI_AGENT_API_KEY                    used 2 times
+
+Vend POS:
+----------------------------------------
+  VEND_API_TOKEN                      used 2 times
+  VEND_DOMAIN_PREFIX                  used 1 times
+  VEND_API_URL                        used 1 times
+
+Redis:
+----------------------------------------
+  REDIS_HOST                          used 6 times
+  REDIS_PORT                          used 6 times
+  REDIS_PASSWORD                      used 2 times
+  REDIS_DATABASE                      used 2 times
+  REDIS_TIMEOUT                       used 1 times
+
+MCP Server:
+----------------------------------------
+  WORKSPACE_ROOT                      used 5 times
+  MCP_SERVER_URL                      used 3 times
+  CURRENT_FILE                        used 3 times
+  MCP_AUTH_TOKEN                      used 2 times
+  PROJECT_ID                          used 2 times
+  BUSINESS_UNIT_ID                    used 2 times
+
+AI Agent:
+----------------------------------------
+  AI_DEFAULT_UNIT_ID                  used 2 times
+  AI_DEFAULT_PROJECT_ID               used 2 times
+  AI_DEFAULT_BOT                      used 2 times
+  AI_AGENT_DEFAULT_SYSTEM             used 2 times
+  AI_AGENT_REQUIRE_AUTH               used 1 times
+
+Cloudways:
+----------------------------------------
+  CLOUDWAYS_EMAIL                     used 3 times
+  CLOUDWAYS_API_KEY                   used 3 times
+
+Email/SMTP:
+----------------------------------------
+  NOTIFICATION_EMAIL_ENABLED          used 1 times
+  SMTP_HOST                           used 1 times
+  SMTP_PORT                           used 1 times
+  SMTP_USER                           used 1 times
+  SMTP_PASS                           used 1 times
+  SMTP_FROM_EMAIL                     used 1 times
+  SMTP_FROM_NAME                      used 1 times
+  NOTIFICATION_EMAIL_RECIPIENTS       used 1 times
+  ALERT_EMAIL_FROM                    used 1 times
+
+Notifications:
+----------------------------------------
+  NOTIFICATION_SLACK_ENABLED          used 1 times
+  SLACK_WEBHOOK_URL                   used 1 times
+  SLACK_CHANNEL                       used 1 times
+  SLACK_USERNAME                      used 1 times
+  SLACK_ICON                          used 1 times
+  NOTIFICATION_DISCORD_ENABLED        used 1 times
+  DISCORD_WEBHOOK_URL                 used 1 times
+  DISCORD_USERNAME                    used 1 times
+  NOTIFICATION_SMS_ENABLED            used 1 times
+  NOTIFICATION_WEBHOOK_ENABLED        used 1 times
+  NOTIFICATION_WEBHOOK_URLS           used 1 times
+
+Twilio/SMS:
+----------------------------------------
+  TWILIO_ACCOUNT_SID                  used 1 times
+  TWILIO_AUTH_TOKEN                   used 1 times
+  TWILIO_FROM_NUMBER                  used 1 times
+  NOTIFICATION_SMS_RECIPIENTS         used 1 times
+
+Sentry:
+----------------------------------------
+  SENTRY_ENABLED                      used 1 times
+  SENTRY_DSN                          used 1 times
+  SENTRY_TRACES_SAMPLE_RATE           used 1 times
+  SENTRY_PROFILES_SAMPLE_RATE         used 1 times
+
+Logging:
+----------------------------------------
+  LOG_PATH                            used 1 times
+
+Security:
+----------------------------------------
+  CREDENTIAL_ENCRYPTION_KEY           used 2 times
+  ADMIN_SSE_TOKEN                     used 1 times
+
+Application:
+----------------------------------------
+  APP_ENV                             used 4 times
+  APP_DEBUG                           used 2 times
+  APP_URL                             used 1 times
+  APP_TIMEZONE                        used 1 times
+
+Upload:
+----------------------------------------
+  AI_UPLOAD_MAX_BYTES                 used 1 times
+  AI_UPLOAD_ALLOWED                   used 1 times
+
+Business:
+----------------------------------------
+  BUSINESS_HOURS_START                used 1 times
+  BUSINESS_HOURS_END                  used 1 times
+
+Devkit:
+----------------------------------------
+  DEVKIT_ENTERPRISE_URL               used 1 times
+
+
+Uncategorized:
+----------------------------------------
+  REQUEST_METHOD                      used 177 times
+  DOCUMENT_ROOT                       used 115 times
+  REMOTE_ADDR                         used 70 times
+  REQUEST_URI                         used 38 times
+  HTTP_USER_AGENT                     used 27 times
+  PATH_INFO                           used 25 times
+  HTTP_HOST                           used 19 times
+  METHOD                              used 17 times
+  JSON                                used 16 times
+  PHP_SELF                            used 13 times
+  HTTP_X_API_KEY                      used 13 times
+  HTTPS                               used 11 times
+  HTTP_X_FORWARDED_FOR                used 7 times
+  SCRIPT_NAME                         used 7 times
+  HTTP_AUTHORIZATION                  used 7 times
+  SCRIPT_FILENAME                     used 6 times
+  SERVER_SOFTWARE                     used 6 times
+  MYSQL_HOST                          used 5 times
+  MYSQL_USER                          used 5 times
+  HTTP_ORIGIN                         used 5 times
+  HTTP_CLIENT_IP                      used 4 times
+  APP_PATH                            used 4 times
+  KB_PATH                             used 4 times
+  CONTENT_TYPE                        used 4 times
+  API_KEYS                            used 4 times
+  HTTP_X_HEALTH_TOKEN                 used 4 times
+  ACTION                              used 4 times
+  DOCUMENT_ID                         used 4 times
+  LIMIT                               used 4 times
+  OFFSET                              used 4 times
+  MYSQL_PASSWORD                      used 3 times
+  MYSQL_DATABASE                      used 3 times
+  HTTP_X_AGENT_ID                     used 3 times
+  REQUEST_ID                          used 3 times
+  TEST_DB_NAME                        used 2 times
+  HOME                                used 2 times
+  SLACK_WEBHOOK                       used 2 times
+  REQUEST_TIME_FLOAT                  used 2 times
+  CLAUDE_MODEL                        used 2 times
+  HTTP_X_CSRF_TOKEN                   used 2 times
+  API_URL                             used 2 times
+  PROFILE_ENCRYPTION_KEY              used 2 times
+  ENABLE_CONVERSATION_CONTEXT         used 2 times
+  AUTO_RETRIEVE_CONTEXT               used 2 times
+  CONTEXT_LIMIT                       used 2 times
+  HTTP_X_WORKSPACE_ROOT               used 2 times
+  HTTP_X_CURRENT_FILE                 used 2 times
+  XDEBUG_MODE                         used 1 times
+  MYSQL_PORT                          used 1 times
+  USER                                used 1 times
+  CI                                  used 1 times
+  LH_FPS_TEST                         used 1 times
+  COLUMNS                             used 1 times
+  NODE_DEBUG                          used 1 times
+  OPENAI_MODEL                        used 1 times
+  TOOL_PARAMETERS                     used 1 times
+  HTTP_X_FORWARDED_PROTO              used 1 times
+  ANTHROPIC_MODEL                     used 1 times
+  HTTP_X_FRAME_OPTIONS                used 1 times
+  HTTP_X_CONTENT_TYPE_OPTIONS         used 1 times
+  HTTP_STRICT_TRANSPORT_SECURITY      used 1 times
+  HTTP_X_IDEMPOTENCY_KEY              used 1 times
+  HTTP_LAST_EVENT_ID                  used 1 times
+  NEURO_SLACK_ALERT_WEBHOOK           used 1 times
+  CORRELATION_ID                      used 1 times
+  SYS_MAX_NETWORK_BPS                 used 1 times
+  IP_HASH_SALT                        used 1 times
+  HTTP_X_INTERNAL_CALL                used 1 times
+  REDIS_URL                           used 1 times
+  TEST_API_BASE_URL                   used 1 times
+  TEST_API_KEY                        used 1 times
+  USE_TEST_TABLES                     used 1 times
+  REDIS_PREFIX                        used 1 times
+  HTTP_X_REQUESTED_WITH               used 1 times
+  SERVER_PROTOCOL                     used 1 times
+  GPT_API_KEY                         used 1 times
+  INTELLIGENCE_API_KEY                used 1 times
+  VAR_NAME                            used 1 times
+  MCP_SERVER_ID                       used 1 times
+  MCP_UNIT_ID                         used 1 times
+  MCP_PROJECT_ID                      used 1 times
+  MCP_PROJECT_NAME                    used 1 times
+  CIS_DB_HOST                         used 1 times
+  CIS_DB_NAME                         used 1 times
+  CIS_DB_USER                         used 1 times
+  CIS_DB_PASS                         used 1 times

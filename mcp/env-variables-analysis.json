@@ -1,0 +1,2448 @@
+{
+    "generated": "2025-11-05T17:02:54+13:00",
+    "files_scanned": 2045,
+    "variables_found": 161,
+    "categorized": {
+        "Database": [
+            {
+                "var": "DB_PASS",
+                "count": 24
+            },
+            {
+                "var": "DB_NAME",
+                "count": 24
+            },
+            {
+                "var": "DB_HOST",
+                "count": 22
+            },
+            {
+                "var": "DB_USER",
+                "count": 22
+            },
+            {
+                "var": "DB_PORT",
+                "count": 4
+            },
+            {
+                "var": "DB_PASSWORD",
+                "count": 3
+            },
+            {
+                "var": "DB_CHARSET",
+                "count": 2
+            }
+        ],
+        "AI\/API Keys": [
+            {
+                "var": "OPENAI_API_KEY",
+                "count": 18
+            },
+            {
+                "var": "ANTHROPIC_API_KEY",
+                "count": 11
+            },
+            {
+                "var": "MCP_API_KEY",
+                "count": 8
+            },
+            {
+                "var": "CIS_API_KEY",
+                "count": 5
+            },
+            {
+                "var": "API_KEY",
+                "count": 3
+            },
+            {
+                "var": "KB_API_KEY",
+                "count": 2
+            },
+            {
+                "var": "AI_AGENT_API_KEY",
+                "count": 2
+            }
+        ],
+        "Redis": [
+            {
+                "var": "REDIS_HOST",
+                "count": 6
+            },
+            {
+                "var": "REDIS_PORT",
+                "count": 6
+            },
+            {
+                "var": "REDIS_PASSWORD",
+                "count": 2
+            },
+            {
+                "var": "REDIS_DATABASE",
+                "count": 2
+            },
+            {
+                "var": "REDIS_TIMEOUT",
+                "count": 1
+            }
+        ],
+        "MCP Server": [
+            {
+                "var": "WORKSPACE_ROOT",
+                "count": 5
+            },
+            {
+                "var": "MCP_SERVER_URL",
+                "count": 3
+            },
+            {
+                "var": "CURRENT_FILE",
+                "count": 3
+            },
+            {
+                "var": "MCP_AUTH_TOKEN",
+                "count": 2
+            },
+            {
+                "var": "PROJECT_ID",
+                "count": 2
+            },
+            {
+                "var": "BUSINESS_UNIT_ID",
+                "count": 2
+            }
+        ],
+        "Application": [
+            {
+                "var": "APP_ENV",
+                "count": 4
+            },
+            {
+                "var": "APP_DEBUG",
+                "count": 2
+            },
+            {
+                "var": "APP_URL",
+                "count": 1
+            },
+            {
+                "var": "APP_TIMEZONE",
+                "count": 1
+            }
+        ],
+        "Cloudways": [
+            {
+                "var": "CLOUDWAYS_EMAIL",
+                "count": 3
+            },
+            {
+                "var": "CLOUDWAYS_API_KEY",
+                "count": 3
+            }
+        ],
+        "Vend POS": [
+            {
+                "var": "VEND_API_TOKEN",
+                "count": 2
+            },
+            {
+                "var": "VEND_DOMAIN_PREFIX",
+                "count": 1
+            },
+            {
+                "var": "VEND_API_URL",
+                "count": 1
+            }
+        ],
+        "AI Agent": [
+            {
+                "var": "AI_DEFAULT_UNIT_ID",
+                "count": 2
+            },
+            {
+                "var": "AI_DEFAULT_PROJECT_ID",
+                "count": 2
+            },
+            {
+                "var": "AI_DEFAULT_BOT",
+                "count": 2
+            },
+            {
+                "var": "AI_AGENT_DEFAULT_SYSTEM",
+                "count": 2
+            },
+            {
+                "var": "AI_AGENT_REQUIRE_AUTH",
+                "count": 1
+            }
+        ],
+        "Security": [
+            {
+                "var": "CREDENTIAL_ENCRYPTION_KEY",
+                "count": 2
+            },
+            {
+                "var": "ADMIN_SSE_TOKEN",
+                "count": 1
+            }
+        ],
+        "Sentry": [
+            {
+                "var": "SENTRY_ENABLED",
+                "count": 1
+            },
+            {
+                "var": "SENTRY_DSN",
+                "count": 1
+            },
+            {
+                "var": "SENTRY_TRACES_SAMPLE_RATE",
+                "count": 1
+            },
+            {
+                "var": "SENTRY_PROFILES_SAMPLE_RATE",
+                "count": 1
+            }
+        ],
+        "Email\/SMTP": [
+            {
+                "var": "NOTIFICATION_EMAIL_ENABLED",
+                "count": 1
+            },
+            {
+                "var": "SMTP_HOST",
+                "count": 1
+            },
+            {
+                "var": "SMTP_PORT",
+                "count": 1
+            },
+            {
+                "var": "SMTP_USER",
+                "count": 1
+            },
+            {
+                "var": "SMTP_PASS",
+                "count": 1
+            },
+            {
+                "var": "SMTP_FROM_EMAIL",
+                "count": 1
+            },
+            {
+                "var": "SMTP_FROM_NAME",
+                "count": 1
+            },
+            {
+                "var": "NOTIFICATION_EMAIL_RECIPIENTS",
+                "count": 1
+            },
+            {
+                "var": "ALERT_EMAIL_FROM",
+                "count": 1
+            }
+        ],
+        "Notifications": [
+            {
+                "var": "NOTIFICATION_SLACK_ENABLED",
+                "count": 1
+            },
+            {
+                "var": "SLACK_WEBHOOK_URL",
+                "count": 1
+            },
+            {
+                "var": "SLACK_CHANNEL",
+                "count": 1
+            },
+            {
+                "var": "SLACK_USERNAME",
+                "count": 1
+            },
+            {
+                "var": "SLACK_ICON",
+                "count": 1
+            },
+            {
+                "var": "NOTIFICATION_DISCORD_ENABLED",
+                "count": 1
+            },
+            {
+                "var": "DISCORD_WEBHOOK_URL",
+                "count": 1
+            },
+            {
+                "var": "DISCORD_USERNAME",
+                "count": 1
+            },
+            {
+                "var": "NOTIFICATION_SMS_ENABLED",
+                "count": 1
+            },
+            {
+                "var": "NOTIFICATION_WEBHOOK_ENABLED",
+                "count": 1
+            },
+            {
+                "var": "NOTIFICATION_WEBHOOK_URLS",
+                "count": 1
+            }
+        ],
+        "Twilio\/SMS": [
+            {
+                "var": "TWILIO_ACCOUNT_SID",
+                "count": 1
+            },
+            {
+                "var": "TWILIO_AUTH_TOKEN",
+                "count": 1
+            },
+            {
+                "var": "TWILIO_FROM_NUMBER",
+                "count": 1
+            },
+            {
+                "var": "NOTIFICATION_SMS_RECIPIENTS",
+                "count": 1
+            }
+        ],
+        "Logging": [
+            {
+                "var": "LOG_PATH",
+                "count": 1
+            }
+        ],
+        "Upload": [
+            {
+                "var": "AI_UPLOAD_MAX_BYTES",
+                "count": 1
+            },
+            {
+                "var": "AI_UPLOAD_ALLOWED",
+                "count": 1
+            }
+        ],
+        "Devkit": [
+            {
+                "var": "DEVKIT_ENTERPRISE_URL",
+                "count": 1
+            }
+        ],
+        "Business": [
+            {
+                "var": "BUSINESS_HOURS_START",
+                "count": 1
+            },
+            {
+                "var": "BUSINESS_HOURS_END",
+                "count": 1
+            }
+        ]
+    },
+    "uncategorized": [
+        {
+            "var": "REQUEST_METHOD",
+            "count": 177
+        },
+        {
+            "var": "DOCUMENT_ROOT",
+            "count": 115
+        },
+        {
+            "var": "REMOTE_ADDR",
+            "count": 70
+        },
+        {
+            "var": "REQUEST_URI",
+            "count": 38
+        },
+        {
+            "var": "HTTP_USER_AGENT",
+            "count": 27
+        },
+        {
+            "var": "PATH_INFO",
+            "count": 25
+        },
+        {
+            "var": "HTTP_HOST",
+            "count": 19
+        },
+        {
+            "var": "METHOD",
+            "count": 17
+        },
+        {
+            "var": "JSON",
+            "count": 16
+        },
+        {
+            "var": "PHP_SELF",
+            "count": 13
+        },
+        {
+            "var": "HTTP_X_API_KEY",
+            "count": 13
+        },
+        {
+            "var": "HTTPS",
+            "count": 11
+        },
+        {
+            "var": "HTTP_X_FORWARDED_FOR",
+            "count": 7
+        },
+        {
+            "var": "SCRIPT_NAME",
+            "count": 7
+        },
+        {
+            "var": "HTTP_AUTHORIZATION",
+            "count": 7
+        },
+        {
+            "var": "SCRIPT_FILENAME",
+            "count": 6
+        },
+        {
+            "var": "SERVER_SOFTWARE",
+            "count": 6
+        },
+        {
+            "var": "MYSQL_HOST",
+            "count": 5
+        },
+        {
+            "var": "MYSQL_USER",
+            "count": 5
+        },
+        {
+            "var": "HTTP_ORIGIN",
+            "count": 5
+        },
+        {
+            "var": "HTTP_CLIENT_IP",
+            "count": 4
+        },
+        {
+            "var": "APP_PATH",
+            "count": 4
+        },
+        {
+            "var": "KB_PATH",
+            "count": 4
+        },
+        {
+            "var": "CONTENT_TYPE",
+            "count": 4
+        },
+        {
+            "var": "API_KEYS",
+            "count": 4
+        },
+        {
+            "var": "HTTP_X_HEALTH_TOKEN",
+            "count": 4
+        },
+        {
+            "var": "ACTION",
+            "count": 4
+        },
+        {
+            "var": "DOCUMENT_ID",
+            "count": 4
+        },
+        {
+            "var": "LIMIT",
+            "count": 4
+        },
+        {
+            "var": "OFFSET",
+            "count": 4
+        },
+        {
+            "var": "MYSQL_PASSWORD",
+            "count": 3
+        },
+        {
+            "var": "MYSQL_DATABASE",
+            "count": 3
+        },
+        {
+            "var": "HTTP_X_AGENT_ID",
+            "count": 3
+        },
+        {
+            "var": "REQUEST_ID",
+            "count": 3
+        },
+        {
+            "var": "TEST_DB_NAME",
+            "count": 2
+        },
+        {
+            "var": "HOME",
+            "count": 2
+        },
+        {
+            "var": "SLACK_WEBHOOK",
+            "count": 2
+        },
+        {
+            "var": "REQUEST_TIME_FLOAT",
+            "count": 2
+        },
+        {
+            "var": "CLAUDE_MODEL",
+            "count": 2
+        },
+        {
+            "var": "HTTP_X_CSRF_TOKEN",
+            "count": 2
+        },
+        {
+            "var": "API_URL",
+            "count": 2
+        },
+        {
+            "var": "PROFILE_ENCRYPTION_KEY",
+            "count": 2
+        },
+        {
+            "var": "ENABLE_CONVERSATION_CONTEXT",
+            "count": 2
+        },
+        {
+            "var": "AUTO_RETRIEVE_CONTEXT",
+            "count": 2
+        },
+        {
+            "var": "CONTEXT_LIMIT",
+            "count": 2
+        },
+        {
+            "var": "HTTP_X_WORKSPACE_ROOT",
+            "count": 2
+        },
+        {
+            "var": "HTTP_X_CURRENT_FILE",
+            "count": 2
+        },
+        {
+            "var": "XDEBUG_MODE",
+            "count": 1
+        },
+        {
+            "var": "MYSQL_PORT",
+            "count": 1
+        },
+        {
+            "var": "USER",
+            "count": 1
+        },
+        {
+            "var": "CI",
+            "count": 1
+        },
+        {
+            "var": "LH_FPS_TEST",
+            "count": 1
+        },
+        {
+            "var": "COLUMNS",
+            "count": 1
+        },
+        {
+            "var": "NODE_DEBUG",
+            "count": 1
+        },
+        {
+            "var": "OPENAI_MODEL",
+            "count": 1
+        },
+        {
+            "var": "TOOL_PARAMETERS",
+            "count": 1
+        },
+        {
+            "var": "HTTP_X_FORWARDED_PROTO",
+            "count": 1
+        },
+        {
+            "var": "ANTHROPIC_MODEL",
+            "count": 1
+        },
+        {
+            "var": "HTTP_X_FRAME_OPTIONS",
+            "count": 1
+        },
+        {
+            "var": "HTTP_X_CONTENT_TYPE_OPTIONS",
+            "count": 1
+        },
+        {
+            "var": "HTTP_STRICT_TRANSPORT_SECURITY",
+            "count": 1
+        },
+        {
+            "var": "HTTP_X_IDEMPOTENCY_KEY",
+            "count": 1
+        },
+        {
+            "var": "HTTP_LAST_EVENT_ID",
+            "count": 1
+        },
+        {
+            "var": "NEURO_SLACK_ALERT_WEBHOOK",
+            "count": 1
+        },
+        {
+            "var": "CORRELATION_ID",
+            "count": 1
+        },
+        {
+            "var": "SYS_MAX_NETWORK_BPS",
+            "count": 1
+        },
+        {
+            "var": "IP_HASH_SALT",
+            "count": 1
+        },
+        {
+            "var": "HTTP_X_INTERNAL_CALL",
+            "count": 1
+        },
+        {
+            "var": "REDIS_URL",
+            "count": 1
+        },
+        {
+            "var": "TEST_API_BASE_URL",
+            "count": 1
+        },
+        {
+            "var": "TEST_API_KEY",
+            "count": 1
+        },
+        {
+            "var": "USE_TEST_TABLES",
+            "count": 1
+        },
+        {
+            "var": "REDIS_PREFIX",
+            "count": 1
+        },
+        {
+            "var": "HTTP_X_REQUESTED_WITH",
+            "count": 1
+        },
+        {
+            "var": "SERVER_PROTOCOL",
+            "count": 1
+        },
+        {
+            "var": "GPT_API_KEY",
+            "count": 1
+        },
+        {
+            "var": "INTELLIGENCE_API_KEY",
+            "count": 1
+        },
+        {
+            "var": "VAR_NAME",
+            "count": 1
+        },
+        {
+            "var": "MCP_SERVER_ID",
+            "count": 1
+        },
+        {
+            "var": "MCP_UNIT_ID",
+            "count": 1
+        },
+        {
+            "var": "MCP_PROJECT_ID",
+            "count": 1
+        },
+        {
+            "var": "MCP_PROJECT_NAME",
+            "count": 1
+        },
+        {
+            "var": "CIS_DB_HOST",
+            "count": 1
+        },
+        {
+            "var": "CIS_DB_NAME",
+            "count": 1
+        },
+        {
+            "var": "CIS_DB_USER",
+            "count": 1
+        },
+        {
+            "var": "CIS_DB_PASS",
+            "count": 1
+        }
+    ],
+    "all_variables": {
+        "REQUEST_METHOD": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-all-integrations.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/api\/agent_kb.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/api\/intelligence\/index.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/dashboard\/login.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/dashboard\/pages\/sql-query.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/intelligence_control_panel.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/user_activity_tracker.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/active\/harden-platform.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/utilities\/audit_reports.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/utilities\/setup_copilot_memory.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/analysis\/intelligence_control_panel.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/user_activity_tracker.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/database-analysis\/DATABASE_COMPLETE_SCHEMA.json",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Controllers\/DashboardController.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Http\/Request.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Http\/Response.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/intelligence-hub\/api\/index.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/bot-info.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-enterprise.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-v2.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/domains.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/security.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/claude-chat-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/claude-health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/upload.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/v1\/conversations-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/v1\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/v1\/messages.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/v1\/tool-calls.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/chat-unrestricted.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/claude-chat-fixed.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/claude-chat-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/claude-chat-unrestricted.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/claude-health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/upload.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/v1\/conversations-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/v1\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/v1\/messages.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/v1\/tool-calls.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/bot-info.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/security.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/claude-chat-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/claude-health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/upload.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/v1\/conversations-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/v1\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/v1\/messages.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/v1\/tool-calls.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/claude-chat-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/claude-health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/upload.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/v1\/conversations-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/v1\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/v1\/messages.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/v1\/tool-calls.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/DatabaseTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/Files.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/HttpTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/LogsTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/MemoryTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/MonitoringTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/PerformanceTestTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/ReadyCheckTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/RedisTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/SecurityScanTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/admin.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/auth.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/minimal-bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Middleware\/AISecurityMiddleware.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/agent_kb.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/ai-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/ai-control.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/bot-deployment-api-OLD.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/bot-deployment-api.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/broadcast-to-copilots.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/deploy-file.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/deploy_satellite_scanners.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/get_project_conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/intelligence\/index.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/multi-bot-collaboration.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/process_content_remote.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/satellite-deploy.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/save_conversation.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/v1\/chat\/completions.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat_stream.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/history.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/lookup\/domains.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/lookup\/projects.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/lookup\/units.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/memory_upsert.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/prompts\/delete.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/prompts\/save.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/streams.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/tools\/invoke.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/tools\/mcp_config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/tools\/mcp_proxy.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/tools\/ticket.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/upload.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/mcp\/call.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/mcp\/registry.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/cron\/smart-cron\/api\/live-status.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/includes\/project-selector.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/projects.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/settings.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/includes\/project-selector.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/projects.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/settings.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/_archived\/test-scripts\/execute-command.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/_archived\/test-scripts\/test-diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/_archived\/test-scripts\/test-login-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/_archived\/test-scripts\/test-login.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/includes\/project-selector.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/projects.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/settings.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/api\/sse-proxy-HARDENED.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/api\/sse-proxy-OLD.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/api\/sse-proxy.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/login.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/pages\/sql-query.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/OLD_BUILD\/server_v2.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/OLD_BUILD\/server_v2_complete.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/audits\/upload.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/dispatcher.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/server_v3.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/test_mcp_context.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/onboard\/stages\/configure.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/onboard\/stages\/project.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/QUICK_FIXES.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/DatabaseTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/Files.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/HttpTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/LogsTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/MemoryTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/RedisTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/auto-fix.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/batch-scan.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/rest.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/pages\/projects.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/pages\/settings.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/test_context_api.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/test_conversation_api.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/test_memory_system.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/server_v3.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/agent_kb.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/ai-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/deploy-file.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/deploy_satellite_scanners.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/intelligence\/index.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/multi-bot-collaboration.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/satellite-deploy.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/save_conversation.php"
+            ],
+            "count": 177
+        },
+        "DOCUMENT_ROOT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/kb-relationship-mapper.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/historic\/v1_old\/scripts\/_kb_tools_map-relationships.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/historic\/v1_old\/scripts\/kb_intelligence_engine.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-scripts\/create-real-multibot.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/active\/deploy-multibot-to-cis.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/active\/harden-platform.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/utilities\/setup_copilot_memory.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/_kb_tools_map-relationships.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/fix-hardcoded-credentials.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/kb-relationship-mapper.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/kb_intelligence_engine.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/tools\/hardened-security-audit.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/automation\/live-standards-manager.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/traffic\/live.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/cis-project-management.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/ops\/deployment-manager.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/ops\/monitoring-dashboard.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/chat-unrestricted.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/claude-chat-unrestricted.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/bot-management.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/health-check.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/metrics-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/metrics.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/realtime-metrics.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Tools\/DeputyHRTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/cis-neural-bridge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/broadcast-to-copilots.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/db-validate.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/deploy-file.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/multi-bot-collaboration.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/satellite-deploy.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/apps\/chat\/index.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/readyz.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/tools\/invoke.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/upload.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/lib\/Bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/cron\/smart-cron\/core\/Config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/cron\/smart-cron\/core\/Logger.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/includes\/project-selector.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/management.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages\/business-units.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages\/dependencies.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages\/files.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages\/metrics.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages\/overview.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages\/projects.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages\/rules.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages\/scan-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages\/scan-history.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages\/settings.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages\/test-selector.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages\/violations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/ai-agent.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/business-units.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/dependencies.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/files.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/metrics.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/overview.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/projects.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/rules.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/scan-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/scan-history.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/settings.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/pages-v2\/violations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/includes\/project-selector.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/ai-agent.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/business-units.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/dependencies.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/files.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/metrics.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/overview.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/projects.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/rules.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/scan-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/scan-history.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/settings.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/pages\/violations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/_archived\/test-scripts\/test-diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/includes\/project-selector.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/management.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages\/business-units.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages\/dependencies.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages\/files.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages\/metrics.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages\/overview.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages\/projects.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages\/rules.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages\/scan-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages\/scan-history.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages\/settings.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages\/test-selector.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages\/violations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/business-units.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/dependencies.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/files.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/metrics.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/overview.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/projects.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/rules.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/scan-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/scan-history.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/settings.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/pages-v2\/violations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/tests\/test_crawler_tool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/QUICK_FIXES.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/index.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/services\/CredentialManager.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/services\/SecurityMonitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/db-validate.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/deploy-file.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/multi-bot-collaboration.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/satellite-deploy.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/services\/CredentialManager.php"
+            ],
+            "count": 115
+        },
+        "REMOTE_ADDR": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/api\/agent_kb.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/dashboard\/includes\/auth.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/dashboard\/includes\/functions.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/dashboard\/logout.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/dashboard\/pages\/settings.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/user_activity_tracker.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/historic\/v1_old\/scripts\/smart_kb_trigger.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/active\/harden-platform.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/utilities\/audit_reports.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/smart_kb_trigger.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/user_activity_tracker.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Controllers\/DashboardController.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Helpers\/SandboxHelper.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Http\/Request.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/SecurityManager.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/traffic\/live.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/PATCH_auth_insert_line_828.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/PATCH_cors_replace_line_122.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-enterprise.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/upload.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/upload.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/upload.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/upload.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/admin.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Logger.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Middleware\/AISecurityMiddleware.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Util\/Ids.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Util\/RateLimit.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/agent_kb.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/ai-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/ai-control.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/lib\/Bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/_archived\/test-scripts\/test-diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/api\/sse-proxy-HARDENED.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/api\/sse-proxy.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/includes\/auth.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/includes\/functions.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/login.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/logout.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/pages\/settings.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/OLD_BUILD\/server_v2_complete.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/dispatcher.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/src\/Analytics\/SearchAnalytics.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/auto-fix.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/services\/RateLimiter.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/services\/SecurityMonitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/agent_kb.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/ai-chat.php"
+            ],
+            "count": 70
+        },
+        "REQUEST_URI": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/_kb\/api\/intelligence_receiver.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/app.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/user_activity_tracker.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/active\/harden-platform.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/utilities\/setup_copilot_memory.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/user_activity_tracker.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/api\/intelligence_receiver.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Controllers\/DashboardController.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Http\/Request.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/SecurityManager.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/domains.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/auth.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/router.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Middleware\/AISecurityMiddleware.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/cron\/intelligence-hub-cron.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/admin\/includes\/project-selector.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/botshop\/includes\/project-selector.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/admin\/includes\/project-selector.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/api\/sse-proxy-HARDENED.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/api\/sse-proxy.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/QUICK_FIXES.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/auto-fix.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/services\/SecurityMonitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/app.php"
+            ],
+            "count": 38
+        },
+        "HTTP_USER_AGENT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/dashboard\/includes\/auth.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/dashboard\/logout.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/user_activity_tracker.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/historic\/v1_old\/scripts\/smart_kb_trigger.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/active\/harden-platform.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/smart_kb_trigger.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/user_activity_tracker.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Helpers\/SandboxHelper.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Http\/Request.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Logger.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Middleware\/AISecurityMiddleware.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Util\/Ids.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/ai-control.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat_stream.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/includes\/auth.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/logout.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/OLD_BUILD\/server_v2_complete.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/src\/Analytics\/SearchAnalytics.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/src\/Tools\/SemanticSearchTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/services\/RateLimiter.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/services\/SecurityMonitor.php"
+            ],
+            "count": 27
+        },
+        "PATH_INFO": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/api\/intelligence\/index.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/v1\/conversations-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/v1\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/v1\/events.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/v1\/messages.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/v1\/tool-calls.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/v1\/conversations-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/v1\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/v1\/events.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/v1\/messages.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/v1\/tool-calls.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/v1\/conversations-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/v1\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/v1\/events.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/v1\/messages.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/v1\/tool-calls.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/v1\/conversations-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/v1\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/v1\/events.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/v1\/messages.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/v1\/tool-calls.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/sse.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/router.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/intelligence\/index.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/intelligence\/index.php"
+            ],
+            "count": 25
+        },
+        "DB_PASS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/DBVIEWER.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/DBViewer.PHP",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/fix-test-environment.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-env-loading.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-orchestrator-unit.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/auto-sync-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/kb-auto-indexer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-scripts\/TEST_AND_ACTIVATE_ALL.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/auto-sync-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/kb-auto-indexer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/intelligence-hub\/src\/Config\/Connection.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-enterprise.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-v2.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/bin\/batch-7-diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/bin\/verify-schema.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/minimal-bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/lib\/Bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/config\/ai-agent-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/OLD_BUILD\/server.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/config\/database.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/src\/Database\/Connection.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/src\/Tools\/PasswordStorageTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scripts\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/database.php"
+            ],
+            "count": 24
+        },
+        "DB_NAME": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/DBVIEWER.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/DBViewer.PHP",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/fix-test-environment.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-env-loading.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-orchestrator-unit.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/auto-sync-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/kb-auto-indexer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/auto-sync-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/kb-auto-indexer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/intelligence-hub\/src\/Config\/Connection.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-enterprise.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-v2.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/bin\/batch-7-diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/bin\/verify-schema.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/minimal-bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/Integration\/DatabaseIntegrationTest.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/lib\/Bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/config\/ai-agent-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/OLD_BUILD\/server.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/config\/database.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-health-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scripts\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/database.php"
+            ],
+            "count": 24
+        },
+        "DB_HOST": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/DBVIEWER.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/DBViewer.PHP",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/fix-test-environment.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-env-loading.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-orchestrator-unit.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/auto-sync-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/kb-auto-indexer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/auto-sync-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/kb-auto-indexer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/intelligence-hub\/src\/Config\/Connection.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-enterprise.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-v2.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/bin\/batch-7-diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/bin\/verify-schema.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/minimal-bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/lib\/Bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/config\/ai-agent-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/OLD_BUILD\/server.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/config\/database.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-health-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scripts\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/database.php"
+            ],
+            "count": 22
+        },
+        "DB_USER": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/DBVIEWER.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/DBViewer.PHP",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/fix-test-environment.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-env-loading.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-orchestrator-unit.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/auto-sync-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/kb-auto-indexer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/auto-sync-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/kb-auto-indexer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/intelligence-hub\/src\/Config\/Connection.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-enterprise.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-v2.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/bin\/batch-7-diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/bin\/verify-schema.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/minimal-bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/lib\/Bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/config\/ai-agent-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/OLD_BUILD\/server.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/config\/database.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-health-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scripts\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/database.php"
+            ],
+            "count": 22
+        },
+        "HTTP_HOST": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/_archive\/2025-10-25\/old_files\/kb-dashboard-fixed.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/admin.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/admin.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/broadcast-to-copilots.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/tools\/invoke.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/tools\/ticket.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/lib\/Bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/mcp\/call.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/mcp\/events.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/mcp\/registry.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/cron\/intelligence-hub-cron.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/config\/session-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/server_v3.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/config\/multi-project-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/scripts\/production-completion.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/server_v3.php"
+            ],
+            "count": 19
+        },
+        "OPENAI_API_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-models.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/ui-tester.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/intelligence-hub\/src\/AI\/DecisionEngine.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/.env.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-enterprise.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-v2.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/setup_ai_agent.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/ops\/security-scanner.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/Unit\/AgentSmokeTest.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat_stream.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/frontend-tools\/scripts\/bot-page-tester.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/frontend-tools\/scripts\/gpt-vision-analyzer.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/frontend-tools\/scripts\/quick-page-audit.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/frontend-tools\/server\/sse-server.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/tools\/ai_agent_query.php"
+            ],
+            "count": 18
+        },
+        "METHOD": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/chat-unrestricted.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/knowledge.php"
+            ],
+            "count": 17
+        },
+        "JSON": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/claude-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/conversations.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/knowledge.php"
+            ],
+            "count": 16
+        },
+        "PHP_SELF": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/_kb\/api\/intelligence_distributor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/kb-readme-generator.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/kb-relationship-mapper.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/historic\/v1_old\/scripts\/smart_kb_trigger.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/utilities\/context-generator\/DocumentationScanner.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/kb-readme-generator.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/kb-relationship-mapper.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/smart_kb_trigger.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/api\/intelligence_distributor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/auth.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/sse.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/sync\/KBIndexHandler.php"
+            ],
+            "count": 13
+        },
+        "HTTP_X_API_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/_kb\/api\/intelligence_receiver.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/api\/agent_kb.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/api\/intelligence\/index.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/api\/intelligence_receiver.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/_scripts\/p0-critical-fixes.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/PATCH_auth_insert_line_828.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/agent_kb.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/intelligence\/index.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/lib\/Bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/server_v3.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/server_v3.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/agent_kb.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/intelligence\/index.php"
+            ],
+            "count": 13
+        },
+        "ANTHROPIC_API_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-models.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/.env.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-enterprise.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/claude-chat-unrestricted.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/simple-bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/neural-network.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat_stream.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/frontend-tools\/server\/sse-server.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/tools\/ai_agent_query.php"
+            ],
+            "count": 11
+        },
+        "HTTPS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/ops\/security-scanner.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/admin.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/tools\/ticket.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/mcp\/events.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/_archived\/test-scripts\/test-diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/_archived\/test-scripts\/test-login.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/config\/session-config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/server_v3.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/scripts\/production-completion.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/server_v3.php"
+            ],
+            "count": 11
+        },
+        "MCP_API_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/v1\/chat\/completions.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/clear_cache.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/debug_auth.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-health-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-server-wrapper.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/test_load.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/test_mcp_context.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/mcp-server-wrapper.js"
+            ],
+            "count": 8
+        },
+        "HTTP_X_FORWARDED_FOR": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/dashboard\/includes\/functions.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Http\/Request.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-enterprise.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Util\/RateLimit.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/ai-chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/includes\/functions.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/ai-chat.php"
+            ],
+            "count": 7
+        },
+        "SCRIPT_NAME": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/historic\/v1_old\/scripts\/kb_content_analyzer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/kb_content_analyzer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/tools\/platform-security-audit.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Instrumentation\/RequestMetrics.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/server_v3.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/QUICK_FIXES.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/server_v3.php"
+            ],
+            "count": 7
+        },
+        "HTTP_AUTHORIZATION": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-enterprise.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/auth.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/minimal-bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/v1\/chat\/completions.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/lib\/Bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/server_v3.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/server_v3.php"
+            ],
+            "count": 7
+        },
+        "REDIS_HOST": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/fix-test-environment.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/config\/redis.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/bin\/batch-7-diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/config\/redis.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/OLD_BUILD\/server.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/scripts\/performance_stats.php"
+            ],
+            "count": 6
+        },
+        "REDIS_PORT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/fix-test-environment.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/config\/redis.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/bin\/batch-7-diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/config\/redis.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/OLD_BUILD\/server.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/scripts\/performance_stats.php"
+            ],
+            "count": 6
+        },
+        "SCRIPT_FILENAME": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/utilities\/context-generator\/DatabaseMCPTools.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/_archived\/test-scripts\/test-diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/DatabaseTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/HttpTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/LogsTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/RedisTool.php"
+            ],
+            "count": 6
+        },
+        "SERVER_SOFTWARE": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/ops\/system-doctor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/admin.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/metrics-simple.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/metrics.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/_archived\/test-scripts\/test-diagnostic.php"
+            ],
+            "count": 6
+        },
+        "MYSQL_HOST": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/fix-test-environment.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-env-loading.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/neural-network.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/Unit\/SanityTest.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/bootstrap.php"
+            ],
+            "count": 5
+        },
+        "MYSQL_USER": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/fix-test-environment.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-env-loading.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/bin\/verify-phpunit-env.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/neural-network.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/bootstrap.php"
+            ],
+            "count": 5
+        },
+        "CIS_API_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/_kb\/api\/intelligence_distributor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/_kb\/lib\/CronClient.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/_kb\/scripts\/fetch_cis_cron_schedule.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/api\/intelligence_distributor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/lib\/CronClient.php"
+            ],
+            "count": 5
+        },
+        "HTTP_ORIGIN": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/_scripts\/p0-critical-fixes.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/PATCH_cors_replace_line_122.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Middleware\/AISecurityMiddleware.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/bootstrap.php"
+            ],
+            "count": 5
+        },
+        "WORKSPACE_ROOT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-server-wrapper.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/server_v3.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/test_mcp_context.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/mcp-server-wrapper.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/server_v3.php"
+            ],
+            "count": 5
+        },
+        "DB_PORT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/fix-test-environment.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/minimal-bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/config\/database.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/database.php"
+            ],
+            "count": 4
+        },
+        "HTTP_CLIENT_IP": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/dashboard\/includes\/functions.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Http\/Request.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Util\/RateLimit.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/includes\/functions.php"
+            ],
+            "count": 4
+        },
+        "APP_PATH": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/code_quality_scorer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/historic\/v1_old\/scripts\/enhanced_security_scanner.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/code_quality_scorer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/enhanced_security_scanner.php"
+            ],
+            "count": 4
+        },
+        "KB_PATH": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/code_quality_scorer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/historic\/v1_old\/scripts\/enhanced_security_scanner.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/code_quality_scorer.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/enhanced_security_scanner.php"
+            ],
+            "count": 4
+        },
+        "CONTENT_TYPE": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Http\/Request.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/dispatcher.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/test_conversation_api.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/test_memory_system.php"
+            ],
+            "count": 4
+        },
+        "APP_ENV": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/MonitoringService.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/intelligence-hub\/config\/bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/diagnostic.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/Unit\/SanityTest.php"
+            ],
+            "count": 4
+        },
+        "API_KEYS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/_scripts\/p0-critical-fixes.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/PATCH_auth_insert_line_828.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/auth.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/minimal-bootstrap.php"
+            ],
+            "count": 4
+        },
+        "HTTP_X_HEALTH_TOKEN": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/health.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/health.php"
+            ],
+            "count": 4
+        },
+        "ACTION": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/knowledge.php"
+            ],
+            "count": 4
+        },
+        "DOCUMENT_ID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/knowledge.php"
+            ],
+            "count": 4
+        },
+        "LIMIT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/knowledge.php"
+            ],
+            "count": 4
+        },
+        "OFFSET": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/agent\/api\/knowledge.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent_dev\/api\/knowledge.php"
+            ],
+            "count": 4
+        },
+        "MYSQL_PASSWORD": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/fix-test-environment.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-env-loading.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/neural-network.js"
+            ],
+            "count": 3
+        },
+        "MYSQL_DATABASE": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/fix-test-environment.sh",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-env-loading.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/neural-network.js"
+            ],
+            "count": 3
+        },
+        "HTTP_X_AGENT_ID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/api\/agent_kb.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/api\/agent_kb.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/api\/agent_kb.php"
+            ],
+            "count": 3
+        },
+        "DB_PASSWORD": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/app.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-health-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/app.php"
+            ],
+            "count": 3
+        },
+        "CLOUDWAYS_EMAIL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/database-analysis\/DATABASE_COMPLETE_SCHEMA.json",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/services\/cloudways_cron_api.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/services\/cloudways_cron_api.php"
+            ],
+            "count": 3
+        },
+        "CLOUDWAYS_API_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/database-analysis\/DATABASE_COMPLETE_SCHEMA.json",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/services\/cloudways_cron_api.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/services\/cloudways_cron_api.php"
+            ],
+            "count": 3
+        },
+        "REQUEST_ID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Logger.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Util\/Ids.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/bootstrap.php"
+            ],
+            "count": 3
+        },
+        "API_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/Feature\/E2EConversationFlowTest.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/Performance\/PerformanceTest.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/clear_cache.php"
+            ],
+            "count": 3
+        },
+        "MCP_SERVER_URL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-health-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-server-wrapper.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/mcp-server-wrapper.js"
+            ],
+            "count": 3
+        },
+        "CURRENT_FILE": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/server_v3.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/test_mcp_context.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/server_v3.php"
+            ],
+            "count": 3
+        },
+        "TEST_DB_NAME": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/test-env-loading.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/bootstrap.php"
+            ],
+            "count": 2
+        },
+        "KB_API_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/_kb\/api\/intelligence_receiver.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/api\/intelligence_receiver.php"
+            ],
+            "count": 2
+        },
+        "HOME": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/_kb\/scripts\/ssh_session_detector.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/sync-copilot-conversations.php"
+            ],
+            "count": 2
+        },
+        "REDIS_PASSWORD": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/config\/redis.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/config\/redis.php"
+            ],
+            "count": 2
+        },
+        "REDIS_DATABASE": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/config\/redis.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/config\/redis.php"
+            ],
+            "count": 2
+        },
+        "SLACK_WEBHOOK": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/old-builds\/active\/scripts\/auto-sync-monitor.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_dev-tools\/scripts\/auto-sync-monitor.php"
+            ],
+            "count": 2
+        },
+        "VEND_API_TOKEN": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/intelligence\/files.json",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/intelligence-hub\/src\/Data\/VendService.php"
+            ],
+            "count": 2
+        },
+        "REQUEST_TIME_FLOAT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Intelligence\/SophisticatedVectorSearch.php"
+            ],
+            "count": 2
+        },
+        "CLAUDE_MODEL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/simple-bootstrap.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/neural-network.js"
+            ],
+            "count": 2
+        },
+        "HTTP_X_CSRF_TOKEN": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/auth.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/cron\/smart-cron\/core\/CsrfProtection.php"
+            ],
+            "count": 2
+        },
+        "API_URL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/Feature\/E2EConversationFlowTest.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/Performance\/PerformanceTest.php"
+            ],
+            "count": 2
+        },
+        "AI_DEFAULT_UNIT_ID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat_stream.php"
+            ],
+            "count": 2
+        },
+        "AI_DEFAULT_PROJECT_ID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat_stream.php"
+            ],
+            "count": 2
+        },
+        "AI_DEFAULT_BOT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat_stream.php"
+            ],
+            "count": 2
+        },
+        "AI_AGENT_DEFAULT_SYSTEM": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/chat_stream.php"
+            ],
+            "count": 2
+        },
+        "MCP_AUTH_TOKEN": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/tools\/mcp_config.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/tools\/mcp_proxy.php"
+            ],
+            "count": 2
+        },
+        "PROFILE_ENCRYPTION_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/frontend-tools\/lib\/profile-manager.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/frontend-tools\/scripts\/auth-manager.js"
+            ],
+            "count": 2
+        },
+        "DB_CHARSET": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/config\/database.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/database.php"
+            ],
+            "count": 2
+        },
+        "PROJECT_ID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-server-wrapper.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/mcp-server-wrapper.js"
+            ],
+            "count": 2
+        },
+        "BUSINESS_UNIT_ID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-server-wrapper.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/mcp-server-wrapper.js"
+            ],
+            "count": 2
+        },
+        "ENABLE_CONVERSATION_CONTEXT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-server-wrapper.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/mcp-server-wrapper.js"
+            ],
+            "count": 2
+        },
+        "AUTO_RETRIEVE_CONTEXT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-server-wrapper.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/mcp-server-wrapper.js"
+            ],
+            "count": 2
+        },
+        "CONTEXT_LIMIT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/mcp-server-wrapper.js",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/mcp-server-wrapper.js"
+            ],
+            "count": 2
+        },
+        "HTTP_X_WORKSPACE_ROOT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/server_v3.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/server_v3.php"
+            ],
+            "count": 2
+        },
+        "HTTP_X_CURRENT_FILE": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/server_v3.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/tom\/server_v3.php"
+            ],
+            "count": 2
+        },
+        "CREDENTIAL_ENCRYPTION_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/src\/Database\/Connection.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/src\/Tools\/PasswordStorageTool.php"
+            ],
+            "count": 2
+        },
+        "APP_DEBUG": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/DatabaseTool.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scanner\/api\/HttpTool.php"
+            ],
+            "count": 2
+        },
+        "AI_AGENT_API_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/services\/AIAgentClient.php",
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/private_html\/backups\/security-backup-20251027-050744\/services\/AIAgentClient.php"
+            ],
+            "count": 2
+        },
+        "XDEBUG_MODE": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/XdebugDriver.php"
+            ],
+            "count": 1
+        },
+        "MYSQL_PORT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/fix-test-environment.sh"
+            ],
+            "count": 1
+        },
+        "APP_URL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_archived\/demo-test-debug\/run-phase-c-tests.php"
+            ],
+            "count": 1
+        },
+        "USER": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_automation\/utilities\/context-generator\/DatabaseIntelligence.php"
+            ],
+            "count": 1
+        },
+        "CI": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/audits\/tool_audit_data.json"
+            ],
+            "count": 1
+        },
+        "LH_FPS_TEST": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/audits\/tool_audit_data.json"
+            ],
+            "count": 1
+        },
+        "COLUMNS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/audits\/tool_audit_data.json"
+            ],
+            "count": 1
+        },
+        "NODE_DEBUG": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/audits\/tool_audit_data.json"
+            ],
+            "count": 1
+        },
+        "VEND_DOMAIN_PREFIX": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/_kb\/intelligence\/files.json"
+            ],
+            "count": 1
+        },
+        "SENTRY_ENABLED": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/MonitoringService.php"
+            ],
+            "count": 1
+        },
+        "SENTRY_DSN": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/MonitoringService.php"
+            ],
+            "count": 1
+        },
+        "SENTRY_TRACES_SAMPLE_RATE": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/MonitoringService.php"
+            ],
+            "count": 1
+        },
+        "SENTRY_PROFILES_SAMPLE_RATE": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/MonitoringService.php"
+            ],
+            "count": 1
+        },
+        "NOTIFICATION_EMAIL_ENABLED": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "SMTP_HOST": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "SMTP_PORT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "SMTP_USER": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "SMTP_PASS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "SMTP_FROM_EMAIL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "SMTP_FROM_NAME": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "NOTIFICATION_EMAIL_RECIPIENTS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "NOTIFICATION_SLACK_ENABLED": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "SLACK_WEBHOOK_URL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "SLACK_CHANNEL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "SLACK_USERNAME": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "SLACK_ICON": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "NOTIFICATION_DISCORD_ENABLED": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "DISCORD_WEBHOOK_URL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "DISCORD_USERNAME": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "NOTIFICATION_SMS_ENABLED": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "TWILIO_ACCOUNT_SID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "TWILIO_AUTH_TOKEN": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "TWILIO_FROM_NUMBER": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "NOTIFICATION_SMS_RECIPIENTS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "NOTIFICATION_WEBHOOK_ENABLED": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "NOTIFICATION_WEBHOOK_URLS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/bot-deployment\/src\/Services\/NotificationService.php"
+            ],
+            "count": 1
+        },
+        "VEND_API_URL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/intelligence-hub\/src\/Data\/VendService.php"
+            ],
+            "count": 1
+        },
+        "LOG_PATH": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/intelligence-hub\/src\/Services\/Logger.php"
+            ],
+            "count": 1
+        },
+        "ADMIN_SSE_TOKEN": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/admin\/traffic\/live.php"
+            ],
+            "count": 1
+        },
+        "OPENAI_MODEL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/api\/chat-v2.php"
+            ],
+            "count": 1
+        },
+        "TOOL_PARAMETERS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/ops\/repo-cleaner.php"
+            ],
+            "count": 1
+        },
+        "HTTP_X_FORWARDED_PROTO": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/ops\/security-scanner.php"
+            ],
+            "count": 1
+        },
+        "ANTHROPIC_MODEL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/agent\/api\/claude-chat-unrestricted.php"
+            ],
+            "count": 1
+        },
+        "HTTP_X_FRAME_OPTIONS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/admin.php"
+            ],
+            "count": 1
+        },
+        "HTTP_X_CONTENT_TYPE_OPTIONS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/admin.php"
+            ],
+            "count": 1
+        },
+        "HTTP_STRICT_TRANSPORT_SECURITY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/admin.php"
+            ],
+            "count": 1
+        },
+        "HTTP_X_IDEMPOTENCY_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/auth.php"
+            ],
+            "count": 1
+        },
+        "HTTP_LAST_EVENT_ID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/public\/api\/sse.php"
+            ],
+            "count": 1
+        },
+        "NEURO_SLACK_ALERT_WEBHOOK": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Core\/HandlerPlugins\/AlertSlackPlugin.php"
+            ],
+            "count": 1
+        },
+        "CORRELATION_ID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Instrumentation\/RequestMetrics.php"
+            ],
+            "count": 1
+        },
+        "SYS_MAX_NETWORK_BPS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Intelligence\/EnterprisePerformanceMonitor.php"
+            ],
+            "count": 1
+        },
+        "IP_HASH_SALT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Middleware\/AISecurityMiddleware.php"
+            ],
+            "count": 1
+        },
+        "HTTP_X_INTERNAL_CALL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/Util\/RateLimit.php"
+            ],
+            "count": 1
+        },
+        "REDIS_URL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/src\/neural-network.js"
+            ],
+            "count": 1
+        },
+        "TEST_API_BASE_URL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/Integration\/ConversationApiIntegrationTest.php"
+            ],
+            "count": 1
+        },
+        "TEST_API_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/Integration\/ConversationApiIntegrationTest.php"
+            ],
+            "count": 1
+        },
+        "USE_TEST_TABLES": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/Integration\/DatabaseIntegrationTest.php"
+            ],
+            "count": 1
+        },
+        "REDIS_PREFIX": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/ai-agent\/tests\/bootstrap.php"
+            ],
+            "count": 1
+        },
+        "AI_UPLOAD_MAX_BYTES": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/upload.php"
+            ],
+            "count": 1
+        },
+        "AI_UPLOAD_ALLOWED": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/api\/upload.php"
+            ],
+            "count": 1
+        },
+        "AI_AGENT_REQUIRE_AUTH": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/lib\/Bootstrap.php"
+            ],
+            "count": 1
+        },
+        "DEVKIT_ENTERPRISE_URL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/ai-agent\/mcp\/registry.php"
+            ],
+            "count": 1
+        },
+        "HTTP_X_REQUESTED_WITH": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/cron\/smart-cron\/core\/Bootstrap.php"
+            ],
+            "count": 1
+        },
+        "ALERT_EMAIL_FROM": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/cron\/smart-cron\/core\/Config.php"
+            ],
+            "count": 1
+        },
+        "BUSINESS_HOURS_START": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/cron\/smart-cron\/core\/Config.php"
+            ],
+            "count": 1
+        },
+        "BUSINESS_HOURS_END": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/assets\/services\/cron\/smart-cron\/core\/Config.php"
+            ],
+            "count": 1
+        },
+        "SERVER_PROTOCOL": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/dashboard\/_archived\/test-scripts\/test-login.php"
+            ],
+            "count": 1
+        },
+        "GPT_API_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/frontend-tools\/lib\/reporter.js"
+            ],
+            "count": 1
+        },
+        "INTELLIGENCE_API_KEY": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/frontend-tools\/server\/sse-server.js"
+            ],
+            "count": 1
+        },
+        "VAR_NAME": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/analyze-env-vars.php"
+            ],
+            "count": 1
+        },
+        "APP_TIMEZONE": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/bootstrap.php"
+            ],
+            "count": 1
+        },
+        "MCP_SERVER_ID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/detect_context.php"
+            ],
+            "count": 1
+        },
+        "MCP_UNIT_ID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/detect_context.php"
+            ],
+            "count": 1
+        },
+        "MCP_PROJECT_ID": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/detect_context.php"
+            ],
+            "count": 1
+        },
+        "MCP_PROJECT_NAME": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/detect_context.php"
+            ],
+            "count": 1
+        },
+        "REDIS_TIMEOUT": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/mcp\/scripts\/performance_stats.php"
+            ],
+            "count": 1
+        },
+        "CIS_DB_HOST": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scripts\/bootstrap.php"
+            ],
+            "count": 1
+        },
+        "CIS_DB_NAME": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scripts\/bootstrap.php"
+            ],
+            "count": 1
+        },
+        "CIS_DB_USER": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scripts\/bootstrap.php"
+            ],
+            "count": 1
+        },
+        "CIS_DB_PASS": {
+            "files": [
+                "\/home\/129337.cloudwaysapps.com\/hdgwrzntwa\/public_html\/scripts\/bootstrap.php"
+            ],
+            "count": 1
+        }
+    }
+}

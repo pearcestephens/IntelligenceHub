@@ -1,25 +1,33 @@
 {
   "mcpServers": {
-    "intelligence-hub": {
-      "url": "https://gpt.ecigdis.co.nz/mcp/server_v3.php?action=rpc",
-      "description": "Ecigdis Intelligence Hub - Complete system knowledge and context",
-      "transport": {
-        "type": "http",
-        "method": "POST"
+    "intelligence-hub-v3": {
+      "command": "ssh",
+      "args": [
+        "master@main.cloudways",
+        "cd /home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/mcp && node mcp-server-wrapper.js"
+      ],
+      "env": {
+        "MCP_API_KEY": "31ce0106609a6c5bc4f7ece0deb2f764df90a06167bda83468883516302a6a35",
+        "PROJECT_ID": "2",
+        "BUSINESS_UNIT_ID": "2"
       },
-      "authentication": {
-        "type": "bearer",
-        "token": "${INTELLIGENCE_HUB_API_KEY}"
-      },
+      "description": "IntelligenceHub V3 with GPT-5 AI Agent, RAG, semantic search (8,645 files), and streaming",
+      "description": "IntelligenceHub V3 with GPT-5 AI Agent, RAG, semantic search (8,645 files), and streaming",
       "metadata": {
         "version": "3.0.0",
+        "ai_agent": {
+          "model": "gpt-5-chat-latest",
+          "features": ["RAG", "semantic_search", "conversation_memory", "streaming", "knowledge_base"]
+        },
         "capabilities": [
+          "ai_agent.query",
+          "semantic_search",
           "database_queries",
           "file_operations",
           "knowledge_base_search",
           "context_memory",
-          "satellite_coordination",
-          "business_intelligence"
+          "grep_search",
+          "file_search"
         ],
         "satellites": [
           {

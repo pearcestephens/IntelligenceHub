@@ -1,0 +1,42 @@
+[Unit]
+Description=Intelligence Hub MCP Server v3.0
+Documentation=https://gpt.ecigdis.co.nz/docs/mcp
+After=network.target mysql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=129337
+Group=129337
+WorkingDirectory=/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/mcp
+
+# Keep MCP server running via PHP-FPM (web-based, always available)
+# The actual server is server_v3.php which runs via Nginx/Apache
+# This service monitors and ensures the wrapper is ready
+
+# Health check script that runs continuously
+ExecStart=/usr/bin/php /home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/mcp/mcp-health-monitor.php
+
+# Restart policy - always restart if it crashes
+Restart=always
+RestartSec=10
+StartLimitInterval=0
+
+# Resource limits
+MemoryLimit=512M
+CPUQuota=50%
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=mcp-server
+
+# Environment variables
+Environment="MCP_SERVER_URL=https://gpt.ecigdis.co.nz/mcp/server_v3.php"
+Environment="MCP_API_KEY=31ce0106609a6c5bc4f7ece0deb2f764df90a06167bda83468883516302a6a35"
+Environment="PROJECT_ID=2"
+Environment="BUSINESS_UNIT_ID=2"
+Environment="WORKSPACE_ROOT=/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html"
+
+[Install]
+WantedBy=multi-user.target

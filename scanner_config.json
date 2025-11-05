@@ -1,0 +1,44 @@
+{
+  "name": "GPT Server Intelligence Hub Scanner",
+  "version": "1.0.0",
+  "server": "hdgwrzntwa",
+  "base_path": "/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html",
+  "scan_patterns": {
+    "include": [
+      "**/*.php",
+      "**/*.js",
+      "**/*.json",
+      "**/*.md",
+      "**/*.sql",
+      "**/*.sh",
+      "**/*.txt",
+      "**/*.html",
+      "**/*.css",
+      "**/*.py"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/vendor/**",
+      "**/.git/**",
+      "**/.vscode/**",
+      "**/cache/**",
+      "**/logs/**",
+      "**/.backups/**",
+      "**/tmp/**",
+      "**/temp/**"
+    ]
+  },
+  "indexing": {
+    "max_file_size_mb": 10,
+    "chunk_size": 1000,
+    "semantic_search": true,
+    "full_text_search": true,
+    "metadata_extraction": true
+  },
+  "output": {
+    "index_file": ".copilot/file_index.json",
+    "summary_file": ".copilot/server_summary.md",
+    "stats_file": ".copilot/scan_stats.json",
+    "structure_file": ".copilot/directory_structure.txt"
+  }
+}

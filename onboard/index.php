@@ -108,7 +108,7 @@ if (file_exists($stage_file)) {
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(circle at 20% 50%, rgba(37, 99, 235, 0.1) 0%, transparent 50%),
                 radial-gradient(circle at 80% 80%, rgba(8, 145, 178, 0.1) 0%, transparent 50%);
             pointer-events: none;
@@ -117,7 +117,7 @@ if (file_exists($stage_file)) {
         .container {
             background: white;
             border-radius: 24px;
-            box-shadow: 
+            box-shadow:
                 0 20px 70px rgba(0,0,0,0.3),
                 0 0 1px rgba(0,0,0,0.2);
             max-width: 900px;

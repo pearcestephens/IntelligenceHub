@@ -1,0 +1,3172 @@
+GPT Server Directory Structure
+===================================================
+
+├── .backups/
+│   └── .ai_agent_readyz.tmp.20251102_230226.bak
+├── .copilot/
+│   ├── EXAMPLES/
+│   │   ├── JSON_API_endpoint.php
+│   │   ├── PDO_prepared_statement.php
+│   │   └── POST_request_handler.php
+│   ├── PATTERNS.md
+│   ├── SECURITY.md
+│   ├── STANDARDS.md
+│   ├── file_index.json
+│   ├── scan_stats.json
+│   └── server_summary.md
+├── .env
+├── .env.example
+├── .git/
+│   ├── COMMIT_EDITMSG
+│   ├── FETCH_HEAD
+│   ├── HEAD
+│   ├── ORIG_HEAD
+│   ├── branches/
+│   ├── config
+│   ├── description
+│   ├── hooks/
+│   │   ├── applypatch-msg.sample
+│   │   ├── commit-msg.sample
+│   │   ├── fsmonitor-watchman.sample
+│   │   ├── post-update.sample
+│   │   ├── pre-applypatch.sample
+│   │   ├── pre-commit.sample
+│   │   ├── pre-merge-commit.sample
+│   │   ├── pre-push.sample
+│   │   ├── pre-rebase.sample
+│   │   ├── pre-receive.sample
+│   │   ├── prepare-commit-msg.sample
+│   │   ├── push-to-checkout.sample
+│   │   └── update.sample
+│   ├── index
+│   ├── info/
+│   │   └── exclude
+│   ├── logs/
+│   │   ├── HEAD
+│   │   └── refs/
+│   ├── objects/
+│   │   ├── 00/
+│   │   ├── 01/
+│   │   ├── 02/
+│   │   ├── 03/
+│   │   ├── 04/
+│   │   ├── 05/
+│   │   ├── 06/
+│   │   ├── 07/
+│   │   ├── 08/
+│   │   ├── 09/
+│   │   ├── 0a/
+│   │   ├── 0b/
+│   │   ├── 0c/
+│   │   ├── 0d/
+│   │   ├── 0e/
+│   │   ├── 0f/
+│   │   ├── 10/
+│   │   ├── 11/
+│   │   ├── 12/
+│   │   ├── 13/
+│   │   ├── 14/
+│   │   ├── 15/
+│   │   ├── 16/
+│   │   ├── 17/
+│   │   ├── 18/
+│   │   ├── 19/
+│   │   ├── 1a/
+│   │   ├── 1b/
+│   │   ├── 1c/
+│   │   ├── 1d/
+│   │   ├── 1e/
+│   │   ├── 1f/
+│   │   ├── 20/
+│   │   ├── 21/
+│   │   ├── 22/
+│   │   ├── 23/
+│   │   ├── 24/
+│   │   ├── 25/
+│   │   ├── 26/
+│   │   ├── 27/
+│   │   ├── 28/
+│   │   ├── 29/
+│   │   ├── 2a/
+│   │   ├── 2b/
+│   │   ├── 2c/
+│   │   ├── 2d/
+│   │   ├── 2e/
+│   │   ├── 2f/
+│   │   ├── 30/
+│   │   ├── 31/
+│   │   ├── 32/
+│   │   ├── 33/
+│   │   ├── 34/
+│   │   ├── 35/
+│   │   ├── 36/
+│   │   ├── 37/
+│   │   ├── 38/
+│   │   ├── 39/
+│   │   ├── 3a/
+│   │   ├── 3b/
+│   │   ├── 3c/
+│   │   ├── 3d/
+│   │   ├── 3e/
+│   │   ├── 3f/
+│   │   ├── 40/
+│   │   ├── 41/
+│   │   ├── 42/
+│   │   ├── 43/
+│   │   ├── 44/
+│   │   ├── 45/
+│   │   ├── 46/
+│   │   ├── 47/
+│   │   ├── 48/
+│   │   ├── 49/
+│   │   ├── 4a/
+│   │   ├── 4b/
+│   │   ├── 4c/
+│   │   ├── 4d/
+│   │   ├── 4e/
+│   │   ├── 4f/
+│   │   ├── 50/
+│   │   ├── 51/
+│   │   ├── 52/
+│   │   ├── 53/
+│   │   ├── 54/
+│   │   ├── 55/
+│   │   ├── 56/
+│   │   ├── 57/
+│   │   ├── 58/
+│   │   ├── 59/
+│   │   ├── 5a/
+│   │   ├── 5b/
+│   │   ├── 5c/
+│   │   ├── 5d/
+│   │   ├── 5e/
+│   │   ├── 5f/
+│   │   ├── 60/
+│   │   ├── 61/
+│   │   ├── 62/
+│   │   ├── 63/
+│   │   ├── 64/
+│   │   ├── 65/
+│   │   ├── 66/
+│   │   ├── 67/
+│   │   ├── 68/
+│   │   ├── 69/
+│   │   ├── 6a/
+│   │   ├── 6b/
+│   │   ├── 6c/
+│   │   ├── 6d/
+│   │   ├── 6e/
+│   │   ├── 6f/
+│   │   ├── 70/
+│   │   ├── 71/
+│   │   ├── 72/
+│   │   ├── 73/
+│   │   ├── 74/
+│   │   ├── 75/
+│   │   ├── 76/
+│   │   ├── 77/
+│   │   ├── 78/
+│   │   ├── 79/
+│   │   ├── 7a/
+│   │   ├── 7b/
+│   │   ├── 7c/
+│   │   ├── 7d/
+│   │   ├── 7e/
+│   │   ├── 7f/
+│   │   ├── 80/
+│   │   ├── 81/
+│   │   ├── 82/
+│   │   ├── 83/
+│   │   ├── 84/
+│   │   ├── 85/
+│   │   ├── 86/
+│   │   ├── 87/
+│   │   ├── 88/
+│   │   ├── 89/
+│   │   ├── 8a/
+│   │   ├── 8b/
+│   │   ├── 8c/
+│   │   ├── 8d/
+│   │   ├── 8e/
+│   │   ├── 8f/
+│   │   ├── 90/
+│   │   ├── 91/
+│   │   ├── 92/
+│   │   ├── 93/
+│   │   ├── 94/
+│   │   ├── 95/
+│   │   ├── 96/
+│   │   ├── 97/
+│   │   ├── 98/
+│   │   ├── 99/
+│   │   ├── 9a/
+│   │   ├── 9b/
+│   │   ├── 9c/
+│   │   ├── 9d/
+│   │   ├── 9e/
+│   │   ├── 9f/
+│   │   ├── a0/
+│   │   ├── a1/
+│   │   ├── a2/
+│   │   ├── a3/
+│   │   ├── a4/
+│   │   ├── a5/
+│   │   ├── a6/
+│   │   ├── a7/
+│   │   ├── a8/
+│   │   ├── a9/
+│   │   ├── aa/
+│   │   ├── ab/
+│   │   ├── ac/
+│   │   ├── ad/
+│   │   ├── ae/
+│   │   ├── af/
+│   │   ├── b0/
+│   │   ├── b1/
+│   │   ├── b2/
+│   │   ├── b3/
+│   │   ├── b4/
+│   │   ├── b5/
+│   │   ├── b6/
+│   │   ├── b7/
+│   │   ├── b8/
+│   │   ├── b9/
+│   │   ├── ba/
+│   │   ├── bb/
+│   │   ├── bc/
+│   │   ├── bd/
+│   │   ├── be/
+│   │   ├── bf/
+│   │   ├── c0/
+│   │   ├── c1/
+│   │   ├── c2/
+│   │   ├── c3/
+│   │   ├── c4/
+│   │   ├── c5/
+│   │   ├── c6/
+│   │   ├── c7/
+│   │   ├── c8/
+│   │   ├── c9/
+│   │   ├── ca/
+│   │   ├── cb/
+│   │   ├── cc/
+│   │   ├── cd/
+│   │   ├── ce/
+│   │   ├── cf/
+│   │   ├── d0/
+│   │   ├── d1/
+│   │   ├── d2/
+│   │   ├── d3/
+│   │   ├── d4/
+│   │   ├── d5/
+│   │   ├── d6/
+│   │   ├── d7/
+│   │   ├── d8/
+│   │   ├── d9/
+│   │   ├── da/
+│   │   ├── db/
+│   │   ├── dc/
+│   │   ├── dd/
+│   │   ├── de/
+│   │   ├── df/
+│   │   ├── e0/
+│   │   ├── e1/
+│   │   ├── e2/
+│   │   ├── e3/
+│   │   ├── e4/
+│   │   ├── e5/
+│   │   ├── e6/
+│   │   ├── e7/
+│   │   ├── e8/
+│   │   ├── e9/
+│   │   ├── ea/
+│   │   ├── eb/
+│   │   ├── ec/
+│   │   ├── ed/
+│   │   ├── ee/
+│   │   ├── ef/
+│   │   ├── f0/
+│   │   ├── f1/
+│   │   ├── f2/
+│   │   ├── f3/
+│   │   ├── f4/
+│   │   ├── f5/
+│   │   ├── f6/
+│   │   ├── f7/
+│   │   ├── f8/
+│   │   ├── f9/
+│   │   ├── fa/
+│   │   ├── fb/
+│   │   ├── fc/
+│   │   ├── fd/
+│   │   ├── fe/
+│   │   ├── ff/
+│   │   ├── info/
+│   │   └── pack/
+│   └── refs/
+│       ├── heads/
+│       ├── remotes/
+│       └── tags/
+├── .github/
+│   ├── MASTER_SYSTEM_GUIDE.md
+│   └── copilot-instructions.md
+├── .gitignore
+├── .htaccess
+├── .vscode/
+│   ├── BOTS_GUIDE.md
+│   ├── MASTER_SYSTEM_GUIDE.md
+│   ├── MCP_TOOLS_REFERENCE.md
+│   ├── bot-preload-config.json
+│   ├── mcp-context.json
+│   ├── mcp.json
+│   ├── settings.json
+│   └── tasks.json
+├── AI_AGENT_QUICK_START.txt
+├── AI_AGENT_SETUP_COMPLETE.md
+├── COMPLETE_SETUP_STATUS.md
+├── COMPLETE_TOOLS_QUICK_REFERENCE.md
+├── DASHBOARD_ACCESS_GUIDE.txt
+├── DASHBOARD_READY.txt
+├── DASHBOARD_READY_FOR_USE.txt
+├── DASHBOARD_URLS_SUMMARY.txt
+├── DBVIEWER.php
+├── DBViewer.PHP
+├── DOMAIN_CONFIRMATION.txt
+├── FRONTEND_TOOLS_BREAKDOWN.md
+├── INDEX.txt
+├── INSTRUCTION_FILES_QUICK_REF.md
+├── INSTRUCTION_FILES_VERIFICATION_COMPLETE.md
+├── INTELLIGENCE_COMPLETE_AUDIT/
+│   ├── 00_SYSTEM_ARCHITECTURE_COMPLETE.md
+│   ├── 01_KB_FOLDERS_SETUP_COMPLETE.md
+│   └── 02_NEW_DEVELOPER_EDUCATION_GUIDE.md
+├── INTELLIGENCE_MANAGEMENT_DOCS/
+│   ├── CHANGE_LOGS/
+│   │   └── 2025-10-24_changes.md
+│   ├── CREATE TABLE `activity_logs` (.sql
+│   ├── CRON_AND_AUTOMATION.md
+│   ├── DATABASE_SCHEMAS/
+│   │   ├── DATABASE_INVENTORY.md
+│   │   ├── all_databases.json
+│   │   ├── all_schemas.json
+│   │   ├── cis_schema.json
+│   │   ├── cis_schema.md
+│   │   ├── dvaxgvsxmz_schema.json
+│   │   ├── intelligence_hub_schema.json
+│   │   ├── intelligence_hub_schema.md
+│   │   ├── vape_shed_schema.json
+│   │   ├── vape_shed_schema.md
+│   │   ├── wiki_schema.json
+│   │   └── wiki_schema.md
+│   ├── IGNORE_RULES_DOCUMENTATION.md
+│   ├── INTELLIGENCE_SERVER_MASTER_GUIDE.md
+│   ├── INTELLIGENCE_SUMMARIES/
+│   │   ├── 2025-10-24_files.json.gz
+│   │   ├── 2025-10-24_summary.json
+│   │   └── latest.json
+│   ├── MASTER_INDEX.md
+│   ├── PERFORMANCE_TRENDS/
+│   │   └── 2025-10-24_bottlenecks.md
+│   ├── README.md
+│   ├── SECURITY_REPORTS/
+│   │   └── 2025-10-24_vulnerabilities.md
+│   └── SYSTEM_KNOWLEDGE_BASE.md
+├── MASTER_SYSTEM_GUIDE.md
+├── MCP_HUB_INTEGRATION_COMPLETE.txt
+├── MCP_QUICK_REFERENCE.md
+├── MCP_ROUTING.md
+├── MCP_SETUP_COMPLETE.md
+├── MCP_SUCCESS_REPORT.md
+├── MCP_TOOLS_TEST_RESULTS.md
+├── PHASE1_MIGRATION.sql
+├── PHASE1_STEP5_COMPLETE.txt
+├── PHASE2_SCHEMA_MIGRATION.sql
+├── PHASE3_STREAMING_STORAGE_MIGRATION.sql
+├── PHASE3_TOOLBOX_FEATURES_MIGRATION.sql
+├── PRODUCTION_READY.md
+├── QUICK_REFERENCE.txt
+├── QUICK_REFERENCE_MEMORY.md
+├── README.md
+├── README_COMPLETION_SUMMARY.txt
+├── SETTINGS_COMPLETE.md
+├── START_HERE.txt
+├── STATUS_OVERVIEW.txt
+├── TOM/
+├── _archived/
+│   ├── ACHIEVEMENT_BADGE.txt
+│   ├── MULTI_DOMAIN_IMPLEMENTATION_BANNER.txt
+│   ├── backup-files/
+│   │   ├── _kb_tools_analyze-performance.php.backup.20251023_012505
+│   │   ├── _kb_tools_map-relationships.php.backup.20251023_012504
+│   │   ├── _kb_tools_verify-kb.php.backup.20251023_012504
+│   │   ├── analyze_noise_patterns.php.backup.20251023_012504
+│   │   ├── auto-sync-monitor.php.backup.20251023_012504
+│   │   ├── build-kb-html.php.backup.20251023_012503
+│   │   ├── check_table_structure.php.backup.20251023_012503
+│   │   ├── clean_db_update.php.backup.20251023_012504
+│   │   ├── cognitive_content_analyzer.php.backup.20251023_012505
+│   │   ├── comprehensive_md_scanner.php.backup.20251023_012504
+│   │   ├── copilot_activity_integration.php.backup.20251023_012503
+│   │   ├── create_kb_schema.php.backup.20251023_012505
+│   │   ├── detailed_noise_analysis.php.backup.20251023_012503
+│   │   ├── emergency_db_update.php.backup.20251023_012504
+│   │   ├── emergency_db_update_corrected.php.backup.20251023_012505
+│   │   ├── emergency_db_update_fixed.php.backup.20251023_012505
+│   │   ├── enhance_cognitive_schema.php.backup.20251023_012504
+│   │   ├── enhanced_kb_crawler.php.backup.20251023_012505
+│   │   ├── error_proof_content_analyzer.php.backup.20251023_012503
+│   │   ├── filtered_flawless_db_update.php.backup.20251023_012504
+│   │   ├── fix_database_encoding.php.backup.20251023_012504
+│   │   ├── flawless_content_analyzer.php.backup.20251023_012505
+│   │   ├── flawless_db_update.php.backup.20251023_012505
+│   │   ├── install-kb-smart-cron.php.backup.20251023_012503
+│   │   ├── kb-auto-indexer.php.backup.20251023_012505
+│   │   ├── kb-cleanup.php.backup.20251023_012505
+│   │   ├── kb-cli.php.backup.20251023_012506
+│   │   ├── kb-harvest.php.backup.20251023_012503
+│   │   ├── kb-indexer-cron.php.backup.20251023_012504
+│   │   ├── kb-readme-generator.php.backup.20251023_012506
+│   │   ├── kb-relationship-mapper.php.backup.20251023_012505
+│   │   ├── kb-sdk.php.backup.20251023_012506
+│   │   ├── kb_content_analyzer.php.backup.20251023_012503
+│   │   ├── kb_correlator.php.backup.20251023_012505
+│   │   ├── kb_crawler.php.backup.20251023_012504
+│   │   ├── kb_deployment_system.php.backup.20251023_012506
+│   │   ├── kb_intelligence_engine_v2.php.PRE_MIGRATION_20251026_031029
+│   │   ├── kb_md_collector.php.backup.20251023_012503
+│   │   ├── kb_multi_crawler.php.backup.20251023_012506
+│   │   ├── kb_priority_report.php.backup.20251023_012505
+│   │   ├── kb_proactive_indexer.php.backup.20251023_012503
+│   │   ├── kb_schema_enhance.php.backup.20251023_012506
+│   │   ├── kb_search_indexer.php.backup.20251023_012505
+│   │   ├── md_knowledge_consolidator.php.backup.20251023_012503
+│   │   ├── quality_control_system.php.backup.20251023_012506
+│   │   ├── simple_cognitive_analysis.php.backup.20251023_012505
+│   │   ├── simple_quality_control.php.backup.20251023_012506
+│   │   ├── simple_search_indexer.php.backup.20251023_012506
+│   │   ├── smart_kb_trigger.php.backup.20251023_012505
+│   │   ├── smart_md_scanner.php.backup.20251023_012504
+│   │   ├── standalone_auto_organizer.php.backup.20251023_012504
+│   │   ├── standalone_cognitive_analysis.php.backup.20251023_012504
+│   │   ├── status.php.backup.20251023_012503
+│   │   ├── super_tight_db_update.php.backup.20251023_012505
+│   │   ├── tasks.json.backup.20251028_134843
+│   │   ├── ultra_tight_db_update.php.backup.20251023_012503
+│   │   ├── ultra_tight_db_update.php.backup_20251023_041102
+│   │   ├── user_activity_tracker.php.backup.20251023_012504
+│   │   └── verify-kb.php.backup.20251023_012506
+│   ├── demo-test-debug/
+│   │   ├── .env.backup
+│   │   ├── .env.example
+│   │   ├── .env.test.example
+│   │   ├── .tonic_example.js
+│   │   ├── DynamicResourceManager.php.backup
+│   │   ├── XdebugDriver.php
+│   │   ├── XdebugNotAvailableException.php
+│   │   ├── XdebugNotEnabledException.php
+│   │   ├── add-tables-now.sh.backup
+│   │   ├── admin.php.backup
+│   │   ├── ajax-debug.log
+│   │   ├── all-errors.test.ts
+│   │   ├── anyunknown.test.ts
+│   │   ├── app-init.test.js
+│   │   ├── app.js.backup
+│   │   ├── apply-fixes-and-test.php
+│   │   ├── apply-fixes-and-test.php.backup
+│   │   ├── array.test.ts
+│   │   ├── assignability.test.ts
+│   │   ├── async-parsing.test.ts
+│   │   ├── async-refinements.test.ts
+│   │   ├── auth.php.backup
+│   │   ├── auto-setup.php.backup
+│   │   ├── backend-tests-20251010_090319.log
+│   │   ├── base.test.ts
+│   │   ├── batch-5-gate-validation.php.backup
+│   │   ├── batch-6-gate-validation.php.backup
+│   │   ├── batch-6-tests.yml
+│   │   ├── batch-7-diagnostic.php.backup
+│   │   ├── be.test.ts
+│   │   ├── bigint.test.ts
+│   │   ├── bootstrap.php.backup
+│   │   ├── bot-management.php.backup
+│   │   ├── brand.test.ts
+│   │   ├── branded.test.ts
+│   │   ├── catch.test.ts
+│   │   ├── checks.test.ts
+│   │   ├── claude-chat-complex-20250927_121138.php.bak
+│   │   ├── coalesce.test.ts
+│   │   ├── coerce.test.ts
+│   │   ├── complex.test.ts
+│   │   ├── comprehensive_test.php
+│   │   ├── comprehensive_testing_suite.php
+│   │   ├── comprehensive_testing_suite.php.backup.20251023_012503
+│   │   ├── computed.test.ts
+│   │   ├── config.example.json
+│   │   ├── continuability.test.ts
+│   │   ├── core-tests.d.ts
+│   │   ├── core-tests.js
+│   │   ├── create-entity-finder-api.test.js
+│   │   ├── create-test-database.sh
+│   │   ├── create-test-database.sh.backup
+│   │   ├── csp_test.d.ts
+│   │   ├── csp_test.d.ts.map
+│   │   ├── csp_test.js
+│   │   ├── csp_test.js.map
+│   │   ├── csp_test.ts
+│   │   ├── custom.test.ts
+│   │   ├── date.test.ts
+│   │   ├── datetime.test.ts
+│   │   ├── db-tool.php.backup
+│   │   ├── debug-api.php
+│   │   ├── debug-claude.php
+│   │   ├── debug-crawler-system.sh
+│   │   ├── debug-tests.php
+│   │   ├── debug-tests.php.backup
+│   │   ├── debug.d.ts
+│   │   ├── debug.d.ts.map
+│   │   ├── debug.js
+│   │   ├── debug.js.map
+│   │   ├── debug.json
+│   │   ├── debug.ts
+│   │   ├── debugMeta.d.ts
+│   │   ├── debugMeta.d.ts.map
+│   │   ├── debugMeta.js
+│   │   ├── debugMeta.js.map
+│   │   ├── deepmasking.test.ts
+│   │   ├── default.test.ts
+│   │   ├── demoInMemoryOAuthProvider.d.ts
+│   │   ├── demoInMemoryOAuthProvider.d.ts.map
+│   │   ├── demoInMemoryOAuthProvider.js
+│   │   ├── demoInMemoryOAuthProvider.js.map
+│   │   ├── description.test.ts
+│   │   ├── dev-check.php.backup
+│   │   ├── diagnostic.php.backup
+│   │   ├── direct-test.php
+│   │   ├── direct-test.php.backup
+│   │   ├── discriminated-unions.test.ts
+│   │   ├── dump-tool-catalog.php.backup
+│   │   ├── emergency-security-fix.sh.backup
+│   │   ├── en.test.ts
+│   │   ├── endpoint-tester.html
+│   │   ├── entities.test.js
+│   │   ├── enum.test.ts
+│   │   ├── error-utils.test.ts
+│   │   ├── error.test.ts
+│   │   ├── evaluator_test.d.ts
+│   │   ├── evaluator_test.d.ts.map
+│   │   ├── evaluator_test.js
+│   │   ├── evaluator_test.js.map
+│   │   ├── evaluator_test.ts
+│   │   ├── example.html
+│   │   ├── example.js
+│   │   ├── exit_code_test.sh
+│   │   ├── file.test.ts
+│   │   ├── finding_test.d.ts
+│   │   ├── finding_test.d.ts.map
+│   │   ├── finding_test.js
+│   │   ├── finding_test.js.map
+│   │   ├── finding_test.ts
+│   │   ├── firstparty.test.ts
+│   │   ├── firstpartyschematypes.test.ts
+│   │   ├── fix-memory-tests.php
+│   │   ├── fix-memory-tests.php.backup
+│   │   ├── fix-test-environment.sh
+│   │   ├── fix-test-environment.sh.backup
+│   │   ├── fix-test-schema.php
+│   │   ├── fix-test-schema.php.backup
+│   │   ├── frontend-test-suite.html
+│   │   ├── function.test.ts
+│   │   ├── functions.test.ts
+│   │   ├── generics.test.ts
+│   │   ├── go.sh.backup
+│   │   ├── health-check.php.backup
+│   │   ├── health-simple.php.backup
+│   │   ├── health.php.backup
+│   │   ├── index.html.backup
+│   │   ├── index.test.js
+│   │   ├── index.test.js.snap
+│   │   ├── index.test.ts
+│   │   ├── inspector-issueAdded-types-test.js
+│   │   ├── installability-errors-test.js
+│   │   ├── instanceof.test.ts
+│   │   ├── integration-tests.log
+│   │   ├── intersection.test.ts
+│   │   ├── json.test.ts
+│   │   ├── kb-indexer-cron.php.backup
+│   │   ├── kb-test-search.php
+│   │   ├── kb-test-search.php.backup
+│   │   ├── kb-test-search.php.backup.20251023_012506
+│   │   ├── kb_comprehensive_test.php
+│   │   ├── kb_comprehensive_test.php.backup.20251023_012505
+│   │   ├── kb_corrected_comprehensive_test.php
+│   │   ├── kb_corrected_comprehensive_test.php.backup.20251023_012506
+│   │   ├── language-server.test.ts
+│   │   ├── latest.json
+│   │   ├── lazy.test.ts
+│   │   ├── lighthouse_checks_test.d.ts
+│   │   ├── lighthouse_checks_test.d.ts.map
+│   │   ├── lighthouse_checks_test.js
+│   │   ├── lighthouse_checks_test.js.map
+│   │   ├── lighthouse_checks_test.ts
+│   │   ├── literal.test.ts
+│   │   ├── live-mode-test-results.json
+│   │   ├── make-executable.sh.backup
+│   │   ├── manual_watch_test.sh
+│   │   ├── map.test.ts
+│   │   ├── masking.test.ts
+│   │   ├── metrics-simple.php.backup
+│   │   ├── metrics.php.backup
+│   │   ├── migrate-fixed.sh.backup
+│   │   ├── migrate-phase-c.sh.backup
+│   │   ├── minimal-bootstrap.php.backup
+│   │   ├── mocker.test.ts
+│   │   ├── module-test.d.ts
+│   │   ├── module-test.js
+│   │   ├── module-test.js.map
+│   │   ├── nan.test.ts
+│   │   ├── nativeEnum.test.ts
+│   │   ├── nested-refine.test.ts
+│   │   ├── neural-intelligence-demo.html
+│   │   ├── neural_demo_data.json
+│   │   ├── nonoptional.test.ts
+│   │   ├── nullable.test.ts
+│   │   ├── number.test.ts
+│   │   ├── object-augmentation.test.ts
+│   │   ├── object-in-es5-env.test.ts
+│   │   ├── object.test.ts
+│   │   ├── oopif-iframe-test-audit.d.ts
+│   │   ├── oopif-iframe-test-audit.js
+│   │   ├── optional.test.ts
+│   │   ├── parseUtil.test.ts
+│   │   ├── parser.test.ts
+│   │   ├── parser_checks_test.d.ts
+│   │   ├── parser_checks_test.d.ts.map
+│   │   ├── parser_checks_test.js
+│   │   ├── parser_checks_test.js.map
+│   │   ├── parser_checks_test.ts
+│   │   ├── parser_test.d.ts
+│   │   ├── parser_test.d.ts.map
+│   │   ├── parser_test.js
+│   │   ├── parser_test.js.map
+│   │   ├── parser_test.ts
+│   │   ├── partial.test.ts
+│   │   ├── partials.test.ts
+│   │   ├── perf_latest.log
+│   │   ├── performance-tester.php
+│   │   ├── phpcbf_test.sh
+│   │   ├── phpcs_test.sh
+│   │   ├── pickomit.test.ts
+│   │   ├── pipe.test.ts
+│   │   ├── pipeline.test.ts
+│   │   ├── prefault.test.ts
+│   │   ├── preflight-check.php.backup
+│   │   ├── prepare-tests
+│   │   ├── preprocess.test.ts
+│   │   ├── primitive.test.ts
+│   │   ├── process_content_remote.php.backup
+│   │   ├── promise.test.ts
+│   │   ├── protocol-tests-proxy-api.d.ts
+│   │   ├── prototypes.test.ts
+│   │   ├── public_debug-api.php
+│   │   ├── public_test-db.php
+│   │   ├── public_test-simple.php
+│   │   ├── puppeteer_tester.js
+│   │   ├── quick-fix-db-methods.php.backup
+│   │   ├── quick-migrate.sh.backup
+│   │   ├── quick-page-audit.test.js
+│   │   ├── quick-test.php
+│   │   ├── quick-test.php.backup
+│   │   ├── quick_neural_test.php
+│   │   ├── quick_test.php
+│   │   ├── readonly.test.ts
+│   │   ├── realtime-metrics.php.backup
+│   │   ├── record.test.ts
+│   │   ├── recursive-types.test.ts
+│   │   ├── recursive.test.ts
+│   │   ├── refine.test.ts
+│   │   ├── registries.test.ts
+│   │   ├── report-assert-test.d.ts
+│   │   ├── report-assert-test.js
+│   │   ├── report-assert-test.js.snap
+│   │   ├── ru.test.ts
+│   │   ├── run-all-tests.php
+│   │   ├── run-all-tests.php.backup
+│   │   ├── run-final-validation.php.backup
+│   │   ├── run-fixes-and-tests.sh
+│   │   ├── run-fixes-and-tests.sh.backup
+│   │   ├── run-inline-tests.php
+│   │   ├── run-inline-tests.php.backup
+│   │   ├── run-master-tests.sh
+│   │   ├── run-master-tests.sh.backup
+│   │   ├── run-migration.sh.backup
+│   │   ├── run-phase-c-tests.php
+│   │   ├── run-phase-c-tests.php.backup
+│   │   ├── run-production-tests.sh
+│   │   ├── safeparse.test.ts
+│   │   ├── sample.js
+│   │   ├── sampleSize.js
+│   │   ├── save_conversation.php.backup
+│   │   ├── scan_all_applications_OLD_20251025_144212.php
+│   │   ├── script-elements-test-audit.d.ts
+│   │   ├── script-elements-test-audit.js
+│   │   ├── security_checks_test.d.ts
+│   │   ├── security_checks_test.d.ts.map
+│   │   ├── security_checks_test.js
+│   │   ├── security_checks_test.js.map
+│   │   ├── security_checks_test.ts
+│   │   ├── seq-queue-test.js
+│   │   ├── set.test.ts
+│   │   ├── setup-complete-test-env.sh
+│   │   ├── setup-environment.sh.backup
+│   │   ├── setup-production.php.backup
+│   │   ├── setup-test-env.sh
+│   │   ├── setup-test-env.sh.backup
+│   │   ├── setup-test-tables.sh
+│   │   ├── setup-test-tables.sh.backup
+│   │   ├── show-test-errors.php
+│   │   ├── show-test-errors.php.backup
+│   │   ├── show_config_examples.php
+│   │   ├── show_config_examples.php.backup.20251023_012506
+│   │   ├── simple-config-test.php
+│   │   ├── simple-config-test.php.backup
+│   │   ├── source-map.debug.js
+│   │   ├── sse-contaminated.php.bak
+│   │   ├── sse.php.backup
+│   │   ├── standard-schema.test.ts
+│   │   ├── start-test-server.sh
+│   │   ├── strictcsp_checks_test.d.ts
+│   │   ├── strictcsp_checks_test.d.ts.map
+│   │   ├── strictcsp_checks_test.js
+│   │   ├── strictcsp_checks_test.js.map
+│   │   ├── strictcsp_checks_test.ts
+│   │   ├── string-formats.test.ts
+│   │   ├── string.test.ts
+│   │   ├── stringbool.test.ts
+│   │   ├── template-literal.test.ts
+│   │   ├── test-agent.php
+│   │   ├── test-all-endpoints.sh
+│   │   ├── test-all-integrations.sh
+│   │   ├── test-analysis.json
+│   │   ├── test-browser.js
+│   │   ├── test-claude.php
+│   │   ├── test-coding-standards.instructions.md
+│   │   ├── test-config.php
+│   │   ├── test-core-js.js
+│   │   ├── test-dashboard.js
+│   │   ├── test-database-tool.php
+│   │   ├── test-database-tool.php.backup
+│   │   ├── test-db.php
+│   │   ├── test-env-loading.php
+│   │   ├── test-env-loading.php.backup
+│   │   ├── test-errors.php
+│   │   ├── test-finished-1.png
+│   │   ├── test-fresh.sh
+│   │   ├── test-fresh.sh.backup
+│   │   ├── test-frontend.html
+│   │   ├── test-live-modes.js
+│   │   ├── test-models.js
+│   │   ├── test-node.js
+│   │   ├── test-orchestration.sh
+│   │   ├── test-orchestrator-unit.php
+│   │   ├── test-output.log
+│   │   ├── test-phpunit-fix.sh
+│   │   ├── test-phpunit-fix.sh.backup
+│   │   ├── test-results
+│   │   ├── test-results.json
+│   │   ├── test-server.log
+│   │   ├── test-simple.php
+│   │   ├── test-trace-engine.mjs
+│   │   ├── test-website
+│   │   ├── test-website-backup
+│   │   ├── test-website-with-auth
+│   │   ├── test.d.ts
+│   │   ├── test.js
+│   │   ├── test.json
+│   │   ├── test.js~
+│   │   ├── test_all_api_endpoints.php
+│   │   ├── test_all_endpoints.php
+│   │   ├── test_chat_ai.php
+│   │   ├── test_dashboard_complete.sh
+│   │   ├── test_double_class.tpl
+│   │   ├── test_html_output.php
+│   │   ├── test_job1_quick.sh
+│   │   ├── test_mcp.sh
+│   │   ├── test_mcp_page.php
+│   │   ├── test_mcp_tools.php
+│   │   ├── test_predictions.json
+│   │   ├── test_redis.php
+│   │   ├── test_redis.php.backup.20251023_012506
+│   │   ├── test_search.php
+│   │   ├── test_single_file.php
+│   │   ├── test_trigger.php
+│   │   ├── test_trigger.php.backup.20251023_012506
+│   │   ├── test_trigger2.php
+│   │   ├── test_trigger2.php.backup.20251023_012506
+│   │   ├── testdox.html
+│   │   ├── testdox.txt
+│   │   ├── tests.js
+│   │   ├── to-json-schema.test.ts
+│   │   ├── tool-chain-examples.php
+│   │   ├── tool-testing.php
+│   │   ├── tr.test.ts
+│   │   ├── transform.test.ts
+│   │   ├── transformer.test.ts
+│   │   ├── tstest.ts
+│   │   ├── tuple.test.ts
+│   │   ├── ui-tester.js
+│   │   ├── union.test.ts
+│   │   ├── unions.test.ts
+│   │   ├── unit-tests.js
+│   │   ├── utils.test.js
+│   │   ├── utils_test.d.ts
+│   │   ├── utils_test.d.ts.map
+│   │   ├── utils_test.js
+│   │   ├── utils_test.js.map
+│   │   ├── utils_test.ts
+│   │   ├── validate-all-fixes.php.backup
+│   │   ├── validate-environment.php.backup
+│   │   ├── validations.test.ts
+│   │   ├── verify-endpoints.php.backup
+│   │   ├── verify-phpunit-env.php.backup
+│   │   ├── verify-schema.php.backup
+│   │   ├── version-check-test.d.ts
+│   │   ├── version-check-test.js
+│   │   └── void.test.ts
+│   ├── duplicate-files/
+│   ├── node_modules/
+│   │   ├── .bin/
+│   │   ├── .package-lock.json
+│   │   ├── @ioredis/
+│   │   ├── @modelcontextprotocol/
+│   │   ├── accepts/
+│   │   ├── ajv/
+│   │   ├── aws-ssl-profiles/
+│   │   ├── body-parser/
+│   │   ├── bytes/
+│   │   ├── call-bind-apply-helpers/
+│   │   ├── call-bound/
+│   │   ├── cluster-key-slot/
+│   │   ├── content-disposition/
+│   │   ├── content-type/
+│   │   ├── cookie/
+│   │   ├── cookie-signature/
+│   │   ├── cors/
+│   │   ├── cross-spawn/
+│   │   ├── debug/
+│   │   ├── denque/
+│   │   ├── depd/
+│   │   ├── dunder-proto/
+│   │   ├── ee-first/
+│   │   ├── encodeurl/
+│   │   ├── es-define-property/
+│   │   ├── es-errors/
+│   │   ├── es-object-atoms/
+│   │   ├── escape-html/
+│   │   ├── etag/
+│   │   ├── eventsource/
+│   │   ├── eventsource-parser/
+│   │   ├── express/
+│   │   ├── express-rate-limit/
+│   │   ├── fast-deep-equal/
+│   │   ├── fast-json-stable-stringify/
+│   │   ├── finalhandler/
+│   │   ├── forwarded/
+│   │   ├── fresh/
+│   │   ├── function-bind/
+│   │   ├── generate-function/
+│   │   ├── get-intrinsic/
+│   │   ├── get-proto/
+│   │   ├── gopd/
+│   │   ├── has-symbols/
+│   │   ├── hasown/
+│   │   ├── http-errors/
+│   │   ├── iconv-lite/
+│   │   ├── inherits/
+│   │   ├── ioredis/
+│   │   ├── ipaddr.js/
+│   │   ├── is-promise/
+│   │   ├── is-property/
+│   │   ├── isexe/
+│   │   ├── json-schema-traverse/
+│   │   ├── lodash.defaults/
+│   │   ├── lodash.isarguments/
+│   │   ├── long/
+│   │   ├── lru-cache/
+│   │   ├── lru.min/
+│   │   ├── math-intrinsics/
+│   │   ├── media-typer/
+│   │   ├── merge-descriptors/
+│   │   ├── mime-db/
+│   │   ├── mime-types/
+│   │   ├── ms/
+│   │   ├── mysql2/
+│   │   ├── named-placeholders/
+│   │   ├── negotiator/
+│   │   ├── object-assign/
+│   │   ├── object-inspect/
+│   │   ├── on-finished/
+│   │   ├── once/
+│   │   ├── parseurl/
+│   │   ├── path-key/
+│   │   ├── path-to-regexp/
+│   │   ├── pkce-challenge/
+│   │   ├── proxy-addr/
+│   │   ├── punycode/
+│   │   ├── qs/
+│   │   ├── range-parser/
+│   │   ├── raw-body/
+│   │   ├── redis-errors/
+│   │   ├── redis-parser/
+│   │   ├── router/
+│   │   ├── safe-buffer/
+│   │   ├── safer-buffer/
+│   │   ├── send/
+│   │   ├── seq-queue/
+│   │   ├── serve-static/
+│   │   ├── setprototypeof/
+│   │   ├── shebang-command/
+│   │   ├── shebang-regex/
+│   │   ├── side-channel/
+│   │   ├── side-channel-list/
+│   │   ├── side-channel-map/
+│   │   ├── side-channel-weakmap/
+│   │   ├── sqlstring/
+│   │   ├── standard-as-callback/
+│   │   ├── statuses/
+│   │   ├── toidentifier/
+│   │   ├── type-is/
+│   │   ├── unpipe/
+│   │   ├── uri-js/
+│   │   ├── vary/
+│   │   ├── which/
+│   │   ├── wrappy/
+│   │   ├── zod/
+│   │   └── zod-to-json-schema/
+│   ├── old-builds/
+│   │   ├── ORGANIZATION_SUMMARY.md
+│   │   ├── active/
+│   │   ├── ai-chat.html
+│   │   ├── ai-control-dashboard.html
+│   │   ├── historic/
+│   │   ├── master-control-dashboard.html
+│   │   └── save_conversation.html
+│   ├── old-docs/
+│   │   ├── README_messy.md
+│   │   └── README_old.md
+│   ├── old-documentation/
+│   │   ├── _INDEX.md
+│   │   ├── agent-prompts/
+│   │   ├── completed-projects/
+│   │   ├── current/
+│   │   └── maintenance-reports/
+│   ├── old-scripts/
+│   │   ├── EXECUTE_NOW.sh
+│   │   ├── TEST_AND_ACTIVATE_ALL.sh
+│   │   ├── _organize_all_scripts.sh
+│   │   ├── create-real-multibot.php
+│   │   ├── deploy-to-cis-complete.php
+│   │   ├── reorganize-kb-system.php
+│   │   ├── run_md_diagnostic.sh
+│   │   └── run_system_health_check.sh
+│   ├── package-lock.json
+│   ├── package.json
+│   └── reports/
+│       ├── hdgwrzntwa/
+│       ├── security-audit-2025-10-27_17-25-10.json
+│       └── security-audit-2025-10-27_17-25-10.md
+├── _automation/
+│   ├── _INVENTORY.md
+│   ├── active/
+│   │   ├── ai-automation-manager.sh
+│   │   ├── ai-monitor.sh
+│   │   ├── ai-system-status.sh
+│   │   ├── copilot-command-center.sh
+│   │   ├── deploy-ai-automation.sh
+│   │   ├── deploy-multibot-to-cis.sh
+│   │   ├── deploy-smart-cron-hub.sh
+│   │   ├── deploy-sse-hardening.sh
+│   │   ├── harden-platform.sh
+│   │   └── monitor-copilot-automation.sh
+│   ├── analyze-directories.php
+│   ├── scan-complete-hdgwrzntwa.php
+│   ├── scan-hdgwrzntwa-only.php
+│   ├── scan-multi-project.php
+│   ├── scan-scheduler.php
+│   └── utilities/
+│       ├── audit_reports.php
+│       ├── broadcast-to-all-copilots.sh
+│       ├── check_db_tables.php
+│       ├── clean_and_prepare.sh
+│       ├── context-generator/
+│       ├── copilot-cron-manager.php
+│       ├── emergency-stop.sh
+│       ├── pause-automation.sh
+│       ├── resume-automation.sh
+│       ├── setup-ai-analysis.sh
+│       ├── setup-ai-cron.sh
+│       ├── setup-universal-copilot-automation.sh
+│       ├── setup_copilot_memory.sh
+│       ├── smart-cron-dispatcher.sh
+│       └── universal-copilot-automation.php
+├── _dev-tools/
+│   ├── analysis/
+│   │   ├── ai-activity-analyzer.php
+│   │   ├── ai-batch-processor.php
+│   │   └── intelligence_control_panel.php
+│   ├── database/
+│   │   ├── install.sh
+│   │   └── install.sql
+│   ├── install/
+│   │   └── 01-create-complete-schema.sql
+│   ├── scripts/
+│   │   ├── DEPLOY_TO_CIS.sh
+│   │   ├── _kb_tools_analyze-performance.php
+│   │   ├── _kb_tools_map-relationships.php
+│   │   ├── _kb_tools_verify-kb.php
+│   │   ├── _update_job1_scanner.sh
+│   │   ├── activate_all_crons.sh
+│   │   ├── analyze_noise_patterns.php
+│   │   ├── audit_and_setup_crons.sh
+│   │   ├── auto-sync-monitor.php
+│   │   ├── build-kb-html.php
+│   │   ├── check_schema.php
+│   │   ├── check_table_structure.php
+│   │   ├── clean_db_update.php
+│   │   ├── cleanup-sse-connections.sh
+│   │   ├── code_quality_scorer.php
+│   │   ├── cognitive_content_analyzer.php
+│   │   ├── comprehensive_md_scanner.php
+│   │   ├── comprehensive_readme_generator.php
+│   │   ├── content_intelligence_processor.php
+│   │   ├── copilot_activity_integration.php
+│   │   ├── create_generic_kb_schema.php
+│   │   ├── create_intelligence_table.php
+│   │   ├── create_kb_schema.php
+│   │   ├── create_unified_ai_intelligence_system.php
+│   │   ├── cron/
+│   │   ├── daily_sync_to_master.sh
+│   │   ├── db_schema_scanner.php
+│   │   ├── deploy_content_processor_to_cis.php
+│   │   ├── deploy_lightweight_kb_full_production.sh
+│   │   ├── detailed_noise_analysis.php
+│   │   ├── detect_rogue_kb.php
+│   │   ├── diagnose_md_scanning.php
+│   │   ├── drop_broken_views.php
+│   │   ├── dual_server_kb_scanner.php
+│   │   ├── emergency_db_update.php
+│   │   ├── emergency_db_update_corrected.php
+│   │   ├── emergency_db_update_fixed.php
+│   │   ├── enhance_cognitive_schema.php
+│   │   ├── enhanced_kb_crawler.php
+│   │   ├── enhanced_security_scanner.php
+│   │   ├── error_proof_content_analyzer.php
+│   │   ├── extract_all_md_to_kb.php
+│   │   ├── filtered_flawless_db_update.php
+│   │   ├── find_unique_md_files.sh
+│   │   ├── fix-dashboard-async-error.sh
+│   │   ├── fix-hardcoded-credentials.sh
+│   │   ├── fix_database_encoding.php
+│   │   ├── fix_scanner_ignore.php
+│   │   ├── flawless_content_analyzer.php
+│   │   ├── flawless_db_update.php
+│   │   ├── install-cron.sh
+│   │   ├── install-kb-cron-tasks.sh
+│   │   ├── install-kb-smart-cron.php
+│   │   ├── kb-auto-indexer.php
+│   │   ├── kb-cleanup.php
+│   │   ├── kb-cli.php
+│   │   ├── kb-harvest.php
+│   │   ├── kb-indexer-cron.php
+│   │   ├── kb-readme-generator.php
+│   │   ├── kb-relationship-mapper.php
+│   │   ├── kb-sdk.js
+│   │   ├── kb-sdk.php
+│   │   ├── kb-smart-cron-tasks.json
+│   │   ├── kb_content_analyzer.php
+│   │   ├── kb_correlator.php
+│   │   ├── kb_crawler.php
+│   │   ├── kb_deep_intelligence.php
+│   │   ├── kb_deployment_system.php
+│   │   ├── kb_ignore_config_ultra_tight.json
+│   │   ├── kb_intelligence_engine.php
+│   │   ├── kb_intelligence_engine_v2.php
+│   │   ├── kb_intelligence_engine_v2.php.BACKUP_20251025_140205
+│   │   ├── kb_md_collector.php
+│   │   ├── kb_multi_crawler.php
+│   │   ├── kb_priority_report.php
+│   │   ├── kb_proactive_indexer.php
+│   │   ├── kb_scan_20251023_043518.log
+│   │   ├── kb_scan_20251023_044559.log
+│   │   ├── kb_schema_dump.sql
+│   │   ├── kb_schema_enhance.php
+│   │   ├── kb_search_indexer.php
+│   │   ├── kb_status.sh
+│   │   ├── live_security_monitor.php
+│   │   ├── local_neural_scanner.php
+│   │   ├── master_index_generator.php
+│   │   ├── md_knowledge_consolidator.php
+│   │   ├── migrate_scanner_to_new_tables.php
+│   │   ├── monitor-sse.sh
+│   │   ├── multi_db_schema_scanner.php
+│   │   ├── neural_intelligence_scanner.php
+│   │   ├── nuclear_kb_cleanup.php
+│   │   ├── organize_all_kb.sh
+│   │   ├── process_content_text.php
+│   │   ├── proper_kb_scanner.php
+│   │   ├── quality_control_system.php
+│   │   ├── quick_intelligence_scan.php
+│   │   ├── quick_kb_scan.php
+│   │   ├── recreate_kb_schema.sql
+│   │   ├── reset_and_restart.sh
+│   │   ├── safe_neural_scanner.php
+│   │   ├── scan_all_applications.php
+│   │   ├── scan_all_databases.php
+│   │   ├── setup_smart_kb_crons.sh
+│   │   ├── simple_cognitive_analysis.php
+│   │   ├── simple_neural_setup.php
+│   │   ├── simple_quality_control.php
+│   │   ├── simple_search_indexer.php
+│   │   ├── smart_kb_organizer.php
+│   │   ├── smart_kb_scanner.php
+│   │   ├── smart_kb_trigger.php
+│   │   ├── smart_md_scanner.php
+│   │   ├── standalone_auto_organizer.php
+│   │   ├── standalone_cognitive_analysis.php
+│   │   ├── status.php
+│   │   ├── super_tight_db_update.php
+│   │   ├── sync_all_cis.sh
+│   │   ├── trigger_cis_processing.sh
+│   │   ├── trigger_cis_via_ssh.sh
+│   │   ├── ultra_tight_db_update.php
+│   │   ├── user_activity_tracker.php
+│   │   └── verify-kb.php
+│   ├── testing/
+│   │   └── talk-to-all-bots.sh
+│   ├── tests/
+│   │   ├── test-ai-control-center.sh
+│   │   ├── test-dashboard-complete.sh
+│   │   └── test-vscode-sync.sh
+│   ├── tools/
+│   │   ├── hardened-security-audit.php
+│   │   └── platform-security-audit.php
+│   └── workspace/
+│       └── active-sessions/
+├── _kb/
+│   ├── AI_ASSISTANT_MASTER_KNOWLEDGE_BASE.md
+│   ├── AI_CONVERSATION_TRACKING_INTEGRATION.md
+│   ├── AI_TEAM_LEADER_KNOWLEDGE_BASE.md
+│   ├── API_DISTRIBUTION_COMPLETE_BANNER.txt
+│   ├── AUTOMATIC_MEMORY_COMPLETE.md
+│   ├── AUTONOMOUS_MAINTENANCE_QUICK.md
+│   ├── AUTONOMOUS_SYSTEM_LEARNER_PROMPT.md
+│   ├── AUTONOMOUS_SYSTEM_MAINTAINER_PROMPT.md
+│   ├── BOT_BRIEFING_MASTER.md
+│   ├── CLEANUP_COMPLETE_2025-10-30.md
+│   ├── COMPANY_AND_MCP_TOOLS.instructions.md
+│   ├── COMPLETE_FILE_TIMELINE.json
+│   ├── COMPLETE_SYSTEM_KNOWLEDGE.md
+│   ├── COMPLETE_SYSTEM_STATUS_REPORT.md
+│   ├── COMPLETE_TOOLS_ECOSYSTEM.md
+│   ├── CONSOLIDATED_CORE_RULES.instructions.md
+│   ├── CONTEXT_DETECTION_COMPLETE.md
+│   ├── CONTEXT_SYSTEM_COMPLETE.md
+│   ├── DATABASE_ARCHITECTURE_ANALYSIS.md
+│   ├── ECOSYSTEM_RESEARCH_COMPLETE.md
+│   ├── EXTENDED_MEMORY_INDEX.md
+│   ├── FOCUSED_IMPLEMENTATION_PLAN.md
+│   ├── FRONTEND_TOOLS_ANALYSIS.md
+│   ├── GITHUB_COPILOT_MCP_SETUP.md
+│   ├── GITHUB_COPILOT_MCP_SUCCESS.md
+│   ├── HOW_TO_NEVER_LOSE_TOOLS.md
+│   ├── HOW_TO_USE_CONTEXT_SYSTEM.md
+│   ├── HOW_TO_USE_MCP_IN_GITHUB_COPILOT.md
+│   ├── IMPLEMENTATION_STATUS_REPORT.md
+│   ├── IMPLEMENTATION_WORK_BREAKDOWN.md
+│   ├── INDEX.md
+│   ├── INTELLIGENCE_SUMMARIES/
+│   │   └── 2025-10-24_files.json.gz
+│   ├── KB_ORGANIZATION_COMPLETE.md
+│   ├── KB_QUICK_REFERENCE.md
+│   ├── KNOWLEDGE_BASE_ACTIVATION_COMPLETE.md
+│   ├── LEARNING_SESSION_COMPLETE.md
+│   ├── MASTER_INDEX.md
+│   ├── MASTER_INTELLIGENCE_INDEX.md
+│   ├── MASTER_ORGANIZATIONAL_INTELLIGENCE_ARCHITECTURE.md
+│   ├── MASTER_SYSTEM_GUIDE.md
+│   ├── MCP_CONTEXT_INJECTION_COMPLETE.md
+│   ├── MCP_TOOLS_COMPLETE_GUIDE.md
+│   ├── OPERATIONAL_READINESS.md
+│   ├── PRIORITY_IMPLEMENTATION_PLAN.md
+│   ├── PROJECT_CONTEXT_DETECTION.md
+│   ├── PROJECT_SPECIFIC.instructions.md
+│   ├── PROJECT_ULTIMATE_CONTEXT_GENERATOR.md
+│   ├── PROMPT_SYNC_QUICK_REF.md
+│   ├── PROMPT_SYNC_SUCCESS.md
+│   ├── QUICK_DEPLOYMENT_CHECKLIST.md
+│   ├── QUICK_WINS_AVAILABLE.md
+│   ├── README.md
+│   ├── READY_TO_START_WORK.md
+│   ├── RUNBOOK_PIPELINE.md
+│   ├── SEMANTIC_SEARCH_OPTIMIZATIONS.sql
+│   ├── SEMANTIC_SEARCH_READY.md
+│   ├── SYSTEM_LEARNING_QUICK.md
+│   ├── TEAM_LEADER_ACTIVATION_COMPLETE.md
+│   ├── TOOL_DOCUMENTATION_COMPLETE.md
+│   ├── TOOL_GOVERNANCE_SYSTEM.md
+│   ├── ULTIMATE_AUTONOMOUS_PROMPT.md
+│   ├── ULTRA_SYSTEM_DELIVERY.md
+│   ├── VSCODE_REMOTE_SSH_PROMPT_SYNC.md
+│   ├── VSCODE_SYNC_CONFIGURATION.md
+│   ├── VS_CODE_SETTINGS_CRITICAL_FIX.md
+│   ├── VS_CODE_SETTINGS_DEPLOYMENT_GUIDE.md
+│   ├── VS_CODE_SETTINGS_GUIDE.md
+│   ├── activity-log.json
+│   ├── ai-agent/
+│   │   ├── EXECUTIVE_SUMMARY.md
+│   │   ├── MASTER_AI_AGENT_KB.md
+│   │   ├── P0_DEPLOYMENT_GUIDE.md
+│   │   ├── QUICK_REFERENCE.md
+│   │   └── SMART_DEPLOYMENT_SUMMARY.md
+│   ├── analysis/
+│   │   ├── 2025-10-28_15-58-42_analysis.json
+│   │   ├── 2025-10-28_15-59-16_analysis.json
+│   │   ├── 2025-10-28_16-00-00_analysis.json
+│   │   ├── 2025-10-28_16-00-56_analysis.json
+│   │   ├── 2025-10-28_16-03-46_analysis.json
+│   │   ├── 2025-10-28_16-06-47_analysis.json
+│   │   ├── 2025-10-28_16-09-40_analysis.json
+│   │   ├── 2025-10-28_16-12-38_analysis.json
+│   │   ├── 2025-10-28_16-15-41_analysis.json
+│   │   ├── 2025-10-28_16-18-38_analysis.json
+│   │   ├── 2025-10-28_16-21-35_analysis.json
+│   │   ├── 2025-10-28_16-24-33_analysis.json
+│   │   ├── 2025-10-28_16-27-35_analysis.json
+│   │   ├── 2025-10-28_16-30-37_analysis.json
+│   │   ├── 2025-10-28_16-33-35_analysis.json
+│   │   ├── 2025-10-28_16-36-39_analysis.json
+│   │   ├── 2025-10-28_16-39-42_analysis.json
+│   │   ├── 2025-10-28_16-42-36_analysis.json
+│   │   ├── 2025-10-28_16-45-39_analysis.json
+│   │   ├── 2025-10-28_16-48-41_analysis.json
+│   │   ├── 2025-10-28_16-51-50_analysis.json
+│   │   ├── 2025-10-28_16-54-47_analysis.json
+│   │   ├── 2025-10-28_16-57-44_analysis.json
+│   │   ├── 2025-10-28_17-00-51_analysis.json
+│   │   ├── 2025-10-28_17-03-52_analysis.json
+│   │   ├── 2025-10-28_17-06-47_analysis.json
+│   │   ├── 2025-10-28_17-09-55_analysis.json
+│   │   ├── 2025-10-28_17-13-22_analysis.json
+│   │   ├── 2025-10-28_17-15-53_analysis.json
+│   │   ├── 2025-10-28_17-18-53_analysis.json
+│   │   ├── 2025-10-28_17-21-52_analysis.json
+│   │   ├── 2025-10-28_17-24-56_analysis.json
+│   │   ├── 2025-10-28_17-27-53_analysis.json
+│   │   ├── 2025-10-28_17-30-56_analysis.json
+│   │   ├── 2025-10-28_17-33-54_analysis.json
+│   │   ├── 2025-10-28_17-36-52_analysis.json
+│   │   ├── 2025-10-28_17-39-56_analysis.json
+│   │   ├── 2025-10-28_17-43-02_analysis.json
+│   │   ├── 2025-10-28_17-53-48_analysis.json
+│   │   ├── 2025-10-28_17-53-58_analysis.json
+│   │   ├── 2025-10-28_17-54-08_analysis.json
+│   │   ├── 2025-10-28_17-54-53_analysis.json
+│   │   ├── 2025-10-28_17-57-54_analysis.json
+│   │   ├── 2025-10-28_18-02-04_analysis.json
+│   │   ├── 2025-10-28_18-09-08_analysis.json
+│   │   ├── 2025-10-28_18-11-09_analysis.json
+│   │   ├── 2025-10-28_18-11-39_analysis.json
+│   │   ├── 2025-10-28_18-14-05_analysis.json
+│   │   ├── 2025-10-28_18-17-12_analysis.json
+│   │   ├── 2025-10-28_18-18-54_analysis.json
+│   │   ├── 2025-10-28_18-21-49_analysis.json
+│   │   ├── 2025-10-28_18-24-49_analysis.json
+│   │   ├── 2025-10-28_18-27-47_analysis.json
+│   │   ├── 2025-10-28_18-30-53_analysis.json
+│   │   ├── 2025-10-28_18-33-46_analysis.json
+│   │   ├── 2025-10-28_18-36-49_analysis.json
+│   │   ├── 2025-10-28_18-39-54_analysis.json
+│   │   ├── 2025-10-28_18-42-20_analysis.json
+│   │   ├── 2025-10-28_18-45-39_analysis.json
+│   │   ├── 2025-10-28_18-48-27_analysis.json
+│   │   ├── 2025-10-28_18-51-45_analysis.json
+│   │   ├── 2025-10-28_18-54-37_analysis.json
+│   │   ├── 2025-10-28_18-57-17_analysis.json
+│   │   ├── 2025-10-28_19-00-19_analysis.json
+│   │   ├── 2025-10-28_19-03-15_analysis.json
+│   │   ├── 2025-10-28_19-06-14_analysis.json
+│   │   ├── 2025-10-28_19-09-32_analysis.json
+│   │   ├── 2025-10-28_19-12-27_analysis.json
+│   │   ├── 2025-10-28_19-15-38_analysis.json
+│   │   ├── 2025-10-28_19-18-39_analysis.json
+│   │   ├── 2025-10-28_19-21-31_analysis.json
+│   │   ├── 2025-10-28_19-24-28_analysis.json
+│   │   ├── 2025-10-28_19-27-25_analysis.json
+│   │   ├── 2025-10-28_19-30-38_analysis.json
+│   │   ├── 2025-10-28_19-33-39_analysis.json
+│   │   ├── 2025-10-28_19-36-31_analysis.json
+│   │   ├── 2025-10-28_19-39-43_analysis.json
+│   │   ├── 2025-10-28_19-42-35_analysis.json
+│   │   ├── 2025-10-28_19-45-29_analysis.json
+│   │   ├── 2025-10-28_19-48-25_analysis.json
+│   │   ├── 2025-10-28_19-51-21_analysis.json
+│   │   ├── 2025-10-28_19-54-19_analysis.json
+│   │   ├── 2025-10-28_19-57-43_analysis.json
+│   │   ├── 2025-10-28_20-00-49_analysis.json
+│   │   ├── 2025-10-28_20-03-31_analysis.json
+│   │   ├── 2025-10-28_20-06-25_analysis.json
+│   │   ├── 2025-10-28_20-09-23_analysis.json
+│   │   ├── 2025-10-28_20-12-16_analysis.json
+│   │   ├── 2025-10-28_20-15-16_analysis.json
+│   │   ├── 2025-10-28_20-18-14_analysis.json
+│   │   ├── 2025-10-28_20-21-14_analysis.json
+│   │   ├── 2025-10-28_20-24-16_analysis.json
+│   │   ├── 2025-10-28_20-27-15_analysis.json
+│   │   ├── 2025-10-28_20-30-27_analysis.json
+│   │   ├── 2025-10-28_20-33-46_analysis.json
+│   │   ├── 2025-10-28_20-36-39_analysis.json
+│   │   ├── 2025-10-28_20-39-38_analysis.json
+│   │   ├── 2025-10-28_20-42-34_analysis.json
+│   │   ├── 2025-10-28_20-45-37_analysis.json
+│   │   ├── 2025-10-28_20-48-38_analysis.json
+│   │   ├── 2025-10-28_20-51-49_analysis.json
+│   │   ├── 2025-10-28_20-54-43_analysis.json
+│   │   ├── 2025-10-28_20-57-48_analysis.json
+│   │   ├── 2025-10-28_21-00-53_analysis.json
+│   │   ├── 2025-10-28_21-03-40_analysis.json
+│   │   ├── 2025-10-28_21-06-35_analysis.json
+│   │   ├── 2025-10-28_21-09-48_analysis.json
+│   │   ├── 2025-10-28_21-12-45_analysis.json
+│   │   ├── 2025-10-28_21-15-45_analysis.json
+│   │   ├── 2025-10-28_21-19-19_analysis.json
+│   │   ├── 2025-10-28_21-21-48_analysis.json
+│   │   ├── 2025-10-28_21-24-47_analysis.json
+│   │   ├── 2025-10-28_21-27-52_analysis.json
+│   │   ├── 2025-10-28_21-30-51_analysis.json
+│   │   ├── 2025-10-28_21-33-50_analysis.json
+│   │   ├── 2025-10-28_21-36-48_analysis.json
+│   │   ├── 2025-10-28_21-39-51_analysis.json
+│   │   ├── 2025-10-28_21-42-52_analysis.json
+│   │   ├── 2025-10-28_21-45-51_analysis.json
+│   │   ├── 2025-10-28_21-48-49_analysis.json
+│   │   ├── 2025-10-28_21-51-44_analysis.json
+│   │   ├── 2025-10-28_21-54-51_analysis.json
+│   │   ├── 2025-10-28_21-57-52_analysis.json
+│   │   ├── 2025-10-28_22-00-58_analysis.json
+│   │   ├── 2025-10-28_22-04-02_analysis.json
+│   │   ├── 2025-10-28_22-06-59_analysis.json
+│   │   ├── 2025-10-28_22-10-10_analysis.json
+│   │   ├── 2025-10-28_22-13-02_analysis.json
+│   │   ├── 2025-10-28_22-16-06_analysis.json
+│   │   ├── 2025-10-28_22-19-05_analysis.json
+│   │   ├── 2025-10-28_22-22-32_analysis.json
+│   │   ├── 2025-10-28_22-24-55_analysis.json
+│   │   ├── 2025-10-28_22-28-06_analysis.json
+│   │   ├── 2025-10-28_22-30-55_analysis.json
+│   │   ├── 2025-10-28_22-33-52_analysis.json
+│   │   ├── 2025-10-28_22-36-51_analysis.json
+│   │   ├── 2025-10-28_22-39-50_analysis.json
+│   │   ├── 2025-10-28_22-42-51_analysis.json
+│   │   ├── 2025-10-28_22-45-53_analysis.json
+│   │   ├── 2025-10-28_22-48-52_analysis.json
+│   │   ├── 2025-10-28_22-51-51_analysis.json
+│   │   ├── 2025-10-28_22-54-52_analysis.json
+│   │   ├── 2025-10-28_22-57-53_analysis.json
+│   │   ├── 2025-10-28_23-00-59_analysis.json
+│   │   ├── 2025-10-28_23-03-52_analysis.json
+│   │   ├── 2025-10-28_23-06-50_analysis.json
+│   │   ├── 2025-10-28_23-09-52_analysis.json
+│   │   ├── 2025-10-28_23-12-52_analysis.json
+│   │   ├── 2025-10-28_23-15-53_analysis.json
+│   │   ├── 2025-10-28_23-18-54_analysis.json
+│   │   ├── 2025-10-28_23-21-56_analysis.json
+│   │   ├── 2025-10-28_23-25-08_analysis.json
+│   │   ├── 2025-10-28_23-27-59_analysis.json
+│   │   ├── 2025-10-28_23-33-21_analysis.json
+│   │   ├── 2025-10-28_23-35-22_analysis.json
+│   │   ├── 2025-10-28_23-48-41_analysis.json
+│   │   ├── 2025-10-28_23-57-28_analysis.json
+│   │   ├── 2025-10-28_23-58-35_analysis.json
+│   │   ├── 2025-10-28_23-59-07_analysis.json
+│   │   ├── 2025-10-28_23-59-15_analysis.json
+│   │   ├── 2025-10-28_23-59-23_analysis.json
+│   │   ├── 2025-10-29_00-00-56_analysis.json
+│   │   ├── 2025-10-29_00-03-34_analysis.json
+│   │   ├── 2025-10-29_00-06-15_analysis.json
+│   │   ├── 2025-10-29_00-09-14_analysis.json
+│   │   ├── 2025-10-29_00-12-14_analysis.json
+│   │   ├── 2025-10-29_00-15-15_analysis.json
+│   │   ├── 2025-10-29_00-18-14_analysis.json
+│   │   ├── 2025-10-29_00-21-14_analysis.json
+│   │   ├── 2025-10-29_00-24-15_analysis.json
+│   │   ├── 2025-10-29_00-27-14_analysis.json
+│   │   ├── 2025-10-29_00-30-15_analysis.json
+│   │   ├── 2025-10-29_00-33-14_analysis.json
+│   │   ├── 2025-10-29_00-36-14_analysis.json
+│   │   ├── 2025-10-29_00-39-14_analysis.json
+│   │   ├── 2025-10-29_00-42-15_analysis.json
+│   │   ├── 2025-10-29_00-45-15_analysis.json
+│   │   ├── 2025-10-29_00-48-14_analysis.json
+│   │   ├── 2025-10-29_00-51-14_analysis.json
+│   │   ├── 2025-10-29_00-54-15_analysis.json
+│   │   ├── 2025-10-29_00-57-14_analysis.json
+│   │   ├── 2025-10-29_01-00-23_analysis.json
+│   │   ├── 2025-10-29_01-03-50_analysis.json
+│   │   ├── 2025-10-29_01-06-50_analysis.json
+│   │   ├── 2025-10-29_01-09-49_analysis.json
+│   │   ├── 2025-10-29_01-12-46_analysis.json
+│   │   ├── 2025-10-29_01-15-47_analysis.json
+│   │   ├── 2025-10-29_01-18-41_analysis.json
+│   │   ├── 2025-10-29_01-21-33_analysis.json
+│   │   ├── 2025-10-29_01-24-30_analysis.json
+│   │   ├── 2025-10-29_01-27-56_analysis.json
+│   │   ├── 2025-10-29_01-30-51_analysis.json
+│   │   ├── 2025-10-29_01-33-49_analysis.json
+│   │   ├── 2025-10-29_01-36-54_analysis.json
+│   │   ├── 2025-10-29_01-39-33_analysis.json
+│   │   ├── 2025-10-29_01-42-34_analysis.json
+│   │   ├── 2025-10-29_01-45-46_analysis.json
+│   │   ├── 2025-10-29_01-48-45_analysis.json
+│   │   ├── 2025-10-29_01-51-48_analysis.json
+│   │   ├── 2025-10-29_01-54-46_analysis.json
+│   │   ├── 2025-10-29_01-57-51_analysis.json
+│   │   ├── 2025-10-29_02-00-49_analysis.json
+│   │   ├── 2025-10-29_02-03-45_analysis.json
+│   │   ├── 2025-10-29_02-06-52_analysis.json
+│   │   ├── 2025-10-29_02-09-51_analysis.json
+│   │   ├── 2025-10-29_02-12-48_analysis.json
+│   │   ├── 2025-10-29_02-15-45_analysis.json
+│   │   ├── 2025-10-29_02-18-49_analysis.json
+│   │   ├── 2025-10-29_02-21-52_analysis.json
+│   │   ├── 2025-10-29_02-24-47_analysis.json
+│   │   ├── 2025-10-29_02-27-40_analysis.json
+│   │   ├── 2025-10-29_02-30-50_analysis.json
+│   │   ├── 2025-10-29_02-33-47_analysis.json
+│   │   ├── 2025-10-29_02-36-47_analysis.json
+│   │   ├── 2025-10-29_02-39-46_analysis.json
+│   │   ├── 2025-10-29_02-42-51_analysis.json
+│   │   ├── 2025-10-29_02-45-47_analysis.json
+│   │   ├── 2025-10-29_02-48-48_analysis.json
+│   │   ├── 2025-10-29_02-52-21_analysis.json
+│   │   ├── 2025-10-29_02-54-49_analysis.json
+│   │   ├── 2025-10-29_02-57-51_analysis.json
+│   │   ├── 2025-10-29_03-00-58_analysis.json
+│   │   ├── 2025-10-29_03-03-49_analysis.json
+│   │   ├── 2025-10-29_03-06-49_analysis.json
+│   │   ├── 2025-10-29_03-09-51_analysis.json
+│   │   ├── 2025-10-29_03-12-51_analysis.json
+│   │   ├── 2025-10-29_03-15-51_analysis.json
+│   │   ├── 2025-10-29_03-18-53_analysis.json
+│   │   ├── 2025-10-29_03-21-53_analysis.json
+│   │   ├── 2025-10-29_03-24-54_analysis.json
+│   │   ├── 2025-10-29_03-27-53_analysis.json
+│   │   ├── 2025-10-29_03-30-55_analysis.json
+│   │   ├── 2025-10-29_03-33-53_analysis.json
+│   │   ├── 2025-10-29_03-36-52_analysis.json
+│   │   ├── 2025-10-29_03-39-43_analysis.json
+│   │   ├── 2025-10-29_03-42-40_analysis.json
+│   │   ├── 2025-10-29_03-45-44_analysis.json
+│   │   ├── 2025-10-29_03-48-41_analysis.json
+│   │   ├── 2025-10-29_03-51-47_analysis.json
+│   │   ├── 2025-10-29_03-54-40_analysis.json
+│   │   ├── 2025-10-29_03-57-38_analysis.json
+│   │   ├── 2025-10-29_04-00-47_analysis.json
+│   │   ├── 2025-10-29_04-03-38_analysis.json
+│   │   ├── 2025-10-29_04-06-48_analysis.json
+│   │   ├── 2025-10-29_04-09-46_analysis.json
+│   │   ├── 2025-10-29_04-12-41_analysis.json
+│   │   ├── 2025-10-29_04-16-16_analysis.json
+│   │   ├── 2025-10-29_04-18-54_analysis.json
+│   │   ├── 2025-10-29_04-21-41_analysis.json
+│   │   ├── 2025-10-29_04-24-47_analysis.json
+│   │   ├── 2025-10-29_04-27-45_analysis.json
+│   │   ├── 2025-10-29_04-30-44_analysis.json
+│   │   ├── 2025-10-29_04-33-47_analysis.json
+│   │   ├── 2025-10-29_04-36-51_analysis.json
+│   │   ├── 2025-10-29_04-39-46_analysis.json
+│   │   ├── 2025-10-29_04-42-49_analysis.json
+│   │   ├── 2025-10-29_04-45-51_analysis.json
+│   │   ├── 2025-10-29_04-48-46_analysis.json
+│   │   ├── 2025-10-29_04-51-49_analysis.json
+│   │   ├── 2025-10-29_04-54-50_analysis.json
+│   │   ├── 2025-10-29_04-57-49_analysis.json
+│   │   ├── 2025-10-29_05-00-57_analysis.json
+│   │   ├── 2025-10-29_05-03-53_analysis.json
+│   │   ├── 2025-10-29_05-06-55_analysis.json
+│   │   ├── 2025-10-29_05-09-50_analysis.json
+│   │   ├── 2025-10-29_05-12-47_analysis.json
+│   │   ├── 2025-10-29_05-15-47_analysis.json
+│   │   ├── 2025-10-29_05-18-53_analysis.json
+│   │   ├── 2025-10-29_05-21-51_analysis.json
+│   │   ├── 2025-10-29_05-24-49_analysis.json
+│   │   ├── 2025-10-29_05-27-51_analysis.json
+│   │   ├── 2025-10-29_05-30-54_analysis.json
+│   │   ├── 2025-10-29_05-33-49_analysis.json
+│   │   ├── 2025-10-29_05-36-46_analysis.json
+│   │   ├── 2025-10-29_05-39-50_analysis.json
+│   │   ├── 2025-10-29_05-42-48_analysis.json
+│   │   ├── 2025-10-29_05-45-30_analysis.json
+│   │   ├── 2025-10-29_05-48-15_analysis.json
+│   │   ├── 2025-10-29_05-51-14_analysis.json
+│   │   ├── 2025-10-29_05-54-14_analysis.json
+│   │   ├── 2025-10-29_05-57-14_analysis.json
+│   │   ├── 2025-10-29_06-00-16_analysis.json
+│   │   ├── 2025-10-29_06-03-15_analysis.json
+│   │   ├── 2025-10-29_06-06-14_analysis.json
+│   │   ├── 2025-10-29_06-09-14_analysis.json
+│   │   ├── 2025-10-29_06-12-15_analysis.json
+│   │   ├── 2025-10-29_06-15-16_analysis.json
+│   │   └── 2025-10-29_06-18-14_analysis.json
+│   ├── analytics/
+│   │   ├── README.md
+│   │   ├── alerts/
+│   │   ├── dashboards/
+│   │   ├── metrics/
+│   │   ├── reports/
+│   │   └── trends/
+│   ├── api/
+│   │   ├── intelligence_distributor.php
+│   │   └── intelligence_receiver.php
+│   ├── architecture/
+│   │   ├── ARCHITECTURE_ACTION_PLAN.md
+│   │   ├── ARCHITECTURE_FLAWS_SUMMARY.md
+│   │   ├── ARCHITECTURE_ISSUES_SUMMARY.md
+│   │   ├── ARCHITECTURE_ISSUE_01_ROOT_CAUSE.md
+│   │   ├── ARCHITECTURE_ISSUE_02_DATABASE_SCHEMA.md
+│   │   ├── ARCHITECTURE_ISSUE_03_DASHBOARD_CHANGES.md
+│   │   ├── ARCHITECTURE_ISSUE_04_IMPLEMENTATION_PLAN.md
+│   │   └── database/
+│   ├── audits/
+│   │   ├── ANALYSIS_AUDIT_COMPLETE.md
+│   │   ├── AUDIT_COMPLETE_READY_FOR_PHASE3_STEP5.md
+│   │   ├── AUDIT_SUMMARY_FOR_PEARCE.md
+│   │   ├── BEST_IMPLEMENTATIONS.md
+│   │   ├── CAPABILITY_MATRIX.md
+│   │   ├── COMPLETE_REDESIGN_PLAN.md
+│   │   ├── COMPLETE_TOOL_INVENTORY.md
+│   │   ├── COMPREHENSIVE_PROGRESS_ANALYSIS.md
+│   │   ├── CRITICAL_ARCHITECTURE_ANALYSIS.md
+│   │   ├── INFRASTRUCTURE_COMPATIBILITY_AUDIT.md
+│   │   ├── INTEGRATION_CHECKLIST.md
+│   │   ├── TOOL_CONSOLIDATION_PLAN.md
+│   │   ├── TOOL_MIGRATION_GUIDE.md
+│   │   └── tool_audit_data.json
+│   ├── automation/
+│   │   ├── .gitkeep
+│   │   ├── MULTI_BOT_SYSTEM_COMPLETE.md
+│   │   ├── config.json
+│   │   ├── dashboard/
+│   │   ├── github/
+│   │   ├── live-standards-manager.php
+│   │   ├── logs/
+│   │   ├── multi-bot-manager.php
+│   │   ├── prompts/
+│   │   ├── sync/
+│   │   ├── templates/
+│   │   ├── vs-code/
+│   │   └── workflows/
+│   ├── backups/
+│   │   └── crontab_backup_20251025_012915.txt
+│   ├── bots/
+│   │   ├── PayrollBot.php
+│   │   ├── README.md
+│   │   ├── memory/
+│   │   ├── prompts/
+│   │   ├── quick-reference/
+│   │   ├── tools/
+│   │   └── training/
+│   ├── cache/
+│   │   └── file_checksums.json
+│   ├── completed-projects/
+│   │   ├── AI_CONTROL_CENTER_COMPLETE.md
+│   │   ├── CURRENT_STATUS_VSCODE_SYNC.md
+│   │   ├── DASHBOARD_AUDIT_COMPLETE.md
+│   │   ├── DASHBOARD_SESSION_COMPLETE.md
+│   │   ├── DEEP_CLEANUP_KB_ORGANIZATION_COMPLETE.md
+│   │   ├── MCP_QUICK_REFERENCE.md
+│   │   ├── MCP_TOOLS_USAGE_GUIDE.md
+│   │   ├── MULTI_DOMAIN_IMPLEMENTATION_COMPLETE.md
+│   │   ├── PATTERN_RECOGNITION_COMPLETE.md
+│   │   ├── PAYROLL_ACCESS_GUIDE.md
+│   │   ├── QUICK_WINS_AVAILABLE.md
+│   │   ├── README.md
+│   │   ├── VSCODE_SYNC_COMPLETE.md
+│   │   ├── VSCODE_SYNC_INTEGRATION_COMPLETE.md
+│   │   └── VSCODE_SYNC_QUICK_REFERENCE.md
+│   ├── config/
+│   │   ├── KBConfigManager.php
+│   │   ├── cron_schedule.json
+│   │   ├── cron_servers.json
+│   │   ├── satellites.json
+│   │   └── scan_config.json
+│   ├── configs/
+│   │   └── multi-bot.json
+│   ├── database/
+│   │   ├── dvaxgvsxmz_erd.mmd
+│   │   ├── dvaxgvsxmz_schema.json
+│   │   └── schemas/
+│   ├── database-analysis/
+│   │   ├── DATABASE_ANALYSIS_SUMMARY.md
+│   │   ├── DATABASE_COMPLETE_ANALYSIS.txt
+│   │   ├── DATABASE_COMPLETE_SCHEMA.json
+│   │   ├── DATABASE_QUICK_REFERENCE.txt
+│   │   ├── DEDUPLICATION_REPORT.md
+│   │   ├── README.md
+│   │   ├── analyze_relationships.php
+│   │   ├── extract_full_schema.php
+│   │   └── fix_database_issues.sql
+│   ├── documentation/
+│   │   ├── WELCOME.txt
+│   │   ├── _INDEX.md
+│   │   ├── agent-prompts/
+│   │   ├── applications/
+│   │   ├── completed-projects/
+│   │   ├── current/
+│   │   ├── guides/
+│   │   ├── maintenance-reports/
+│   │   ├── reports/
+│   │   ├── root/
+│   │   └── systems/
+│   ├── github_instructions/
+│   │   ├── auwzaqszyd-.github-copilot-instructions.md
+│   │   ├── bjyvpezxum-.github-copilot-instructions.md
+│   │   ├── djnjbfhczr-.github-copilot-instructions.md
+│   │   ├── fhrehrpjmu-.github-copilot-instructions.md
+│   │   ├── fnfacfaaan-.github-copilot-instructions.md
+│   │   ├── hdgwrzntwa-.github-copilot-instructions.md
+│   │   ├── hxvhuzmvxu-.github-copilot-instructions.md
+│   │   ├── jcepnzzkmj-.github-copilot-instructions.md
+│   │   ├── krjkptkdzv-.github-copilot-instructions.md
+│   │   ├── mastergptcore-.github-copilot-instructions.md
+│   │   ├── nbqqcrvema-.github-copilot-instructions.md
+│   │   ├── nicshots-.github-copilot-instructions.md
+│   │   ├── qffgdcjdpq-.github-copilot-instructions.md
+│   │   ├── rkfkvhgvmz-.github-copilot-instructions.md
+│   │   ├── sally-.github-copilot-instructions.md
+│   │   ├── swdvywdfcs-.github-copilot-instructions.md
+│   │   ├── vapeshed_pos-.github-copilot-instructions.md
+│   │   ├── vdzyfydppv-.github-copilot-instructions.md
+│   │   ├── wjgprnzauy-.github-copilot-instructions.md
+│   │   ├── xavgdbkqxw-.github-copilot-instructions.md
+│   │   ├── xwgxngcrpv-.github-copilot-instructions.md
+│   │   └── yorvik_electrical-.github-copilot-instructions.md
+│   ├── humans/
+│   │   ├── README.md
+│   │   ├── api/
+│   │   ├── architecture/
+│   │   ├── guides/
+│   │   ├── reference/
+│   │   └── troubleshooting/
+│   ├── incoming/
+│   │   ├── README.md
+│   │   ├── auto-generated/
+│   │   ├── processing/
+│   │   ├── queue/
+│   │   ├── rejected/
+│   │   └── staging/
+│   ├── insights/
+│   │   └── DOCUMENT_BEGINNING_PRIORITY.md
+│   ├── integrations/
+│   │   ├── README.md
+│   │   ├── api/
+│   │   ├── mcp/
+│   │   ├── satellites/
+│   │   ├── third-party/
+│   │   └── webhooks/
+│   ├── intelligence/
+│   │   ├── SUMMARY.json
+│   │   ├── call_graph.json
+│   │   ├── dependency_graph.json
+│   │   ├── files.json
+│   │   └── incremental_index.json
+│   ├── kb_config_manager.php
+│   ├── kb_ignore_config_clean.json
+│   ├── knowledge/
+│   │   ├── README.md
+│   │   ├── code-analysis/
+│   │   ├── database/
+│   │   ├── intelligence/
+│   │   ├── performance/
+│   │   └── security/
+│   ├── lib/
+│   │   ├── CronClient.php
+│   │   └── EnvLoader.php
+│   ├── logs/
+│   │   ├── config_usage.log
+│   │   ├── daily_sync.log
+│   │   ├── distribution.log
+│   │   ├── kb_refresh_20251024.log
+│   │   ├── kb_refresh_20251025.log
+│   │   ├── php_file_watcher.log
+│   │   └── watcher.log
+│   ├── mcp/
+│   │   ├── AI_AGENT_BOT_STATUS_REPORT.md
+│   │   ├── API_REFERENCE.md
+│   │   ├── BOT_TOOL_ARCHITECTURE_ANALYSIS.md
+│   │   ├── COMPREHENSIVE_CLEANUP_AND_INVENTORY.md
+│   │   ├── COPILOT_ASSIGNMENT.md
+│   │   ├── CRAWLER_SYSTEM_FOUND.md
+│   │   ├── CURRENT_SYSTEM_ANALYSIS.md
+│   │   ├── DATABASE_SAMPLE.sql
+│   │   ├── DATABASE_SAMPLE_3ROWS.sql
+│   │   ├── DATABASE_SCHEMA_ALL_TABLES.sql
+│   │   ├── DEPLOYMENT_GUIDE.md
+│   │   ├── DEPLOYMENT_READY.md
+│   │   ├── DIRECTORY_STRUCTURE.md
+│   │   ├── DUPLICATE_ANALYSIS.md
+│   │   ├── EXECUTION_ROADMAP.md
+│   │   ├── IMPLEMENTATION_MASTER_PLAN.md
+│   │   ├── INSTALLATION_COMPLETE.txt
+│   │   ├── MCP_100_PERCENT_EFFICIENCY_PLAN.md
+│   │   ├── NEXT_STEPS.md
+│   │   ├── PHASE1_COMPLETE.md
+│   │   ├── PHASE_1_3_COMPLETE.md
+│   │   ├── PHASE_1_COMPLETE.md
+│   │   ├── PRODUCTION_READY_REPORT.md
+│   │   ├── QUICK_REFERENCE.txt
+│   │   ├── QUICK_START.md
+│   │   ├── README.md
+│   │   ├── SEARCH_OPTIMIZATION_ANALYSIS.md
+│   │   ├── STEP2_COMPLETE_REPORT.md
+│   │   ├── TOOLS_COMPLETE.md
+│   │   ├── TOOLS_INVENTORY.md
+│   │   ├── UNIT_TESTING_STATUS_FINAL.md
+│   │   ├── UNIT_TEST_COMPLETE.md
+│   │   ├── VSCODE_SETUP_QUICK_START.md
+│   │   └── intelligence-hub/
+│   ├── modules/
+│   ├── performance/
+│   ├── procedures/
+│   │   ├── README.md
+│   │   ├── deployment/
+│   │   ├── development/
+│   │   ├── emergency/
+│   │   ├── maintenance/
+│   │   └── operations/
+│   ├── prompts/
+│   │   ├── code-review.md
+│   │   ├── daily-checklist.md
+│   │   ├── documentation.md
+│   │   ├── performance-optimization.md
+│   │   ├── security-audit.md
+│   │   └── team/
+│   ├── scripts/
+│   │   ├── analyze_single_file.php
+│   │   ├── ast_security_scanner.php
+│   │   ├── deploy_receiver.sh
+│   │   ├── generate_call_graph.php
+│   │   ├── install_optimized_crons.sh
+│   │   ├── organize_archive.php
+│   │   ├── update_master_index.php
+│   │   └── watcher/
+│   ├── security/
+│   ├── sessions/
+│   │   ├── 2025-10-28_FULL_SESSION_DOCUMENTATION.md
+│   │   └── 2025-10-28_PROMPT_SYNC_IMPLEMENTATION.md
+│   ├── system/
+│   │   ├── COMPLETE_PLATFORM_INVENTORY.md
+│   │   ├── README.md
+│   │   ├── backups/
+│   │   ├── cache/
+│   │   ├── config/
+│   │   ├── logs/
+│   │   └── schemas/
+│   ├── templates/
+│   │   ├── README.md
+│   │   ├── code/
+│   │   ├── configurations/
+│   │   ├── documentation/
+│   │   ├── scripts/
+│   │   └── tests/
+│   ├── tools/
+│   │   └── MCP_COMPLETE_TOOL_REFERENCE.md
+│   ├── ultimate_guide/
+│   │   ├── quick_reference/
+│   │   └── search-index.json
+│   ├── ultimate_web_dev_kb_generator.php
+│   └── user_instructions/
+│       ├── AUTOMATION-SYSTEM.instructions.md
+│       ├── AUTONOMOUS_MAINTENANCE_QUICK.instructions.md
+│       ├── AUTONOMOUS_SYSTEM_LEARNER_PROMPT.instructions.md
+│       ├── AUTONOMOUS_SYSTEM_MAINTAINER_PROMPT.instructions.md
+│       ├── CIS-BOT-CONSTITUTION.instructions.md
+│       ├── COMPLETE_SYSTEM_MANDATE.instructions.md
+│       ├── KB-REFRESH-CONTEXT.instructions.md
+│       ├── MCP-TOOLS-MANDATE.instructions.md
+│       ├── PROMPTS_VS_INSTRUCTIONS_COMPLETE_GUIDE.md
+│       ├── PROMPTS_VS_INSTRUCTIONS_GUIDE.md
+│       ├── SECURITY-STANDARDS.instructions.md
+│       ├── SYNC_TO_VSCODE.bat
+│       ├── SYNC_TO_VSCODE.ps1
+│       ├── SYSTEM_AUTO_LOADER.instructions.md
+│       ├── SYSTEM_LEARNING_QUICK.instructions.md
+│       └── ULTRA_MASTER_CONNECTOR.instructions.md
+├── admin/
+│   ├── BotDeploymentCenter.php
+│   ├── bot-api.php
+│   ├── bot-deployment/
+│   │   ├── API_DOCUMENTATION.md
+│   │   ├── AUDIT_REPORT.html
+│   │   ├── CLI_TOOLS_DOCUMENTATION.md
+│   │   ├── COMPLETE_AUDIT_REPORT.md
+│   │   ├── MCP_SERVER_INTEGRATION.md
+│   │   ├── PARTS_7_8_COMPLETE.md
+│   │   ├── PART_6_COMPLETE.md
+│   │   ├── PROJECT_COMPLETE_SUMMARY.md
+│   │   ├── QUICK_START.md
+│   │   ├── SANDBOX_COMPLETE.md
+│   │   ├── SANDBOX_DOCUMENTATION.md
+│   │   ├── SANDBOX_SETUP_COMPLETE.md
+│   │   ├── START_HERE.md
+│   │   ├── UPGRADE_COMPLETE_REPORT.md
+│   │   ├── VISUAL_SUMMARY.md
+│   │   ├── api-bootstrap.php
+│   │   ├── assets/
+│   │   ├── bot-deploy.php
+│   │   ├── bot-execute.php
+│   │   ├── cache/
+│   │   ├── config/
+│   │   ├── health-check.php
+│   │   ├── logs/
+│   │   ├── migrations/
+│   │   ├── run-migrations.sh
+│   │   ├── scheduler.php
+│   │   ├── src/
+│   │   ├── test-sandbox.php
+│   │   ├── uploads/
+│   │   ├── views/
+│   │   └── websocket-server.php
+│   ├── bot-deployment-center.html
+│   ├── bot-deployment.js
+│   ├── bot_deployment_schema.sql
+│   ├── bot_deployment_schema_fixed.sql
+│   ├── intelligence-hub/
+│   │   └── src/
+│   ├── multi-thread-examples.php
+│   └── traffic/
+│       └── live.php
+├── ai-agent/
+│   ├── .editorconfig
+│   ├── .env
+│   ├── .env.backup-20251031-113519
+│   ├── .fxdata/
+│   │   ├── index_state.json
+│   │   └── plans/
+│   ├── .gitignore
+│   ├── .htaccess
+│   ├── AI_AGENT_MCP_INTEGRATION.md
+│   ├── FRONTEND_INTEGRATION_SETUP.md
+│   ├── FRONTEND_INTEGRATION_STATUS.md
+│   ├── _docs/
+│   │   ├── ACHIEVEMENT_BANNER.txt
+│   │   ├── AI_AGENT_DASHBOARD_COMPLETE.md
+│   │   ├── DEPLOYMENT_README.md
+│   │   ├── FILE_TREE.txt
+│   │   ├── MULTI_DOMAIN_DEPLOYMENT_SUCCESS.md
+│   │   ├── PRODUCTION_SETUP_COMPLETE_GUIDE.md
+│   │   ├── QUICKSTART.txt
+│   │   ├── QUICK_DEPLOY.txt
+│   │   ├── QUICK_START.txt
+│   │   ├── TABLE_RENAME_COMPLETE.md
+│   │   ├── TABLE_RENAME_GUIDE.md
+│   │   └── TABLE_RENAME_READY.md
+│   ├── _scripts/
+│   │   ├── RUN_NOW.sh
+│   │   ├── batch-7-setup.sh
+│   │   ├── deploy-everything.sh
+│   │   ├── direct-setup.sh
+│   │   ├── fix-code-style.sh
+│   │   ├── make-executable.sh
+│   │   ├── p0-critical-fixes.sh
+│   │   ├── run-auto-setup.sh
+│   │   ├── setup-agent-hub-clean.sql
+│   │   ├── setup-agent-hub.sql
+│   │   ├── setup-claude.sh
+│   │   ├── setup-complete-agent.sql
+│   │   ├── setup-full-agent-prefix.sql
+│   │   └── setup-hub-complete.sh
+│   ├── api/
+│   │   ├── .env.php
+│   │   ├── PATCH_auth_insert_line_828.php
+│   │   ├── PATCH_cors_replace_line_122.php
+│   │   ├── approve-fix.php
+│   │   ├── bot-info.php
+│   │   ├── chat-enterprise.php
+│   │   ├── chat-v2.php
+│   │   ├── chat-v2.php.backup-20251031-130152
+│   │   ├── chat.php
+│   │   ├── chat.php.backup-20251031-125858
+│   │   ├── domains.php
+│   │   ├── execute-workflow.php
+│   │   ├── health.php
+│   │   ├── security.php
+│   │   ├── setup_ai_agent.php
+│   │   ├── stream.php
+│   │   └── stream.php.backup-20251031-130152
+│   ├── app/
+│   │   ├── Http/
+│   │   └── Support/
+│   ├── autoload.php
+│   ├── backend.php
+│   ├── backups/
+│   │   └── archive_2025-09-20/
+│   ├── bin/
+│   │   ├── add-tables-now.sh
+│   │   ├── api-test-suite.sh
+│   │   ├── audit-critical-issues.sh
+│   │   ├── auto-setup.php
+│   │   ├── batch-5-gate-validation.php
+│   │   ├── batch-6-gate-validation.php
+│   │   ├── batch-7-diagnostic.php
+│   │   ├── db-tool.php
+│   │   ├── dev-check.php
+│   │   ├── dump-tool-catalog.php
+│   │   ├── emergency-security-fix.sh
+│   │   ├── go.sh
+│   │   ├── make-all-executable.sh
+│   │   ├── make-executable.sh
+│   │   ├── migrate-fixed.sh
+│   │   ├── migrate-phase-c.sh
+│   │   ├── pre-flight-check.sh
+│   │   ├── preflight-check.php
+│   │   ├── quick-fix-db-methods.php
+│   │   ├── quick-migrate.sh
+│   │   ├── rename-tables.sh
+│   │   ├── rollback-table-rename.sh
+│   │   ├── run-final-validation.php
+│   │   ├── run-migration.sh
+│   │   ├── setup-environment.sh
+│   │   ├── setup-production.php
+│   │   ├── smart-install.sh
+│   │   ├── validate-all-fixes.php
+│   │   ├── validate-environment.php
+│   │   ├── verify-endpoints.php
+│   │   ├── verify-phpunit-env.php
+│   │   └── verify-schema.php
+│   ├── cis-maximized-dashboard.html
+│   ├── cis-project-management.php
+│   ├── composer.json
+│   ├── composer.lock
+│   ├── config/
+│   │   ├── app.php
+│   │   ├── security.php
+│   │   └── urls.php
+│   ├── database/
+│   │   ├── DEPLOYMENT_GUIDE.txt
+│   │   ├── auto-sync-schema.sql
+│   │   ├── deploy-multi-kb-registry.sql
+│   │   ├── deploy-multi-kb-single-table.sql
+│   │   ├── deploy-rename.sh
+│   │   ├── migrate-add-domain-key.sql
+│   │   ├── migrate-existing-kb-tables-v2.sql
+│   │   ├── migrate-existing-kb-tables.sql
+│   │   └── rename-to-ai-agent-tables.sql
+│   ├── devtools.code-workspace
+│   ├── docs/
+│   │   ├── ARCHITECTURE.md
+│   │   ├── CONTEXTUAL_LOGS_QUICK_ANSWER.md
+│   │   ├── DOCUMENTATION_COMPLETE_BANNER.txt
+│   │   ├── DOCUMENTATION_SUMMARY_OCT29.md
+│   │   ├── MULTI_DOMAIN_LOGGING.md
+│   │   ├── README.md
+│   │   └── TOOLS-CATALOG.yaml
+│   ├── index.html
+│   ├── jest.config.cjs
+│   ├── lib/
+│   │   ├── AIOrchestrator.php
+│   │   ├── AIOrchestrator.php.backup_20251018_225214
+│   │   └── MCPToolBridge.php
+│   ├── logs/
+│   │   ├── .htaccess
+│   │   ├── api-test-results.json
+│   │   ├── api-tests-20251029_031503.log
+│   │   ├── api-tests-20251029_031516.log
+│   │   ├── api-tests-20251029_032446.log
+│   │   ├── api-tests-20251029_032851.log
+│   │   ├── api-tests-20251029_033009.log
+│   │   ├── chat.log
+│   │   ├── cis_config_audit_20250920_221940.json
+│   │   ├── operations.log
+│   │   ├── smart-install-20251029_024226.log
+│   │   └── system_report_20250918_112305.txt
+│   ├── migrations/
+│   │   ├── 001_messages_backup_table.sql
+│   │   ├── 003_analytics_and_memory.sql
+│   │   ├── 003_analytics_and_memory_fixed.sql
+│   │   ├── INSTALL_FRONTEND_INTEGRATION.sh
+│   │   ├── frontend_integration_schema.sql
+│   │   └── install_frontend_db.php
+│   ├── ops/
+│   │   ├── .htaccess
+│   │   ├── db-status.php
+│   │   ├── deployment-manager.php
+│   │   ├── monitoring-dashboard.php
+│   │   ├── ops-cli.sh
+│   │   ├── ready-check.php
+│   │   ├── repo-cleaner.php
+│   │   ├── security-scanner.php
+│   │   └── system-doctor.php
+│   ├── output.php
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── phpcs.xml
+│   ├── phpstan.neon.dist
+│   ├── phpunit.xml
+│   ├── public/
+│   │   ├── adam-bot.html
+│   │   ├── admin.php
+│   │   ├── agent/
+│   │   ├── agent_dev/
+│   │   ├── analytics-dashboard.html
+│   │   ├── api/
+│   │   ├── dashboard/
+│   │   ├── index.html
+│   │   └── status.html
+│   ├── reports/
+│   │   └── neural_system_status.json
+│   ├── router.php
+│   ├── scripts/
+│   │   ├── ci-run.sh
+│   │   ├── collect-artifacts.mjs
+│   │   ├── link-checker.mjs
+│   │   ├── nonstream.sh
+│   │   ├── show-last-trace.mjs
+│   │   ├── stream.sh
+│   │   ├── stream_toolcall.sh
+│   │   └── toolcall.sh
+│   ├── sql/
+│   │   ├── Migration.php
+│   │   ├── migrations/
+│   │   ├── schema.sql
+│   │   ├── schema_alter_commands.sql
+│   │   └── schema_compatible.sql
+│   ├── src/
+│   │   ├── .htaccess
+│   │   ├── Agent.php
+│   │   ├── Analytics/
+│   │   ├── Chat/
+│   │   ├── Claude.php
+│   │   ├── Config/
+│   │   ├── Config.php
+│   │   ├── ConversationManager.php
+│   │   ├── Core/
+│   │   ├── DB.php
+│   │   ├── DB.php.backup-20251031-123942
+│   │   ├── Enterprise/
+│   │   ├── Instrumentation/
+│   │   ├── Intelligence/
+│   │   ├── Knowledge/
+│   │   ├── Logger.php
+│   │   ├── Memory/
+│   │   ├── MessageHandler.php
+│   │   ├── Middleware/
+│   │   ├── Multi/
+│   │   ├── OpenAI.php
+│   │   ├── RedisClient.php
+│   │   ├── SSE.php
+│   │   ├── Services/
+│   │   ├── Tools/
+│   │   ├── Util/
+│   │   ├── bootstrap.php
+│   │   ├── cis-neural-bridge.php
+│   │   ├── cis-neural-frontend.js
+│   │   ├── neural-init.js
+│   │   ├── neural-network-maximized.js
+│   │   └── neural-network.js
+│   ├── stream.php
+│   ├── sync/
+│   │   ├── KBIndexHandler.php
+│   │   ├── install-cron-jobs.sh
+│   │   ├── install-kb-cron-jobs.sh
+│   │   └── install-kb-jobs.sql
+│   ├── test-logs/
+│   │   ├── endpoint-verification-20251010_090319.log
+│   │   ├── phpunit-20251010_090319.log
+│   │   └── summary-20251010_090319.txt
+│   ├── test-results/
+│   │   ├── .last-run.json
+│   │   └── a11y-AI-Agent-UI---Accessi-de22a-al-accessibility-violations/
+│   ├── test-tools.php
+│   ├── tests/
+│   │   ├── Feature/
+│   │   ├── Integration/
+│   │   ├── Performance/
+│   │   ├── Tools/
+│   │   ├── Unit/
+│   │   ├── bootstrap.php
+│   │   └── js/
+│   ├── ui-tests/
+│   │   ├── a11y.spec.js
+│   │   ├── all-controls.spec.js
+│   │   ├── artifacts.json
+│   │   ├── playwright.config.cjs
+│   │   ├── playwright.config.js
+│   │   ├── smoke.spec.js
+│   │   ├── tsconfig.json
+│   │   └── vision_prompt.txt
+│   └── vendor/
+│       ├── autoload.php
+│       ├── bin/
+│       ├── brick/
+│       ├── composer/
+│       ├── graham-campbell/
+│       ├── guzzlehttp/
+│       ├── monolog/
+│       ├── myclabs/
+│       ├── nikic/
+│       ├── phar-io/
+│       ├── phpoption/
+│       ├── phpstan/
+│       ├── phpunit/
+│       ├── psr/
+│       ├── ralouphie/
+│       ├── ramsey/
+│       ├── sebastian/
+│       ├── squizlabs/
+│       ├── symfony/
+│       ├── theseer/
+│       └── vlucas/
+├── api/
+│   ├── agent_kb.php
+│   ├── ai-chat.php
+│   ├── ai-control.php
+│   ├── bot-deployment-api-OLD.php
+│   ├── bot-deployment-api.php
+│   ├── bot-prompt.php
+│   ├── broadcast-to-copilots.php
+│   ├── credentials.php
+│   ├── db-validate.php
+│   ├── deploy-file.php
+│   ├── deploy_satellite_scanners.php
+│   ├── get_project_conversations.php
+│   ├── intelligence/
+│   │   ├── .htaccess
+│   │   ├── IntelligenceAPIClient.php
+│   │   ├── api_neural_scanner.php
+│   │   ├── check_functions.php
+│   │   ├── check_scan_errors.php
+│   │   ├── deploy_intelligence_client.php
+│   │   ├── index.php
+│   │   ├── intelligent_scorer.php
+│   │   ├── investigate_schema.php
+│   │   ├── load_ignore_config.php
+│   │   ├── neural_intelligence_processor.php
+│   │   └── update_intelligence_schema.php
+│   ├── multi-bot-collaboration.php
+│   ├── process_content_batch.php
+│   ├── process_content_remote.php
+│   ├── receive_satellite_data.php
+│   ├── satellite-deploy.php
+│   ├── save_conversation.php
+│   └── v1/
+│       └── chat/
+├── app/
+│   └── Services/
+│       └── RedisService.php
+├── apps/
+│   └── chat/
+│       ├── README.md
+│       ├── assets/
+│       └── index.php
+├── assets/
+│   ├── cron/
+│   │   └── utility_scripts/
+│   └── services/
+│       ├── ai-agent/
+│       └── cron/
+├── bin/
+│   ├── cron-status.sh
+│   ├── deploy-ai-agent.sh
+│   ├── ingest-knowledge-base.php
+│   ├── ingest-multi-domain.php
+│   ├── quick-start-wins.sh
+│   ├── test-kb-search.php
+│   ├── test-multi-domain.php
+│   ├── tool-audit-consolidator.php
+│   ├── tool-governance-weekly.sh
+│   └── tool-integration-merger.php
+├── botshop/
+│   ├── BOTSHOP_SETUP_COMPLETE.md
+│   ├── DEPLOY_V2_TO_PRODUCTION.sh
+│   ├── FLAT_STRUCTURE_COMPLETE.md
+│   ├── admin/
+│   │   ├── BUILD_SUMMARY.md
+│   │   ├── DASHBOARD_BUILD_COMPLETE.md
+│   │   ├── DEPLOYMENT_SUMMARY.md
+│   │   ├── MANUAL_TESTING_CHECKLIST.md
+│   │   ├── MCP_DOMAIN_REMINDER.md
+│   │   ├── MCP_HUB_INTEGRATION.md
+│   │   ├── PAGES_V2_CONFIRMATION.md
+│   │   ├── PHASE_5_QA_STATUS.md
+│   │   ├── QA_TEST_RESULTS.md
+│   │   ├── QUICK_START_QA.md
+│   │   ├── REDESIGN_MASTER_PLAN.md
+│   │   ├── REDESIGN_PHASE1_COMPLETE.md
+│   │   ├── _footer.php
+│   │   ├── _layout.php
+│   │   ├── _nav.php
+│   │   ├── _sidebar.php
+│   │   ├── api/
+│   │   ├── assets/
+│   │   ├── config/
+│   │   ├── includes/
+│   │   ├── includes-v2/
+│   │   ├── index.php
+│   │   ├── management.php
+│   │   ├── pages/
+│   │   ├── pages-v2/
+│   │   └── qa-test-suite.php
+│   ├── assets/
+│   │   ├── css/
+│   │   └── js/
+│   ├── includes/
+│   │   ├── footer.php
+│   │   ├── header.php
+│   │   ├── project-selector.php
+│   │   └── sidebar.php
+│   ├── index-old.php
+│   ├── index-production.php
+│   ├── index.php
+│   └── pages/
+│       ├── ai-agent.php
+│       ├── business-units.php
+│       ├── dependencies.php
+│       ├── documentation.php
+│       ├── files.php
+│       ├── metrics.php
+│       ├── overview.php
+│       ├── privacy.php
+│       ├── projects.php
+│       ├── rules.php
+│       ├── scan-config.php
+│       ├── scan-history.php
+│       ├── settings.php
+│       ├── support.php
+│       ├── terms.php
+│       └── violations.php
+├── composer.json
+├── comprehensive_scanner.php
+├── config/
+│   ├── automation.json
+│   ├── database.php
+│   ├── github-copilot-mcp.json
+│   ├── indexer-config.json
+│   ├── multi-bot.json
+│   └── redis.php
+├── dashboard/
+│   ├── .htaccess
+│   ├── CSS_HTML_FIX_REPORT.md
+│   ├── QUICK_START.md
+│   ├── _archived/
+│   │   ├── cleanup-dashboard.sh
+│   │   ├── deploy.sh
+│   │   ├── docs/
+│   │   ├── migrations/
+│   │   └── test-scripts/
+│   ├── admin/
+│   │   ├── BUILD_SUMMARY.md
+│   │   ├── DASHBOARD_BUILD_COMPLETE.md
+│   │   ├── DEPLOYMENT_SUMMARY.md
+│   │   ├── MANUAL_TESTING_CHECKLIST.md
+│   │   ├── MCP_DOMAIN_REMINDER.md
+│   │   ├── MCP_HUB_INTEGRATION.md
+│   │   ├── PAGES_V2_CONFIRMATION.md
+│   │   ├── PHASE_5_QA_STATUS.md
+│   │   ├── QA_TEST_RESULTS.md
+│   │   ├── QUICK_START_QA.md
+│   │   ├── REDESIGN_MASTER_PLAN.md
+│   │   ├── REDESIGN_PHASE1_COMPLETE.md
+│   │   ├── _footer.php
+│   │   ├── _layout.php
+│   │   ├── _nav.php
+│   │   ├── _sidebar.php
+│   │   ├── api/
+│   │   ├── assets/
+│   │   ├── config/
+│   │   ├── includes/
+│   │   ├── includes-v2/
+│   │   ├── index.php
+│   │   ├── management.php
+│   │   ├── pages/
+│   │   ├── pages-v2/
+│   │   └── qa-test-suite.php
+│   ├── api/
+│   │   ├── bot-orchestrator.php
+│   │   ├── cleanup_action.php
+│   │   ├── document.php
+│   │   ├── files.php
+│   │   ├── notifications.php
+│   │   ├── recent.php
+│   │   ├── rule-engine.php
+│   │   ├── run_scanner.php
+│   │   ├── search.php
+│   │   ├── sse-proxy-HARDENED.php
+│   │   ├── sse-proxy-OLD.php
+│   │   ├── sse-proxy.php
+│   │   ├── stats.php
+│   │   └── vscode-sync.php
+│   ├── assets/
+│   │   ├── css/
+│   │   └── js/
+│   ├── cache/
+│   ├── config/
+│   │   ├── ai-agent-config.php
+│   │   ├── config.php
+│   │   ├── config.php.bak
+│   │   └── session-config.php
+│   ├── includes/
+│   │   ├── ConversationLogger.php
+│   │   ├── auth.php
+│   │   ├── breadcrumb.php
+│   │   ├── footer.php
+│   │   ├── functions.php
+│   │   ├── functions.php.backup_20251023_152620
+│   │   ├── functions.php.backup_emergency
+│   │   ├── header.php
+│   │   ├── sidebar.php
+│   │   └── sidebar.php.backup-broken
+│   ├── index.php
+│   ├── login.php
+│   ├── logout.php
+│   ├── logs/
+│   │   └── php-errors.log
+│   ├── pages/
+│   │   ├── ai-agent.php
+│   │   ├── ai-chat.php
+│   │   ├── ai-control-center.php
+│   │   ├── ai-prompt-generator-v2.php
+│   │   ├── ai-prompt-generator.php
+│   │   ├── analytics.php
+│   │   ├── api.php
+│   │   ├── bot-commands.php
+│   │   ├── bot-orchestrator.php
+│   │   ├── bot-standards.php
+│   │   ├── cleanup.php
+│   │   ├── conversations.php
+│   │   ├── crawler-monitor.php
+│   │   ├── credentials.php
+│   │   ├── cron.php
+│   │   ├── db-validate.php
+│   │   ├── documentation.php
+│   │   ├── files.php
+│   │   ├── functions.php
+│   │   ├── logs.php
+│   │   ├── mcp-tools.php
+│   │   ├── neural.php
+│   │   ├── overview.php
+│   │   ├── patterns.php
+│   │   ├── scanner.php
+│   │   ├── search.php
+│   │   ├── servers.php
+│   │   ├── settings.php
+│   │   └── sql-query.php
+│   ├── tests/
+│   │   └── test-login.php
+│   ├── uploads/
+│   └── verify-build.sh
+├── dashboard-urls.php
+├── dev-tools/
+│   └── ecigdis-mcp-chat/
+│       ├── package.json
+│       ├── scp31391/
+│       ├── src/
+│       └── tsconfig.json
+├── docs/
+│   ├── PERFORMANCE_QUICK_WINS.md
+│   ├── PERFORMANCE_ROLLOUT_CHECKLIST.md
+│   ├── PHASE0_REPORT.md
+│   ├── REDIRECTS_PLAYBOOK.md
+│   ├── SERVER_TUNING_SNIPPETS.md
+│   ├── TOKENS_AND_AUTH.md
+│   ├── _VISUAL_STRUCTURE.txt
+│   ├── architecture/
+│   ├── database/
+│   │   ├── 01_current_tables.md
+│   │   └── 02_new_tables_design.md
+│   ├── guides/
+│   │   └── 01_quick_start.md
+│   ├── implementation/
+│   ├── planning/
+│   │   ├── 01_project_requirements.md
+│   │   ├── 02_timeline_estimates.md
+│   │   └── 03_conversation_history.md
+│   └── systems/
+│       └── 01_context_generator.md
+├── downloads/
+│   ├── deploy_docs_to_cis.sh
+│   ├── frontend_integration_complete_20251104_110402.tar.gz
+│   └── index.html
+├── extensions/
+│   └── copilot-memory-sync/
+│       └── package.json
+├── frontend-tools/
+│   ├── .env
+│   ├── .gitignore
+│   ├── ARCHITECTURE_DEEP_DIVE.md
+│   ├── AUDIT_GALLERY_SYSTEM.md
+│   ├── AUTOMATION_ROADMAP.md
+│   ├── BOT_USAGE_GUIDE.md
+│   ├── INTEGRATION_MASTER_PLAN.md
+│   ├── PHASE1_COMPLETE_BANNER.txt
+│   ├── core/
+│   │   ├── browser-controller.js
+│   │   ├── error-detector.js
+│   │   └── screenshot-tool.js
+│   ├── crawl.log
+│   ├── cron-audit-scanner.js
+│   ├── dashboard/
+│   │   └── live-stream.html
+│   ├── example-report/
+│   │   ├── BOT_SUMMARY.json
+│   │   ├── BOT_SUMMARY.txt
+│   │   └── full_crawl_data.json
+│   ├── examples/
+│   │   └── comprehensive-audit.js
+│   ├── lib/
+│   │   ├── profile-manager.js
+│   │   └── reporter.js
+│   ├── logs/
+│   │   └── sse-server.log
+│   ├── mock-report/
+│   │   ├── BOT_SUMMARY.json
+│   │   ├── BOT_SUMMARY.txt
+│   │   └── full_crawl_data.json
+│   ├── node_modules/
+│   │   ├── .bin/
+│   │   ├── .package-lock.json
+│   │   ├── @babel/
+│   │   ├── @colors/
+│   │   ├── @emnapi/
+│   │   ├── @formatjs/
+│   │   ├── @img/
+│   │   ├── @paulirish/
+│   │   ├── @puppeteer/
+│   │   ├── @sentry/
+│   │   ├── @tootallnate/
+│   │   ├── @types/
+│   │   ├── agent-base/
+│   │   ├── ansi-colors/
+│   │   ├── ansi-regex/
+│   │   ├── ansi-styles/
+│   │   ├── argparse/
+│   │   ├── ast-types/
+│   │   ├── asynckit/
+│   │   ├── axe-core/
+│   │   ├── axios/
+│   │   ├── b4a/
+│   │   ├── bare-events/
+│   │   ├── bare-fs/
+│   │   ├── bare-os/
+│   │   ├── bare-path/
+│   │   ├── bare-stream/
+│   │   ├── bare-url/
+│   │   ├── base64-js/
+│   │   ├── basic-ftp/
+│   │   ├── buffer/
+│   │   ├── buffer-crc32/
+│   │   ├── call-bind-apply-helpers/
+│   │   ├── callsites/
+│   │   ├── chrome-launcher/
+│   │   ├── chromium-bidi/
+│   │   ├── cli-table3/
+│   │   ├── cliui/
+│   │   ├── color/
+│   │   ├── color-convert/
+│   │   ├── color-name/
+│   │   ├── color-string/
+│   │   ├── colors/
+│   │   ├── combined-stream/
+│   │   ├── configstore/
+│   │   ├── cookie/
+│   │   ├── cosmiconfig/
+│   │   ├── cross-fetch/
+│   │   ├── crypto-random-string/
+│   │   ├── csp_evaluator/
+│   │   ├── data-uri-to-buffer/
+│   │   ├── debug/
+│   │   ├── decimal.js/
+│   │   ├── define-lazy-prop/
+│   │   ├── degenerator/
+│   │   ├── delayed-stream/
+│   │   ├── detect-libc/
+│   │   ├── devtools-protocol/
+│   │   ├── dot-prop/
+│   │   ├── dunder-proto/
+│   │   ├── emoji-regex/
+│   │   ├── end-of-stream/
+│   │   ├── enquirer/
+│   │   ├── env-paths/
+│   │   ├── error-ex/
+│   │   ├── es-define-property/
+│   │   ├── es-errors/
+│   │   ├── es-object-atoms/
+│   │   ├── es-set-tostringtag/
+│   │   ├── escalade/
+│   │   ├── escape-string-regexp/
+│   │   ├── escodegen/
+│   │   ├── esprima/
+│   │   ├── estraverse/
+│   │   ├── esutils/
+│   │   ├── events-universal/
+│   │   ├── extract-zip/
+│   │   ├── fast-fifo/
+│   │   ├── fd-slicer/
+│   │   ├── follow-redirects/
+│   │   ├── form-data/
+│   │   ├── function-bind/
+│   │   ├── get-caller-file/
+│   │   ├── get-intrinsic/
+│   │   ├── get-proto/
+│   │   ├── get-stream/
+│   │   ├── get-uri/
+│   │   ├── gopd/
+│   │   ├── graceful-fs/
+│   │   ├── has-symbols/
+│   │   ├── has-tostringtag/
+│   │   ├── hasown/
+│   │   ├── http-link-header/
+│   │   ├── http-proxy-agent/
+│   │   ├── https-proxy-agent/
+│   │   ├── ieee754/
+│   │   ├── image-ssim/
+│   │   ├── import-fresh/
+│   │   ├── imurmurhash/
+│   │   ├── intl-messageformat/
+│   │   ├── ip-address/
+│   │   ├── is-arrayish/
+│   │   ├── is-docker/
+│   │   ├── is-fullwidth-code-point/
+│   │   ├── is-obj/
+│   │   ├── is-typedarray/
+│   │   ├── is-wsl/
+│   │   ├── jpeg-js/
+│   │   ├── js-library-detector/
+│   │   ├── js-tokens/
+│   │   ├── js-yaml/
+│   │   ├── json-parse-even-better-errors/
+│   │   ├── lighthouse/
+│   │   ├── lighthouse-logger/
+│   │   ├── lighthouse-stack-packs/
+│   │   ├── lines-and-columns/
+│   │   ├── lodash/
+│   │   ├── lookup-closest-locale/
+│   │   ├── lru-cache/
+│   │   ├── lru_map/
+│   │   ├── make-dir/
+│   │   ├── marky/
+│   │   ├── math-intrinsics/
+│   │   ├── metaviewport-parser/
+│   │   ├── mime-db/
+│   │   ├── mime-types/
+│   │   ├── mitt/
+│   │   ├── mkdirp-classic/
+│   │   ├── ms/
+│   │   ├── netmask/
+│   │   ├── node-fetch/
+│   │   ├── once/
+│   │   ├── open/
+│   │   ├── pac-proxy-agent/
+│   │   ├── pac-resolver/
+│   │   ├── parent-module/
+│   │   ├── parse-cache-control/
+│   │   ├── parse-json/
+│   │   ├── pend/
+│   │   ├── picocolors/
+│   │   ├── playwright/
+│   │   ├── playwright-core/
+│   │   ├── prettier/
+│   │   ├── progress/
+│   │   ├── proxy-agent/
+│   │   ├── proxy-from-env/
+│   │   ├── ps-list/
+│   │   ├── pump/
+│   │   ├── puppeteer/
+│   │   ├── puppeteer-core/
+│   │   ├── require-directory/
+│   │   ├── resolve-from/
+│   │   ├── robots-parser/
+│   │   ├── semver/
+│   │   ├── sharp/
+│   │   ├── signal-exit/
+│   │   ├── simple-swizzle/
+│   │   ├── smart-buffer/
+│   │   ├── socks/
+│   │   ├── socks-proxy-agent/
+│   │   ├── source-map/
+│   │   ├── speedline-core/
+│   │   ├── streamx/
+│   │   ├── string-width/
+│   │   ├── strip-ansi/
+│   │   ├── tar-fs/
+│   │   ├── tar-stream/
+│   │   ├── text-decoder/
+│   │   ├── third-party-web/
+│   │   ├── through/
+│   │   ├── tldts-core/
+│   │   ├── tldts-icann/
+│   │   ├── tr46/
+│   │   ├── tslib/
+│   │   ├── typedarray-to-buffer/
+│   │   ├── unbzip2-stream/
+│   │   ├── undici-types/
+│   │   ├── unique-string/
+│   │   ├── urlpattern-polyfill/
+│   │   ├── webidl-conversions/
+│   │   ├── whatwg-url/
+│   │   ├── wrap-ansi/
+│   │   ├── wrappy/
+│   │   ├── write-file-atomic/
+│   │   ├── ws/
+│   │   ├── xdg-basedir/
+│   │   ├── y18n/
+│   │   ├── yargs/
+│   │   ├── yargs-parser/
+│   │   ├── yauzl/
+│   │   └── zod/
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── profiles/
+│   │   ├── cis-robot-mobile.json
+│   │   ├── cis-robot-tablet.json
+│   │   ├── cis-robot.json
+│   │   ├── gpt-hub.json
+│   │   └── retail-sites.json
+│   ├── reports/
+│   │   ├── .gitkeep
+│   │   ├── interactive_crawl_2025-10-26_061021/
+│   │   ├── test_20251027_214823/
+│   │   ├── test_20251027_223637/
+│   │   └── test_20251027_223658/
+│   ├── screenshots/
+│   │   └── .gitkeep
+│   ├── scripts/
+│   │   ├── auth-manager.js
+│   │   ├── bot-page-tester.js
+│   │   ├── bot-summary-generator.js
+│   │   ├── business-unit-manager.js
+│   │   ├── crawl-staff-portal.js
+│   │   ├── crawler-chat.js
+│   │   ├── deep-crawler.js
+│   │   ├── gpt-vision-analyzer.js
+│   │   ├── html-report-generator.js
+│   │   ├── interactive-crawler.js
+│   │   ├── quick-page-audit.js
+│   │   └── setup-profiles.js
+│   ├── server/
+│   │   └── sse-server.js
+│   ├── sessions/
+│   │   └── active/
+│   └── tests/
+│       ├── function-verification-results.json
+│       └── verify-functions.js
+├── kb/
+├── logs/
+│   ├── ai-analysis.log
+│   ├── ai-automation-manager.log
+│   ├── ai-batch-processor.log
+│   ├── ai-cron.log
+│   ├── ai-monitor.log
+│   ├── ai_usage.db
+│   ├── api-costs.log
+│   ├── auto-organizer.log
+│   ├── automation-full.log
+│   ├── automation-quick.log
+│   ├── backup_db_20251102_165110.log
+│   ├── bot-usage.log
+│   ├── call_graph.log
+│   ├── cis_sync.log
+│   ├── cleanup.log
+│   ├── copilot-automation.log
+│   ├── copilot-broadcasts.log
+│   ├── copilot-cron.log
+│   ├── copilot-full.log
+│   ├── copilot-readme.log
+│   ├── copilot-sync.log
+│   ├── copilot-vscode.log
+│   ├── cron-health.log
+│   ├── cron_auto_sync.log
+│   ├── cron_health.log
+│   ├── cron_health_check.log
+│   ├── cron_smart_trigger.log
+│   ├── crontab_backup_20251028_033613.txt
+│   ├── daily-errors.log
+│   ├── daily_sync.log
+│   ├── dead_code.log
+│   ├── deep_intelligence.log
+│   ├── hub-cron.log
+│   ├── ingest_20251102_165110.log
+│   ├── ingest_20251102_180933.log
+│   ├── kb-dashboard.log
+│   ├── kb-data-validation.log
+│   ├── kb-full-pipeline.log
+│   ├── kb-monitoring.log
+│   ├── kb-performance.log
+│   ├── kb-pipeline-health.log
+│   ├── kb-quick-refresh.log
+│   ├── kb_cleanup.log
+│   ├── kb_intelligence.log
+│   ├── kb_trigger_state.json
+│   ├── kb_triggers.log
+│   ├── mcp_auto_refresh.log
+│   ├── md_consolidator.log
+│   ├── md_scanner.log
+│   ├── monitor.log
+│   ├── multi-bot-collaboration.log
+│   ├── neural_full_20251102_165110.log
+│   ├── neural_safe_20251102_165110.log
+│   ├── neural_scan.log
+│   ├── onboard_errors.log
+│   ├── optimize_db_20251102_165110.log
+│   ├── performance.log
+│   ├── refresh_intelligence.log
+│   ├── refresh_intelligence_20251102_182228.log
+│   ├── relationships.log
+│   ├── search-optimization.log
+│   ├── security-hardening.log
+│   ├── security.log
+│   ├── security_enhanced.log
+│   ├── security_scan.log
+│   ├── setup-automation.log
+│   ├── smart_kb_trigger.log
+│   ├── system_metrics.json
+│   ├── token-usage.log
+│   └── user_activity.log
+├── mcp/
+│   ├── .env
+│   ├── .env.example
+│   ├── COPILOT_INSTRUCTIONS_MASTER_BACKUP.md
+│   ├── DEPLOY.sh
+│   ├── OLD_BUILD/
+│   │   ├── advanced_tools.php
+│   │   ├── analytics-dashboard.html
+│   │   ├── analytics_dashboard.php
+│   │   ├── auto_refresh.php
+│   │   ├── dashboard.html
+│   │   ├── health.php
+│   │   ├── health_v2.php
+│   │   ├── install_cron.sh
+│   │   ├── server.js
+│   │   ├── server.php
+│   │   ├── server_v2.php
+│   │   ├── server_v2_complete.php
+│   │   ├── start_mcp.sh
+│   │   ├── vscode_settings.json
+│   │   └── webhook.php
+│   ├── SETUP_COMPLETE.md
+│   ├── START_HERE.md
+│   ├── VSCODE_SETUP_GUIDE.md
+│   ├── audits/
+│   │   ├── files/
+│   │   ├── gallery.php
+│   │   └── upload.php
+│   ├── bootstrap.php
+│   ├── cache/
+│   ├── check_satellites.php
+│   ├── clear_cache.php
+│   ├── cli/
+│   │   ├── Commands/
+│   │   ├── Console/
+│   │   └── mcp
+│   ├── composer.json
+│   ├── composer.lock
+│   ├── config/
+│   │   ├── README.md
+│   │   ├── config.json
+│   │   ├── database.php
+│   │   ├── mcp-config.json
+│   │   ├── mcp.json.example
+│   │   ├── setup.sh
+│   │   └── vscode-mcp-settings.json
+│   ├── debug_auth.php
+│   ├── detect_context.php
+│   ├── dispatcher.php
+│   ├── health_v3.php
+│   ├── logs/
+│   │   ├── dispatcher-error.log
+│   │   ├── dispatcher.log
+│   │   └── phase1_test_results.json
+│   ├── mcp-server-wrapper.js
+│   ├── mcp.json
+│   ├── mcp_tools_turbo.php
+│   ├── migrations/
+│   │   └── 002_conversation_recording.sql
+│   ├── php_code_indexer.php
+│   ├── prompts/
+│   │   ├── MASTER_SYSTEM_PROMPT.md
+│   │   ├── NO_EXCUSES_SYSTEM_PROMPT.md
+│   │   └── PERSISTENT_CONTEXT.md
+│   ├── scripts/
+│   │   ├── backup_data.sh
+│   │   ├── cleanup_duplicates.php
+│   │   ├── fast_cleanup.php
+│   │   ├── monitor_health.sh
+│   │   ├── performance_stats.php
+│   │   └── verify_deployment.sh
+│   ├── semantic_search_engine.php
+│   ├── server_v3.php
+│   ├── settings.json
+│   ├── setup-ai-agent-default.sh
+│   ├── setup-simple.sh
+│   ├── sql/
+│   │   ├── fix_duplicates_and_add_constraints.sql
+│   │   └── schema.sql
+│   ├── src/
+│   │   ├── Analysis/
+│   │   ├── Analytics/
+│   │   ├── Cache/
+│   │   ├── Config/
+│   │   ├── Database/
+│   │   ├── Indexing/
+│   │   ├── Search/
+│   │   └── Tools/
+│   ├── storage/
+│   │   └── cache/
+│   ├── sync-copilot-conversations.php
+│   ├── test-mcp-complete.sh
+│   ├── test_env_load.php
+│   ├── test_load.php
+│   ├── test_mcp_context.php
+│   ├── tests/
+│   │   ├── cache_fallback_test.php
+│   │   ├── endpoint_test.php
+│   │   ├── phase1_foundation_test.php
+│   │   ├── php_indexer_test.php
+│   │   ├── run_all_new_tests.sh
+│   │   ├── run_all_tests.sh
+│   │   ├── semantic_search_test.php
+│   │   ├── test_analytics.php
+│   │   ├── test_crawler_tool.php
+│   │   ├── test_dispatcher.php
+│   │   ├── test_dispatcher_simple.php
+│   │   ├── test_fuzzy_search.php
+│   │   └── test_new_tools.php
+│   ├── tools/
+│   │   ├── ai_agent_query.php
+│   │   ├── ai_agent_query_endpoint.php
+│   │   └── ai_agent_query_enhanced.php
+│   ├── tools_impl.php
+│   ├── tools_satellite.php
+│   ├── vendor/
+│   │   ├── autoload.php
+│   │   ├── bin/
+│   │   ├── composer/
+│   │   ├── doctrine/
+│   │   ├── monolog/
+│   │   ├── myclabs/
+│   │   ├── nikic/
+│   │   ├── phar-io/
+│   │   ├── phpunit/
+│   │   ├── psr/
+│   │   ├── sebastian/
+│   │   ├── squizlabs/
+│   │   ├── symfony/
+│   │   └── theseer/
+│   └── vscode-config/
+├── modules/
+│   └── consignments/
+│       ├── .env
+│       └── lib/
+├── onboard/
+│   ├── README.md
+│   ├── callback.php
+│   ├── deploy_automation.php
+│   ├── deploy_worker.php
+│   ├── index.php
+│   ├── packages/
+│   │   └── onboard_6909f0d295b371.41866060.zip
+│   └── stages/
+│       ├── complete.php
+│       ├── configure.php
+│       ├── deploy.php
+│       ├── github.php
+│       ├── project.php
+│       └── welcome.php
+├── private_html/
+│   ├── .db-vault.enc
+│   ├── .encryption-key
+│   ├── backups/
+│   │   └── vscode-prompts/
+│   ├── logs/
+│   │   └── db-audit.log
+│   └── onboarding/
+│       ├── onboard_6909ee6c613ac0.86892542_session.json
+│       ├── onboard_6909ee6c613ac0.86892542_status.json
+│       ├── onboard_6909ef1eb0c6c3.72784125_session.json
+│       ├── onboard_6909ef1eb0c6c3.72784125_status.json
+│       ├── onboard_6909eff713c226.90924202_session.json
+│       ├── onboard_6909eff713c226.90924202_status.json
+│       ├── onboard_6909f0d295b371.41866060_session.json
+│       ├── onboard_6909f0d295b371.41866060_status.json
+│       └── test_6909f7d0522f2_session.json
+├── sandbox/
+│   ├── README.md
+│   ├── logs/
+│   ├── public/
+│   └── temp/
+├── scanner/
+│   ├── .gitignore
+│   ├── .phpunit.result.cache
+│   ├── ANALYSIS_COMPLETE.md
+│   ├── BOOTSTRAP_CONVERSION_COMPLETE.md
+│   ├── CODE_ANALYSIS_REPORT.md
+│   ├── COMPLETE_SUMMARY.md
+│   ├── DATABASE_TABLES_LIST.txt
+│   ├── DOCUMENTATION_INDEX.md
+│   ├── FIXED_SUMMARY.md
+│   ├── FIXES_APPLIED_REPORT.md
+│   ├── GAP_ANALYSIS.md
+│   ├── MULTI_PROJECT_SETUP_COMPLETE.md
+│   ├── QUICK_FIXES.php
+│   ├── QUICK_WINS_ACTION_PLAN.md
+│   ├── QUICK_WINS_IMPLEMENTATION_COMPLETE.md
+│   ├── QUICK_WINS_LIVE.md
+│   ├── QUICK_WINS_STATUS.txt
+│   ├── QUICK_WIN_1_COMPLETE.md
+│   ├── QUICK_WIN_1_PROGRESS_REPORT.md
+│   ├── README.md
+│   ├── READY_TO_EXECUTE.md
+│   ├── READY_TO_EXECUTE_CHECKLIST.txt
+│   ├── SCANNER_QUICK_GUIDE.md
+│   ├── TEST_URLS.md
+│   ├── UPGRADE_COMPLETE.md
+│   ├── api/
+│   │   ├── DatabaseTool.php
+│   │   ├── Files.php
+│   │   ├── HttpTool.php
+│   │   ├── LogsTool.php
+│   │   ├── MemoryTool.php
+│   │   ├── RedisTool.php
+│   │   ├── ai-assistant.php
+│   │   ├── auto-fix.php
+│   │   ├── batch-scan.php
+│   │   ├── mcp-proxy.php
+│   │   ├── realtime-scanner.php
+│   │   └── rest.php
+│   ├── apply-fixes.php
+│   ├── assets/
+│   │   ├── css/
+│   │   └── js/
+│   ├── cleanup_and_rebuild.sh
+│   ├── composer.json
+│   ├── composer.lock
+│   ├── config/
+│   │   ├── database.php
+│   │   └── multi-project-config.php
+│   ├── config.json
+│   ├── github-push.sh
+│   ├── includes/
+│   │   ├── footer.php
+│   │   ├── navbar.php
+│   │   └── sidebar.php
+│   ├── index.php
+│   ├── lib/
+│   │   ├── AIAssistant.php
+│   │   ├── AutoFixService.php
+│   │   ├── MCPAgent.php
+│   │   └── QuickScanService.php
+│   ├── logs/
+│   │   ├── .htaccess
+│   │   └── php_errors.log
+│   ├── pages/
+│   │   ├── business-units.php
+│   │   ├── dependencies.php
+│   │   ├── documentation.php
+│   │   ├── files.php
+│   │   ├── metrics.php
+│   │   ├── overview.php
+│   │   ├── privacy.php
+│   │   ├── projects.php
+│   │   ├── rules.php
+│   │   ├── scan-config.php
+│   │   ├── scan-history.php
+│   │   ├── settings.php
+│   │   ├── support.php
+│   │   ├── terms.php
+│   │   └── violations.php
+│   ├── phpunit.xml
+│   ├── pre-flight-check.sh
+│   ├── push-to-github.sh
+│   ├── scripts/
+│   │   ├── create-missing-tables.sql
+│   │   ├── create-schema.sql
+│   │   ├── production-completion.php
+│   │   ├── setup-multi-project.sql
+│   │   └── verify-database.php
+│   ├── setup-copy-files.sh
+│   ├── setup-copy.php
+│   ├── test-vulnerable.php
+│   ├── tests/
+│   │   └── Unit/
+│   └── vendor/
+│       ├── autoload.php
+│       ├── bin/
+│       ├── composer/
+│       ├── myclabs/
+│       ├── nikic/
+│       ├── phar-io/
+│       ├── phpunit/
+│       ├── sebastian/
+│       └── theseer/
+├── scanner_config.json
+├── scripts/
+│   ├── .backups/
+│   │   ├── README.md
+│   │   ├── repo.code-workspace.20251103_052830.bak
+│   │   └── repo.code-workspace.20251103_053341.bak
+│   ├── .devcontainer/
+│   │   └── README.md
+│   ├── .github/
+│   │   ├── ISSUE_TEMPLATE/
+│   │   ├── README.md
+│   │   └── workflows/
+│   ├── .gitignore
+│   ├── .kb/
+│   │   ├── README.md
+│   │   ├── active/
+│   │   ├── archive/
+│   │   ├── deprecated/
+│   │   └── recycle-bin/
+│   ├── .vscode/
+│   │   ├── README.md
+│   │   ├── extensions.json
+│   │   ├── launch.json
+│   │   ├── settings.json
+│   │   └── tasks.json
+│   ├── README.md
+│   ├── analyze_relationships.php
+│   ├── backup-database.php
+│   ├── bootstrap.php
+│   ├── cleanup-logs.php
+│   ├── deploy-to-satellite.sh
+│   ├── deploy_docs_direct.sh
+│   ├── deploy_docs_to_cis.sh
+│   ├── docs/
+│   │   └── README.md
+│   ├── extract_full_schema.php
+│   ├── fix_database_issues.sql
+│   ├── index_documentation.php
+│   ├── optimize-database.php
+│   ├── refresh-intelligence.php
+│   ├── repo.code-workspace
+│   ├── run_cis_pipeline.sh
+│   └── test_mcp_v3_tools.php
+├── services/
+│   ├── AIAgentClient.php
+│   ├── BotPromptBuilder.php
+│   ├── BotStandardsExpanded.php
+│   ├── CSRFProtection.php
+│   ├── CredentialManager.php
+│   ├── DatabaseValidator.php
+│   ├── FrontendTester.php
+│   ├── InputValidator.php
+│   ├── RateLimiter.php
+│   ├── SecurityMonitor.php
+│   ├── cloudways_cron_api.php
+│   ├── kb_data_validation.php
+│   ├── kb_data_validation.php.backup.20251023_012507
+│   ├── kb_data_validation_corrected.php
+│   ├── kb_data_validation_corrected.php.backup.20251023_012506
+│   ├── kb_data_validation_final.php
+│   ├── kb_data_validation_final.php.backup.20251023_012506
+│   ├── kb_pipeline_analyzer.php
+│   ├── kb_pipeline_analyzer.php.backup.20251023_012507
+│   ├── run_complete_kb_pipeline.php
+│   ├── run_complete_kb_pipeline.php.backup.20251023_012506
+│   ├── run_verified_kb_pipeline.php
+│   └── run_verified_kb_pipeline.php.backup.20251023_012506
+├── setup-mcp.sh
+├── setup-vscode-mcp.sh
+├── test/
+│   └── vulnerable.php
+├── test_context_api.php
+├── test_conversation_api.php
+├── test_memory_system.php
+├── test_semantic_search.php
+├── tom/
+│   ├── .env
+│   ├── COPILOT_INSTRUCTIONS_MASTER_BACKUP.md
+│   ├── CREATE_FRIEND_PACKAGE.sh
+│   ├── FRIEND_ONBOARDING_INSTALLER.sh
+│   ├── FRIEND_ONBOARDING_README.md
+│   ├── FRIEND_ONBOARDING_READY_TO_USE.md
+│   ├── FRIEND_PACKAGE_SYSTEM_COMPLETE.md
+│   ├── FRIEND_QUICK_REFERENCE.md
+│   ├── FRIEND_USER_TUTORIAL.md
+│   ├── MCP_COMPLETE_SETUP.md
+│   ├── ONBOARDING_COMPLETE_SUMMARY.md
+│   ├── ONBOARDING_PACKAGE_FOR_FRIENDS.md
+│   ├── README.md
+│   ├── database.php
+│   ├── friend-onboarding-complete.zip
+│   ├── mcp-config.json
+│   ├── mcp-server-wrapper.js
+│   ├── mcp.json
+│   ├── server_v3.php
+│   ├── settings.json
+│   └── vscode-mcp-settings.json
+├── tools/
+│   ├── quick_dial/
+│   │   └── apache_tail.sh
+│   └── verify/
+│       ├── access_summary.sh
+│       ├── encoding_check.sh
+│       ├── error_offenders.sh
+│       ├── headers_check.sh
+│       ├── slowlog_summary.sh
+│       ├── sse_probe.sh
+│       ├── timing.sh
+│       └── url_check.sh
+├── utility_scripts/
+│   └── assets/
+└── vendor/
+    ├── autoload.php
+    ├── bin/
+    │   ├── php-parse
+    │   └── phpunit
+    ├── composer/
+    │   ├── ClassLoader.php
+    │   ├── InstalledVersions.php
+    │   ├── LICENSE
+    │   ├── autoload_classmap.php
+    │   ├── autoload_files.php
+    │   ├── autoload_namespaces.php
+    │   ├── autoload_psr4.php
+    │   ├── autoload_real.php
+    │   ├── autoload_static.php
+    │   ├── installed.json
+    │   ├── installed.php
+    │   └── platform_check.php
+    ├── myclabs/
+    │   └── deep-copy/
+    ├── nikic/
+    │   └── php-parser/
+    ├── phar-io/
+    │   ├── manifest/
+    │   └── version/
+    ├── phpunit/
+    │   ├── php-code-coverage/
+    │   ├── php-file-iterator/
+    │   ├── php-invoker/
+    │   ├── php-text-template/
+    │   ├── php-timer/
+    │   └── phpunit/
+    ├── sebastian/
+    │   ├── cli-parser/
+    │   ├── code-unit/
+    │   ├── code-unit-reverse-lookup/
+    │   ├── comparator/
+    │   ├── complexity/
+    │   ├── diff/
+    │   ├── environment/
+    │   ├── exporter/
+    │   ├── global-state/
+    │   ├── lines-of-code/
+    │   ├── object-enumerator/
+    │   ├── object-reflector/
+    │   ├── recursion-context/
+    │   ├── type/
+    │   └── version/
+    ├── symfony/
+    │   ├── finder/
+    │   └── process/
+    └── theseer/
+        └── tokenizer/

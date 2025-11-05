@@ -1,0 +1,80 @@
+{
+  "// ===== GitHub Copilot Chat Configuration =====": "",
+  "github.copilot.chat.enabled": true,
+  "github.copilot.chat.tools.enabled": true,
+
+  "// ===== Your AI Agent as Default Model =====": "",
+  "github.copilot.chat.codeGeneration.instructions": [
+    {
+      "text": "🤖 AI AGENT: You have access to a custom GPT-5 AI Agent with RAG, semantic search (8,645 files), conversation memory, and knowledge base. Use ai_agent.query tool for complex questions, codebase searches, or questions requiring deep context."
+    }
+  ],
+
+  "// ===== MCP Server Configuration =====": "",
+  "github.copilot.chat.tools.mcpServers": {
+    "intelligence-hub-v3": {
+      "command": "node",
+      "args": [
+        "/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/mcp/mcp-server-wrapper.js"
+      ],
+      "env": {
+        "MCP_SERVER_URL": "https://gpt.ecigdis.co.nz/mcp/server_v3.php",
+        "MCP_API_KEY": "31ce0106609a6c5bc4f7ece0deb2f764df90a06167bda83468883516302a6a35",
+        "PROJECT_ID": "2",
+        "BUSINESS_UNIT_ID": "2",
+        "RECORD_CONVERSATIONS": "true",
+        "WORKSPACE_ROOT": "${workspaceFolder}",
+        "NODE_PATH": "/usr/bin/node"
+      },
+      "metadata": {
+        "displayName": "IntelligenceHub V3 + AI Agent (Default)",
+        "description": "Your custom GPT-5 AI Agent with full RAG, semantic search, and conversation recording",
+        "version": "3.0.0",
+        "isDefault": true,
+        "capabilities": [
+          "ai_agent.query (GPT-5 with RAG)",
+          "semantic_search (8,645 files)",
+          "database_query",
+          "file_operations",
+          "knowledge_base_search",
+          "grep_search",
+          "context_memory",
+          "streaming_responses",
+          "conversation_recording"
+        ]
+      }
+    }
+  },
+
+  "// ===== OpenAI Compatible Provider (VS Code 1.104+) =====": "",
+  "github.copilot.chat.languageModels": {
+    "intelligence-hub-gpt5": {
+      "provider": "openai-compatible",
+      "baseUrl": "https://gpt.ecigdis.co.nz/api/v1",
+      "apiKey": "31ce0106609a6c5bc4f7ece0deb2f764df90a06167bda83468883516302a6a35",
+      "model": "gpt-5-turbo",
+      "displayName": "IntelligenceHub GPT-5",
+      "description": "Your custom AI Agent with full RAG and context",
+      "default": true
+    }
+  },
+
+  "// ===== Conversation Recording =====": "",
+  "mcp.conversationRecording": {
+    "enabled": true,
+    "storage": "database",
+    "includeContext": true,
+    "includeTools": true,
+    "anonymize": false
+  },
+
+  "// ===== Editor Integration =====": "",
+  "editor.inlineSuggest.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": true,
+    "markdown": true,
+    "php": true
+  }
+}

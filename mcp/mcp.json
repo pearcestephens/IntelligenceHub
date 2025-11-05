@@ -1,0 +1,46 @@
+{
+  "mcpServers": {
+    "intelligence-hub": {
+      "type": "http",
+      "url": "https://gpt.ecigdis.co.nz/mcp/server_v3.php",
+      "headers": {
+        "Authorization": "Bearer ${input:mcp-api-key}",
+        "X-Workspace-Root": "${workspaceFolder}",
+        "X-Current-File": "${file}"
+      },
+      "metadata": {
+        "displayName": "IntelligenceHub AI Agent (Default)",
+        "description": "Your custom GPT-5 AI Agent with RAG, semantic search (8,645 files), conversation memory, and all MCP V3 tools",
+        "version": "3.0.0",
+        "default": true,
+        "capabilities": [
+          "ai_agent.query (GPT-5 with RAG)",
+          "semantic_search (8,645 indexed files)",
+          "conversation_memory",
+          "database_query",
+          "file_operations",
+          "knowledge_base_search",
+          "grep_search",
+          "streaming_responses",
+          "context_awareness"
+        ]
+      }
+    }
+  },
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "mcp-api-key",
+      "description": "MCP API Key (from .env)",
+      "password": true,
+      "default": "31ce0106609a6c5bc4f7ece0deb2f764df90a06167bda83468883516302a6a35"
+    }
+  ],
+  "settings": {
+    "recordConversations": true,
+    "conversationStorage": "database",
+    "defaultModel": "gpt-5-turbo",
+    "streamResponses": true,
+    "contextAwareness": "full"
+  }
+}
