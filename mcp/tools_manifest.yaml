@@ -1,0 +1,86 @@
+tools:
+  db.query_readonly:
+    name: "db.query_readonly"
+    description: "Execute read-only SQL queries (SELECT, SHOW, DESCRIBE, EXPLAIN)"
+    category: "database"
+    class: "DatabaseTools"
+    method: "queryReadonly"
+    parameters:
+      sql:
+        type: string
+        required: true
+        description: "SQL query to execute"
+        example: "SELECT * FROM users LIMIT 10"
+      params:
+        type: array
+        required: false
+        description: "Prepared statement parameters"
+        example: ["value1", "value2"]
+    test:
+      args:
+        sql: "SELECT 1 as test, NOW() as timestamp"
+      expect:
+        status: 200
+        data_keys: ["rows"]
+
+  db.stats:
+    name: "db.stats"
+    description: "Get database statistics (table count, sizes)"
+    category: "database"
+    class: "DatabaseTools"
+    method: "stats"
+    parameters: {}
+    test:
+      args: {}
+      expect:
+        status: 200
+        data_keys: ["tables", "top10"]
+
+  fs.write:
+    name: "fs.write"
+    description: "Write content to a file in jailed directory"
+    category: "filesystem"
+    class: "FileSystemTools"
+    method: "write"
+    parameters:
+      path:
+        type: string
+        required: true
+        description: "File path relative to jail root"
+        example: "/test/file.txt"
+      content:
+        type: string
+        required: true
+        description: "Content to write"
+        example: "Hello World"
+    test:
+      args:
+        path: "/test_write.txt"
+        content: "Test content from MCP"
+      expect:
+        status: 200
+        data_keys: ["written"]
+
+  fs.read:
+    name: "fs.read"
+    description: "Read content from a file in jailed directory"
+    category: "filesystem"
+    class: "FileSystemTools"
+    method: "read"
+    parameters:
+      path:
+        type: string
+        required: true
+        description: "File path relative to jail root"
+        example: "/test/file.txt"
+      max_lines:
+        type: integer
+        required: false
+        description: "Maximum lines to read"
+        example: 100
+    test:
+      args:
+        path: "/test_write.txt"
+      expect:
+        status: 200
+        data_keys: ["content"]

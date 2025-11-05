@@ -16,12 +16,39 @@ const http = require('http');
 // Configuration from environment
 const MCP_SERVER_URL = process.env.MCP_SERVER_URL || 'https://gpt.ecigdis.co.nz/mcp/server_v3.php';
 const MCP_API_KEY = process.env.MCP_API_KEY || '';
-const PROJECT_ID = process.env.PROJECT_ID || '2';
-const BUSINESS_UNIT_ID = process.env.BUSINESS_UNIT_ID || '2';
 const WORKSPACE_ROOT = process.env.WORKSPACE_ROOT || process.cwd();
 const ENABLE_CONVERSATION_CONTEXT = process.env.ENABLE_CONVERSATION_CONTEXT === 'true';
 const AUTO_RETRIEVE_CONTEXT = process.env.AUTO_RETRIEVE_CONTEXT === 'true';
 const CONTEXT_LIMIT = parseInt(process.env.CONTEXT_LIMIT || '10', 10);
+
+// 🎯 AUTO-DETECT PROJECT & BUSINESS UNIT from workspace path
+function detectWorkspaceContext(workspacePath) {
+  // Map server folders to business units
+  const serverMapping = {
+    'hdgwrzntwa': { unit_id: 1, project_id: 1, name: 'Intelligence Hub' },
+    'jcepnzzkmj': { unit_id: 2, project_id: 2, name: 'CIS' },
+    'dvaxgvsxmz': { unit_id: 3, project_id: 3, name: 'VapeShed Retail' },
+    'fhrehrpjmu': { unit_id: 4, project_id: 4, name: 'Wholesale Portal' }
+  };
+
+  for (const [serverId, info] of Object.entries(serverMapping)) {
+    if (workspacePath.includes(serverId)) {
+      console.error(`[MCP Wrapper] Auto-detected: ${info.name} (Unit: ${info.unit_id}, Project: ${info.project_id})`);
+      return info;
+    }
+  }
+
+  // Fallback to env vars
+  return {
+    unit_id: parseInt(process.env.BUSINESS_UNIT_ID || '1', 10),
+    project_id: parseInt(process.env.PROJECT_ID || '1', 10),
+    name: 'Default'
+  };
+}
+
+const WORKSPACE_CONTEXT = detectWorkspaceContext(WORKSPACE_ROOT);
+const PROJECT_ID = WORKSPACE_CONTEXT.project_id.toString();
+const BUSINESS_UNIT_ID = WORKSPACE_CONTEXT.unit_id.toString();
 
 // Track current file from Copilot
 let currentFile = null;

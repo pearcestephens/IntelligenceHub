@@ -20,9 +20,21 @@ $envPaths = [
 
 foreach ($envPaths as $envPath) {
     if (file_exists($envPath) && is_readable($envPath)) {
-        $env = parse_ini_file($envPath);
-        if ($env && is_array($env)) {
-            foreach ($env as $key => $value) {
+        // Load .env file line by line (parse_ini_file doesn't like comments with =)
+        $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($lines as $line) {
+            $line = trim($line);
+            // Skip comments and empty lines
+            if (empty($line) || $line[0] === '#' || $line[0] === ';') {
+                continue;
+            }
+            // Parse KEY=VALUE
+            if (strpos($line, '=') !== false) {
+                list($key, $value) = explode('=', $line, 2);
+                $key = trim($key);
+                $value = trim($value);
+                // Remove quotes if present
+                $value = trim($value, '"\'');
                 $_ENV[$key] = $value;
                 $_SERVER[$key] = $value;
             }
@@ -128,9 +140,9 @@ function checkHealth(): array {
 function storeMetrics(array $health): void {
     try {
         $dbHost = $_ENV['DB_HOST'] ?? $_SERVER['DB_HOST'] ?? '127.0.0.1';
-        $dbName = $_ENV['DB_NAME'] ?? $_SERVER['DB_NAME'] ?? 'hdgwrzntwa_cis';
+        $dbName = $_ENV['DB_NAME'] ?? $_SERVER['DB_NAME'] ?? 'hdgwrzntwa';
         $dbUser = $_ENV['DB_USER'] ?? $_SERVER['DB_USER'] ?? 'hdgwrzntwa';
-        $dbPass = $_ENV['DB_PASSWORD'] ?? $_SERVER['DB_PASSWORD'] ?? '';
+        $dbPass = $_ENV['DB_PASS'] ?? $_SERVER['DB_PASS'] ?? '';
 
         $db = new PDO(
             "mysql:host={$dbHost};dbname={$dbName}",

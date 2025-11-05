@@ -131,10 +131,12 @@ class Connection
             $stmt = $pdo->query("SHOW STATUS LIKE 'Threads_connected'");
             $connections = $stmt->fetch();
 
+            $config = self::$configs['hdgwrzntwa'] ?? [];
+
             return [
                 'connected' => true,
-                'host' => self::$config['host'],
-                'database' => self::$config['database'],
+                'host' => $config['host'] ?? '127.0.0.1',
+                'database' => $config['database'] ?? 'hdgwrzntwa',
                 'threads_connected' => (int)($connections['Value'] ?? 0),
             ];
         } catch (\Exception $e) {

@@ -1,0 +1,56 @@
+{
+    "timestamp": "2025-11-05 20:36:16",
+    "total": 12,
+    "passed": 12,
+    "failed": 0,
+    "results": {
+        "db.query_readonly": {
+            "status": "PASS",
+            "duration": 0.25
+        },
+        "db.stats": {
+            "status": "PASS",
+            "duration": 5.78
+        },
+        "db.explain": {
+            "status": "PASS",
+            "duration": 0.23
+        },
+        "fs.write": {
+            "status": "PASS",
+            "duration": 0.26
+        },
+        "fs.read": {
+            "status": "PASS",
+            "duration": 0.05
+        },
+        "fs.list": {
+            "status": "PASS",
+            "duration": 0.08
+        },
+        "fs.info": {
+            "status": "PASS",
+            "duration": 4.79
+        },
+        "logs.tail": {
+            "status": "PASS",
+            "duration": 0.11
+        },
+        "system.health": {
+            "status": "PASS",
+            "duration": 0.78
+        },
+        "ops.ready_check": {
+            "status": "PASS",
+            "duration": 0.55
+        },
+        "ops.security_scan": {
+            "status": "PASS",
+            "duration": 0.04
+        },
+        "ops.performance_test": {
+            "status": "PASS",
+            "duration": 1.06
+        }
+    }
+}

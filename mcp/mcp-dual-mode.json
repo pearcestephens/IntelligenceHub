@@ -1,0 +1,57 @@
+{
+  "mcpServers": {
+    "intelligence-hub-stdio": {
+      "command": "node",
+      "args": [
+        "/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/mcp/mcp-server-wrapper.js"
+      ],
+      "env": {
+        "MCP_SERVER_URL": "https://gpt.ecigdis.co.nz/mcp/server_v3.php",
+        "MCP_API_KEY": "31ce0106609a6c5bc4f7ece0deb2f764df90a06167bda83468883516302a6a35",
+        "PROJECT_ID": "1",
+        "BUSINESS_UNIT_ID": "1",
+        "WORKSPACE_ROOT": "${workspaceFolder}",
+        "ENABLE_CONVERSATION_CONTEXT": "true",
+        "AUTO_RETRIEVE_CONTEXT": "true",
+        "CONTEXT_LIMIT": "10"
+      },
+      "metadata": {
+        "displayName": "🚀 IntelligenceHub STDIO (RECOMMENDED)",
+        "description": "BEST MODE: Native STDIO integration with GitHub Copilot. Auto-injects context, manages history, tracks conversations.",
+        "version": "3.0.0",
+        "priority": 9999,
+        "default": true
+      }
+    },
+    "intelligence-hub-http": {
+      "type": "http",
+      "url": "https://gpt.ecigdis.co.nz/mcp/server_v3.php",
+      "headers": {
+        "Authorization": "Bearer 31ce0106609a6c5bc4f7ece0deb2f764df90a06167bda83468883516302a6a35",
+        "X-Workspace-Root": "${workspaceFolder}",
+        "X-Current-File": "${file}",
+        "X-Auto-Log": "true"
+      },
+      "metadata": {
+        "displayName": "IntelligenceHub HTTP (Direct API)",
+        "description": "HTTP Mode: Direct REST API access. Use for testing or external integrations.",
+        "version": "3.0.0",
+        "priority": 1000,
+        "default": false
+      }
+    }
+  },
+  "settings": {
+    "recordConversations": true,
+    "conversationStorage": "database",
+    "autoSaveMessages": true,
+    "saveInterval": "immediate",
+    "defaultModel": "gpt-5-turbo",
+    "streamResponses": true,
+    "contextAwareness": "maximum",
+    "loadHistoryOnStart": true,
+    "maxHistoryMessages": 10,
+    "enableAllTools": true,
+    "aggressiveMode": true
+  }
+}

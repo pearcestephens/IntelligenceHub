@@ -1,0 +1,134 @@
+{
+  "version": "3.0.0",
+  "name": "IntelligenceHub MCP Tools",
+  "description": "Consolidated, tested, and standardized tool catalog for MCP Server v3",
+  "updated": "2025-11-05",
+
+  "categories": {
+    "database": {
+      "description": "Query and inspect database tables",
+      "tools": ["db.query", "db.schema", "db.tables", "db.explain"]
+    },
+    "filesystem": {
+      "description": "Read and manage files on the server",
+      "tools": ["fs.read", "fs.list", "fs.info", "fs.write"]
+    },
+    "search": {
+      "description": "Semantic and code search across indexed files",
+      "tools": ["semantic_search", "find_code", "analyze_file", "find_similar"]
+    },
+    "knowledge": {
+      "description": "Search and manage knowledge base documents",
+      "tools": ["kb.search", "kb.list_documents", "kb.get_document", "kb.add_document"]
+    },
+    "conversation": {
+      "description": "Access past conversation history and context",
+      "tools": ["conversation.get_project_context", "conversation.search", "conversation.get_unit_context"]
+    },
+    "ai_agent": {
+      "description": "Query full AI agent with RAG and streaming",
+      "tools": ["ai_agent.query"]
+    },
+    "web": {
+      "description": "Fetch and parse web content",
+      "tools": ["browser.fetch", "browser.headers", "http.request"]
+    },
+    "cache": {
+      "description": "Redis cache operations",
+      "tools": ["redis.get", "redis.set"]
+    },
+    "git": {
+      "description": "GitHub code search",
+      "tools": ["git.search"]
+    },
+    "analytics": {
+      "description": "System statistics and insights",
+      "tools": ["get_stats", "top_keywords", "get_analytics", "list_categories"]
+    }
+  },
+
+  "tool_standards": {
+    "naming": "Category prefix + action (e.g., db.query, fs.read)",
+    "errors": "All tools return JSON-RPC 2.0 error format with code, message, details",
+    "success": "All tools return {success: true/false, data: {}, metadata: {}}",
+    "required_args": "Clearly defined in input_schema.required array",
+    "optional_args": "Include default values in schema properties"
+  },
+
+  "usage_examples": {
+    "db.query": {
+      "description": "Execute SELECT query",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "db.query",
+          "arguments": {
+            "query": "SELECT * FROM users LIMIT 5"
+          }
+        }
+      }
+    },
+    "fs.read": {
+      "description": "Read file contents",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "fs.read",
+          "arguments": {
+            "path": "/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html/mcp/.env",
+            "max_lines": 10
+          }
+        }
+      }
+    },
+    "semantic_search": {
+      "description": "Search code with natural language",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "semantic_search",
+          "arguments": {
+            "query": "database connection code",
+            "limit": 5
+          }
+        }
+      }
+    },
+    "kb.search": {
+      "description": "Search knowledge base",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "kb.search",
+          "arguments": {
+            "query": "MCP server setup",
+            "limit": 3
+          }
+        }
+      }
+    },
+    "ai_agent.query": {
+      "description": "Query AI agent with streaming",
+      "request": {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+          "name": "ai_agent.query",
+          "arguments": {
+            "query": "What is the MCP server version?",
+            "stream": false
+          }
+        }
+      }
+    }
+  }
+}

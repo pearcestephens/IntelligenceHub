@@ -1,0 +1,164 @@
+{
+  "tools": {
+    "db.query_readonly": {
+      "name": "db.query_readonly",
+      "description": "Execute read-only SQL queries (SELECT, SHOW, DESCRIBE, EXPLAIN)",
+      "category": "database",
+      "test": {
+        "args": {
+          "sql": "SELECT 1 as test, NOW() as timestamp"
+        },
+        "expect": {
+          "status": 200,
+          "data_keys": ["rows"]
+        }
+      }
+    },
+    "db.stats": {
+      "name": "db.stats",
+      "description": "Get database statistics (table count, sizes)",
+      "category": "database",
+      "test": {
+        "args": {},
+        "expect": {
+          "status": 200,
+          "data_keys": ["tables", "top10"]
+        }
+      }
+    },
+    "db.explain": {
+      "name": "db.explain",
+      "description": "Get query execution plan with EXPLAIN",
+      "category": "database",
+      "test": {
+        "args": {
+          "sql": "SELECT * FROM intelligence_files LIMIT 1"
+        },
+        "expect": {
+          "status": 200,
+          "data_keys": ["explain"]
+        }
+      }
+    },
+    "fs.write": {
+      "name": "fs.write",
+      "description": "Write content to a file in jailed directory",
+      "category": "filesystem",
+      "test": {
+        "args": {
+          "path": "/test_write.txt",
+          "content": "Test content from MCP"
+        },
+        "expect": {
+          "status": 200,
+          "data_keys": ["written"]
+        }
+      }
+    },
+    "fs.read": {
+      "name": "fs.read",
+      "description": "Read content from a file in jailed directory",
+      "category": "filesystem",
+      "test": {
+        "args": {
+          "path": "/test_write.txt"
+        },
+        "expect": {
+          "status": 200,
+          "data_keys": ["content"]
+        }
+      }
+    },
+    "fs.list": {
+      "name": "fs.list",
+      "description": "List files in a directory",
+      "category": "filesystem",
+      "test": {
+        "args": {
+          "path": "/"
+        },
+        "expect": {
+          "status": 200,
+          "data_keys": ["files"]
+        }
+      }
+    },
+    "fs.info": {
+      "name": "fs.info",
+      "description": "Get file/directory information",
+      "category": "filesystem",
+      "test": {
+        "args": {
+          "path": "/test_write.txt"
+        },
+        "expect": {
+          "status": 200,
+          "data_keys": ["type", "size", "modified"]
+        }
+      }
+    },
+    "logs.tail": {
+      "name": "logs.tail",
+      "description": "Tail server log files",
+      "category": "logs",
+      "test": {
+        "args": {
+          "file": "apache_error",
+          "lines": 10
+        },
+        "expect": {
+          "status": 200,
+          "data_keys": ["lines"]
+        }
+      }
+    },
+    "system.health": {
+      "name": "system.health",
+      "description": "Comprehensive system health check",
+      "category": "system",
+      "test": {
+        "args": {},
+        "expect": {
+          "status": 200,
+          "data_keys": ["php", "database", "filesystem"]
+        }
+      }
+    },
+    "ops.ready_check": {
+      "name": "ops.ready_check",
+      "description": "Check if system is ready for operation",
+      "category": "operations",
+      "test": {
+        "args": {},
+        "expect": {
+          "status": 200,
+          "data_keys": ["ready", "checks"]
+        }
+      }
+    },
+    "ops.security_scan": {
+      "name": "ops.security_scan",
+      "description": "Run security vulnerability scan",
+      "category": "operations",
+      "test": {
+        "args": {},
+        "expect": {
+          "status": 200,
+          "data_keys": ["clean", "issues"]
+        }
+      }
+    },
+    "ops.performance_test": {
+      "name": "ops.performance_test",
+      "description": "Run performance benchmarks",
+      "category": "operations",
+      "test": {
+        "args": {},
+        "expect": {
+          "status": 200,
+          "data_keys": ["results"]
+        }
+      }
+    }
+  }
+}

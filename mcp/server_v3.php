@@ -9,15 +9,25 @@ declare(strict_types=1);
  * Dependencies: mcp_tools_turbo.php, .env for configuration
  */
 
-// Load .env directly (skip bootstrap to avoid Config::init issues)
-// Note: putenv() is disabled on this server, so we only set $_ENV and $_SERVER
+// Load .env directly with proper dotenv parser (handles comments and decorative headers)
 if (file_exists(__DIR__ . '/.env') && is_readable(__DIR__ . '/.env')) {
-    $env = @parse_ini_file(__DIR__ . '/.env');
-    if ($env && is_array($env)) {
-        foreach ($env as $key => $value) {
-            $_ENV[$key] = $value;
-            $_SERVER[$key] = $value;
+    $lines = file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        // Skip comments and invalid lines
+        $line = trim($line);
+        if (empty($line) || strpos($line, '#') === 0 || strpos($line, '=') === false) {
+            continue;
         }
+        // Parse key=value (handle values with = in them)
+        [$key, $value] = explode('=', $line, 2);
+        $key = trim($key);
+        $value = trim($value);
+        // Skip empty keys
+        if (empty($key)) {
+            continue;
+        }
+        $_ENV[$key] = $value;
+        $_SERVER[$key] = $value;
     }
 }
 
@@ -25,6 +35,13 @@ require_once __DIR__ . '/mcp_tools_turbo.php';
 
 // Load context detection library
 require_once __DIR__ . '/detect_context.php';
+
+// Load auto-logging middleware
+define('MCP_SERVER_RUNNING', true);
+require_once __DIR__ . '/lib/MCPAutoLogger.php';
+
+// Initialize auto-logger (captures all requests/responses)
+MCPAutoLogger::init();
 
 // Auto-detect workspace context from multiple sources (priority order):
 // 1. HTTP headers (X-Workspace-Root, X-Current-File) - from GitHub Copilot
@@ -805,6 +822,33 @@ function tool_catalog(): array
                 'stream' => ['type' => 'boolean', 'default' => true, 'description' => 'Enable streaming mode to prevent summarization']
             ],
             'required' => ['query']
+        ]),
+
+        // ULTRA SCANNER - Comprehensive Code Intelligence (ALL 18 TABLES)
+        $tool('ultra_scanner.scan_file', 'ULTRA SCAN: Populate ALL 18 intelligence tables for one file', [
+            'type' => 'object',
+            'properties' => [
+                'file' => ['type' => 'string', 'description' => 'File path to scan (relative or absolute)'],
+                'org_id' => ['type' => 'integer', 'default' => 1, 'description' => 'Organization ID'],
+                'unit_id' => ['type' => 'integer', 'default' => 999, 'description' => 'Business unit ID (999=playground)'],
+                'project_id' => ['type' => 'integer', 'description' => 'Project ID']
+            ],
+            'required' => ['file']
+        ]),
+        $tool('ultra_scanner.scan_project', 'ULTRA SCAN: Entire project/directory to ALL 18 tables', [
+            'type' => 'object',
+            'properties' => [
+                'directory' => ['type' => 'string', 'description' => 'Directory to scan (relative path from public_html)'],
+                'max_files' => ['type' => 'integer', 'default' => 500, 'description' => 'Maximum files to scan'],
+                'org_id' => ['type' => 'integer', 'default' => 1],
+                'unit_id' => ['type' => 'integer', 'default' => 999],
+                'project_id' => ['type' => 'integer']
+            ],
+            'required' => ['directory']
+        ]),
+        $tool('ultra_scanner.get_stats', 'Get comprehensive stats from all 18 intelligence tables', [
+            'type' => 'object',
+            'properties' => []
         ])
     ];
 }
@@ -907,6 +951,11 @@ function tool_routes(): array
 
         // AI Agent Tool - Custom orchestrator with RAG + Tools
         'ai_agent.query' => ['endpoint' => 'https://gpt.ecigdis.co.nz/mcp/tools/ai_agent_query_endpoint.php'],
+
+        // ULTRA SCANNER - Comprehensive Code Intelligence (ALL 18 TABLES)
+        'ultra_scanner.scan_file' => ['endpoint' => $unified, 'action' => 'ultra_scanner.scan_file'],
+        'ultra_scanner.scan_project' => ['endpoint' => $unified, 'action' => 'ultra_scanner.scan_project'],
+        'ultra_scanner.get_stats' => ['endpoint' => $unified, 'action' => 'ultra_scanner.get_stats'],
     ];
 
     return $routes;
@@ -921,6 +970,23 @@ function tool_routes(): array
  */
 function forward_tool_call(string $toolName, array $arguments, bool $stream=false): array
 {
+    global $TOOL_HANDLERS;
+
+    // First check if tool has a direct handler in $TOOL_HANDLERS (from mcp_tools_turbo.php)
+    if (isset($TOOL_HANDLERS[$toolName]) && is_callable($TOOL_HANDLERS[$toolName])) {
+        try {
+            $result = $TOOL_HANDLERS[$toolName]($arguments);
+            return $result;
+        } catch (Throwable $e) {
+            throw new ToolInvocationException(
+                'Tool execution failed: ' . $e->getMessage(),
+                500,
+                ['tool' => $toolName, 'error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]
+            );
+        }
+    }
+
+    // Fallback to HTTP routing for tools that need external endpoints
     $routes = tool_routes();
     if (!isset($routes[$toolName])) {
         throw new InvalidRequestException('Tool not registered: ' . $toolName);

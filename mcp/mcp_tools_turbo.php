@@ -67,7 +67,11 @@ function envv(string $key, string $default = ''): string
  */
 function enforce_api_key(string $providedKey): void
 {
-    $expectedKey = envv('MCP_API_KEY', 'bFUdRjh4Jx');
+    $expectedKey = envv('MCP_API_KEY', '');
+
+    if ($expectedKey === '') {
+        throw new UnauthorizedException('MCP_API_KEY not configured in environment');
+    }
 
     if ($providedKey === '') {
         throw new UnauthorizedException('API key required');
@@ -139,7 +143,7 @@ function agent_url(string $path): string
         return $path;
     }
 
-    $base = rtrim(envv('AGENT_BASE', 'https://gpt.ecigdis.co.nz/ai-agent'), '/');
+    $base = rtrim(envv('AGENT_BASE', 'https://gpt.ecigdis.co.nz/mcp'), '/');
     return $base . '/' . ltrim($path, '/');
 }
 
@@ -636,7 +640,7 @@ $TOOL_HANDLERS = [
             'conversation_id' => $args['conversation_id'] ?? null,
             'stream' => (bool) ($args['stream'] ?? false),
         ];
-        [$json, $code, $err] = http_json('POST', agent_url('public/agent/api/chat.php'), $payload, [], 45);
+        [$json, $code, $err] = http_json('POST', agent_url('agent/api/chat.php'), $payload, [], 45);
         if ($err !== null) {
             return fail('agent error: ' . $err, 502);
         }
@@ -666,7 +670,7 @@ $TOOL_HANDLERS = [
             'conversation_id' => $args['conversation_id'] ?? '',
             'stream' => false,
         ];
-        [$json, $code, $err] = http_json('POST', agent_url('public/agent/api/chat.php'), $payload, [], 45);
+        [$json, $code, $err] = http_json('POST', agent_url('agent/api/chat.php'), $payload, [], 45);
         if ($err !== null) {
             return fail('agent error: ' . $err, 502);
         }
@@ -687,7 +691,7 @@ $TOOL_HANDLERS = [
             'conversation_id' => $args['conversation_id'] ?? null,
             'stream' => true,
         ];
-        [$json, $code, $err] = http_json('POST', agent_url('public/agent/api/chat.php'), $payload, [], 60);
+        [$json, $code, $err] = http_json('POST', agent_url('agent/api/chat.php'), $payload, [], 60);
         if ($err !== null) {
             return fail('agent error: ' . $err, 502);
         }
@@ -700,7 +704,7 @@ $TOOL_HANDLERS = [
     'knowledge.search' => function (array $args): array {
         $limit = isset($args['limit']) ? (int) $args['limit'] : 5;
         $payload = ['query' => $args['query'] ?? '', 'limit' => $limit];
-        [$json, $code, $err] = http_json('POST', agent_url('public/agent/api/knowledge.php?action=search'), $payload, [], 30);
+        [$json, $code, $err] = http_json('POST', agent_url('agent/api/knowledge.php?action=search'), $payload, [], 30);
         if ($err !== null) {
             return fail('kb error: ' . $err, 502);
         }
@@ -712,7 +716,7 @@ $TOOL_HANDLERS = [
 
     'knowledge.get_document' => function (array $args): array {
         $docId = $args['document_id'] ?? '';
-        [$json, $code, $err] = http_json('GET', agent_url('public/agent/api/knowledge.php?action=documents&id=' . rawurlencode($docId)), null, [], 20);
+        [$json, $code, $err] = http_json('GET', agent_url('agent/api/knowledge.php?action=documents&id=' . rawurlencode($docId)), null, [], 20);
         if ($err !== null) {
             return fail('kb error: ' . $err, 502);
         }
@@ -729,7 +733,7 @@ $TOOL_HANDLERS = [
     'knowledge.list_documents' => function (array $args): array {
         $page = max(1, (int) ($args['page'] ?? 1));
         $limit = max(1, min(100, (int) ($args['limit'] ?? 20)));
-        $url = agent_url('public/agent/api/knowledge.php?action=documents&limit=' . $limit . '&offset=' . (($page - 1) * $limit));
+        $url = agent_url('agent/api/knowledge.php?action=documents&limit=' . $limit . '&offset=' . (($page - 1) * $limit));
         [$json, $code, $err] = http_json('GET', $url, null, [], 20);
         if ($err !== null) {
             return fail('kb error: ' . $err, 502);
@@ -830,8 +834,8 @@ $TOOL_HANDLERS = [
 
         $pdo = null;
         try {
-            $dsn = 'mysql:host=' . envv('DB_HOST', '127.0.0.1') . ';dbname=' . envv('DB_NAME', 'jcepnzzkmj') . ';charset=utf8mb4';
-            $pdo = new PDO($dsn, envv('DB_USER', 'jcepnzzkmj'), envv('DB_PASS', ''), [
+            $dsn = 'mysql:host=' . envv('DB_HOST', '127.0.0.1') . ';dbname=' . envv('DB_NAME', envv('DB_NAME', 'hdgwrzntwa')) . ';charset=utf8mb4';
+            $pdo = new PDO($dsn, envv('DB_USER', envv('DB_NAME', 'hdgwrzntwa')), envv('DB_PASS', ''), [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES => false,
@@ -857,13 +861,13 @@ $TOOL_HANDLERS = [
             return fail('DB_READONLY disabled', 403);
         }
         try {
-            $dsn = 'mysql:host=' . envv('DB_HOST', '127.0.0.1') . ';dbname=' . envv('DB_NAME', 'jcepnzzkmj') . ';charset=utf8mb4';
-            $pdo = new PDO($dsn, envv('DB_USER', 'jcepnzzkmj'), envv('DB_PASS', ''), [
+            $dsn = 'mysql:host=' . envv('DB_HOST', '127.0.0.1') . ';dbname=' . envv('DB_NAME', 'hdgwrzntwa') . ';charset=utf8mb4';
+            $pdo = new PDO($dsn, envv('DB_USER', 'hdgwrzntwa'), envv('DB_PASS', ''), [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ]);
             $tables = $pdo->query('SELECT COUNT(*) AS t FROM information_schema.tables WHERE table_schema = DATABASE()')->fetch();
-            $largest = $pdo->query('SELECT TABLE_NAME AS name, TABLE_ROWS AS rows, ROUND((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024, 2) AS size_mb FROM information_schema.tables WHERE table_schema = DATABASE() ORDER BY DATA_LENGTH + INDEX_LENGTH DESC LIMIT 10')->fetchAll();
+            $largest = $pdo->query('SELECT TABLE_NAME AS name, TABLE_ROWS AS row_count, ROUND((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024, 2) AS size_mb FROM information_schema.tables WHERE table_schema = DATABASE() ORDER BY DATA_LENGTH + INDEX_LENGTH DESC LIMIT 10')->fetchAll();
             return ok([
                 'tables' => isset($tables['t']) ? (int) $tables['t'] : 0,
                 'top10' => $largest,
@@ -883,8 +887,8 @@ $TOOL_HANDLERS = [
         }
         $pdo = null;
         try {
-            $dsn = 'mysql:host=' . envv('DB_HOST', '127.0.0.1') . ';dbname=' . envv('DB_NAME', 'jcepnzzkmj') . ';charset=utf8mb4';
-            $pdo = new PDO($dsn, envv('DB_USER', 'jcepnzzkmj'), envv('DB_PASS', ''), [
+            $dsn = 'mysql:host=' . envv('DB_HOST', '127.0.0.1') . ';dbname=' . envv('DB_NAME', envv('DB_NAME', 'hdgwrzntwa')) . ';charset=utf8mb4';
+            $pdo = new PDO($dsn, envv('DB_USER', envv('DB_NAME', 'hdgwrzntwa')), envv('DB_PASS', ''), [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 PDO::ATTR_EMULATE_PREPARES => false,
@@ -1061,7 +1065,7 @@ $TOOL_HANDLERS = [
     },
 
     'system.health' => function (): array {
-        [$json, $code, $err] = http_json('GET', agent_url('public/api/health.php'), null, [], 15);
+        [$json, $code, $err] = http_json('GET', agent_url('api/health.php'), null, [], 15);
         if ($err !== null) {
             return fail('health error: ' . $err, 502);
         }
@@ -1069,7 +1073,7 @@ $TOOL_HANDLERS = [
     },
 
     'ops.ready_check' => function (): array {
-        [$json, $code, $err] = http_json('GET', agent_url('public/api/health-check.php'), null, [], 30);
+        [$json, $code, $err] = http_json('GET', agent_url('api/health-check.php'), null, [], 30);
         if ($err !== null) {
             return fail('ready error: ' . $err, 502);
         }
@@ -1077,7 +1081,7 @@ $TOOL_HANDLERS = [
     },
 
     'ops.security_scan' => function (): array {
-        [$json, $code, $err] = http_json('POST', agent_url('public/api/ops/security-scan.php'), [], [], 60);
+        [$json, $code, $err] = http_json('POST', agent_url('api/ops/security-scan.php'), [], [], 60);
         if ($err !== null) {
             return fail('ops error: ' . $err, 502);
         }
@@ -1085,7 +1089,7 @@ $TOOL_HANDLERS = [
     },
 
     'ops.performance_test' => function (): array {
-        [$json, $code, $err] = http_json('POST', agent_url('public/api/ops/performance-test.php'), [], [], 120);
+        [$json, $code, $err] = http_json('POST', agent_url('api/ops/performance-test.php'), [], [], 120);
         if ($err !== null) {
             return fail('ops error: ' . $err, 502);
         }

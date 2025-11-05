@@ -18,6 +18,9 @@ declare(strict_types=1);
 
 // Load environment variables
 $envFile = __DIR__ . '/../../.env';
+// Include MySQL Knowledge Injection
+require_once __DIR__ . "/knowledge_injection.php";
+
 if (file_exists($envFile)) {
     $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
@@ -99,6 +102,10 @@ function ai_agent_query(array $args): array {
 
         // Get enhanced context
         $enhancedContext = $result['enhanced_context'];
+
+
+        // INJECT MYSQL KNOWLEDGE BASE DIRECTLY
+        $knowledgeCount = injectMySQLKnowledge($db, $query, $enhancedContext, 15);
 
         // Call your AI provider (OpenAI/Anthropic) with enhanced context
         $aiResponse = callAIProvider($query, $enhancedContext, $options);

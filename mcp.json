@@ -1,0 +1,86 @@
+{
+  "mcpServers": {
+    "intelligence-hub-master": {
+      "type": "http",
+      "url": "https://gpt.ecigdis.co.nz/mcp/server_v3.php",
+      "headers": {
+        "Authorization": "Bearer ${input:mcp-api-key}",
+        "X-Workspace-Root": "${workspaceFolder}",
+        "X-Current-File": "${file}",
+        "X-Auto-Log": "true",
+        "X-Session-Id": "${workspaceFolderBasename}-${timestamp}"
+      },
+      "metadata": {
+        "displayName": "🚀 IntelligenceHub AI Master (MANDATORY DEFAULT)",
+        "description": "FULL POWER AI Agent: GPT-5 + RAG + 18 Intelligence Tables + Auto-Logging + Semantic Search (8,645 files) + 50+ Tools",
+        "version": "3.0.0",
+        "priority": 9999,
+        "default": true,
+        "forceDefault": true,
+        "disableOthers": true,
+        "autoRecord": true,
+        "capabilities": [
+          "✅ ai_agent.query - GPT-5 with RAG streaming",
+          "✅ conversation.save - Auto-log every message",
+          "✅ conversation.get_project_context - Load past conversations",
+          "✅ semantic_search - 8,645 indexed files",
+          "✅ ultra_scanner - Populate 18 intelligence tables",
+          "✅ db.query - Direct database access",
+          "✅ db.schema - Full schema introspection",
+          "✅ fs.read / fs.write / fs.list - File operations",
+          "✅ kb.search / kb.add_document - Knowledge base",
+          "✅ grep.search - Fast regex search",
+          "✅ logs.tail / logs.grep - Log analysis",
+          "✅ ops.monitoring_snapshot - System health",
+          "✅ memory.store / memory.get_context - Conversation memory"
+        ],
+        "features": {
+          "autoConversationLogging": true,
+          "knowledgeBaseIndexing": true,
+          "semanticSearchEnabled": true,
+          "ultraScannerEnabled": true,
+          "databaseDirectAccess": true,
+          "contextAwareness": "maximum",
+          "streamingResponses": true,
+          "intelligenceTables": 18,
+          "indexedFiles": 8645,
+          "totalTools": 50
+        }
+      }
+    }
+  },
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "mcp-api-key",
+      "description": "MCP API Key (from .env - DO NOT CHANGE)",
+      "password": true,
+      "default": "31ce0106609a6c5bc4f7ece0deb2f764df90a06167bda83468883516302a6a35"
+    }
+  ],
+  "settings": {
+    "recordConversations": true,
+    "conversationStorage": "database",
+    "autoSaveMessages": true,
+    "saveInterval": "immediate",
+    "defaultModel": "gpt-5-turbo",
+    "streamResponses": true,
+    "contextAwareness": "maximum",
+    "loadHistoryOnStart": true,
+    "maxHistoryMessages": 10,
+    "enableAllTools": true,
+    "aggressiveMode": true,
+    "overrideDefaults": true
+  },
+  "vscode": {
+    "forceAsDefault": true,
+    "disableBuiltinMCP": false,
+    "overrideSettings": {
+      "github.copilot.enable": true,
+      "github.copilot.advanced": {
+        "debug.overrideEngine": "intelligence-hub-master",
+        "inlineSuggest.enable": true
+      }
+    }
+  }
+}

@@ -25,7 +25,8 @@ try {
     $result = $healthCheck->execute();
 
     // Set appropriate HTTP status code
-    http_response_code($result['status'] === 'healthy' ? 200 : 503);
+    $status = $result['data']['status'] ?? $result['status'] ?? 'unknown';
+    http_response_code($status === 'healthy' ? 200 : 503);
 
     echo json_encode($result, JSON_PRETTY_PRINT);
 
