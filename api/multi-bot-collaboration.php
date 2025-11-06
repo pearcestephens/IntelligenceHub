@@ -8,7 +8,9 @@
  */
 declare(strict_types=1);
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/app.php';
+// Fix double slash issue by normalizing the path
+$appPath = rtrim($_SERVER['DOCUMENT_ROOT'], '/') . '/app.php';
+require_once $appPath;
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');

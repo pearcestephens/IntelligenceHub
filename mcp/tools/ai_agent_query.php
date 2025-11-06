@@ -16,6 +16,10 @@
 
 declare(strict_types=1);
 
+// ⚡ SPEED: Load Redis cache and Async Queue
+require_once __DIR__ . '/../../classes/RedisCache.php';
+require_once __DIR__ . '/../../classes/AsyncQueue.php';
+
 // Load environment variables
 $envFile = __DIR__ . '/../../.env';
 // Include MySQL Knowledge Injection
@@ -68,6 +72,20 @@ function ai_agent_query(array $args): array {
     $agentId = $args['agent_id'] ?? 1;
     $options = $args['options'] ?? [];
 
+    // ⚡ SPEED: Check cache for identical queries (15 minute TTL)
+    $cacheKey = 'ai_agent:query:' . md5(json_encode([
+        'query' => $query,
+        'agent_id' => $agentId,
+        'options' => $options
+    ]));
+
+    $cachedResult = RedisCache::get($cacheKey);
+    if ($cachedResult !== null && is_array($cachedResult)) {
+        $cachedResult['from_cache'] = true;
+        $cachedResult['cache_age_seconds'] = time() - ($cachedResult['cached_at'] ?? time());
+        return $cachedResult;
+    }
+
     try {
         // Connect to database
         $db = new mysqli('127.0.0.1', 'hdgwrzntwa', 'bFUdRjh4Jx', 'hdgwrzntwa');
@@ -117,7 +135,7 @@ function ai_agent_query(array $args): array {
 
         $totalTime = (int)((microtime(true) - $startTime) * 1000);
 
-        return [
+        $response = [
             'success' => true,
             'response' => $aiResponse['content'],
             'conversation_id' => $conversationId,
@@ -134,8 +152,15 @@ function ai_agent_query(array $args): array {
             'debug' => [
                 'enhanced_context_preview' => substr($enhancedContext['knowledge_context'] ?? '', 0, 200) . '...',
                 'system_prompt_used' => $enhancedContext['system_prompt'] ?? ''
-            ]
+            ],
+            'from_cache' => false,
+            'cached_at' => time()
         ];
+
+        // ⚡ SPEED: Cache successful result (15 minutes)
+        RedisCache::set($cacheKey, $response, 900);
+
+        return $response;
 
     } catch (Exception $e) {
         error_log("[MCP Tool: ai_agent_query] Error: " . $e->getMessage());

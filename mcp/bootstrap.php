@@ -23,7 +23,10 @@ if (file_exists(__DIR__ . '/.env') && is_readable(__DIR__ . '/.env')) {
     if ($env && is_array($env)) {
         foreach ($env as $key => $value) {
             // Set in all three places for maximum compatibility
-            putenv("$key=$value");
+            // putenv() may be disabled on some hosts for security
+            if (function_exists('putenv')) {
+                @putenv("$key=$value");
+            }
             $_ENV[$key] = $value;
             $_SERVER[$key] = $value;
         }

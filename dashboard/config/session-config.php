@@ -16,47 +16,51 @@ if (!defined('DASHBOARD_ACCESS')) {
 // SESSION CONFIGURATION
 // ============================================================================
 
-// Set unified session name for all CIS applications
-// This allows authentication to work across staff.vapeshed.co.nz and gpt.ecigdis.co.nz
-ini_set('session.name', 'CIS_SESSION');
+// IMPORTANT: Configure session settings BEFORE starting the session
+// Only set these if session hasn't been started yet
+if (session_status() === PHP_SESSION_NONE) {
+    // Set unified session name for all CIS applications
+    // This allows authentication to work across staff.vapeshed.co.nz and gpt.ecigdis.co.nz
+    ini_set('session.name', 'CIS_SESSION');
 
-// Detect domain and set appropriate cookie domain
-$host = $_SERVER['HTTP_HOST'] ?? '';
-if (strpos($host, 'ecigdis.co.nz') !== false) {
-    $cookieDomain = '.ecigdis.co.nz'; // For gpt.ecigdis.co.nz
-} elseif (strpos($host, 'vapeshed.co.nz') !== false) {
-    $cookieDomain = '.vapeshed.co.nz'; // For staff.vapeshed.co.nz
-} else {
-    $cookieDomain = ''; // No domain restriction (use current domain)
+    // Detect domain and set appropriate cookie domain
+    $host = $_SERVER['HTTP_HOST'] ?? '';
+    if (strpos($host, 'ecigdis.co.nz') !== false) {
+        $cookieDomain = '.ecigdis.co.nz'; // For gpt.ecigdis.co.nz
+    } elseif (strpos($host, 'vapeshed.co.nz') !== false) {
+        $cookieDomain = '.vapeshed.co.nz'; // For staff.vapeshed.co.nz
+    } else {
+        $cookieDomain = ''; // No domain restriction (use current domain)
+    }
+
+    // Session cookie configuration
+    ini_set('session.cookie_lifetime', '86400');        // 24 hours
+    ini_set('session.cookie_path', '/');
+    ini_set('session.cookie_domain', $cookieDomain);
+    // Only use secure cookies if we're actually on HTTPS
+    ini_set('session.cookie_secure', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? '1' : '0');
+    ini_set('session.cookie_httponly', '1');            // Prevent JavaScript access
+    ini_set('session.cookie_samesite', 'Lax');        // CSRF protection
+
+    // Session security settings
+    ini_set('session.use_strict_mode', '1');            // Reject uninitialized session IDs
+    ini_set('session.use_cookies', '1');
+    ini_set('session.use_only_cookies', '1');
+    ini_set('session.use_trans_sid', '0');              // No session ID in URLs
+
+    // Session save handler
+    ini_set('session.save_handler', 'files');
+    ini_set('session.save_path', '/tmp');
+
+    // Garbage collection
+    ini_set('session.gc_maxlifetime', '86400');         // 24 hours
+    ini_set('session.gc_probability', '1');
+    ini_set('session.gc_divisor', '100');
+
+    // Session hash function
+    ini_set('session.hash_function', 'sha256');
+    ini_set('session.hash_bits_per_character', '5');
 }
-
-// Session cookie configuration
-ini_set('session.cookie_lifetime', 86400);        // 24 hours
-ini_set('session.cookie_path', '/');
-ini_set('session.cookie_domain', $cookieDomain);
-// Only use secure cookies if we're actually on HTTPS
-ini_set('session.cookie_secure', isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 1 : 0);
-ini_set('session.cookie_httponly', 1);            // Prevent JavaScript access
-ini_set('session.cookie_samesite', 'Lax');        // CSRF protection
-
-// Session security settings
-ini_set('session.use_strict_mode', 1);            // Reject uninitialized session IDs
-ini_set('session.use_cookies', 1);
-ini_set('session.use_only_cookies', 1);
-ini_set('session.use_trans_sid', 0);              // No session ID in URLs
-
-// Session save handler
-ini_set('session.save_handler', 'files');
-ini_set('session.save_path', '/tmp');
-
-// Garbage collection
-ini_set('session.gc_maxlifetime', 86400);         // 24 hours
-ini_set('session.gc_probability', 1);
-ini_set('session.gc_divisor', 100);
-
-// Session hash function
-ini_set('session.hash_function', 'sha256');
-ini_set('session.hash_bits_per_character', 5);
 
 // ============================================================================
 // SESSION START

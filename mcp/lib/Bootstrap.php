@@ -33,7 +33,10 @@ if (file_exists($envFile)) {
         $value = trim($value, '"\'');
         $_ENV[$key] = $value;
         $_SERVER[$key] = $value;
-        putenv("$key=$value");
+        // Skip putenv() if disabled (some hosts disable it for security)
+        if (function_exists('putenv')) {
+            @putenv("$key=$value");
+        }
     }
 }
 

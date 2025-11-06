@@ -1014,14 +1014,32 @@ function forward_tool_call(string $toolName, array $arguments, bool $stream=fals
         $headers[] = 'x-gpt-secret: ' . $agentSecret;
     }
 
+    // ⚡ SPEED FIX: Check Redis cache before forwarding tool call
+    require_once __DIR__ . '/../classes/RedisCache.php';
+
+    $cacheKey = 'mcp:tool:' . md5(json_encode([
+        'tool' => $toolName,
+        'args' => $arguments
+    ]));
+
+    $cachedResult = RedisCache::get($cacheKey);
+    if ($cachedResult !== null && is_array($cachedResult)) {
+        return [
+            'success' => true,
+            'result' => $cachedResult['result'],
+            'from_cache' => true,
+            'cache_age_seconds' => time() - ($cachedResult['cached_at'] ?? time())
+        ];
+    }
+
     $responseHeaders = [];
-    // Optionally if you build a streaming variant later, switch to http_raw_stream() when $stream===true
+    // ⚡ SPEED FIX: Reduce timeout from 45s to 10s
     [ $body, $status, $err ] = http_raw(
         'POST',
         agent_url($route['endpoint']),
         $payload,
         $headers,
-        (int)($route['timeout'] ?? 45),
+        (int)($route['timeout'] ?? 10), // REDUCED FROM 45
         $responseHeaders
     );
 
@@ -1045,5 +1063,12 @@ function forward_tool_call(string $toolName, array $arguments, bool $stream=fals
         throw new ToolInvocationException('Upstream returned HTTP ' . $status, $status, $det);
     }
 
-    return is_array($decoded) ? $decoded : ['status'=>$status,'data'=>$body,'request_id'=>current_request_id()];
+    // ⚡ SPEED FIX: Cache successful tool results (5 minutes)
+    $result = is_array($decoded) ? $decoded : ['status'=>$status,'data'=>$body,'request_id'=>current_request_id()];
+    RedisCache::set($cacheKey, [
+        'result' => $result,
+        'cached_at' => time()
+    ], 300); // 5 minutes
+
+    return $result;
 }

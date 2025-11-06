@@ -21,7 +21,8 @@ final class ProviderFactory {
           "Content-Type: application/json"
         ],
         CURLOPT_POSTFIELDS => json_encode($body, JSON_UNESCAPED_UNICODE),
-        CURLOPT_TIMEOUT => 60
+        CURLOPT_TIMEOUT => 15,  // REDUCED FROM 60s - SPEED FIX
+        CURLOPT_CONNECTTIMEOUT => 5  // ADD CONNECTION TIMEOUT
       ]);
       $raw = curl_exec($ch);
       $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -60,7 +61,8 @@ final class ProviderFactory {
           "content-type: application/json"
         ],
         CURLOPT_POSTFIELDS => json_encode($body, JSON_UNESCAPED_UNICODE),
-        CURLOPT_TIMEOUT => 60
+        CURLOPT_TIMEOUT => 15,  // REDUCED FROM 60s - SPEED FIX
+        CURLOPT_CONNECTTIMEOUT => 5  // ADD CONNECTION TIMEOUT
       ]);
       $raw = curl_exec($ch);
       $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -113,7 +115,8 @@ final class ProviderFactory {
           "Accept: text/event-stream"
         ],
         CURLOPT_POSTFIELDS => json_encode($body, JSON_UNESCAPED_UNICODE),
-        CURLOPT_TIMEOUT => 300,
+        CURLOPT_TIMEOUT => 30,  // REDUCED FROM 300s - SPEED FIX
+        CURLOPT_CONNECTTIMEOUT => 5  // ADD CONNECTION TIMEOUT
       ]);
 
       $aggregate = '';
@@ -179,7 +182,8 @@ final class ProviderFactory {
           "accept: text/event-stream"
         ],
         CURLOPT_POSTFIELDS => json_encode($body, JSON_UNESCAPED_UNICODE),
-        CURLOPT_TIMEOUT => 300
+        CURLOPT_TIMEOUT => 30,  // REDUCED FROM 300s - SPEED FIX
+        CURLOPT_CONNECTTIMEOUT => 5  // ADD CONNECTION TIMEOUT
       ]);
 
       $aggregate = '';

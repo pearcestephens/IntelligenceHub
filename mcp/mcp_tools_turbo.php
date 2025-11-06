@@ -217,6 +217,44 @@ function json_slim($obj, int $max = 2000)
  * @return array{0: string|null, 1: int, 2: string|null}
  */
 function http_raw(string $method, string $url, $payload, array $headers, int $timeout, ?array &$responseHeaders = null): array {
+    // ⚡ SPEED FIX: Use cURL instead of file_get_contents for better timeout control
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => $timeout,
+        CURLOPT_CONNECTTIMEOUT => 3, // Fail fast on connection issues
+        CURLOPT_CUSTOMREQUEST => $method,
+        CURLOPT_POSTFIELDS => is_string($payload) ? $payload : json_encode($payload),
+        CURLOPT_HTTPHEADER => $headers,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2_0, // Use HTTP/2 if available
+        CURLOPT_TCP_KEEPALIVE => 1, // Keep connections alive
+        CURLOPT_HEADER => true,
+        CURLOPT_NOBODY => false
+    ]);
+
+    $response = curl_exec($ch);
+    $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+    $error = curl_error($ch);
+    curl_close($ch);
+
+    if ($response === false) {
+        return [false, 0, $error ?: 'curl_exec_failed'];
+    }
+
+    $header = substr($response, 0, $headerSize);
+    $body = substr($response, $headerSize);
+
+    // Parse response headers
+    $respHeaders = [];
+    foreach (explode("\r\n", $header) as $line) {
+        if (strpos($line, ':') !== false) {
+            [$k, $v] = array_map('trim', explode(':', $line, 2));
+            if ($k) $respHeaders[strtolower($k)] = $v;
+        }
+    }
+
+    /* OLD CODE - REPLACED WITH CURL
     $opts = [
         'http' => [
             'method'  => $method,
@@ -228,6 +266,8 @@ function http_raw(string $method, string $url, $payload, array $headers, int $ti
     ];
     $ctx = stream_context_create($opts);
     $body = @file_get_contents($url, false, $ctx);
+    */
+    /* OLD CODE - REPLACED WITH CURL
     $status = 0;
     $respHeaders = [];
     foreach ($http_response_header ?? [] as $line) {
@@ -237,8 +277,10 @@ function http_raw(string $method, string $url, $payload, array $headers, int $ti
             if ($k) $respHeaders[strtolower($k)] = $v;
         }
     }
+    */
+
     $responseHeaders = $respHeaders;
-    return [$body, $status ?: 200, $body === false ? 'fetch_failed' : null];
+    return [$body, $status ?: 200, $error ?: null];
 }
 
 

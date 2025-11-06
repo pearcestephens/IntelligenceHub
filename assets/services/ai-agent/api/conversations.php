@@ -2,6 +2,9 @@
 declare(strict_types=1);
 require_once __DIR__.'/../lib/Bootstrap.php';
 
+// ⚡ SPEED: Load Redis cache
+require_once __DIR__.'/../../../../classes/RedisCache.php';
+
 $rid = new_request_id();
 try {
   if ($_SERVER['REQUEST_METHOD'] !== 'POST') { envelope_error('METHOD_NOT_ALLOWED','Use POST', $rid, [], 405); exit; }
@@ -11,6 +14,15 @@ try {
   $platform = (string)($in['platform'] ?? 'github_copilot');
   $sessionKey = isset($in['session_key']) ? (string)$in['session_key'] : null;
   $limit = max(1, min(50, (int)($in['limit'] ?? 20)));
+
+  // ⚡ SPEED: Check cache for conversation list (60 second TTL)
+  $cacheKey = 'conversations:' . md5($platform . ':' . ($sessionKey ?? 'all') . ':' . $limit);
+  $cachedRows = RedisCache::get($cacheKey);
+
+  if ($cachedRows !== null && is_array($cachedRows)) {
+    envelope_success(['conversations' => $cachedRows, 'from_cache' => true], $rid, 200);
+    exit;
+  }
 
   if ($sessionKey) {
     $stmt = $db->prepare("SELECT id, session_id, platform, org_id, unit_id, project_id, source, status, created_at, updated_at
@@ -28,7 +40,11 @@ try {
   }
 
   $rows = $stmt->fetchAll(PDO::FETCH_ASSOC) ?: [];
-  envelope_success(['conversations'=>$rows], $rid, 200);
+
+  // ⚡ SPEED: Cache the result (60 seconds)
+  RedisCache::set($cacheKey, $rows, 60);
+
+  envelope_success(['conversations'=>$rows, 'from_cache' => false], $rid, 200);
 } catch (Throwable $e) {
   envelope_error('CONVERSATIONS_FAILURE', $e->getMessage(), $rid, [], 500);
 }

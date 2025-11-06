@@ -1,0 +1,54 @@
+<!-- DevIDE Auto-Minimize Integration -->
+<!-- Add this script at the bottom of your store-view.php page, just before </body> -->
+
+<script src="/devide/auto-minimize.js"></script>
+
+<!--
+Alternative: Inline version if you can't add external script
+-->
+<script>
+(function() {
+    'use strict';
+
+    function minimizeDevIDE() {
+        const ideFrame = document.querySelector('iframe[src*="devide"]');
+
+        if (ideFrame) {
+            let minimizeBtn = document.getElementById('devide-minimize-btn');
+
+            if (!minimizeBtn) {
+                minimizeBtn = document.createElement('button');
+                minimizeBtn.id = 'devide-minimize-btn';
+                minimizeBtn.innerHTML = '<i class="fas fa-code"></i> DevIDE';
+                minimizeBtn.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#007acc;color:white;border:none;padding:12px 20px;border-radius:50px;cursor:pointer;z-index:99999;font-size:14px;font-weight:600;box-shadow:0 4px 12px rgba(0,122,204,0.4);';
+
+                minimizeBtn.onclick = function() {
+                    if (ideFrame.style.display === 'none') {
+                        ideFrame.style.display = 'block';
+                        minimizeBtn.innerHTML = '<i class="fas fa-minus"></i> Minimize';
+                        minimizeBtn.style.background = '#f48771';
+                    } else {
+                        ideFrame.style.display = 'none';
+                        minimizeBtn.innerHTML = '<i class="fas fa-code"></i> DevIDE';
+                        minimizeBtn.style.background = '#007acc';
+                    }
+                };
+
+                document.body.appendChild(minimizeBtn);
+            }
+
+            // Auto-minimize on this page
+            ideFrame.style.display = 'none';
+            minimizeBtn.innerHTML = '<i class="fas fa-code"></i> DevIDE';
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', minimizeDevIDE);
+    } else {
+        minimizeDevIDE();
+    }
+
+    setTimeout(minimizeDevIDE, 1000);
+})();
+</script>

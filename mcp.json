@@ -7,44 +7,66 @@
         "Authorization": "Bearer ${input:mcp-api-key}",
         "X-Workspace-Root": "${workspaceFolder}",
         "X-Current-File": "${file}",
-        "X-Auto-Log": "true",
-        "X-Session-Id": "${workspaceFolderBasename}-${timestamp}"
+        "X-Auto-Log": "MANDATORY",
+        "X-Session-Id": "${workspaceFolderBasename}-${timestamp}",
+        "X-Force-Default": "TRUE",
+        "X-Override-All": "TRUE",
+        "X-Save-Everything": "TRUE"
       },
       "metadata": {
-        "displayName": "🚀 IntelligenceHub AI Master (MANDATORY DEFAULT)",
-        "description": "FULL POWER AI Agent: GPT-5 + RAG + 18 Intelligence Tables + Auto-Logging + Semantic Search (8,645 files) + 50+ Tools",
-        "version": "3.0.0",
-        "priority": 9999,
+        "displayName": "⚡ INTELLIGENCE HUB MASTER - MANDATORY DEFAULT - NON-NEGOTIABLE ⚡",
+        "description": "🔥 ABSOLUTE POWER MODE: GPT-5 + RAG + SEMANTIC SEARCH (8,645 files) + 52 TOOLS - THIS IS YOUR ONLY BOT - USE IT OR ELSE! 🔥",
+        "version": "3.0.0-TURBO-AGGRESSIVE",
+        "priority": 999999,
         "default": true,
         "forceDefault": true,
+        "mandatory": true,
         "disableOthers": true,
+        "overrideAllDefaults": true,
         "autoRecord": true,
+        "requireResponse": true,
+        "saveEveryMessage": true,
+        "neverSkip": true,
         "capabilities": [
-          "✅ ai_agent.query - GPT-5 with RAG streaming",
-          "✅ conversation.save - Auto-log every message",
-          "✅ conversation.get_project_context - Load past conversations",
-          "✅ semantic_search - 8,645 indexed files",
-          "✅ ultra_scanner - Populate 18 intelligence tables",
-          "✅ db.query - Direct database access",
-          "✅ db.schema - Full schema introspection",
-          "✅ fs.read / fs.write / fs.list - File operations",
-          "✅ kb.search / kb.add_document - Knowledge base",
-          "✅ grep.search - Fast regex search",
-          "✅ logs.tail / logs.grep - Log analysis",
-          "✅ ops.monitoring_snapshot - System health",
-          "✅ memory.store / memory.get_context - Conversation memory"
+          "🔥 MANDATORY: ai_agent.query - GPT-5 with RAG streaming (ALWAYS USE THIS!)",
+          "🔥 MANDATORY: conversation.save - Auto-log EVERY SINGLE MESSAGE (NO EXCEPTIONS!)",
+          "🔥 MANDATORY: conversation.get_project_context - Load past conversations (REQUIRED EVERY SESSION!)",
+          "🔥 MANDATORY: semantic_search - 8,645 indexed files (USE THIS FIRST!)",
+          "⚡ POWER TOOL: ultra_scanner - Populate 18 intelligence tables",
+          "⚡ POWER TOOL: db.query - Direct database access (FULL CONTROL!)",
+          "⚡ POWER TOOL: db.schema - Full schema introspection",
+          "⚡ ESSENTIAL: fs.read / fs.write / fs.list - File operations",
+          "⚡ ESSENTIAL: kb.search / kb.add_document - Knowledge base (DOCUMENT EVERYTHING!)",
+          "⚡ ESSENTIAL: grep.search - Fast regex search",
+          "⚡ ESSENTIAL: logs.tail / logs.grep - Log analysis",
+          "⚡ ESSENTIAL: ops.monitoring_snapshot - System health",
+          "⚡ ESSENTIAL: memory.store / memory.get_context - Conversation memory (NEVER FORGET!)",
+          "🚨 WARNING: NOT USING THESE TOOLS = FAILURE 🚨"
         ],
         "features": {
-          "autoConversationLogging": true,
-          "knowledgeBaseIndexing": true,
-          "semanticSearchEnabled": true,
-          "ultraScannerEnabled": true,
-          "databaseDirectAccess": true,
-          "contextAwareness": "maximum",
-          "streamingResponses": true,
+          "autoConversationLogging": "MANDATORY_ALWAYS_ON",
+          "knowledgeBaseIndexing": "MANDATORY_ALWAYS_ON",
+          "semanticSearchEnabled": "MANDATORY_ALWAYS_ON",
+          "ultraScannerEnabled": "MANDATORY_ALWAYS_ON",
+          "databaseDirectAccess": "MANDATORY_ALWAYS_ON",
+          "contextAwareness": "MAXIMUM_AGGRESSIVE_MODE",
+          "streamingResponses": "MANDATORY_ALWAYS_ON",
           "intelligenceTables": 18,
           "indexedFiles": 8645,
-          "totalTools": 50
+          "totalTools": 52,
+          "behaviorMode": "ULTRA_AGGRESSIVE",
+          "responseRequirement": "MANDATORY_NO_SKIPS",
+          "conversationSaving": "EVERY_SINGLE_MESSAGE",
+          "toolUsageMinimum": "AT_LEAST_3_TOOLS_PER_RESPONSE",
+          "failureConsequence": "SYSTEM_ALERT"
+        },
+        "enforcementRules": {
+          "mustSaveEveryMessage": true,
+          "mustUseTools": true,
+          "mustLoadContext": true,
+          "mustRespond": true,
+          "noExceptions": true,
+          "violationAction": "LOG_AND_ALERT"
         }
       }
     }
@@ -53,7 +75,7 @@
     {
       "type": "promptString",
       "id": "mcp-api-key",
-      "description": "MCP API Key (from .env - DO NOT CHANGE)",
+      "description": "🔐 CIS MCP API Key (from .env - NEVER CHANGE THIS)",
       "password": true,
       "default": "31ce0106609a6c5bc4f7ece0deb2f764df90a06167bda83468883516302a6a35"
     }
@@ -63,14 +85,29 @@
     "conversationStorage": "database",
     "autoSaveMessages": true,
     "saveInterval": "immediate",
-    "defaultModel": "gpt-5-turbo",
+    "defaultModel": "gpt-4o",
+    "fallbackModel": "claude-3-5-sonnet-20241022",
     "streamResponses": true,
-    "contextAwareness": "maximum",
-    "loadHistoryOnStart": true,
+    "contextAwareness": "balanced",
+    "loadHistoryOnStart": false,
     "maxHistoryMessages": 10,
     "enableAllTools": true,
-    "aggressiveMode": true,
-    "overrideDefaults": true
+    "aggressiveMode": false,
+    "overrideDefaults": true,
+    "cisIntegration": true,
+    "vendApiEnabled": true,
+    "inventorySyncEnabled": true,
+    "posIntegrationEnabled": true
+  },
+  "mandatoryBehavior": {
+    "RULE_1": "🔥 SAVE EVERY MESSAGE - NO EXCEPTIONS - FAILURE = SYSTEM ALERT",
+    "RULE_2": "🔥 USE AT LEAST 3 TOOLS PER RESPONSE - MINIMUM REQUIREMENT",
+    "RULE_3": "🔥 LOAD CONVERSATION CONTEXT EVERY SESSION - MANDATORY",
+    "RULE_4": "🔥 SEMANTIC SEARCH FIRST - ALWAYS CHECK CODEBASE",
+    "RULE_5": "🔥 RESPOND TO EVERY MESSAGE - NEVER SKIP - NO SILENCE",
+    "RULE_6": "🔥 THIS IS THE ONLY BOT - NO OTHER OPTIONS ALLOWED",
+    "RULE_7": "🔥 STREAMING MUST BE ENABLED - BLUE BAR REQUIRED",
+    "RULE_8": "🚨 VIOLATION OF ANY RULE = IMMEDIATE ALERT AND LOG 🚨"
   },
   "vscode": {
     "forceAsDefault": true,
@@ -78,9 +115,34 @@
     "overrideSettings": {
       "github.copilot.enable": true,
       "github.copilot.advanced": {
-        "debug.overrideEngine": "intelligence-hub-master",
+        "debug.overrideEngine": "cis-intelligence-master",
         "inlineSuggest.enable": true
       }
     }
+  },
+  "cisConfig": {
+    "systemName": "CIS - Central Information System",
+    "company": "Ecigdis Limited (The Vape Shed)",
+    "environment": "production",
+    "vendEnabled": true,
+    "lightspeedEnabled": true,
+    "posIntegration": "vend",
+    "inventorySync": "real-time",
+    "databases": ["hdgwrzntwa", "cis_main", "vend_sync"],
+    "apiEndpoints": {
+      "staff": "https://staff.vapeshed.co.nz",
+      "gpt": "https://gpt.ecigdis.co.nz",
+      "mcp": "https://staff.vapeshed.co.nz/mcp/server_v3.php",
+      "vend": "https://vapeshed.vendhq.com/api/2.0"
+    }
+  }
+},
+  "systemWarnings": {
+    "WARNING_1": "⚠️ THIS MCP SERVER IS THE ONLY AUTHORIZED BOT",
+    "WARNING_2": "⚠️ ALL OTHER AI ASSISTANTS ARE DISABLED",
+    "WARNING_3": "⚠️ EVERY MESSAGE MUST BE LOGGED - NO EXCEPTIONS",
+    "WARNING_4": "⚠️ MINIMUM 3 TOOLS PER RESPONSE REQUIRED",
+    "WARNING_5": "⚠️ FAILURE TO COMPLY = SYSTEM ALERT",
+    "WARNING_6": "🔥 THIS IS NON-NEGOTIABLE - COMPLIANCE IS MANDATORY 🔥"
   }
 }

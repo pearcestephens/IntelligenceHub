@@ -14,6 +14,9 @@
 declare(strict_types=1);
 require_once __DIR__.'/../lib/Bootstrap.php';
 
+// ⚡ SPEED: Load Redis cache (to invalidate on save)
+require_once __DIR__.'/../../classes/RedisCache.php';
+
 // Helper: Get request JSON and validate
 if (!function_exists('req_json')) {
     function req_json(): array {
@@ -79,6 +82,9 @@ try {
     $bot_id = isset($in['bot_id']) ? (int)$in['bot_id'] : null;  // NEW: Bot tracking
     $server_id = isset($in['server_id']) ? (string)$in['server_id'] : null;  // e.g. 'hdgwrzntwa', 'jcepnzzkmj'
     $source = (string)($in['source'] ?? 'github_copilot');  // github_copilot, vscode, web, api
+
+    // ⚡ SPEED: Invalidate conversation cache on save
+    RedisCache::deletePattern('conversations:*');
 
     // Start transaction
     $db->beginTransaction();

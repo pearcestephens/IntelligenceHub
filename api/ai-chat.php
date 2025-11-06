@@ -43,7 +43,15 @@ function checkRateLimit(string $ip): bool
 {
     $cacheDir = __DIR__ . '/../private_html/cache';
     if (!is_dir($cacheDir)) {
-        mkdir($cacheDir, 0755, true);
+        @mkdir($cacheDir, 0755, true);
+    }
+    
+    // Fallback to /tmp if we can't write to private_html
+    if (!is_writable($cacheDir)) {
+        $cacheDir = sys_get_temp_dir() . '/cis_cache';
+        if (!is_dir($cacheDir)) {
+            @mkdir($cacheDir, 0755, true);
+        }
     }
     
     $cacheFile = $cacheDir . '/rate_limit_' . md5($ip) . '.json';
@@ -98,7 +106,15 @@ function logRequest(string $ip, string $action, ?string $error = null): void
 {
     $logDir = __DIR__ . '/../private_html/logs/api';
     if (!is_dir($logDir)) {
-        mkdir($logDir, 0755, true);
+        @mkdir($logDir, 0755, true);
+    }
+    
+    // Fallback to /tmp if we can't write to private_html
+    if (!is_writable($logDir)) {
+        $logDir = sys_get_temp_dir() . '/cis_logs';
+        if (!is_dir($logDir)) {
+            @mkdir($logDir, 0755, true);
+        }
     }
     
     $logFile = $logDir . '/ai-chat-' . date('Y-m-d') . '.log';

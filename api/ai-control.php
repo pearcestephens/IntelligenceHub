@@ -38,8 +38,10 @@ class AIControlAPI
     
     public function __construct()
     {
-        $this->configFile = '/home/master/applications/hdgwrzntwa/public_html/config/automation.json';
-        $this->logDir = '/home/master/applications/hdgwrzntwa/public_html/logs';
+        // Use dynamic path resolution instead of hardcoded paths
+        $basePath = dirname(__DIR__);
+        $this->configFile = $basePath . '/config/automation.json';
+        $this->logDir = $basePath . '/logs';
         $this->config = $this->loadConfig();
         $this->initializeDatabase();
     }

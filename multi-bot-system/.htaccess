@@ -1,0 +1,37 @@
+# Multi-Bot System - Production .htaccess
+# Secure, optimized routing
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /multi-bot-system/
+
+    # Force HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Block access to sensitive directories
+    RewriteRule ^(src|config|database|logs|tests)/ - [F,L]
+
+    # Route all requests to public/index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/index.php [QSA,L]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Deny access to hidden files
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Deny access to config files
+<FilesMatch "\.(env|json|lock|log|yml|yaml|md)$">
+    Require all denied
+</FilesMatch>

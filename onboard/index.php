@@ -24,9 +24,9 @@ define('MCP_SERVER_URL', 'https://gpt.ecigdis.co.nz/mcp/server_v3.php');
 define('BASE_PATH', '/home/129337.cloudwaysapps.com/hdgwrzntwa/public_html');
 define('ONBOARD_DATA_PATH', BASE_PATH . '/private_html/onboarding');
 
-// Create data directory
+// Create data directory (suppress errors if permissions denied)
 if (!is_dir(ONBOARD_DATA_PATH)) {
-    mkdir(ONBOARD_DATA_PATH, 0755, true);
+    @mkdir(ONBOARD_DATA_PATH, 0755, true);
 }
 
 // Handle AJAX status check BEFORE any other output

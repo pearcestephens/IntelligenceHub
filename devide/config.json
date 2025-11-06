@@ -1,0 +1,383 @@
+{
+  "ide": {
+    "name": "DevIDE",
+    "version": "1.0.0",
+    "theme": "vs-dark",
+    "autoSave": true,
+    "autoSaveDelay": 1000
+  },
+  "editor": {
+    "fontSize": 14,
+    "fontFamily": "Consolas, 'Courier New', monospace",
+    "tabSize": 4,
+    "insertSpaces": true,
+    "wordWrap": "off",
+    "lineNumbers": "on",
+    "minimap": {
+      "enabled": true,
+      "side": "right"
+    },
+    "scrollBeyondLastLine": false,
+    "formatOnSave": true,
+    "formatOnPaste": true
+  },
+  "ai": {
+    "models": [
+      {
+        "id": "gpt-4",
+        "name": "GPT-4",
+        "provider": "openai",
+        "endpoint": "/mcp/server_v3.php",
+        "maxTokens": 8192,
+        "temperature": 0.7,
+        "default": true
+      },
+      {
+        "id": "gpt-4-turbo",
+        "name": "GPT-4 Turbo",
+        "provider": "openai",
+        "endpoint": "/mcp/server_v3.php",
+        "maxTokens": 128000,
+        "temperature": 0.7
+      },
+      {
+        "id": "claude-3.5-sonnet",
+        "name": "Claude 3.5 Sonnet",
+        "provider": "anthropic",
+        "endpoint": "/mcp/server_v3.php",
+        "maxTokens": 200000,
+        "temperature": 0.7,
+        "recommended": true
+      },
+      {
+        "id": "claude-3-opus",
+        "name": "Claude 3 Opus",
+        "provider": "anthropic",
+        "endpoint": "/mcp/server_v3.php",
+        "maxTokens": 200000,
+        "temperature": 0.7
+      },
+      {
+        "id": "claude-3-haiku",
+        "name": "Claude 3 Haiku",
+        "provider": "anthropic",
+        "endpoint": "/mcp/server_v3.php",
+        "maxTokens": 200000,
+        "temperature": 0.7,
+        "fast": true
+      }
+    ],
+    "conversation": {
+      "autoSaveInterval": 10,
+      "maxHistory": 50,
+      "virtualScrollThreshold": 100,
+      "messageBufferSize": 10
+    },
+    "suggestions": [
+      {
+        "text": "Explain this code",
+        "icon": "question-circle",
+        "prompt": "Explain this code in detail"
+      },
+      {
+        "text": "Fix bugs",
+        "icon": "bug",
+        "prompt": "Find and fix bugs in this code"
+      },
+      {
+        "text": "Add comments",
+        "icon": "comment",
+        "prompt": "Add detailed comments to this code"
+      },
+      {
+        "text": "Optimize",
+        "icon": "tachometer-alt",
+        "prompt": "Optimize this code for performance"
+      },
+      {
+        "text": "Write tests",
+        "icon": "vial",
+        "prompt": "Write unit tests for this code"
+      },
+      {
+        "text": "Refactor",
+        "icon": "magic",
+        "prompt": "Refactor this code to improve readability and maintainability"
+      },
+      {
+        "text": "Document",
+        "icon": "book",
+        "prompt": "Generate documentation for this code"
+      }
+    ]
+  },
+  "servers": [
+    {
+      "id": "cis-staff-portal",
+      "name": "CIS Staff Portal",
+      "url": "https://staff.vapeshed.co.nz",
+      "icon": "fa-briefcase",
+      "color": "#007acc",
+      "default": false
+    },
+    {
+      "id": "intelligence-hub",
+      "name": "Intelligence Hub",
+      "url": "https://staff.vapeshed.co.nz",
+      "icon": "fa-brain",
+      "color": "#4ec9b0",
+      "default": true
+    },
+    {
+      "id": "vapeshed-retail",
+      "name": "VapeShed Retail",
+      "url": "https://www.vapeshed.co.nz",
+      "icon": "fa-store",
+      "color": "#ce9178",
+      "default": false
+    }
+  ],
+  "profile": {
+    "name": "Administrator",
+    "role": "Super Admin",
+    "avatar": "https://ui-avatars.com/api/?name=Admin&background=007acc&color=fff",
+    "menu": [
+      {
+        "label": "View Profile",
+        "icon": "user",
+        "action": "viewProfile"
+      },
+      {
+        "label": "Settings",
+        "icon": "cog",
+        "action": "editSettings"
+      },
+      {
+        "label": "Activity Log",
+        "icon": "history",
+        "action": "viewActivity"
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "label": "Change Theme",
+        "icon": "palette",
+        "action": "switchTheme"
+      },
+      {
+        "label": "Keyboard Shortcuts",
+        "icon": "keyboard",
+        "action": "keyboardShortcuts"
+      },
+      {
+        "type": "divider"
+      },
+      {
+        "label": "Logout",
+        "icon": "sign-out-alt",
+        "action": "logout"
+      }
+    ]
+  },
+  "keyboardShortcuts": [
+    {
+      "key": "Ctrl+N",
+      "action": "newFile",
+      "description": "New File"
+    },
+    {
+      "key": "Ctrl+S",
+      "action": "saveFile",
+      "description": "Save File"
+    },
+    {
+      "key": "Ctrl+O",
+      "action": "openFile",
+      "description": "Open File"
+    },
+    {
+      "key": "Ctrl+F",
+      "action": "find",
+      "description": "Find"
+    },
+    {
+      "key": "Ctrl+H",
+      "action": "replace",
+      "description": "Replace"
+    },
+    {
+      "key": "Ctrl+Z",
+      "action": "undo",
+      "description": "Undo"
+    },
+    {
+      "key": "Ctrl+Y",
+      "action": "redo",
+      "description": "Redo"
+    },
+    {
+      "key": "Ctrl+B",
+      "action": "toggleSidebar",
+      "description": "Toggle Sidebar"
+    },
+    {
+      "key": "Ctrl+`",
+      "action": "toggleTerminal",
+      "description": "Toggle Terminal"
+    },
+    {
+      "key": "Ctrl+/",
+      "action": "toggleComment",
+      "description": "Toggle Comment"
+    },
+    {
+      "key": "Alt+Up",
+      "action": "moveLine",
+      "description": "Move Line Up"
+    },
+    {
+      "key": "Alt+Down",
+      "action": "moveLine",
+      "description": "Move Line Down"
+    },
+    {
+      "key": "Ctrl+D",
+      "action": "duplicateLine",
+      "description": "Duplicate Line"
+    },
+    {
+      "key": "Ctrl+Shift+K",
+      "action": "deleteLine",
+      "description": "Delete Line"
+    }
+  ],
+  "fileTree": {
+    "excludePatterns": [
+      "node_modules",
+      "vendor",
+      ".git",
+      ".vscode",
+      "*.log",
+      ".env"
+    ],
+    "maxDepth": 10,
+    "showHidden": false,
+    "sortBy": "type"
+  },
+  "api": {
+    "baseUrl": "/devide/api.php",
+    "timeout": 30000,
+    "retries": 3,
+    "endpoints": {
+      "list": "?action=list",
+      "read": "?action=read",
+      "save": "?action=save",
+      "delete": "?action=delete",
+      "create": "?action=create",
+      "saveConversation": "?action=save_conversation"
+    }
+  },
+  "terminal": {
+    "shell": "bash",
+    "fontSize": 13,
+    "fontFamily": "Consolas, monospace",
+    "cursorBlink": true,
+    "theme": {
+      "background": "#1e1e1e",
+      "foreground": "#d4d4d4",
+      "cursor": "#ffffff"
+    }
+  },
+  "notifications": {
+    "duration": 3000,
+    "position": "top-right",
+    "maxStack": 3
+  },
+  "performance": {
+    "virtualScrolling": {
+      "enabled": true,
+      "threshold": 100,
+      "bufferSize": 10,
+      "itemHeight": 100
+    },
+    "debounce": {
+      "scroll": 150,
+      "search": 300,
+      "autoSave": 1000
+    }
+  },
+  "backup": {
+    "enabled": true,
+    "path": "_kb/backups/devide",
+    "maxBackups": 50,
+    "autoBackupInterval": 300000
+  },
+  "recentFiles": [
+    {
+      "path": "mcp/server_v3.php",
+      "name": "server_v3.php",
+      "icon": "file-code",
+      "lastOpened": 1699286400000
+    },
+    {
+      "path": "dashboard/admin/index.php",
+      "name": "index.php",
+      "icon": "file-code",
+      "lastOpened": 1699282800000
+    },
+    {
+      "path": "devide/index.html",
+      "name": "index.html",
+      "icon": "file-code",
+      "lastOpened": 1699279200000
+    }
+  ],
+  "languages": {
+    "php": {
+      "icon": "fa-php",
+      "color": "#777BB3",
+      "extensions": [".php", ".phtml"]
+    },
+    "javascript": {
+      "icon": "fa-js",
+      "color": "#F7DF1E",
+      "extensions": [".js", ".mjs"]
+    },
+    "typescript": {
+      "icon": "fa-code",
+      "color": "#3178C6",
+      "extensions": [".ts", ".tsx"]
+    },
+    "html": {
+      "icon": "fa-html5",
+      "color": "#E34F26",
+      "extensions": [".html", ".htm"]
+    },
+    "css": {
+      "icon": "fa-css3",
+      "color": "#1572B6",
+      "extensions": [".css", ".scss", ".sass", ".less"]
+    },
+    "json": {
+      "icon": "fa-brackets-curly",
+      "color": "#CBCB41",
+      "extensions": [".json"]
+    },
+    "markdown": {
+      "icon": "fa-markdown",
+      "color": "#083FA1",
+      "extensions": [".md", ".markdown"]
+    },
+    "sql": {
+      "icon": "fa-database",
+      "color": "#00758F",
+      "extensions": [".sql"]
+    },
+    "python": {
+      "icon": "fa-python",
+      "color": "#3776AB",
+      "extensions": [".py"]
+    }
+  }
+}

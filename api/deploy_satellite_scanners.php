@@ -11,25 +11,27 @@
 
 declare(strict_types=1);
 
-// Satellite configurations
+// Satellite configurations - Use dynamic paths based on server structure
+// Detect if we're on old (/home/master/applications/) or new (/home/[app-id].cloudwaysapps.com/) structure
+$baseServerPath = dirname(dirname($_SERVER['DOCUMENT_ROOT']));
 $satellites = [
     'dvaxgvsxmz' => [
         'name' => 'VapeShed',
-        'base_path' => '/home/master/applications/dvaxgvsxmz/public_html',
+        'base_path' => str_replace('/hdgwrzntwa/', '/dvaxgvsxmz/', $_SERVER['DOCUMENT_ROOT']),
         'db_name' => 'dvaxgvsxmz',
         'description' => 'VapeShed E-Commerce Platform',
         'unit_id' => 3
     ],
     'jcepnzzkmj' => [
         'name' => 'CIS',
-        'base_path' => '/home/master/applications/jcepnzzkmj/public_html',
+        'base_path' => str_replace('/hdgwrzntwa/', '/jcepnzzkmj/', $_SERVER['DOCUMENT_ROOT']),
         'db_name' => 'jcepnzzkmj',
         'description' => 'Central Information System',
         'unit_id' => 2
     ],
     'fhrehrpjmu' => [
         'name' => 'Wholesale',
-        'base_path' => '/home/master/applications/fhrehrpjmu/public_html',
+        'base_path' => str_replace('/hdgwrzntwa/', '/fhrehrpjmu/', $_SERVER['DOCUMENT_ROOT']),
         'db_name' => 'fhrehrpjmu',
         'description' => 'Wholesale E-Commerce Platform',
         'unit_id' => 4

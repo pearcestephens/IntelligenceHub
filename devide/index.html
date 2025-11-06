@@ -1,0 +1,2608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Ecigdis IDE - Visual Code Editor v1.0.2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/editor/editor.main.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Top Menu Bar */
+        .menu-bar {
+            background: #323233;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            border-bottom: 1px solid #252526;
+        }
+
+        .menu-bar .menu-item {
+            padding: 5px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .menu-bar .menu-item:hover {
+            background: #2a2d2e;
+        }
+
+        .menu-bar .menu-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #252526;
+            border: 1px solid #454545;
+            border-radius: 3px;
+            min-width: 200px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+            z-index: 1000;
+            padding: 4px 0;
+        }
+
+        .dropdown-menu:hover {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 6px 12px;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #cccccc;
+        }
+
+        .dropdown-item:hover {
+            background: #094771;
+            color: white;
+        }
+
+        .dropdown-item i {
+            width: 16px;
+        }
+
+        .dropdown-item .shortcut {
+            margin-left: auto;
+            font-size: 11px;
+            color: #858585;
+        }
+
+        .menu-bar .right-items {
+            margin-left: auto;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .menu-bar .profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .menu-bar .profile:hover {
+            background: #2a2d2e;
+        }
+
+        .menu-bar .profile:hover .profile-dropdown {
+            display: block;
+        }
+
+        .menu-bar .profile img {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+        }
+
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #2d2d30;
+            border: 1px solid #3e3e42;
+            min-width: 220px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 1000;
+            margin-top: 2px;
+            border-radius: 4px;
+        }
+
+        .profile-dropdown:hover {
+            display: block;
+        }
+
+        .profile-dropdown-header {
+            padding: 12px 15px;
+            border-bottom: 1px solid #3e3e42;
+            background: #252526;
+        }
+
+        .profile-dropdown-header .name {
+            font-weight: 600;
+            color: #cccccc;
+            font-size: 14px;
+        }
+
+        .profile-dropdown-header .role {
+            color: #858585;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        .profile-dropdown-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            color: #cccccc;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .profile-dropdown-item:hover {
+            background: #094771;
+        }
+
+        .profile-dropdown-item i {
+            width: 16px;
+            text-align: center;
+            color: #858585;
+        }
+
+        .profile-dropdown-divider {
+            height: 1px;
+            background: #3e3e42;
+            margin: 5px 0;
+        }
+
+        /* Main Layout */
+        .main-container {
+            display: flex;
+            height: calc(100vh - 35px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 48px;
+            background: #333333;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #252526;
+        }
+
+        .sidebar .icon-button {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            color: #858585;
+            border-left: 2px solid transparent;
+        }
+
+        .sidebar .icon-button:hover {
+            color: #ffffff;
+        }
+
+        .sidebar .icon-button.active {
+            color: #ffffff;
+            border-left: 2px solid #007acc;
+        }
+
+        /* Side Panel */
+        .side-panel {
+            width: 300px;
+            background: #252526;
+            border-right: 1px solid #1e1e1e;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .side-panel.hidden {
+            display: none;
+        }
+
+        .side-panel-header {
+            padding: 12px 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #cccccc;
+            font-weight: 600;
+            background: #2d2d30;
+            border-bottom: 1px solid #1e1e1e;
+        }
+
+        .side-panel-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        /* File Explorer */
+        .file-tree {
+            list-style: none;
+        }
+
+        .file-tree li {
+            padding: 4px 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            border-radius: 3px;
+        }
+
+        .file-tree li:hover {
+            background: #2a2d2e;
+        }
+
+        .file-tree li.selected {
+            background: #094771;
+        }
+
+        .file-tree .folder {
+            font-weight: 500;
+        }
+
+        .file-tree .folder-icon {
+            color: #dcb67a;
+        }
+
+        .file-tree .file-icon {
+            color: #519aba;
+        }
+
+        /* Servers Panel */
+        .server-card {
+            background: #2d2d30;
+            border: 1px solid #3e3e42;
+            border-radius: 4px;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+
+        .server-card .server-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .server-card .status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ec9b0;
+        }
+
+        .server-card .status.offline {
+            background: #f48771;
+        }
+
+        .server-card .server-info {
+            font-size: 12px;
+            color: #858585;
+            margin: 4px 0;
+        }
+
+        .server-card .actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .server-card button {
+            background: #0e639c;
+            border: none;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .server-card button:hover {
+            background: #1177bb;
+        }
+
+        /* Editor Area */
+        .editor-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #1e1e1e;
+        }
+
+        /* Tabs */
+        .tabs {
+            background: #2d2d30;
+            display: flex;
+            border-bottom: 1px solid #252526;
+            overflow-x: auto;
+        }
+
+        .tab {
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border-right: 1px solid #252526;
+            font-size: 13px;
+            min-width: 120px;
+            background: #2d2d30;
+        }
+
+        .tab.active {
+            background: #1e1e1e;
+        }
+
+        .tab:hover .close-tab {
+            opacity: 1;
+        }
+
+        .tab .close-tab {
+            opacity: 0;
+            margin-left: auto;
+            cursor: pointer;
+        }
+
+        /* Editor */
+        #editor {
+            flex: 1;
+            width: 100%;
+        }
+
+        /* Bottom Panel */
+        .bottom-panel {
+            height: 200px;
+            background: #252526;
+            border-top: 1px solid #1e1e1e;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bottom-panel.hidden {
+            display: none;
+        }
+
+        .bottom-panel-tabs {
+            display: flex;
+            background: #2d2d30;
+            border-bottom: 1px solid #1e1e1e;
+        }
+
+        .bottom-panel-tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 13px;
+            border-right: 1px solid #252526;
+        }
+
+        .bottom-panel-tab.active {
+            background: #252526;
+        }
+
+        .bottom-panel-content {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        /* GPT Chat */
+        .gpt-chat {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+        }
+
+        .chat-header {
+            padding: 10px 15px;
+            border-bottom: 1px solid #1e1e1e;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #2d2d30;
+        }
+
+        .chat-header h4 {
+            flex: 1;
+            font-size: 13px;
+            font-weight: 600;
+            color: #cccccc;
+        }
+
+        .chat-header button {
+            background: transparent;
+            border: 1px solid #3e3e42;
+            color: #cccccc;
+            padding: 4px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .chat-header button:hover {
+            background: #3e3e42;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            scroll-behavior: smooth;
+        }
+
+        .chat-message {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            background: #2d2d30;
+            animation: messageSlideIn 0.2s ease-out;
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-message.user {
+            background: #094771;
+        }
+
+        .chat-message.system {
+            background: #1a1a1a;
+            border-left: 3px solid #4ec9b0;
+        }
+
+        .chat-message.error {
+            background: #5a1d1d;
+            border-left: 3px solid #f48771;
+        }
+
+        .chat-message .message-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .chat-message .role {
+            font-weight: 600;
+            font-size: 12px;
+            color: #4ec9b0;
+        }
+
+        .chat-message.user .role {
+            color: #569cd6;
+        }
+
+        .chat-message .timestamp {
+            font-size: 11px;
+            color: #858585;
+            margin-left: auto;
+        }
+
+        .chat-message .message-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #3e3e42;
+        }
+
+        .chat-message .message-actions button {
+            background: transparent;
+            border: 1px solid #3e3e42;
+            color: #cccccc;
+            padding: 4px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .chat-message .message-actions button:hover {
+            background: #3e3e42;
+        }
+
+        .chat-message pre {
+            background: #1e1e1e;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+
+        .chat-message code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 12px;
+        }
+
+        .chat-input {
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            border-top: 1px solid #1e1e1e;
+            gap: 8px;
+            background: #252526;
+        }
+
+        .chat-input-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input textarea {
+            flex: 1;
+            background: #3c3c3c;
+            border: 1px solid #3e3e42;
+            color: #d4d4d4;
+            padding: 10px;
+            border-radius: 3px;
+            font-size: 13px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 60px;
+            max-height: 200px;
+        }
+
+        .chat-input textarea:focus {
+            outline: none;
+            border-color: #007acc;
+        }
+
+        .chat-input-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-input-actions .left {
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-input-actions button {
+            background: #0e639c;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .chat-input-actions button:hover {
+            background: #1177bb;
+        }
+
+        .chat-input-actions button.secondary {
+            background: transparent;
+            border: 1px solid #3e3e42;
+            color: #cccccc;
+        }
+
+        .chat-input-actions button.secondary:hover {
+            background: #3e3e42;
+        }
+
+        .chat-suggestions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .suggestion-chip {
+            background: #2d2d30;
+            border: 1px solid #3e3e42;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .suggestion-chip:hover {
+            background: #3e3e42;
+            border-color: #007acc;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 10px;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: #007acc;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.7;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+
+        .chat-stats {
+            padding: 8px 15px;
+            background: #1e1e1e;
+            border-top: 1px solid #3e3e42;
+            font-size: 11px;
+            color: #858585;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Scrollbars */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e1e1e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #424242;
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4e4e4e;
+        }
+
+        /* Status Bar */
+        .status-bar {
+            height: 22px;
+            background: #007acc;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 12px;
+            gap: 20px;
+        }
+
+        .status-bar .status-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+        }
+
+        .status-bar .status-item:hover {
+            opacity: 0.8;
+        }
+
+        .status-bar .spacer {
+            flex: 1;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb-bar {
+            height: 30px;
+            background: #252526;
+            border-bottom: 1px solid #1e1e1e;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            font-size: 13px;
+            gap: 8px;
+            color: #cccccc;
+        }
+
+        .breadcrumb-bar .breadcrumb-item {
+            cursor: pointer;
+        }
+
+        .breadcrumb-bar .breadcrumb-item:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb-bar .separator {
+            color: #858585;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .welcome-screen h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .welcome-screen .subtitle {
+            font-size: 16px;
+            color: #858585;
+            margin-bottom: 40px;
+        }
+
+        .welcome-section {
+            margin-bottom: 30px;
+        }
+
+        .welcome-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #4ec9b0;
+        }
+
+        .action-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .action-card {
+            background: #2d2d30;
+            border: 1px solid #3e3e42;
+            border-radius: 4px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-card:hover {
+            background: #37373d;
+            border-color: #007acc;
+        }
+
+        .action-card i {
+            font-size: 24px;
+            color: #007acc;
+            margin-bottom: 10px;
+        }
+
+        .action-card h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .action-card p {
+            font-size: 13px;
+            color: #858585;
+        }
+
+        .recent-files {
+            list-style: none;
+        }
+
+        .recent-files li {
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .recent-files li:hover {
+            background: #2a2d2e;
+        }
+
+        .recent-files .file-icon {
+            color: #519aba;
+        }
+
+        .recent-files .file-path {
+            color: #858585;
+            font-size: 11px;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border: 2px solid #3c3c3c;
+            border-top-color: #007acc;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 40px;
+            right: 20px;
+            background: #2d2d30;
+            border: 1px solid #007acc;
+            border-radius: 4px;
+            padding: 12px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            z-index: 10000;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Menu Bar -->
+    <div class="menu-bar">
+        <div class="menu-item">
+            File
+            <div class="dropdown-menu">
+                <div class="dropdown-item" onclick="newFile()">
+                    <i class="fas fa-file"></i> New File
+                    <span class="shortcut">Ctrl+N</span>
+                </div>
+                <div class="dropdown-item" onclick="openFileDialog()">
+                    <i class="fas fa-folder-open"></i> Open File
+                    <span class="shortcut">Ctrl+O</span>
+                </div>
+                <div class="dropdown-item" onclick="saveFile()">
+                    <i class="fas fa-save"></i> Save
+                    <span class="shortcut">Ctrl+S</span>
+                </div>
+                <div class="dropdown-item" onclick="saveAs()">
+                    <i class="fas fa-save"></i> Save As
+                    <span class="shortcut">Ctrl+Shift+S</span>
+                </div>
+                <hr style="margin: 4px 0; border-color: #454545;">
+                <div class="dropdown-item" onclick="closeFile()">
+                    <i class="fas fa-times"></i> Close File
+                    <span class="shortcut">Ctrl+W</span>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            Edit
+            <div class="dropdown-menu">
+                <div class="dropdown-item" onclick="undo()">
+                    <i class="fas fa-undo"></i> Undo
+                    <span class="shortcut">Ctrl+Z</span>
+                </div>
+                <div class="dropdown-item" onclick="redo()">
+                    <i class="fas fa-redo"></i> Redo
+                    <span class="shortcut">Ctrl+Y</span>
+                </div>
+                <hr style="margin: 4px 0; border-color: #454545;">
+                <div class="dropdown-item" onclick="find()">
+                    <i class="fas fa-search"></i> Find
+                    <span class="shortcut">Ctrl+F</span>
+                </div>
+                <div class="dropdown-item" onclick="replace()">
+                    <i class="fas fa-exchange-alt"></i> Replace
+                    <span class="shortcut">Ctrl+H</span>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            View
+            <div class="dropdown-menu">
+                <div class="dropdown-item" onclick="toggleSidebar()">
+                    <i class="fas fa-sidebar"></i> Toggle Sidebar
+                    <span class="shortcut">Ctrl+B</span>
+                </div>
+                <div class="dropdown-item" onclick="toggleBottomPanel()">
+                    <i class="fas fa-terminal"></i> Toggle Panel
+                    <span class="shortcut">Ctrl+`</span>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">Go</div>
+        <div class="menu-item">Tools</div>
+        <div class="menu-item">Help</div>
+
+        <div class="right-items">
+            <div class="menu-item" id="themeBtn"><i class="fas fa-palette"></i> Theme</div>
+            <div class="menu-item" id="searchBtn"><i class="fas fa-search"></i> Search</div>
+            <div class="menu-item" id="uploadBtn"><i class="fas fa-upload"></i> Upload</div>
+            <div class="menu-item" id="previewBtn"><i class="fas fa-eye"></i> Preview</div>
+            <div class="menu-item" id="downloadBtn"><i class="fas fa-download"></i> Download</div>
+            <div class="menu-item" id="saveBtn"><i class="fas fa-save"></i> Save</div>
+            <div class="profile">
+                <img src="https://ui-avatars.com/api/?name=Admin&background=007acc&color=fff" alt="Profile">
+                <span>Admin</span>
+                <i class="fas fa-chevron-down" style="font-size: 10px; margin-left: 5px;"></i>
+                <div class="profile-dropdown">
+                    <div class="profile-dropdown-header">
+                        <div class="name">Administrator</div>
+                        <div class="role">Super Admin</div>
+                    </div>
+                    <div class="profile-dropdown-item" onclick="viewProfile()">
+                        <i class="fas fa-user"></i>
+                        <span>View Profile</span>
+                    </div>
+                    <div class="profile-dropdown-item" onclick="editSettings()">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </div>
+                    <div class="profile-dropdown-item" onclick="viewActivity()">
+                        <i class="fas fa-history"></i>
+                        <span>Activity Log</span>
+                    </div>
+                    <div class="profile-dropdown-divider"></div>
+                    <div class="profile-dropdown-item" onclick="switchTheme()">
+                        <i class="fas fa-palette"></i>
+                        <span>Change Theme</span>
+                    </div>
+                    <div class="profile-dropdown-item" onclick="keyboardShortcuts()">
+                        <i class="fas fa-keyboard"></i>
+                        <span>Keyboard Shortcuts</span>
+                    </div>
+                    <div class="profile-dropdown-divider"></div>
+                    <div class="profile-dropdown-item" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="icon-button active" data-panel="explorer" title="Explorer">
+                <i class="fas fa-folder"></i>
+            </div>
+            <div class="icon-button" data-panel="servers" title="Servers">
+                <i class="fas fa-server"></i>
+            </div>
+            <div class="icon-button" data-panel="search" title="Search">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="icon-button" data-panel="git" title="Git">
+                <i class="fas fa-code-branch"></i>
+            </div>
+            <div class="icon-button" data-panel="debug" title="Debug">
+                <i class="fas fa-bug"></i>
+            </div>
+            <div class="icon-button" data-panel="extensions" title="Extensions">
+                <i class="fas fa-cube"></i>
+            </div>
+            <div class="icon-button" style="margin-top: auto;" data-panel="settings" title="Settings">
+                <i class="fas fa-cog"></i>
+            </div>
+        </div>
+
+        <!-- Side Panel -->
+        <div class="side-panel" id="sidePanel">
+            <div class="side-panel-header" id="sidePanelTitle">EXPLORER</div>
+            <div class="side-panel-content" id="sidePanelContent">
+                <!-- File Explorer -->
+                <div id="explorerPanel">
+                    <div style="padding: 8px; border-bottom: 1px solid #1e1e1e;">
+                        <button onclick="refreshFiles()" style="width: 100%; padding: 6px; background: #0e639c; border: none; color: white; border-radius: 3px; cursor: pointer;">
+                            <i class="fas fa-sync"></i> Refresh Files
+                        </button>
+                    </div>
+                    <ul class="file-tree" id="fileTree">
+                        <li style="text-align: center; padding: 20px; color: #858585;">
+                            <i class="fas fa-spinner fa-spin"></i><br>Loading files...
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Servers Panel -->
+                <div id="serversPanel" style="display: none;">
+                    <div class="server-card">
+                        <div class="server-name">
+                            <div class="status"></div>
+                            <span>CIS Staff Portal</span>
+                        </div>
+                        <div class="server-info">URL: https://staff.vapeshed.co.nz</div>
+                        <div class="server-info">Path: /home/master/applications/jcepnzzkmj</div>
+                        <div class="server-info">Status: Online ✓</div>
+                        <div class="actions">
+                            <button onclick="connectServer('cis')">Connect</button>
+                            <button onclick="viewLogs('cis')">Logs</button>
+                        </div>
+                    </div>
+
+                    <div class="server-card">
+                        <div class="server-name">
+                            <div class="status"></div>
+                            <span>Intelligence Hub</span>
+                        </div>
+                        <div class="server-info">URL: https://gpt.ecigdis.co.nz</div>
+                        <div class="server-info">Path: /home/master/applications/hdgwrzntwa</div>
+                        <div class="server-info">Status: Online ✓</div>
+                        <div class="actions">
+                            <button onclick="connectServer('hub')">Connect</button>
+                            <button onclick="viewLogs('hub')">Logs</button>
+                        </div>
+                    </div>
+
+                    <div class="server-card">
+                        <div class="server-name">
+                            <div class="status"></div>
+                            <span>VapeShed Retail</span>
+                        </div>
+                        <div class="server-info">URL: https://www.vapeshed.co.nz</div>
+                        <div class="server-info">Status: Online ✓</div>
+                        <div class="actions">
+                            <button onclick="connectServer('retail')">Connect</button>
+                            <button onclick="viewLogs('retail')">Logs</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Editor Container -->
+        <div class="editor-container">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb-bar" id="breadcrumb">
+                <i class="fas fa-home"></i>
+                <span class="breadcrumb-item">Intelligence Hub</span>
+                <span class="separator">›</span>
+                <span class="breadcrumb-item">public_html</span>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs" id="tabs">
+                <div class="tab active" data-file="welcome">
+                    <i class="fas fa-home"></i>
+                    <span>Welcome</span>
+                    <i class="fas fa-times close-tab" onclick="closeTab(event, 'welcome')"></i>
+                </div>
+            </div>
+
+            <!-- Monaco Editor -->
+            <div id="editor"></div>
+
+            <!-- Welcome Screen (shown when no file is open) -->
+            <div id="welcomeScreen" class="welcome-screen">
+                <h1><i class="fas fa-code"></i> Welcome to Ecigdis IDE</h1>
+                <p class="subtitle">Professional code editor for Intelligence Hub development</p>
+
+                <div class="action-cards">
+                    <div class="action-card" onclick="document.querySelector('[data-panel=explorer]').click()">
+                        <i class="fas fa-folder-open"></i>
+                        <h4>Open Folder</h4>
+                        <p>Browse and edit files from your workspace</p>
+                    </div>
+
+                    <div class="action-card" onclick="newFile()">
+                        <i class="fas fa-file-code"></i>
+                        <h4>New File</h4>
+                        <p>Create a new file in your project</p>
+                    </div>
+
+                    <div class="action-card" onclick="document.querySelector('[data-tab=gpt]').click()">
+                        <i class="fas fa-robot"></i>
+                        <h4>GPT Assistant</h4>
+                        <p>Get AI-powered coding help</p>
+                    </div>
+
+                    <div class="action-card" onclick="document.querySelector('[data-panel=servers]').click()">
+                        <i class="fas fa-server"></i>
+                        <h4>Connect Server</h4>
+                        <p>Manage remote server connections</p>
+                    </div>
+                </div>
+
+                <div class="welcome-section">
+                    <h3><i class="fas fa-clock"></i> Recent Files</h3>
+                    <ul class="recent-files" id="recentFiles">
+                        <li onclick="openFileFromPath('mcp/server_v3.php')">
+                            <i class="fas fa-file-code file-icon"></i>
+                            <div>
+                                <div>server_v3.php</div>
+                                <div class="file-path">mcp/</div>
+                            </div>
+                        </li>
+                        <li onclick="openFileFromPath('dashboard/admin/index.php')">
+                            <i class="fas fa-file-code file-icon"></i>
+                            <div>
+                                <div>index.php</div>
+                                <div class="file-path">dashboard/admin/</div>
+                            </div>
+                        </li>
+                        <li onclick="openFileFromPath('devide/index.html')">
+                            <i class="fas fa-file-code file-icon"></i>
+                            <div>
+                                <div>index.html</div>
+                                <div class="file-path">devide/</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="welcome-section">
+                    <h3><i class="fas fa-keyboard"></i> Keyboard Shortcuts</h3>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-size: 13px; color: #858585;">
+                        <div><kbd>Ctrl+S</kbd> Save file</div>
+                        <div><kbd>Ctrl+F</kbd> Find</div>
+                        <div><kbd>Ctrl+N</kbd> New file</div>
+                        <div><kbd>Ctrl+H</kbd> Replace</div>
+                        <div><kbd>Ctrl+B</kbd> Toggle sidebar</div>
+                        <div><kbd>Ctrl+`</kbd> Toggle terminal</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-item">
+            <i class="fas fa-code-branch"></i>
+            <span>master</span>
+        </div>
+        <div class="status-item">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span id="errorCount">0</span>
+        </div>
+        <div class="status-item">
+            <i class="fas fa-info-circle"></i>
+            <span id="warningCount">0</span>
+        </div>
+        <div class="spacer"></div>
+        <div class="status-item" id="statusLanguage">
+            <i class="fas fa-code"></i>
+            <span>Plain Text</span>
+        </div>
+        <div class="status-item" id="statusLine">
+            <span>Ln 1, Col 1</span>
+        </div>
+        <div class="status-item" id="statusEncoding">
+            <span>UTF-8</span>
+        </div>
+        <div class="status-item" id="statusEOL">
+            <span>LF</span>
+        </div>
+    </div>
+
+    <!-- Bottom Panel (Terminal/Output/GPT) -->
+    <div class="bottom-panel" id="bottomPanel">
+        <div class="bottom-panel-tabs">
+            <div class="bottom-panel-tab active" data-tab="terminal">
+                <i class="fas fa-terminal"></i> Terminal
+            </div>
+            <div class="bottom-panel-tab" data-tab="output">
+                <i class="fas fa-list"></i> Output
+            </div>
+            <div class="bottom-panel-tab" data-tab="gpt">
+                <i class="fas fa-robot"></i> GPT Assistant
+            </div>
+            <div style="margin-left: auto; padding: 8px; cursor: pointer;" onclick="toggleBottomPanel()">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="bottom-panel-content" id="bottomPanelContent">
+            <!-- Terminal -->
+            <div id="terminalPanel">
+                <div style="color: #4ec9b0;">$ Welcome to Ecigdis IDE Terminal</div>
+                <div style="color: #858585;">Type 'help' for available commands</div>
+            </div>
+
+            <!-- Output -->
+            <div id="outputPanel" style="display: none;">
+                <div style="color: #4ec9b0;">[INFO] IDE Ready</div>
+            </div>
+
+            <!-- GPT Chat -->
+            <div id="gptPanel" style="display: none;">
+                <div class="gpt-chat">
+                    <div class="chat-header">
+                        <h4><i class="fas fa-robot"></i> AI Copilot Assistant</h4>
+                        <select id="modelSelector" onchange="switchModel(this.value)" style="background: #2d2d30; border: 1px solid #3e3e42; color: #cccccc; padding: 5px 10px; border-radius: 3px; cursor: pointer; margin-right: 10px;">
+                            <option value="gpt-4">GPT-4 (OpenAI)</option>
+                            <option value="gpt-4-turbo">GPT-4 Turbo</option>
+                            <option value="claude-3.5-sonnet">Claude 3.5 Sonnet</option>
+                            <option value="claude-3-opus">Claude 3 Opus</option>
+                            <option value="claude-3-haiku">Claude 3 Haiku (Fast)</option>
+                        </select>
+                        <button onclick="clearChat()"><i class="fas fa-trash"></i> Clear</button>
+                        <button onclick="exportChat()"><i class="fas fa-download"></i> Export</button>
+                        <button onclick="loadConversations()"><i class="fas fa-history"></i> History</button>
+                    </div>
+
+                    <div class="chat-suggestions">
+                        <div class="suggestion-chip" onclick="quickPrompt('Explain this code')">
+                            <i class="fas fa-question-circle"></i> Explain code
+                        </div>
+                        <div class="suggestion-chip" onclick="quickPrompt('Fix bugs in this code')">
+                            <i class="fas fa-bug"></i> Fix bugs
+                        </div>
+                        <div class="suggestion-chip" onclick="quickPrompt('Add comments to this code')">
+                            <i class="fas fa-comment"></i> Add comments
+                        </div>
+                        <div class="suggestion-chip" onclick="quickPrompt('Optimize this code')">
+                            <i class="fas fa-tachometer-alt"></i> Optimize
+                        </div>
+                        <div class="suggestion-chip" onclick="quickPrompt('Write tests for this code')">
+                            <i class="fas fa-vial"></i> Write tests
+                        </div>
+                    </div>
+
+                    <div class="chat-messages" id="chatMessages"></div>
+
+                    <div class="chat-stats">
+                        <span id="messageCount">0 messages</span>
+                        <span id="conversationId">Session: new</span>
+                        <span id="renderMode" style="color: #4ec9b0; font-size: 11px;">
+                            <i class="fas fa-bolt"></i> Standard Mode
+                        </span>
+                    </div>
+
+                    <div class="chat-input">
+                        <div class="chat-input-row">
+                            <textarea id="chatInput" placeholder="Ask GPT to edit code, fix bugs, add features, or explain anything..." rows="3"></textarea>
+                        </div>
+                        <div class="chat-input-actions">
+                            <div class="left">
+                                <button class="secondary" onclick="attachCurrentFile()">
+                                    <i class="fas fa-paperclip"></i> Attach Current File
+                                </button>
+                                <span id="attachmentInfo" style="font-size: 11px; color: #858585;"></span>
+                            </div>
+                            <button onclick="sendGPTMessage()">
+                                <i class="fas fa-paper-plane"></i> Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monaco Editor -->
+    <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.js"></script>
+    <script>
+        let editor;
+        let currentFile = null;
+        let openTabs = new Map();
+
+        // Initialize Monaco Editor
+        require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs' } });
+        require(['vs/editor/editor.main'], function () {
+            editor = monaco.editor.create(document.getElementById('editor'), {
+                value: '',
+                language: 'plaintext',
+                theme: 'vs-dark',
+                automaticLayout: true,
+                fontSize: 14,
+                minimap: { enabled: true },
+                lineNumbers: 'on',
+                roundedSelection: false,
+                scrollBeyondLastLine: false,
+                readOnly: false
+            });
+
+            // Update status bar on cursor change
+            editor.onDidChangeCursorPosition((e) => {
+                document.getElementById('statusLine').innerHTML = `<span>Ln ${e.position.lineNumber}, Col ${e.position.column}</span>`;
+            });
+
+            // Auto-save on changes
+            editor.onDidChangeModelContent(() => {
+                if (currentFile) {
+                    addLog('File modified: ' + currentFile);
+                }
+            });
+
+            // Show welcome screen initially
+            document.getElementById('editor').style.display = 'none';
+            document.getElementById('welcomeScreen').style.display = 'block';
+
+            console.log('Monaco Editor initialized successfully');
+        });
+
+        function getWelcomeContent() {
+            return `# Welcome to Ecigdis IDE
+
+## Getting Started
+
+1. **Browse Files** - Use the Explorer panel to navigate your project
+2. **Connect to Servers** - Use the Servers panel to manage remote connections
+3. **Use GPT** - Click the GPT Assistant tab below to get AI-powered help
+4. **Save Your Work** - Press Ctrl+S or use the Save button
+
+## Features
+
+- 🗂️ **File Explorer** - Browse and edit files
+- 🖥️ **Server Management** - Connect to multiple servers
+- 🤖 **GPT Integration** - AI-powered code editing
+- 💾 **Auto-Save** - Changes saved automatically
+- 🎨 **Syntax Highlighting** - Support for 100+ languages
+- 🔍 **Search & Replace** - Find anything in your code
+
+## Quick Actions
+
+- **Open File**: Click any file in the Explorer
+- **Save**: Ctrl+S or click Save button
+- **Ask GPT**: Use the GPT Assistant below
+- **View Servers**: Click the Server icon in the sidebar
+
+---
+
+Start by opening a file from the Explorer or asking GPT for help! 🚀
+`;
+        }
+
+        // Sidebar Navigation
+        document.querySelectorAll('.icon-button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const panel = this.dataset.panel;
+
+                // Remove active from all buttons
+                document.querySelectorAll('.icon-button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                // Update side panel
+                document.getElementById('sidePanelTitle').textContent = panel.toUpperCase();
+
+                // Show appropriate panel content
+                document.getElementById('explorerPanel').style.display = panel === 'explorer' ? 'block' : 'none';
+                document.getElementById('serversPanel').style.display = panel === 'servers' ? 'block' : 'none';
+            });
+        });
+
+        // File Tree Click
+        document.getElementById('fileTree').addEventListener('click', function(e) {
+            const li = e.target.closest('li');
+            if (!li) return;
+
+            const path = li.dataset.path;
+            const isFolder = li.classList.contains('folder');
+
+            if (isFolder) {
+                // TODO: Expand/collapse folder
+                addLog('Folder clicked: ' + path);
+            } else {
+                // Open file
+                openFile(path);
+            }
+        });
+
+        // Open File
+        function openFile(path) {
+            currentFile = path;
+            const filename = path.split('/').pop();
+
+            addLog('Opening file: ' + path);
+
+            // Create tab if not exists
+            if (!openTabs.has(path)) {
+                const tab = document.createElement('div');
+                tab.className = 'tab';
+                tab.dataset.file = path;
+                tab.innerHTML = `
+                    <i class="fas fa-file-code"></i>
+                    <span>${filename}</span>
+                    <i class="fas fa-times close-tab" onclick="closeTab('${path}')"></i>
+                `;
+                document.getElementById('tabs').appendChild(tab);
+                openTabs.set(path, true);
+
+                // Click handler for tab
+                tab.addEventListener('click', () => switchToTab(path));
+            }
+
+            switchToTab(path);
+
+            // Load file content (simulate)
+            loadFileContent(path);
+        }
+
+        function switchToTab(path) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelector(`.tab[data-file="${path}"]`).classList.add('active');
+            currentFile = path;
+        }
+
+        function closeTab(path) {
+            event.stopPropagation();
+            const tab = document.querySelector(`.tab[data-file="${path}"]`);
+            if (tab) {
+                tab.remove();
+                openTabs.delete(path);
+                addLog('Closed: ' + path);
+            }
+        }
+
+        function loadFileContent(path) {
+            // Simulate file loading
+            const mockContent = {
+                '/index.php': '<?php\n// Main entry point\nrequire_once "config.php";\n\necho "Hello World";\n',
+                '/config.php': '<?php\n// Configuration\ndefine("DB_HOST", "localhost");\ndefine("DB_NAME", "database");\n'
+            };
+
+            const content = mockContent[path] || `// File: ${path}\n// Loading...`;
+            const language = path.endsWith('.php') ? 'php' :
+                           path.endsWith('.js') ? 'javascript' :
+                           path.endsWith('.html') ? 'html' : 'plaintext';
+
+            editor.setValue(content);
+            monaco.editor.setModelLanguage(editor.getModel(), language);
+            addLog('Loaded: ' + path);
+        }
+
+        // Bottom Panel Tabs
+        document.querySelectorAll('.bottom-panel-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabName = this.dataset.tab;
+
+                document.querySelectorAll('.bottom-panel-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                document.getElementById('terminalPanel').style.display = tabName === 'terminal' ? 'block' : 'none';
+                document.getElementById('outputPanel').style.display = tabName === 'output' ? 'block' : 'none';
+                document.getElementById('gptPanel').style.display = tabName === 'gpt' ? 'block' : 'none';
+            });
+        });
+
+        function toggleBottomPanel() {
+            document.getElementById('bottomPanel').classList.toggle('hidden');
+        }
+
+        // GPT Integration with Smart Message Management
+        let conversationHistory = [];
+        let currentConversationId = 'session_' + Date.now();
+        let attachedContext = null;
+        const MAX_VISIBLE_MESSAGES = 50; // Only render last 50 messages in DOM
+        let messageIdCounter = 0;
+        let virtualScrollState = {
+            startIndex: 0,
+            endIndex: 50,
+            itemHeight: 100, // Estimated average message height
+            scrollTop: 0,
+            isScrolling: false,
+            observer: null
+        };
+
+        // Initialize conversation
+        function initializeChat() {
+            // Try to load last conversation from localStorage
+            const savedConversation = localStorage.getItem('lastConversation');
+            if (savedConversation) {
+                const data = JSON.parse(savedConversation);
+                conversationHistory = data.messages || [];
+                currentConversationId = data.id;
+                messageIdCounter = Math.max(...conversationHistory.map(m => m.id || 0), 0);
+                renderMessages();
+            } else {
+                // Add welcome message
+                addSystemMessage('Hi! I\'m your GPT Copilot. I can help you:', [
+                    '• Edit and improve your code',
+                    '• Fix bugs and errors',
+                    '• Add new features',
+                    '• Explain complex code',
+                    '• Write tests and documentation',
+                    '',
+                    'Attach your current file or just ask me anything!'
+                ].join('\n'));
+            }
+            updateChatStats();
+            setupVirtualScrolling();
+        }
+
+        // Virtual scrolling setup with Intersection Observer
+        function setupVirtualScrolling() {
+            const container = document.getElementById('chatMessages');
+
+            // Observe scroll events with debouncing
+            let scrollTimeout;
+            container.addEventListener('scroll', () => {
+                virtualScrollState.isScrolling = true;
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    virtualScrollState.isScrolling = false;
+                    handleVirtualScroll();
+                }, 150);
+            });
+
+            // Setup intersection observer for lazy loading
+            virtualScrollState.observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && entry.target.classList.contains('load-more-trigger')) {
+                        loadMoreMessages();
+                    }
+                });
+            }, { threshold: 0.1 });
+        }
+
+        // Handle virtual scroll - only render visible messages + buffer
+        function handleVirtualScroll() {
+            const container = document.getElementById('chatMessages');
+            const scrollTop = container.scrollTop;
+            const containerHeight = container.clientHeight;
+            const totalMessages = conversationHistory.length;
+
+            // Calculate which messages should be visible
+            const startIndex = Math.max(0, Math.floor(scrollTop / virtualScrollState.itemHeight) - 10); // 10 message buffer above
+            const endIndex = Math.min(totalMessages, Math.ceil((scrollTop + containerHeight) / virtualScrollState.itemHeight) + 10); // 10 message buffer below
+
+            // Only re-render if range changed significantly
+            if (Math.abs(startIndex - virtualScrollState.startIndex) > 5 || Math.abs(endIndex - virtualScrollState.endIndex) > 5) {
+                virtualScrollState.startIndex = startIndex;
+                virtualScrollState.endIndex = endIndex;
+                renderMessagesVirtual();
+            }
+        }
+
+        // Smart rendering with virtual scrolling - only render visible range
+        function renderMessages() {
+            const container = document.getElementById('chatMessages');
+            const scrollHeight = container.scrollHeight;
+            const scrollTop = container.scrollTop;
+            const wasAtBottom = scrollHeight - scrollTop - container.clientHeight < 50;
+
+            // Use virtual scrolling for large conversations (>100 messages)
+            if (conversationHistory.length > 100) {
+                renderMessagesVirtual(wasAtBottom);
+                return;
+            }
+
+            // Standard rendering for smaller conversations
+            container.innerHTML = '';
+
+            // Get last N messages
+            const visibleMessages = conversationHistory.slice(-MAX_VISIBLE_MESSAGES);
+
+            // Show "load more" indicator if there are hidden messages
+            if (conversationHistory.length > MAX_VISIBLE_MESSAGES) {
+                const loadMoreDiv = document.createElement('div');
+                loadMoreDiv.className = 'load-more-trigger';
+                loadMoreDiv.style.textAlign = 'center';
+                loadMoreDiv.style.padding = '10px';
+                loadMoreDiv.style.color = '#858585';
+                loadMoreDiv.style.fontSize = '12px';
+                loadMoreDiv.innerHTML = `
+                    <button onclick="loadMoreMessages()" style="background: #2d2d30; border: 1px solid #3e3e42; color: #cccccc; padding: 6px 12px; border-radius: 3px; cursor: pointer;">
+                        <i class="fas fa-chevron-up"></i> Load ${conversationHistory.length - MAX_VISIBLE_MESSAGES} earlier messages
+                    </button>
+                `;
+                container.appendChild(loadMoreDiv);
+
+                // Observe for lazy loading
+                if (virtualScrollState.observer) {
+                    virtualScrollState.observer.observe(loadMoreDiv);
+                }
+            }
+
+            // Render visible messages
+            visibleMessages.forEach(msg => {
+                const messageDiv = createMessageElement(msg);
+                container.appendChild(messageDiv);
+            });
+
+            // Auto-scroll to bottom if user was at bottom
+            if (wasAtBottom) {
+                container.scrollTop = container.scrollHeight;
+            }
+
+            updateChatStats();
+        }
+
+        // Virtual rendering for large conversations (1000+ messages)
+        function renderMessagesVirtual(scrollToBottom = false) {
+            const container = document.getElementById('chatMessages');
+            const totalMessages = conversationHistory.length;
+
+            // Calculate total height needed for scrollbar
+            const totalHeight = totalMessages * virtualScrollState.itemHeight;
+
+            // Clear and setup container
+            container.innerHTML = '';
+            container.style.position = 'relative';
+
+            // Create spacer for total height
+            const spacer = document.createElement('div');
+            spacer.style.height = totalHeight + 'px';
+            spacer.style.pointerEvents = 'none';
+            container.appendChild(spacer);
+
+            // Create viewport for visible messages
+            const viewport = document.createElement('div');
+            viewport.style.position = 'absolute';
+            viewport.style.top = '0';
+            viewport.style.left = '0';
+            viewport.style.right = '0';
+            container.appendChild(viewport);
+
+            // Get visible range
+            const startIdx = Math.max(0, virtualScrollState.startIndex);
+            const endIdx = Math.min(totalMessages, virtualScrollState.endIndex);
+            const visibleMessages = conversationHistory.slice(startIdx, endIdx);
+
+            // Position viewport at correct scroll position
+            viewport.style.transform = `translateY(${startIdx * virtualScrollState.itemHeight}px)`;
+
+            // Render only visible messages
+            visibleMessages.forEach(msg => {
+                const messageDiv = createMessageElement(msg);
+                viewport.appendChild(messageDiv);
+            });
+
+            // Show load more indicator at top if not at start
+            if (startIdx > 0) {
+                const loadMoreDiv = document.createElement('div');
+                loadMoreDiv.className = 'load-more-trigger';
+                loadMoreDiv.style.textAlign = 'center';
+                loadMoreDiv.style.padding = '10px';
+                loadMoreDiv.style.color = '#858585';
+                loadMoreDiv.innerHTML = `
+                    <button onclick="loadAllMessages()" style="background: #2d2d30; border: 1px solid #3e3e42; color: #cccccc; padding: 6px 12px; border-radius: 3px; cursor: pointer;">
+                        <i class="fas fa-chevron-up"></i> ${startIdx} earlier messages
+                    </button>
+                `;
+                viewport.insertBefore(loadMoreDiv, viewport.firstChild);
+            }
+
+            // Scroll to bottom if requested
+            if (scrollToBottom) {
+                setTimeout(() => {
+                    container.scrollTop = container.scrollHeight;
+                }, 50);
+            }
+
+            updateChatStats();
+        }
+
+        // Load all messages (disable virtual scrolling temporarily)
+        function loadAllMessages() {
+            virtualScrollState.startIndex = 0;
+            virtualScrollState.endIndex = conversationHistory.length;
+            renderMessagesVirtual(false);
+        }
+
+        function createMessageElement(msg) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${msg.role}`;
+            messageDiv.dataset.id = msg.id;
+
+            const header = document.createElement('div');
+            header.className = 'message-header';
+            header.innerHTML = `
+                <div class="role">${msg.role === 'user' ? '👤 You' : '🤖 GPT Copilot'}</div>
+                <div class="timestamp">${formatTime(msg.timestamp)}</div>
+            `;
+            messageDiv.appendChild(header);
+
+            const content = document.createElement('div');
+            content.className = 'message-content';
+
+            // Parse markdown-style code blocks
+            const formattedContent = formatMessageContent(msg.content);
+            content.innerHTML = formattedContent;
+            messageDiv.appendChild(content);
+
+            // Add actions for assistant messages
+            if (msg.role === 'assistant' && msg.content.includes('```')) {
+                const actions = document.createElement('div');
+                actions.className = 'message-actions';
+                actions.innerHTML = `
+                    <button onclick="copyCode(${msg.id})"><i class="fas fa-copy"></i> Copy Code</button>
+                    <button onclick="applyCode(${msg.id})"><i class="fas fa-check"></i> Apply to File</button>
+                    <button onclick="insertCode(${msg.id})"><i class="fas fa-plus"></i> Insert at Cursor</button>
+                `;
+                messageDiv.appendChild(actions);
+            }
+
+            return messageDiv;
+        }
+
+        function formatMessageContent(content) {
+            // Convert ```code``` blocks to <pre><code>
+            return content.replace(/```(\w*)\n([\s\S]*?)```/g, (match, lang, code) => {
+                return `<pre><code class="language-${lang}">${escapeHtml(code)}</code></pre>`;
+            }).replace(/`([^`]+)`/g, '<code>$1</code>')
+              .replace(/\n/g, '<br>');
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function addSystemMessage(content, extraContent = '') {
+            const msg = {
+                id: ++messageIdCounter,
+                role: 'system',
+                content: content + (extraContent ? '\n' + extraContent : ''),
+                timestamp: Date.now()
+            };
+            conversationHistory.push(msg);
+            renderMessages();
+            saveConversation();
+        }
+
+        function addUserMessage(content) {
+            const msg = {
+                id: ++messageIdCounter,
+                role: 'user',
+                content: content,
+                timestamp: Date.now()
+            };
+            conversationHistory.push(msg);
+            renderMessages();
+            saveConversation();
+            return msg.id;
+        }
+
+        function addAssistantMessage(content) {
+            const msg = {
+                id: ++messageIdCounter,
+                role: 'assistant',
+                content: content,
+                timestamp: Date.now()
+            };
+            conversationHistory.push(msg);
+            renderMessages();
+            saveConversation();
+            return msg.id;
+        }
+
+        function updateChatStats() {
+            const msgCount = conversationHistory.length;
+            document.getElementById('messageCount').textContent = `${msgCount} messages`;
+            document.getElementById('conversationId').textContent = `Session: ${currentConversationId.substring(0, 16)}...`;
+
+            // Update render mode indicator
+            const renderMode = document.getElementById('renderMode');
+            if (msgCount > 100) {
+                renderMode.innerHTML = '<i class="fas fa-rocket"></i> Virtual Scrolling (High Performance)';
+                renderMode.style.color = '#4ec9b0';
+            } else if (msgCount > 50) {
+                renderMode.innerHTML = '<i class="fas fa-bolt"></i> Optimized Mode';
+                renderMode.style.color = '#007acc';
+            } else {
+                renderMode.innerHTML = '<i class="fas fa-check-circle"></i> Standard Mode';
+                renderMode.style.color = '#858585';
+            }
+        }
+
+        function saveConversation() {
+            const data = {
+                id: currentConversationId,
+                messages: conversationHistory,
+                lastUpdated: Date.now(),
+                currentFile: currentFile
+            };
+
+            // Save to localStorage as last conversation
+            localStorage.setItem('lastConversation', JSON.stringify(data));
+
+            // Auto-save to conversation library every 10 messages
+            if (conversationHistory.length > 0 && conversationHistory.length % 10 === 0) {
+                saveConversationToLibrary();
+            }
+
+            // Also save to server for persistence
+            fetch('/devide/api.php?action=save_conversation', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).catch(err => console.log('Could not save to server:', err));
+        }
+
+        function loadMoreMessages() {
+            // Increase visible message count
+            const currentVisible = Math.min(conversationHistory.length, virtualScrollState.endIndex - virtualScrollState.startIndex);
+            virtualScrollState.startIndex = Math.max(0, virtualScrollState.startIndex - 50);
+            virtualScrollState.endIndex = Math.min(conversationHistory.length, virtualScrollState.endIndex + 50);
+            renderMessages();
+        }
+
+        function clearChat() {
+            if (confirm('Clear this conversation? This will start a new session.')) {
+                // Save current conversation before clearing
+                const oldConvId = currentConversationId;
+                saveConversationToLibrary(oldConvId);
+
+                // Start new conversation
+                conversationHistory = [];
+                currentConversationId = 'session_' + Date.now();
+                messageIdCounter = 0;
+                localStorage.removeItem('lastConversation');
+                renderMessages();
+                addSystemMessage('🆕 New conversation started. How can I help you?');
+            }
+        }
+
+        function exportChat() {
+            const data = {
+                id: currentConversationId,
+                messages: conversationHistory,
+                exportedAt: new Date().toISOString(),
+                currentFile: currentFile,
+                messageCount: conversationHistory.length,
+                duration: conversationHistory.length > 0 ?
+                    conversationHistory[conversationHistory.length - 1].timestamp - conversationHistory[0].timestamp : 0
+            };
+
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `conversation_${currentConversationId.substring(0, 20)}_${data.messageCount}msgs.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            showNotification(`💾 Conversation exported (${data.messageCount} messages)`, 'success');
+        }
+
+        // Save conversation to library
+        function saveConversationToLibrary(convId = null) {
+            const id = convId || currentConversationId;
+            const conversations = JSON.parse(localStorage.getItem('conversationLibrary') || '[]');
+
+            // Check if conversation already exists
+            const existingIdx = conversations.findIndex(c => c.id === id);
+
+            const convData = {
+                id: id,
+                title: generateConversationTitle(),
+                messages: conversationHistory,
+                messageCount: conversationHistory.length,
+                createdAt: conversationHistory[0]?.timestamp || Date.now(),
+                lastUpdated: Date.now(),
+                currentFile: currentFile,
+                preview: conversationHistory[conversationHistory.length - 1]?.content.substring(0, 100) || 'Empty conversation'
+            };
+
+            if (existingIdx >= 0) {
+                conversations[existingIdx] = convData;
+            } else {
+                conversations.push(convData);
+            }
+
+            // Keep only last 50 conversations
+            if (conversations.length > 50) {
+                conversations.sort((a, b) => b.lastUpdated - a.lastUpdated);
+                conversations.splice(50);
+            }
+
+            localStorage.setItem('conversationLibrary', JSON.stringify(conversations));
+        }
+
+        // Generate conversation title from first few messages
+        function generateConversationTitle() {
+            if (conversationHistory.length === 0) return 'Empty Conversation';
+
+            // Find first user message
+            const firstUserMsg = conversationHistory.find(m => m.role === 'user');
+            if (firstUserMsg) {
+                const title = firstUserMsg.content.substring(0, 50).trim();
+                return title.length < firstUserMsg.content.length ? title + '...' : title;
+            }
+
+            return `Conversation ${new Date().toLocaleDateString()}`;
+        }
+
+        function loadConversations() {
+            const conversations = JSON.parse(localStorage.getItem('conversationLibrary') || '[]');
+
+            if (conversations.length === 0) {
+                showNotification('No saved conversations found', 'info');
+                return;
+            }
+
+            // Create modal
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center;';
+
+            const content = document.createElement('div');
+            content.style.cssText = 'background: #1e1e1e; border: 1px solid #3e3e42; border-radius: 6px; width: 80%; max-width: 800px; max-height: 80vh; overflow: hidden; display: flex; flex-direction: column;';
+
+            content.innerHTML = `
+                <div style="padding: 15px; border-bottom: 1px solid #3e3e42; display: flex; align-items: center; justify-content: space-between;">
+                    <h3 style="margin: 0; font-size: 16px; color: #cccccc;"><i class="fas fa-history"></i> Conversation History</h3>
+                    <button onclick="this.closest('[style*=fixed]').remove()" style="background: transparent; border: none; color: #858585; cursor: pointer; font-size: 20px;">×</button>
+                </div>
+                <div style="flex: 1; overflow-y: auto; padding: 15px;">
+                    ${conversations.sort((a, b) => b.lastUpdated - a.lastUpdated).map(conv => `
+                        <div style="background: #2d2d30; border: 1px solid #3e3e42; border-radius: 4px; padding: 12px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s;"
+                             onmouseover="this.style.borderColor='#007acc'; this.style.background='#2d3e50';"
+                             onmouseout="this.style.borderColor='#3e3e42'; this.style.background='#2d2d30';"
+                             onclick="loadConversationById('${conv.id}'); this.closest('[style*=fixed]').remove();">
+                            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 8px;">
+                                <div style="font-weight: 600; color: #4ec9b0; font-size: 14px;">${conv.title}</div>
+                                <div style="color: #858585; font-size: 11px;">${new Date(conv.lastUpdated).toLocaleString()}</div>
+                            </div>
+                            <div style="color: #858585; font-size: 12px; margin-bottom: 6px;">${conv.messageCount} messages • ${conv.currentFile || 'No file'}</div>
+                            <div style="color: #cccccc; font-size: 12px; opacity: 0.7;">${conv.preview}</div>
+                            <div style="margin-top: 8px;">
+                                <button onclick="event.stopPropagation(); deleteConversation('${conv.id}'); this.closest('[style*=fixed]').remove();"
+                                        style="background: transparent; border: 1px solid #f48771; color: #f48771; padding: 4px 10px; border-radius: 3px; cursor: pointer; font-size: 11px; margin-right: 5px;">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                                <button onclick="event.stopPropagation(); exportConversationById('${conv.id}');"
+                                        style="background: transparent; border: 1px solid #4ec9b0; color: #4ec9b0; padding: 4px 10px; border-radius: 3px; cursor: pointer; font-size: 11px;">
+                                    <i class="fas fa-download"></i> Export
+                                </button>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            modal.appendChild(content);
+            document.body.appendChild(modal);
+
+            // Close on background click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.remove();
+            });
+        }
+
+        function loadConversationById(convId) {
+            const conversations = JSON.parse(localStorage.getItem('conversationLibrary') || '[]');
+            const conv = conversations.find(c => c.id === convId);
+
+            if (!conv) {
+                showNotification('Conversation not found', 'error');
+                return;
+            }
+
+            // Save current conversation first
+            saveConversationToLibrary();
+
+            // Load the selected conversation
+            conversationHistory = conv.messages || [];
+            currentConversationId = conv.id;
+            messageIdCounter = Math.max(...conversationHistory.map(m => m.id || 0), 0);
+            currentFile = conv.currentFile;
+
+            renderMessages();
+            saveConversation(); // Update lastConversation
+
+            showNotification(`📂 Loaded conversation: ${conv.title}`, 'success');
+        }
+
+        function deleteConversation(convId) {
+            if (!confirm('Delete this conversation? This cannot be undone.')) return;
+
+            const conversations = JSON.parse(localStorage.getItem('conversationLibrary') || '[]');
+            const filtered = conversations.filter(c => c.id !== convId);
+            localStorage.setItem('conversationLibrary', JSON.stringify(filtered));
+
+            showNotification('🗑️ Conversation deleted', 'success');
+        }
+
+        function exportConversationById(convId) {
+            const conversations = JSON.parse(localStorage.getItem('conversationLibrary') || '[]');
+            const conv = conversations.find(c => c.id === convId);
+
+            if (!conv) {
+                showNotification('Conversation not found', 'error');
+                return;
+            }
+
+            const blob = new Blob([JSON.stringify(conv, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `conversation_${conv.title.substring(0, 30).replace(/[^a-z0-9]/gi, '_')}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function attachCurrentFile() {
+            if (!currentFile) {
+                showNotification('No file is currently open', 'error');
+                return;
+            }
+
+            const content = editor.getValue();
+            const lines = content.split('\n').length;
+            const chars = content.length;
+
+            attachedContext = {
+                file: currentFile,
+                content: content,
+                lines: lines,
+                language: getLanguageFromPath(currentFile)
+            };
+
+            document.getElementById('attachmentInfo').innerHTML = `
+                <i class="fas fa-paperclip"></i> ${currentFile} (${lines} lines, ${chars} chars)
+                <button onclick="detachFile()" style="background: transparent; border: none; color: #858585; cursor: pointer; margin-left: 5px;">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+
+            showNotification('File attached to conversation', 'success');
+        }
+
+        function detachFile() {
+            attachedContext = null;
+            document.getElementById('attachmentInfo').innerHTML = '';
+        }
+
+        function quickPrompt(prompt) {
+            document.getElementById('chatInput').value = prompt;
+            document.getElementById('chatInput').focus();
+        }
+
+        function sendGPTMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            // Add user message
+            addUserMessage(message);
+            input.value = '';
+            input.style.height = 'auto';
+
+            // Show typing indicator
+            const typingId = addAssistantMessage('<div class="typing-indicator"><span></span><span></span><span></span></div>');
+
+            // Build context
+            let context = message;
+            if (attachedContext) {
+                context = `File: ${attachedContext.file}\nLanguage: ${attachedContext.language}\n\n\`\`\`${attachedContext.language}\n${attachedContext.content}\n\`\`\`\n\nUser request: ${message}`;
+            }
+
+            // Send to GPT API
+            sendToGPT(context).then(response => {
+                // Remove typing indicator
+                conversationHistory = conversationHistory.filter(m => m.id !== typingId);
+
+                // Add real response
+                addAssistantMessage(response);
+            });
+        }
+
+        async function sendToGPT(message) {
+            try {
+                const response = await fetch('/mcp/server_v3.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-Key': 'your-api-key-here'
+                    },
+                    body: JSON.stringify({
+                        jsonrpc: '2.0',
+                        id: Date.now(),
+                        method: 'chat.send',
+                        params: {
+                            message: message,
+                            conversation_id: currentConversationId,
+                            model: currentModel || 'gpt-4',
+                            stream: false
+                        }
+                    })
+                });
+
+                const data = await response.json();
+                return data.result?.response || 'I can help you with code! Try asking me to:\n\n• Explain this code\n• Fix bugs\n• Add features\n• Optimize performance\n• Write tests\n\nJust attach your file and tell me what you need!';
+            } catch (error) {
+                console.error('GPT Error:', error);
+                return `⚠️ Connection error. Make sure the MCP server is running.\n\nError: ${error.message}`;
+            }
+        }
+
+        function copyCode(messageId) {
+            const msg = conversationHistory.find(m => m.id === messageId);
+            if (!msg) return;
+
+            const codeMatch = msg.content.match(/```[\w]*\n([\s\S]*?)```/);
+            if (codeMatch) {
+                navigator.clipboard.writeText(codeMatch[1]);
+                showNotification('Code copied to clipboard', 'success');
+            }
+        }
+
+        function applyCode(messageId) {
+            const msg = conversationHistory.find(m => m.id === messageId);
+            if (!msg) return;
+
+            const codeMatch = msg.content.match(/```[\w]*\n([\s\S]*?)```/);
+            if (codeMatch && editor) {
+                editor.setValue(codeMatch[1]);
+                showNotification('Code applied to editor', 'success');
+                addSystemMessage('Code applied. Don\'t forget to save! (Ctrl+S)');
+            }
+        }
+
+        function insertCode(messageId) {
+            const msg = conversationHistory.find(m => m.id === messageId);
+            if (!msg) return;
+
+            const codeMatch = msg.content.match(/```[\w]*\n([\s\S]*?)```/);
+            if (codeMatch && editor) {
+                const position = editor.getPosition();
+                editor.executeEdits('', [{
+                    range: new monaco.Range(position.lineNumber, position.column, position.lineNumber, position.column),
+                    text: codeMatch[1]
+                }]);
+                showNotification('Code inserted at cursor', 'success');
+            }
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+                ${message}
+            `;
+            notification.style.borderColor = type === 'success' ? '#4ec9b0' : type === 'error' ? '#f48771' : '#007acc';
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease-out reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }        // Save File
+        document.getElementById('saveBtn').addEventListener('click', saveFile);
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+                e.preventDefault();
+                saveFile();
+            }
+        });
+
+        async function saveFile() {
+            if (!currentFile) {
+                addLog('No file open to save');
+                return;
+            }
+
+            const content = editor.getValue();
+            addLog('Saving: ' + currentFile);
+
+            try {
+                const response = await fetch('/devide/api.php?action=save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        path: currentFile,
+                        content: content
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    addLog('✓ Saved: ' + currentFile + ' (' + data.bytes + ' bytes)');
+                    addChatMessage('assistant', '✅ File saved successfully!');
+                } else {
+                    addLog('✗ Save failed: ' + data.error);
+                }
+            } catch (error) {
+                addLog('✗ Save error: ' + error.message);
+            }
+        }
+
+        // Server Functions
+        function connectServer(serverId) {
+            addLog(`Connecting to ${serverId}...`);
+            addChatMessage('assistant', `🔌 Connected to ${serverId} server`);
+        }
+
+        function viewLogs(serverId) {
+            addLog(`Loading logs for ${serverId}...`);
+            document.querySelector('.bottom-panel-tab[data-tab="terminal"]').click();
+        }
+
+        // Utility Functions
+        function addLog(message) {
+            const outputPanel = document.getElementById('outputPanel');
+            const line = document.createElement('div');
+            line.style.color = '#858585';
+            line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            outputPanel.appendChild(line);
+            outputPanel.scrollTop = outputPanel.scrollHeight;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 DevIDE Starting...');
+            addLog('IDE Initialized');
+
+            // Initialize chat system
+            console.log('📱 Initializing chat...');
+            initializeChat();
+
+            // Load files from current server
+            console.log('📁 Loading files...');
+            refreshFiles();
+
+            // Show bottom panel with GPT by default
+            console.log('🤖 Activating GPT panel...');
+            document.querySelector('.bottom-panel-tab[data-tab="gpt"]').click();
+
+            console.log('✅ DevIDE Ready!');
+        });
+
+        // Load Real Files
+        async function refreshFiles() {
+            addLog('Loading files...');
+            try {
+                const response = await fetch('/devide/api.php?action=list&path=.');
+                const data = await response.json();
+
+                if (data.success) {
+                    displayFileTree(data.files);
+                    addLog(`Loaded ${data.files.length} items`);
+                } else {
+                    addLog('Error loading files: ' + data.error);
+                }
+            } catch (error) {
+                addLog('Error: ' + error.message);
+                // Fallback to mock data
+                displayFileTree([
+                    { name: 'dashboard', type: 'dir', path: 'dashboard' },
+                    { name: 'mcp', type: 'dir', path: 'mcp' },
+                    { name: 'api', type: 'dir', path: 'api' },
+                    { name: '_kb', type: 'dir', path: '_kb' },
+                    { name: 'devide', type: 'dir', path: 'devide' },
+                    { name: 'index.php', type: 'file', path: 'index.php' },
+                    { name: 'config.php', type: 'file', path: 'config.php' },
+                ]);
+            }
+        }
+
+        function displayFileTree(files, indent = 0) {
+            const fileTree = document.getElementById('fileTree');
+            fileTree.innerHTML = '';
+
+            files.forEach(file => {
+                const li = document.createElement('li');
+                li.style.marginLeft = indent + 'px';
+                li.dataset.path = file.path;
+
+                if (file.type === 'dir') {
+                    li.classList.add('folder');
+                    li.innerHTML = `
+                        <i class="fas fa-folder folder-icon"></i>
+                        <span>${file.name}</span>
+                    `;
+                    li.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        expandFolder(file.path, li);
+                    });
+                } else {
+                    li.innerHTML = `
+                        <i class="fas fa-file-code file-icon"></i>
+                        <span>${file.name}</span>
+                    `;
+                    li.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openFileFromServer(file.path);
+                    });
+                }
+
+                fileTree.appendChild(li);
+            });
+        }
+
+        async function expandFolder(path, element) {
+            addLog('Expanding: ' + path);
+            try {
+                const response = await fetch(`/devide/api.php?action=list&path=${encodeURIComponent(path)}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    // Remove existing children
+                    let next = element.nextElementSibling;
+                    while (next && parseInt(next.style.marginLeft) > parseInt(element.style.marginLeft)) {
+                        const toRemove = next;
+                        next = next.nextElementSibling;
+                        toRemove.remove();
+                    }
+
+                    // Add new children
+                    const indent = parseInt(element.style.marginLeft) + 20;
+                    data.files.forEach(file => {
+                        const li = document.createElement('li');
+                        li.style.marginLeft = indent + 'px';
+                        li.dataset.path = file.path;
+
+                        if (file.type === 'dir') {
+                            li.classList.add('folder');
+                            li.innerHTML = `
+                                <i class="fas fa-folder folder-icon"></i>
+                                <span>${file.name}</span>
+                            `;
+                            li.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                expandFolder(file.path, li);
+                            });
+                        } else {
+                            li.innerHTML = `
+                                <i class="fas fa-file-code file-icon"></i>
+                                <span>${file.name}</span>
+                            `;
+                            li.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                openFileFromServer(file.path);
+                            });
+                        }
+
+                        element.parentNode.insertBefore(li, next);
+                    });
+                }
+            } catch (error) {
+                addLog('Error expanding folder: ' + error.message);
+            }
+        }
+
+        async function openFileFromServer(path) {
+            currentFile = path;
+            const filename = path.split('/').pop();
+
+            addLog('Opening: ' + path);
+
+            // Create tab if not exists
+            if (!openTabs.has(path)) {
+                const tab = document.createElement('div');
+                tab.className = 'tab';
+                tab.dataset.file = path;
+                tab.innerHTML = `
+                    <i class="fas fa-file-code"></i>
+                    <span>${filename}</span>
+                    <i class="fas fa-times close-tab" onclick="closeTab('${path}')"></i>
+                `;
+                document.getElementById('tabs').appendChild(tab);
+                openTabs.set(path, true);
+
+                tab.addEventListener('click', () => switchToTab(path));
+            }
+
+            switchToTab(path);
+
+            // Load real file content
+            try {
+                const response = await fetch(`/devide/api.php?action=read&path=${encodeURIComponent(path)}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    const language = getLanguageFromPath(path);
+                    editor.setValue(data.content);
+                    monaco.editor.setModelLanguage(editor.getModel(), language);
+                    addLog('✓ Loaded: ' + path);
+                } else {
+                    addLog('✗ Error: ' + data.error);
+                }
+            } catch (error) {
+                addLog('✗ Load error: ' + error.message);
+            }
+        }
+
+        function getLanguageFromPath(path) {
+            if (path.endsWith('.php')) return 'php';
+            if (path.endsWith('.js')) return 'javascript';
+            if (path.endsWith('.json')) return 'json';
+            if (path.endsWith('.html')) return 'html';
+            if (path.endsWith('.css')) return 'css';
+            if (path.endsWith('.md')) return 'markdown';
+            if (path.endsWith('.sql')) return 'sql';
+            if (path.endsWith('.xml')) return 'xml';
+            if (path.endsWith('.yaml') || path.endsWith('.yml')) return 'yaml';
+            return 'plaintext';
+        }
+
+        // Menu Functions
+        function newFile() {
+            const filename = prompt('Enter filename:');
+            if (filename) {
+                openFile('/' + filename);
+                editor.setValue('');
+            }
+        }
+
+        function openFileDialog() {
+            document.getElementById('fileTree').scrollIntoView({ behavior: 'smooth' });
+            showNotification('Select a file from the explorer', 'info');
+        }
+
+        function saveAs() {
+            const filename = prompt('Save as:', currentFile);
+            if (filename) {
+                currentFile = filename;
+                saveFile();
+            }
+        }
+
+        function closeFile() {
+            if (currentFile) {
+                closeTab(currentFile);
+            }
+        }
+
+        function undo() {
+            editor.trigger('keyboard', 'undo', null);
+        }
+
+        function redo() {
+            editor.trigger('keyboard', 'redo', null);
+        }
+
+        function find() {
+            editor.trigger('keyboard', 'actions.find', null);
+        }
+
+        function replace() {
+            editor.trigger('keyboard', 'editor.action.startFindReplaceAction', null);
+        }
+
+        function toggleSidebar() {
+            document.querySelector('.side-panel').classList.toggle('hidden');
+        }
+
+        // Profile Menu Functions
+        function viewProfile() {
+            showNotification('Opening profile...', 'info');
+            addLog('Profile view requested');
+        }
+
+        function editSettings() {
+            showNotification('Opening settings...', 'info');
+            addLog('Settings requested');
+        }
+
+        function viewActivity() {
+            showNotification('Loading activity log...', 'info');
+            addLog('Activity log requested');
+        }
+
+        function switchTheme() {
+            showNotification('Theme switcher coming soon!', 'info');
+            addLog('Theme change requested');
+        }
+
+        function keyboardShortcuts() {
+            const shortcuts = `
+                <div style="padding: 20px; max-width: 600px;">
+                    <h3 style="margin-top: 0; color: #4ec9b0;">⌨️ Keyboard Shortcuts</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 10px; font-size: 13px;">
+                        <div><kbd>Ctrl+N</kbd></div><div>New File</div>
+                        <div><kbd>Ctrl+S</kbd></div><div>Save File</div>
+                        <div><kbd>Ctrl+F</kbd></div><div>Find</div>
+                        <div><kbd>Ctrl+H</kbd></div><div>Replace</div>
+                        <div><kbd>Ctrl+Z</kbd></div><div>Undo</div>
+                        <div><kbd>Ctrl+Y</kbd></div><div>Redo</div>
+                        <div><kbd>Ctrl+B</kbd></div><div>Toggle Sidebar</div>
+                        <div><kbd>Ctrl+\`</kbd></div><div>Toggle Terminal</div>
+                        <div><kbd>Ctrl+/</kbd></div><div>Toggle Comment</div>
+                        <div><kbd>Alt+Up/Down</kbd></div><div>Move Line</div>
+                    </div>
+                </div>
+            `;
+
+            const modal = document.createElement('div');
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; display: flex; align-items: center; justify-content: center;';
+            modal.innerHTML = `
+                <div style="background: #1e1e1e; border: 1px solid #3e3e42; border-radius: 6px; color: #cccccc;">
+                    ${shortcuts}
+                    <div style="padding: 0 20px 20px; text-align: right;">
+                        <button onclick="this.closest('[style*=fixed]').remove()" style="background: #0e639c; border: none; color: white; padding: 8px 20px; border-radius: 3px; cursor: pointer;">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.remove();
+            });
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                showNotification('Logging out...', 'info');
+                setTimeout(() => {
+                    window.location.href = '/logout.php';
+                }, 1000);
+            }
+        }
+
+        // AI Model Switcher
+        let currentModel = 'gpt-4';
+
+        function switchModel(model) {
+            currentModel = model;
+            const modelNames = {
+                'gpt-4': 'GPT-4',
+                'gpt-4-turbo': 'GPT-4 Turbo',
+                'claude-3.5-sonnet': 'Claude 3.5 Sonnet',
+                'claude-3-opus': 'Claude 3 Opus',
+                'claude-3-haiku': 'Claude 3 Haiku'
+            };
+            showNotification(`Switched to ${modelNames[model]}`, 'success');
+            addLog(`AI Model changed to: ${modelNames[model]}`);
+
+            // Add system message to conversation
+            addSystemMessage(`🤖 Switched to ${modelNames[model]}`);
+        }
+
+        // Enter key in chat
+        document.getElementById('chatInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendGPTMessage();
+            }
+        });
+    </script>
+</body>
+</html>

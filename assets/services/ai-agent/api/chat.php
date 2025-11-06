@@ -6,6 +6,9 @@ require_once __DIR__.'/../lib/Telemetry.php';
 require_once __DIR__.'/../lib/MemoryStore.php';
 require_once __DIR__.'/../lib/ProviderFactory.php';
 
+// ⚡ SPEED: Load Redis cache
+require_once __DIR__.'/../../../../classes/RedisCache.php';
+
 $rid = new_request_id();
 
 try {
@@ -93,6 +96,51 @@ try {
   // Log user message
   $userMsgId = $tele->logUserMessage($conversationId, $seq, $message, $attachments);
 
+  // ⚡ SPEED: Check cache for AI responses (cache identical requests for 5 minutes)
+  $cacheKey = 'ai:chat:' . md5(json_encode([
+    'provider' => $provider,
+    'model' => $model,
+    'messages' => $messages,
+    'temperature' => $temperature
+  ]));
+
+  $cachedResponse = RedisCache::get($cacheKey);
+  if ($cachedResponse !== null && is_array($cachedResponse)) {
+    // Return cached response
+    $assistantText = $cachedResponse['text'];
+    $promptTok = $cachedResponse['prompt_tokens'];
+    $compTok = $cachedResponse['completion_tokens'];
+    $totalTok = $cachedResponse['total_tokens'];
+    $latencyMs = 0; // Instant from cache
+    $providerRequestId = $rid . '-cached';
+    $providerResponseId = $rid . '-cached';
+
+    // Still log the message for consistency
+    $assistantSeq = $seq + 1;
+    $assistantMsgId = $tele->logAssistantMessage(
+      $conversationId, $assistantSeq, $provider, $model, $assistantText,
+      $promptTok, $compTok, $providerRequestId, $providerResponseId
+    );
+
+    envelope_success([
+      'session_key' => $sessionKey,
+      'conversation_id' => $conversationId,
+      'correlation_id' => $correlationId,
+      'user_message_id' => $userMsgId,
+      'assistant_message_id' => $assistantMsgId,
+      'unit_id' => $unitId,
+      'project_id' => $projectId,
+      'bot' => $sourceBot,
+      'provider' => $provider,
+      'model' => $model,
+      'content' => $assistantText,
+      'tokens' => ['prompt'=>$promptTok, 'completion'=>$compTok, 'total'=>$totalTok],
+      'latency_ms' => $latencyMs,
+      'from_cache' => true
+    ], $rid);
+    exit;
+  }
+
   // Provider call
   $openaiKey   = env('OPENAI_API_KEY');
   $anthropicKey= env('ANTHROPIC_API_KEY');
@@ -168,6 +216,17 @@ try {
     $unitId, $projectId, $sourceBot
   );
 
+  // ⚡ SPEED: Cache successful AI response (5 minutes)
+  if (!empty($assistantText)) {
+    RedisCache::set($cacheKey, [
+      'text' => $assistantText,
+      'prompt_tokens' => $promptTok,
+      'completion_tokens' => $compTok,
+      'total_tokens' => $totalTok,
+      'cached_at' => time()
+    ], 300); // 5 minutes
+  }
+
   // Log assistant message
   $assistantSeq = $seq + 1;
   $assistantMsgId = $tele->logAssistantMessage(
@@ -198,6 +257,7 @@ try {
     'assistant_message_id' => $assistantMsgId,
     'unit_id' => $unitId,
     'project_id' => $projectId,
+    'from_cache' => false,
     'bot' => $sourceBot,
     'provider' => $provider,
     'model'    => $model,
